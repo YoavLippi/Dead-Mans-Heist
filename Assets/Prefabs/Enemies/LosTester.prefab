@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6780964571229506902}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EyePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: -876546973899608171, guid: bde135b320597544b9ac325092409f8b, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 6274949488511387071}
   - component: {fileID: 8879674562175589003}
   - component: {fileID: 814285465594988406}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LosTester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,8 +281,9 @@ MonoBehaviour:
   eyePos: {fileID: 6780964571229506902}
   rayDistance: 10
   fieldOfView: 45
-  rayNumber: 1
+  rayNumber: 15
   ignoreLayers:
   - serializedVersion: 2
     m_Bits: 64
-  coneMeshHolder: {fileID: 3187296271908915408}
+  coneMeshFilter: {fileID: 6328282372989880616}
+  isLooking: 0
