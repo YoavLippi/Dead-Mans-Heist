@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "TestInput",
+    "maps": [
+        {
+            "name": "Tester",
+            "id": "2fc867c4-0ad9-4cf8-979f-78ffbfa23e35",
+            "actions": [
+                {
+                    "name": "MoveStuff",
+                    "type": "Button",
+                    "id": "214c3733-b1b6-4e03-b08c-c0dc77d4e08d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c2e4592f-d2b1-4d73-a72a-d0f3ebfb0f40",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveStuff",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
