@@ -7,7 +7,7 @@ public class WorldTime : MonoBehaviour
     public static event Action<int> secondsChange;
 
     [SerializeField] private float seconds = 1f;
-    private int currentSecond = 0;
+   [SerializeField] private int currentSecond = 0;
     private float timer = 0f;
     [SerializeField]private TextMeshProUGUI text;
 

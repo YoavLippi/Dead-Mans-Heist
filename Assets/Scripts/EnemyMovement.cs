@@ -31,11 +31,11 @@ public class EnemyMovement : Enemy
         {
             nav.SetDestination(this.transform.position);
         }
-        else 
-        {
-            worldEvents next = schedules[index];
-            moveToCheckPoint(next.checkPointLocation);
-        }
+        //else if()
+        //{
+        //    worldEvents next = schedules[index];
+        //    moveToCheckPoint(next.checkPointLocation);
+        //}
     }
 
     public void checkTime(int currentworld) 
