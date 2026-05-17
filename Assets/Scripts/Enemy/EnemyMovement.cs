@@ -2,27 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
-public class EnemyMovement : Enemy
+public class EnemyMovement : EnemyAbs
 {  
      public NavMeshAgent nav;
-   
-
-    /*[System.Serializable]
-    public struct worldEvents 
-    {
-        public int timeTrigger;
-        public Transform checkPointLocation;
-    }*/
     public int index;
-    //public List<worldEvents> schedules;
-
     void OnEnable()
     {
-        WorldTime.secondsChange += checkTime;
+        WorldTime.secondsChange += CheckTime;
     }
   void OnDisable()
     {
-        WorldTime.secondsChange -= checkTime;
+        WorldTime.secondsChange -= CheckTime;
     }
 
     private void Update()
@@ -33,7 +23,8 @@ public class EnemyMovement : Enemy
         }
     }
 
-    private void checkTime(int currentworld) 
+    
+    protected override void CheckTime(int currentworld) 
     {
         if (index >= newSchedules.Count) 
         {
@@ -50,7 +41,7 @@ public class EnemyMovement : Enemy
         }
     }
 
-    public void moveToCheckPoint(Transform target) 
+    public override void moveToCheckPoint(Transform target) 
     {
        if(target !=null && nav != null) 
         {
@@ -58,4 +49,6 @@ public class EnemyMovement : Enemy
             nav.SetDestination(target.position);
         }
     }
+
+    
 }

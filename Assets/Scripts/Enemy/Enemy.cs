@@ -19,22 +19,20 @@ public enum EnemyState
     Stunned,
     Recovery
 }
-
-public class Enemy : MonoBehaviour
+public abstract class EnemyAbs : MonoBehaviour
 {
     [System.Serializable]
-    public struct newEvents 
+    public struct newEvents
     {
         public int timeTrigger;
         public UnityEvent attachedEvent;
     }
-    
+
     public List<newEvents> newSchedules;
     [SerializeField] protected bool isOnSchedule;
-    
+
     protected EnemyMoveMode currentMoveMode;
     protected EnemyState currentState;
-
     public EnemyMoveMode CurrentMoveMode
     {
         get => currentMoveMode;
@@ -44,28 +42,11 @@ public class Enemy : MonoBehaviour
             currentMoveMode = value;
             HandleStateChange(value);
         }
-    }
 
-    //listener handling
-    private void HandleStateChange(EnemyMoveMode val)
-    {
-        Debug.Log($"Current move mode is {val}");
     }
-
-    public EnemyState CurrentState
-    {
-        get => currentState;
-        set => currentState = value;
-    }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-    }
+    protected void HandleStateChange(EnemyMoveMode val){}
+    protected virtual void CheckTime(int currentworld) { }
+    public virtual void moveToCheckPoint(Transform target) { }
 
 
 }
