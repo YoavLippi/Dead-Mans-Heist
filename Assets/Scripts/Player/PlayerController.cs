@@ -96,7 +96,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnSneak(InputAction.CallbackContext context)
     {
-        isSneakHeld = context.performed;
+        //isSneakHeld = context.performed;
+        if (!context.performed) return;
+        isSneakHeld = !isSneakHeld;
         if (isSneakHeld)
         {
             if (!isRunHeld) CurrentState = PlayerState.Sneaking;
@@ -113,6 +115,7 @@ public class PlayerController : MonoBehaviour
         //if (isRunHeld) CurrentState = PlayerState.Running;
         if (isRunHeld)
         {
+            isSneakHeld = false;
             if (currentMoveDir.magnitude > 0) CurrentState = PlayerState.Running;
         }
         else
