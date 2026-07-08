@@ -67,6 +67,17 @@ public class Enemy : MonoBehaviour
     {
     }
 
-
+    public void GetDistracted(Transform distractionPos, DistractionHandler.DistractionSeverity sev)
+    {
+        switch (sev)
+        {
+            case DistractionHandler.DistractionSeverity.Severe:
+                //get distracted for 10 seconds
+                break;
+            case DistractionHandler.DistractionSeverity.Moderate:
+                //get distracted for 5 seconds
+                break;
+        }
+    }
 }
 
