@@ -11,6 +11,11 @@ public class DistractionHandler : MonoBehaviour
         Minor
     }
 
+    [Header("Editor")] 
+    [SerializeField] private bool alwaysDrawArea;
+    [SerializeField] private bool drawWireframeOnly;
+    [SerializeField] private Color sphereColour;
+    [SerializeField] private Color wireColour;
     [Header("Setup")]
     [SerializeField] private DistractionSeverity thisSeverity;
     [SerializeField] private float distractionRadius;
@@ -29,12 +34,26 @@ public class DistractionHandler : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1f, 0.6f, 0.2f, 0.4f);
-        Gizmos.matrix = transform.localToWorldMatrix;
-        Gizmos.DrawSphere(Vector3.zero, distractionRadius);
-        Gizmos.color = new Color(1f, 0.6f, 0.2f);
-        Gizmos.DrawWireSphere(Vector3.zero, distractionRadius);
+        if (alwaysDrawArea)
+        {
+            DrawGizmo();
+        }
         //Gizmos.DrawCube(Vector3.zero, Vector3.one);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        DrawGizmo();
+    }
+
+    private void DrawGizmo()
+    {
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.color = wireColour;
+        Gizmos.DrawWireSphere(Vector3.zero, distractionRadius);
+        if (drawWireframeOnly) return;
+        Gizmos.color = sphereColour;
+        Gizmos.DrawSphere(Vector3.zero, distractionRadius);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

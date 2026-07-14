@@ -284,8 +284,8 @@ MonoBehaviour:
   fieldOfView: 45
   rayNumber: 15
   ignoreLayers:
-  - serializedVersion: 2
-    m_Bits: 64
+    serializedVersion: 2
+    m_Bits: 1088
   coneMeshFilter: {fileID: 6328282372989880616}
   isLooking: 0
 --- !u!114 &3971787601932423704
