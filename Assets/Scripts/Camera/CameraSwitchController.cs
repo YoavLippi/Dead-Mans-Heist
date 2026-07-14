@@ -8,7 +8,7 @@ public class CameraSwitchController : MonoBehaviour
 {
     [Header("Editor")]
     [SerializeField] private bool alwaysDrawGizmo;
-    [SerializeField] private Color gizmoColor;
+    [SerializeField] private Color gizmoColor = Color.blue;
     [SerializeField] private CinemachineCamera thisCam;
     [SerializeField] private BoxCollider thisCol;
 
@@ -34,7 +34,7 @@ public class CameraSwitchController : MonoBehaviour
     private void DrawGizmo()
     {
         Gizmos.color = gizmoColor;
-        Gizmos.DrawWireCube(transform .TransformPoint(thisCol.center),thisCol.size);
+        Gizmos.DrawWireCube(transform .TransformPoint(thisCol.center), Vector3.Scale(thisCol.size, transform.localScale));
     }
 
     private void OnTriggerEnter(Collider other)
