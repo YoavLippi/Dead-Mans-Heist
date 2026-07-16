@@ -48,6 +48,17 @@ public abstract class EnemyAbs : MonoBehaviour
     protected virtual void CheckTime(int currentworld) { }
     public virtual void moveToCheckPoint(Transform target) { }
 
-
+    public void GetDistracted(Transform distractionPos, DistractionHandler.DistractionSeverity sev)
+    {
+        switch (sev)
+        {
+            case DistractionHandler.DistractionSeverity.Severe:
+                //get distracted for 10 seconds
+                break;
+            case DistractionHandler.DistractionSeverity.Moderate:
+                //get distracted for 5 seconds
+                break;
+        }
+    }
 }
 
