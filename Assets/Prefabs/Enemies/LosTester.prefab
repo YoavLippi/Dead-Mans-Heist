@@ -88,7 +88,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
+  m_RayTraceProcedural: 1
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
@@ -97,7 +97,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: bde135b320597544b9ac325092409f8b, type: 3}
+  - {fileID: 2100000, guid: 7e895f2521d63854db8d362643b49a44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -288,6 +288,7 @@ MonoBehaviour:
     m_Bits: 1088
   coneMeshFilter: {fileID: 6328282372989880616}
   isLooking: 0
+  coneMeshRenderer: {fileID: 5344484344335358174}
 --- !u!114 &3971787601932423704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,3 +303,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   newSchedules: []
   isOnSchedule: 0
+  attachedLos: {fileID: 814285465594988406}

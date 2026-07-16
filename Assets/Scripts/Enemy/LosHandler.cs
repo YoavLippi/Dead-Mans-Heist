@@ -16,6 +16,11 @@ public class LosHandler : MonoBehaviour
     [SerializeField] private LayerMask ignoreLayers;
     [SerializeField] private MeshFilter coneMeshFilter;
     [SerializeField] private bool isLooking;
+    [SerializeField] private MeshRenderer coneMeshRenderer;
+
+    public delegate void SeePlayer();
+
+    public SeePlayer OnSeePlayer;
 
     /*[SerializeField] private List<test> tester;
 
@@ -33,6 +38,12 @@ public class LosHandler : MonoBehaviour
     //staggering checks so that not all raycasters update at once
     private float nextIntervalMilis;
 
+    public Mesh ConeMesh
+    {
+        get => coneMesh;
+        set => coneMesh = value;
+    }
+
     private void Start()
     {
         /*totalMask = 0;
@@ -48,9 +59,14 @@ public class LosHandler : MonoBehaviour
         coneMesh.name = "ViewCone";
         coneMesh.MarkDynamic();
         coneMeshFilter.mesh = coneMesh;
-        
+        //meshRenderer = GetComponent<MeshRenderer>();
         
         StartLooking();
+    }
+    
+    public void LerpSightColor(float lerpPercentage, Color startColor, Color endColor)
+    {
+        coneMeshRenderer.material.color = Color.Lerp(startColor, endColor, lerpPercentage);
     }
 
     // Update is called once per frame
@@ -119,6 +135,11 @@ public class LosHandler : MonoBehaviour
                 RaycastHit hitInfo;
                 if (Physics.Raycast(eyePos.position, lookDir, out hitInfo, rayDistance, ~ignoreLayers))
                 {
+                    //the los has hit something
+                    if (hitInfo.transform.CompareTag("Player"))
+                    {
+                        OnSeePlayer?.Invoke();
+                    }
                     finalPoint = hitInfo.point;
                 }
                 else

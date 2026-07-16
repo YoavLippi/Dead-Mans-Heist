@@ -30,9 +30,23 @@ public abstract class EnemyAbs : MonoBehaviour
 
     public List<newEvents> newSchedules;
     [SerializeField] protected bool isOnSchedule;
+    [SerializeField] protected LosHandler attachedLos;
 
+    [SerializeField] protected float currentSuspicion;
+    [SerializeField] protected float maxSuspicion = 100f;
     protected EnemyMoveMode currentMoveMode;
     protected EnemyState currentState;
+
+    public float CurrentSuspicion
+    {
+        get => currentSuspicion;
+        set
+        {
+            attachedLos.LerpSightColor(currentSuspicion/maxSuspicion, Color.white, Color.red);
+            currentSuspicion = value;
+        }
+    }
+
     public EnemyMoveMode CurrentMoveMode
     {
         get => currentMoveMode;
@@ -43,6 +57,21 @@ public abstract class EnemyAbs : MonoBehaviour
             HandleStateChange(value);
         }
 
+    //listener handling
+
+    public EnemyState CurrentState
+    {
+        get => currentState;
+        set => currentState = value;
+    }
+
+    void Start()
+    {
+        attachedLos.OnSeePlayer += OnSeePlayer;
+    }
+
+    void Update()
+    {
     }
     protected void HandleStateChange(EnemyMoveMode val){}
     protected virtual void CheckTime(int currentworld) { }
@@ -59,6 +88,11 @@ public abstract class EnemyAbs : MonoBehaviour
                 //get distracted for 5 seconds
                 break;
         }
+    }
+
+    private void OnSeePlayer()
+    {
+        CurrentSuspicion = Mathf.Min(currentSuspicion + 0.35f, maxSuspicion);
     }
 }
 
