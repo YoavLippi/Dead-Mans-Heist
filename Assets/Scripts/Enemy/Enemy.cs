@@ -78,13 +78,11 @@ public class EnemyAbs : MonoBehaviour
 
     void FixedUpdate()
     {
-       
-
-           if (currentMoveMode != EnemyMoveMode.Chasing && currentSuspicion > 0f)
-            {
+        if (currentMoveMode != EnemyMoveMode.Chasing && currentSuspicion > 0f)
+        {
                 CurrentSuspicion = Mathf.Max(0, currentSuspicion - 0.3f);
               
-            }
+        }
         if (currentSuspicion == 0 && attention == 0) 
         {
             isOnSchedule = true;
@@ -116,6 +114,8 @@ public class EnemyAbs : MonoBehaviour
         if (currentSuspicion >= maxSuspicion && currentMoveMode != EnemyMoveMode.Chasing)
         {
             currentMoveMode = EnemyMoveMode.Chasing;
+            isOnSchedule = false;
+            attention = 5;
 
         }
     }

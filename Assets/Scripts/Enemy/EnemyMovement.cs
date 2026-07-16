@@ -5,6 +5,7 @@ public class EnemyMovement : EnemyAbs
     [SerializeField] private NavMeshAgent nav;
     [SerializeField] private int index;
     [SerializeField] private GameObject target;
+    [SerializeField] private bool isChasing;
     
     void OnEnable()
     {
@@ -17,11 +18,22 @@ public class EnemyMovement : EnemyAbs
 
     private void Update()
     {
+        if (currentSuspicion == maxSuspicion) 
+        {
+            isChasing = true;
+            //gonna use this for searching around
+        }
+        else 
+        {
+            isChasing = false;
+        }
         if (attention == 0)
         {
             nav.ResetPath();
-            isOnSchedule = true;
             currentMoveMode = EnemyMoveMode.Idle;
+
+            //then maybe we stop suspicion at 50% for like another timer?
+            //method to search around?
            
         }
 
