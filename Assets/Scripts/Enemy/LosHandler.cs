@@ -13,7 +13,7 @@ public class LosHandler : MonoBehaviour
     [SerializeField] private float rayDistance;
     [Range(0,360)][SerializeField] private float fieldOfView;
     [SerializeField] private int rayNumber;
-    [SerializeField] private List<LayerMask> ignoreLayers;
+    [SerializeField] private LayerMask ignoreLayers;
     [SerializeField] private MeshFilter coneMeshFilter;
     [SerializeField] private bool isLooking;
 
@@ -27,7 +27,7 @@ public class LosHandler : MonoBehaviour
     }*/
 
     //RUNTIME VARS
-    private LayerMask totalMask;
+    //private LayerMask totalMask;
     private List<Vector3> rayPoints;
     private Mesh coneMesh;
     //staggering checks so that not all raycasters update at once
@@ -35,13 +35,13 @@ public class LosHandler : MonoBehaviour
 
     private void Start()
     {
-        totalMask = 0;
+        /*totalMask = 0;
         foreach (var mask in ignoreLayers)
         {
             totalMask |= mask;
         }
         //bitwise NOT to make it so we ignore those layers
-        totalMask = ~totalMask;
+        totalMask = ~totalMask;*/
         rayPoints = new List<Vector3>();
 
         coneMesh = new Mesh();
@@ -117,7 +117,7 @@ public class LosHandler : MonoBehaviour
                 Vector3 finalPoint;
                 
                 RaycastHit hitInfo;
-                if (Physics.Raycast(eyePos.position, lookDir, out hitInfo, rayDistance, totalMask))
+                if (Physics.Raycast(eyePos.position, lookDir, out hitInfo, rayDistance, ~ignoreLayers))
                 {
                     finalPoint = hitInfo.point;
                 }
@@ -126,9 +126,9 @@ public class LosHandler : MonoBehaviour
                     finalPoint = eyePos.position + lookDir * rayDistance;
                 }
                 
-                #if UNITY_EDITOR
+                /*#if UNITY_EDITOR
                 Debug.DrawLine(eyePos.position, finalPoint, Color.red);
-                #endif
+                #endif*/
                 
                 rayPoints.Add(transform.InverseTransformPoint(finalPoint));
             }

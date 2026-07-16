@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DistractionHandler : MonoBehaviour
@@ -9,10 +11,51 @@ public class DistractionHandler : MonoBehaviour
         Minor
     }
 
+    [Header("Editor")] 
+    [SerializeField] private bool alwaysDrawArea;
+    [SerializeField] private bool drawWireframeOnly;
+    [SerializeField] private Color sphereColour;
+    [SerializeField] private Color wireColour;
     [Header("Setup")]
     [SerializeField] private DistractionSeverity thisSeverity;
-    [SerializeField] private int distractionRadius;
-    
+    [SerializeField] private float distractionRadius;
+
+    public DistractionSeverity ThisSeverity
+    {
+        get => thisSeverity;
+        set => thisSeverity = value;
+    }
+
+    public float DistractionRadius
+    {
+        get => distractionRadius;
+        set => distractionRadius = value;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (alwaysDrawArea)
+        {
+            DrawGizmo();
+        }
+        //Gizmos.DrawCube(Vector3.zero, Vector3.one);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        DrawGizmo();
+    }
+
+    private void DrawGizmo()
+    {
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.color = wireColour;
+        Gizmos.DrawWireSphere(Vector3.zero, distractionRadius);
+        if (drawWireframeOnly) return;
+        Gizmos.color = sphereColour;
+        Gizmos.DrawSphere(Vector3.zero, distractionRadius);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,8 +63,24 @@ public class DistractionHandler : MonoBehaviour
         a.GetDistracted(transform, thisSeverity);*/
     }
 
-    public void UseDistraction()
+    private void Update()
     {
-        
+        //UseDistraction();
+    }
+
+    public void DoDistraction()
+    {
+        //List<Enemy> enemiesInRange = new List<Enemy>();
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, distractionRadius);
+        foreach (var col in hitColliders)
+        {
+            if (!col.CompareTag("Enemy")) continue;
+            
+            if (col.GetComponent<Enemy>())
+            {
+                //enemiesInRange.Add(col.GetComponent<Enemy>());
+                col.GetComponent<Enemy>().GetDistracted(transform, thisSeverity);
+            }
+        }
     }
 }
