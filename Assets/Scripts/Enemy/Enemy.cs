@@ -19,7 +19,7 @@ public enum EnemyState
     Stunned,
     Recovery
 }
-public abstract class EnemyAbs : MonoBehaviour
+public class EnemyAbs : MonoBehaviour
 {
     [System.Serializable]
     public struct newEvents
@@ -56,6 +56,7 @@ public abstract class EnemyAbs : MonoBehaviour
             currentMoveMode = value;
             HandleStateChange(value);
         }
+    }
 
     //listener handling
 

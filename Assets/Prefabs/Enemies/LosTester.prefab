@@ -135,7 +135,8 @@ GameObject:
   - component: {fileID: 6274949488511387071}
   - component: {fileID: 8879674562175589003}
   - component: {fileID: 814285465594988406}
-  - component: {fileID: 3971787601932423704}
+  - component: {fileID: 183220637725763063}
+  - component: {fileID: 249264150730694979}
   m_Layer: 6
   m_Name: LosTester
   m_TagString: Enemy
@@ -285,11 +286,11 @@ MonoBehaviour:
   rayNumber: 15
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 0
   coneMeshFilter: {fileID: 6328282372989880616}
   isLooking: 0
   coneMeshRenderer: {fileID: 5344484344335358174}
---- !u!114 &3971787601932423704
+--- !u!114 &183220637725763063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,9 +299,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 8528359184008996054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af51dbaea757e224392f442f821ac3b5, type: 3}
+  m_Script: {fileID: 11500000, guid: cbe116731bc56e7468d4d229c110ca79, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   newSchedules: []
   isOnSchedule: 0
   attachedLos: {fileID: 814285465594988406}
+  currentSuspicion: 0
+  maxSuspicion: 100
+  nav: {fileID: 249264150730694979}
+  index: 0
+--- !u!195 &249264150730694979
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8528359184008996054}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

@@ -76,10 +76,10 @@ public class DistractionHandler : MonoBehaviour
         {
             if (!col.CompareTag("Enemy")) continue;
             
-            if (col.GetComponent<Enemy>())
+            if (col.GetComponent<EnemyAbs>())
             {
                 //enemiesInRange.Add(col.GetComponent<Enemy>());
-                col.GetComponent<Enemy>().GetDistracted(transform, thisSeverity);
+                col.GetComponent<EnemyAbs>().GetDistracted(transform, thisSeverity);
             }
         }
     }

@@ -4,8 +4,9 @@ using UnityEngine.AI;
 using UnityEngine.UIElements;
 public class EnemyMovement : EnemyAbs
 {  
-     public NavMeshAgent nav;
-    public int index;
+    [SerializeField] private NavMeshAgent nav;
+    [SerializeField] private int index;
+    
     void OnEnable()
     {
         WorldTime.secondsChange += CheckTime;
@@ -20,6 +21,7 @@ public class EnemyMovement : EnemyAbs
         if (CurrentMoveMode == EnemyMoveMode.Chasing)
         {
             nav.SetDestination(this.transform.position);
+
         }
     }
 
