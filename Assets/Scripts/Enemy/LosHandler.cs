@@ -17,6 +17,7 @@ public class LosHandler : MonoBehaviour
     [SerializeField] private MeshFilter coneMeshFilter;
     [SerializeField] private bool isLooking;
     [SerializeField] private MeshRenderer coneMeshRenderer;
+    [SerializeField] private bool isSeeingPlayer;
 
     public delegate void SeePlayer();
 
@@ -43,6 +44,8 @@ public class LosHandler : MonoBehaviour
         get => coneMesh;
         set => coneMesh = value;
     }
+
+    public bool IsSeeingPlayer => isSeeingPlayer;
 
     private void Start()
     {
@@ -123,6 +126,9 @@ public class LosHandler : MonoBehaviour
             float angleChange = fieldOfView / rayNumber;
             float offsetFOV = -fieldOfView / 2f;
             rayPoints.Add(transform.InverseTransformPoint(eyePos.position));
+
+            int numRaysSeen = 0;
+            bool sawPlayer = false;
             for (int i = 0; i < rayNumber; i++)
             {
                 //we need to adjust the angle for each new ray
@@ -140,11 +146,15 @@ public class LosHandler : MonoBehaviour
                 if (Physics.Raycast(eyePos.position, lookDir, out hitInfo, rayDistance, ~ignoreLayers))
                 {
                     //the los has hit something
-                    if (hitInfo.transform.CompareTag("Player"))
-                    {
-                        OnSeePlayer?.Invoke();
-                    }
                     finalPoint = hitInfo.point;
+                    if (hitInfo.collider.CompareTag("Player"))
+                    {
+                        numRaysSeen++;
+                        if (!sawPlayer)
+                        {
+                            sawPlayer = true;
+                        }
+                    }
                 }
                 else
                 {
@@ -157,6 +167,13 @@ public class LosHandler : MonoBehaviour
                 
                 rayPoints.Add(transform.InverseTransformPoint(finalPoint));
             }
+
+            for (int i = 0; i < numRaysSeen; i++)
+            {
+                OnSeePlayer?.Invoke();
+            }
+
+            isSeeingPlayer = sawPlayer;
 
             DrawShape(rayPoints);
             nextIntervalMilis = Random.Range(30, 76);

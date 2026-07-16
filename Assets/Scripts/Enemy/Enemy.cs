@@ -37,8 +37,6 @@ public class EnemyAbs : MonoBehaviour
     protected EnemyMoveMode currentMoveMode;
     protected EnemyState currentState;
     [SerializeField] protected DetectionUX detectUX;
-    [SerializeField] Color detectedCol;
-    [SerializeField] Color undetectedCol;
     [SerializeField] protected Gradient gradient;
 
     public float CurrentSuspicion
@@ -77,8 +75,15 @@ public class EnemyAbs : MonoBehaviour
         attachedLos.OnSeePlayer += OnSeePlayer;
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        if (!attachedLos.IsSeeingPlayer)
+        {
+            if (Math.Abs(currentSuspicion - maxSuspicion) >= 0.01f)
+            {
+                CurrentSuspicion = Mathf.Max(0, currentSuspicion - 0.3f);
+            }
+        }
     }
     protected void HandleStateChange(EnemyMoveMode val){}
     protected virtual void CheckTime(int currentworld) { }

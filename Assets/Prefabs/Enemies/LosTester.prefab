@@ -287,7 +287,7 @@ MonoBehaviour:
   rayNumber: 15
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   coneMeshFilter: {fileID: 6328282372989880616}
   isLooking: 0
   coneMeshRenderer: {fileID: 5344484344335358174}
