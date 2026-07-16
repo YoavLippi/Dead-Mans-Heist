@@ -36,14 +36,20 @@ public class EnemyAbs : MonoBehaviour
     [SerializeField] protected float maxSuspicion = 100f;
     protected EnemyMoveMode currentMoveMode;
     protected EnemyState currentState;
+    [SerializeField] protected DetectionUX detectUX;
+    [SerializeField] Color detectedCol;
+    [SerializeField] Color undetectedCol;
+    [SerializeField] protected Gradient gradient;
 
     public float CurrentSuspicion
     {
         get => currentSuspicion;
         set
-        {
-            attachedLos.LerpSightColor(currentSuspicion/maxSuspicion, Color.white, Color.red);
+        {   
             currentSuspicion = value;
+            detectUX.UpdateUXState(value);
+            attachedLos.SetSightColour(gradient.Evaluate(value/maxSuspicion));
+            
         }
     }
 
@@ -93,7 +99,7 @@ public class EnemyAbs : MonoBehaviour
 
     private void OnSeePlayer()
     {
-        CurrentSuspicion = Mathf.Min(currentSuspicion + 0.35f, maxSuspicion);
+        CurrentSuspicion = Mathf.Min(currentSuspicion + 0.5f, maxSuspicion);
     }
 }
 

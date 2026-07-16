@@ -68,6 +68,10 @@ public class LosHandler : MonoBehaviour
     {
         coneMeshRenderer.material.color = Color.Lerp(startColor, endColor, lerpPercentage);
     }
+    public void SetSightColour(Color color) 
+    {
+        coneMeshRenderer.material.color = color;
+    }
 
     // Update is called once per frame
     void Update()
