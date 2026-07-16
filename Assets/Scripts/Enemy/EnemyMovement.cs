@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 public class EnemyMovement : EnemyAbs
 {  
     [SerializeField] private NavMeshAgent nav;
     [SerializeField] private int index;
+    [SerializeField] private GameObject target;
     
     void OnEnable()
     {
@@ -18,11 +17,25 @@ public class EnemyMovement : EnemyAbs
 
     private void Update()
     {
+        if (attention == 0)
+        {
+            nav.ResetPath();
+            isOnSchedule = true;
+            currentMoveMode = EnemyMoveMode.Idle;
+           
+        }
+
         if (CurrentMoveMode == EnemyMoveMode.Chasing)
         {
-            nav.SetDestination(this.transform.position);
-
+            nav.SetDestination(target.transform.position);
+            if (!attachedLos.IsSeeingPlayer) 
+            {
+                attention = Mathf.Max(0, attention - Time.deltaTime);
+     
+            }
         }
+        
+
     }
 
     
