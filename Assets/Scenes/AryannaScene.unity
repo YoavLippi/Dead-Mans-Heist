@@ -1184,7 +1184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableUI
   spectralOutlineColor: {r: 0.7, g: 0.065, b: 0.8, a: 1}
-  maxOutlineThickness: 5.5
+  maxOutlineThickness: 8.1
   pulseSpeed: 3
   objectName: Object
   promptMessage: Cause Chaos
