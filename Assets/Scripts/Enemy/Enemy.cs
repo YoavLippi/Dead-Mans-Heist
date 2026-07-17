@@ -32,6 +32,8 @@ public class EnemyAbs : MonoBehaviour
     [SerializeField] protected bool isOnSchedule;
     [SerializeField] protected LosHandler attachedLos;
 
+    [SerializeField] protected float detectionSpeed = 0.6f;
+    [SerializeField] protected float suspicionDecreaseSpeed = 0.3f;
     [SerializeField] protected float currentSuspicion;
     [SerializeField] protected float maxSuspicion = 100f;
     [SerializeField] protected EnemyMoveMode currentMoveMode;
@@ -81,7 +83,7 @@ public class EnemyAbs : MonoBehaviour
     {
         if (currentMoveMode != EnemyMoveMode.Chasing && currentSuspicion > 0f)
         {
-                CurrentSuspicion = Mathf.Max(0, currentSuspicion - 0.3f);
+                CurrentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseSpeed);
               
         }
         if (currentSuspicion == 0 && attention == 0) 
@@ -100,7 +102,7 @@ public class EnemyAbs : MonoBehaviour
         switch (sev)
         {
             case DistractionHandler.DistractionSeverity.Severe:
-                //get distracted for 10 seconds
+                //get distracted for 10 seconds, for example
                 break;
             case DistractionHandler.DistractionSeverity.Moderate:
                 //get distracted for 5 seconds
@@ -110,7 +112,7 @@ public class EnemyAbs : MonoBehaviour
 
     private void OnSeePlayer()
     {
-        CurrentSuspicion = Mathf.Min(currentSuspicion + 0.5f, maxSuspicion);
+        CurrentSuspicion = Mathf.Min(currentSuspicion + detectionSpeed, maxSuspicion);
         if (currentSuspicion >= maxSuspicion && currentMoveMode != EnemyMoveMode.Chasing)
         {
             currentMoveMode = EnemyMoveMode.Chasing;
