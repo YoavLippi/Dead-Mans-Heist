@@ -9,11 +9,12 @@ public class EnemyMovement : EnemyAbs
     [SerializeField] private GameObject target;
     [SerializeField] private bool isChasing;
     [SerializeField] private bool islookingAround;
+    int lastknownWorldTime;
 
     //this is for like the turn stuffs
-    [SerializeField] private float turnAngle = 45;
-    [SerializeField] private float speed = 2;
-    [SerializeField] private float waitTime = 1;
+    [SerializeField] private float turnAngle = 60f;
+    [SerializeField] private float speed = 4f;
+    [SerializeField] private float waitTime = 0.5f;
     Quaternion startingPos;
     
     void OnEnable()
@@ -53,17 +54,27 @@ public class EnemyMovement : EnemyAbs
     
     protected override void CheckTime(int currentworld) 
     {
+        lastknownWorldTime = currentworld;
         if (index >= newSchedules.Count) 
         {
             return;
-        }
+        } 
+        if (!isOnSchedule) return;
         newEvents next = newSchedules[index];
         if (currentworld >= next.timeTrigger) 
         {
             //if (currentMoveMode == EnemyMoveMode.Chasing) return;
-            if (!isOnSchedule) return;
+           
             
             next.attachedEvent.Invoke();
+            index++;
+        }
+    }
+
+    public void FastForward()
+    {
+        while (index < newSchedules.Count && lastknownWorldTime >= newSchedules[index].timeTrigger) 
+        {
             index++;
         }
     }
@@ -93,18 +104,20 @@ public class EnemyMovement : EnemyAbs
         yield return new WaitForSeconds(waitTime);
 
         yield return StartCoroutine(RotateTo(startingPos));
+        FastForward();
         islookingAround = false;
         isOnSchedule = true;
 
     }
-    public IEnumerator RotateTo(Quaternion quaternion) 
+    public IEnumerator RotateTo(Quaternion targetRot) 
     {
-        while (Quaternion.Angle(transform.rotation, quaternion) > 0.1f) 
+        while (Quaternion.Angle(transform.rotation, targetRot) > 0.1f) 
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, speed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, speed * Time.deltaTime);
             yield return null;
         }
-        transform.rotation = quaternion;
+        transform.rotation = targetRot;
+
     }
 
     

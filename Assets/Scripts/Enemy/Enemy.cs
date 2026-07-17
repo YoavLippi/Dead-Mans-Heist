@@ -74,6 +74,7 @@ public class EnemyAbs : MonoBehaviour
     void Start()
     {
         attachedLos.OnSeePlayer += OnSeePlayer;
+        CurrentSuspicion = 0;
     }
 
     void FixedUpdate()
