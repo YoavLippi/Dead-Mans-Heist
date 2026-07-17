@@ -36,10 +36,11 @@ public class EnemyAbs : MonoBehaviour
     [SerializeField] protected float suspicionDecreaseSpeed = 0.3f;
     [SerializeField] protected float currentSuspicion;
     [SerializeField] protected float maxSuspicion = 100f;
-    protected EnemyMoveMode currentMoveMode;
-    protected EnemyState currentState;
+    [SerializeField] protected EnemyMoveMode currentMoveMode;
+    [SerializeField] protected EnemyState currentState;
     [SerializeField] protected DetectionUX detectUX;
     [SerializeField] protected Gradient gradient;
+    [SerializeField] protected float attention = 5;
 
     public float CurrentSuspicion
     {
@@ -75,17 +76,22 @@ public class EnemyAbs : MonoBehaviour
     void Start()
     {
         attachedLos.OnSeePlayer += OnSeePlayer;
+        CurrentSuspicion = 0;
     }
 
     void FixedUpdate()
     {
-        if (!attachedLos.IsSeeingPlayer)
+        if (currentMoveMode != EnemyMoveMode.Chasing && currentSuspicion > 0f)
         {
-            if (Math.Abs(currentSuspicion - maxSuspicion) >= 0.01f)
-            {
                 CurrentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseSpeed);
-            }
+              
         }
+        if (currentSuspicion == 0 && attention == 0) 
+        {
+            currentMoveMode = EnemyMoveMode.Patrolling;
+            attention = 5;
+        }
+       
     }
     protected void HandleStateChange(EnemyMoveMode val){}
     protected virtual void CheckTime(int currentworld) { }
@@ -107,6 +113,13 @@ public class EnemyAbs : MonoBehaviour
     private void OnSeePlayer()
     {
         CurrentSuspicion = Mathf.Min(currentSuspicion + detectionSpeed, maxSuspicion);
+        if (currentSuspicion >= maxSuspicion && currentMoveMode != EnemyMoveMode.Chasing)
+        {
+            currentMoveMode = EnemyMoveMode.Chasing;
+            isOnSchedule = false;
+            attention = 5;
+
+        }
     }
 }
 
