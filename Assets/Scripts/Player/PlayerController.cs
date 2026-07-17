@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float runSpeed;
     [SerializeField] private float sneakSpeed;
     [SerializeField] private CharacterController charController;
+    [SerializeField] private Animator spriteAnimator;
     
     [Header("Runtime")]
     [SerializeField] private PlayerState currentState;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
         {
             currentState = value;
             //we can add listeners here for animation triggers etc
+            SetAnimationFlag(value);
         }
     }
 
@@ -37,6 +39,14 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         charController = GetComponent<CharacterController>();
+    }
+
+    private void SetAnimationFlag(PlayerState newState)
+    {
+        string runFlag = "IsRunning", moveFlag = "IsWalking", crouchFlag = "IsCrouching";
+        spriteAnimator.SetBool(runFlag, newState==PlayerState.Running);
+        spriteAnimator.SetBool(crouchFlag, newState==PlayerState.Sneaking);
+        spriteAnimator.SetBool(moveFlag, newState==PlayerState.Walking);
     }
 
     // Update is called once per frame
@@ -68,6 +78,8 @@ public class PlayerController : MonoBehaviour
     {
         //if (!context.performed) return;
         currentMoveDir = context.action.ReadValue<Vector2>();
+        spriteAnimator.SetFloat("MoveX", currentMoveDir.x);
+        spriteAnimator.SetFloat("MoveY", currentMoveDir.y);
         if (currentMoveDir.magnitude != 0)
         {
             //running takes priority
