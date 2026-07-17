@@ -85,7 +85,6 @@ public class EnemyAbs : MonoBehaviour
         }
         if (currentSuspicion == 0 && attention == 0) 
         {
-            isOnSchedule = true;
             currentMoveMode = EnemyMoveMode.Patrolling;
             attention = 5;
         }
