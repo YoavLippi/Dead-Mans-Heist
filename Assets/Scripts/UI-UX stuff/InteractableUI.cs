@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 public class InteractableUI : MonoBehaviour
 {
 	[Header("UX Visual Settings")]
-	public Color spectralOutlineColor = new Color(0.7f, 0.065f, 0.8f, 1f); // Ectoplasmic Green
+	[ColorUsage(true, true)]
+	public Color spectralOutlineColor = new Color(0.7f, 0.065f, 0.8f, 1f);
 	[Range(0f, 10f)] public float maxOutlineThickness = 3f;
 	public float pulseSpeed = 3f;
 
@@ -15,6 +16,7 @@ public class InteractableUI : MonoBehaviour
 	private SpriteRenderer[] spriteRenderers;
 	private bool isGhostModeActive = false;
 	private MaterialPropertyBlock materialProperties;
+	public GameObject ghostModePanel;
 
 	// Shader property IDs (caches the strings for optimization)
 	private static readonly int OutlineColorID = Shader.PropertyToID("_OutlineColor");
@@ -31,6 +33,7 @@ public class InteractableUI : MonoBehaviour
 	void Start()
 	{
 		SetOutlineActive(false);
+		if (ghostModePanel != null) ghostModePanel.SetActive(false);
 	}
 
 	void Update()
@@ -38,7 +41,7 @@ public class InteractableUI : MonoBehaviour
 		// TEMPORARY TESTING TRIGGER: Press 'G' to simulate entering Ghost Vision
 		if (Keyboard.current != null && Keyboard.current.gKey.wasPressedThisFrame)
 		{
-			Debug.Log($"[DIAGNOSTIC] 'G' key pressed! Toggling Ghost Vision to: {!isGhostModeActive}"); 
+			Debug.Log($"[DIAGNOSTIC] 'G' key pressed! Toggling Ghost Vision to: {!isGhostModeActive}");
 			ToggleGhostVision(!isGhostModeActive);
 		}
 
@@ -53,6 +56,11 @@ public class InteractableUI : MonoBehaviour
 	{
 		isGhostModeActive = active;
 		SetOutlineActive(active);
+
+		if (ghostModePanel != null)
+		{
+			ghostModePanel.SetActive(active);
+		}
 	}
 
 	private void SetOutlineActive(bool state)
