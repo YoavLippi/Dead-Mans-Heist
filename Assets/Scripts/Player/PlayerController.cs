@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
                 CurrentState = PlayerState.Walking;
             }
             //CurrentState = isRunHeld ? PlayerState.Running : PlayerState.Walking;
+            spriteAnimator.SetBool("IsMoving", true);
         }
         else
         {
@@ -103,6 +104,7 @@ public class PlayerController : MonoBehaviour
             {
                 CurrentState = PlayerState.Idle;
             }
+            spriteAnimator.SetBool("IsMoving", false);
         }
     }
 
