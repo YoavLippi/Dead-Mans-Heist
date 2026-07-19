@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DistractionHandler : MonoBehaviour
+public class DistractionHandler : Interactable
 {
     public enum DistractionSeverity
     {
@@ -68,7 +68,23 @@ public class DistractionHandler : MonoBehaviour
         //UseDistraction();
     }
 
-    public void DoDistraction()
+    /*public void DoDistraction()
+    {
+        //List<Enemy> enemiesInRange = new List<Enemy>();
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, distractionRadius);
+        foreach (var col in hitColliders)
+        {
+            if (!col.CompareTag("Enemy")) continue;
+            
+            if (col.GetComponent<EnemyAbs>())
+            {
+                //enemiesInRange.Add(col.GetComponent<Enemy>());
+                col.GetComponent<EnemyAbs>().GetDistracted(transform, thisSeverity);
+            }
+        }
+    }*/
+
+    public override void DoInteract()
     {
         //List<Enemy> enemiesInRange = new List<Enemy>();
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, distractionRadius);

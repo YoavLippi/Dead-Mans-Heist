@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sneakSpeed;
     [SerializeField] private CharacterController charController;
     [SerializeField] private Animator spriteAnimator;
+    [SerializeField] private InteractionHandler interactionHandler;
     
     [Header("Runtime")]
     [SerializeField] private PlayerState currentState;
@@ -38,7 +39,9 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        charController = GetComponent<CharacterController>();
+        charController = GetComponentInChildren<CharacterController>();
+        spriteAnimator = GetComponentInChildren<Animator>();
+        interactionHandler = GetComponentInChildren<InteractionHandler>();
     }
 
     private void SetAnimationFlag(PlayerState newState)
@@ -140,5 +143,11 @@ public class PlayerController : MonoBehaviour
         {
             if (currentMoveDir.magnitude > 0) CurrentState = isSneakHeld ? PlayerState.Sneaking : PlayerState.Walking;
         }
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        interactionHandler.DoInteract();
     }
 }

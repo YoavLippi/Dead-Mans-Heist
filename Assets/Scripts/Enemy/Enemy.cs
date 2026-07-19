@@ -99,6 +99,7 @@ public class EnemyAbs : MonoBehaviour
 
     public void GetDistracted(Transform distractionPos, DistractionHandler.DistractionSeverity sev)
     {
+        Debug.Log($"{name} was distracted, pos: {distractionPos.position}, severity {sev.ToString()}");
         switch (sev)
         {
             case DistractionHandler.DistractionSeverity.Severe:
