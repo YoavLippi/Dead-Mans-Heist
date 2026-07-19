@@ -88,7 +88,10 @@ public class EnemyMovement : EnemyAbs
         }
     }
 
-
+    public void lookAround() 
+    {
+        StartCoroutine(LookSequence());
+    }
     public IEnumerator LookSequence() 
     {
 
