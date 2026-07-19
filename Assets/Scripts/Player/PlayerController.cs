@@ -96,6 +96,10 @@ public class PlayerController : MonoBehaviour
             }
             //CurrentState = isRunHeld ? PlayerState.Running : PlayerState.Walking;
             spriteAnimator.SetBool("IsMoving", true);
+            
+            //This should store only the last movement so we know which way it was facing when it stopped
+            spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
+            spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
         }
         else
         {
