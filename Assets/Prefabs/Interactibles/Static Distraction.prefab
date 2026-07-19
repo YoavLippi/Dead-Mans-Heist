@@ -66,7 +66,7 @@ MonoBehaviour:
   alwaysDrawArea: 1
   drawWireframeOnly: 1
   sphereColour: {r: 0.9821073, g: 1, b: 0, a: 0.30588236}
-  wireColour: {r: 0.94960845, g: 1, b: 0, a: 1}
+  wireColour: {r: 0.94960845, g: 1, b: 0, a: 0.25490198}
   thisSeverity: 1
   distractionRadius: 4.04
 --- !u!54 &3369411321861529234
@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 6296848091912654537}
   - component: {fileID: 8081741621615800423}
   - component: {fileID: 8550627021914207707}
+  - component: {fileID: 7225912262500173600}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -209,8 +210,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 402482189
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 37035083f3b18154fb5fc553741b786e, type: 3}
@@ -238,6 +239,66 @@ MonoBehaviour:
   spectralOutlineColor: {r: 0.7, g: 0.065, b: 0.8, a: 1}
   maxOutlineThickness: 3
   pulseSpeed: 3
+  thisSpriteMask: {fileID: 7225912262500173600}
   objectName: Object
   promptMessage: Cause Chaos
   ghostModePanel: {fileID: 0}
+--- !u!331 &7225912262500173600
+SpriteMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293128104527671346}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: 37035083f3b18154fb5fc553741b786e, type: 3}
+  m_MaskAlphaCutoff: 0.2
+  m_FrontSortingLayerID: 0
+  m_BackSortingLayerID: 0
+  m_FrontSortingLayer: 0
+  m_BackSortingLayer: 0
+  m_FrontSortingOrder: 0
+  m_BackSortingOrder: 0
+  m_IsCustomRangeActive: 0
+  m_SpriteSortPoint: 0
+  m_MaskSource: 0
