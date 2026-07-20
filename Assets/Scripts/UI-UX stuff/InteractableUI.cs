@@ -19,7 +19,6 @@ public class InteractableUI : MonoBehaviour
 	private MaterialPropertyBlock materialProperties;
 	public GameObject ghostModePanel;
 
-	// Shader property IDs (caches the strings for optimization)
 	private static readonly int OutlineColorID = Shader.PropertyToID("_OutlineColor");
 	private static readonly int OutlineSizeID = Shader.PropertyToID("_OutlineSize");
 
@@ -41,31 +40,40 @@ public class InteractableUI : MonoBehaviour
 
 	void Update()
 	{
-		// TEMPORARY TESTING TRIGGER: Press 'G' to simulate entering Ghost Vision
-		if (Keyboard.current != null && Keyboard.current.gKey.wasPressedThisFrame)
+		if (GameManager.Instance == null) return;
+
+		bool currentGlobalGhostState = GameManager.Instance.isGhostModeActive;
+
+		// 1. Handles when Ghost Mode is turned ON or OFF
+		if (currentGlobalGhostState != isGhostModeActive)
 		{
-			Debug.Log($"[DIAGNOSTIC] 'G' key pressed! Toggling Ghost Vision to: {!isGhostModeActive}");
-			ToggleGhostVision(!isGhostModeActive);
+			isGhostModeActive = currentGlobalGhostState;
+			SetOutlineActive(isGhostModeActive);
+
+			if (thisSpriteMask != null)
+			{
+				thisSpriteMask.enabled = isGhostModeActive;
+			}
 		}
 
-		// If ghost mode is active, make the sprite outline pulse dynamically
+		// If ghost mode is active, the sprite outline pulse dynamically
 		if (isGhostModeActive)
 		{
 			ApplyPulseEffect();
 		}
 	}
 
-	public void ToggleGhostVision(bool active)
-	{
-		isGhostModeActive = active;
-		SetOutlineActive(active);
-		thisSpriteMask.enabled = active;
+	//public void ToggleGhostVision(bool active)
+	//{
+	//	isGhostModeActive = active;
+	//	SetOutlineActive(active);
+	//	thisSpriteMask.enabled = active;
 
-		if (ghostModePanel != null)
-		{
-			ghostModePanel.SetActive(active);
-		}
-	}
+	//	if (ghostModePanel != null)
+	//	{
+	//		ghostModePanel.SetActive(active);
+	//	}
+	//}
 
 	private void SetOutlineActive(bool state)
 	{
@@ -81,7 +89,7 @@ public class InteractableUI : MonoBehaviour
 			}
 			else
 			{
-				// Turn off outline by setting its thickness/size to 0
+				// Turn off outline by setting its thickness to 0
 				materialProperties.SetFloat(OutlineSizeID, 0f);
 			}
 
@@ -91,7 +99,6 @@ public class InteractableUI : MonoBehaviour
 
 	private void ApplyPulseEffect()
 	{
-		// Smooth sine wave to bounce the outline thickness up and down
 		float currentThickness = Mathf.PingPong(Time.time * pulseSpeed, maxOutlineThickness);
 
 		foreach (SpriteRenderer spriteRen in spriteRenderers)
