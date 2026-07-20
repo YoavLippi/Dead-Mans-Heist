@@ -60,6 +60,7 @@ public class DistractionHandler : Interactable
     void Start()
     {
         /*Enemy a = new Enemy();
+       
         a.GetDistracted(transform, thisSeverity);*/
     }
 
@@ -83,6 +84,7 @@ public class DistractionHandler : Interactable
             }
         }
     }*/
+
 
     public override void DoInteract()
     {

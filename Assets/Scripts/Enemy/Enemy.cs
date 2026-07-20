@@ -41,6 +41,7 @@ public class EnemyAbs : MonoBehaviour
     [SerializeField] protected DetectionUX detectUX;
     [SerializeField] protected Gradient gradient;
     [SerializeField] protected float attention = 5;
+    [SerializeField] protected bool isDistracted = false;
 
     public float CurrentSuspicion
     {
@@ -79,36 +80,33 @@ public class EnemyAbs : MonoBehaviour
         CurrentSuspicion = 0;
     }
 
-    void FixedUpdate()
+    public virtual void FixedUpdate()
     {
-        if (currentMoveMode != EnemyMoveMode.Chasing && currentSuspicion > 0f)
+        if (!isDistracted)
         {
+            if (currentMoveMode != EnemyMoveMode.Chasing && currentSuspicion > 0f)
+            {
                 CurrentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseSpeed);
-              
+
+            }
         }
         if (currentSuspicion == 0 && attention == 0) 
         {
+            isOnSchedule = true;
             currentMoveMode = EnemyMoveMode.Patrolling;
             attention = 5;
         }
        
     }
+
     protected void HandleStateChange(EnemyMoveMode val){}
     protected virtual void CheckTime(int currentworld) { }
     public virtual void moveToCheckPoint(Transform target) { }
 
-    public void GetDistracted(Transform distractionPos, DistractionHandler.DistractionSeverity sev)
+    public virtual void GetDistracted(Transform distractionPos, DistractionHandler.DistractionSeverity sev)
     {
-        Debug.Log($"{name} was distracted, pos: {distractionPos.position}, severity {sev.ToString()}");
-        switch (sev)
-        {
-            case DistractionHandler.DistractionSeverity.Severe:
-                //get distracted for 10 seconds, for example
-                break;
-            case DistractionHandler.DistractionSeverity.Moderate:
-                //get distracted for 5 seconds
-                break;
-        }
+        
+        
     }
 
     private void OnSeePlayer()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 20788519060677423}
   - component: {fileID: 3369411321861529234}
   - component: {fileID: 4960147529518163324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Static Distraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
   sphereColour: {r: 0.9821073, g: 1, b: 0, a: 0.30588236}
   wireColour: {r: 0.94960845, g: 1, b: 0, a: 0.25490198}
   thisSeverity: 1
-  distractionRadius: 4.04
+  distractionRadius: 14.45
 --- !u!54 &3369411321861529234
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 8081741621615800423}
   - component: {fileID: 8550627021914207707}
   - component: {fileID: 7225912262500173600}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
