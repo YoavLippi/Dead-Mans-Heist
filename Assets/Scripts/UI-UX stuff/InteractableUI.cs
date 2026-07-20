@@ -8,6 +8,7 @@ public class InteractableUI : MonoBehaviour
 	public Color spectralOutlineColor = new Color(0.7f, 0.065f, 0.8f, 1f);
 	[Range(0f, 10f)] public float maxOutlineThickness = 3f;
 	public float pulseSpeed = 3f;
+	public SpriteMask thisSpriteMask;
 
 	[Header("Interaction Settings")]
 	public string objectName = "Object";
@@ -34,6 +35,8 @@ public class InteractableUI : MonoBehaviour
 	{
 		SetOutlineActive(false);
 		if (ghostModePanel != null) ghostModePanel.SetActive(false);
+		thisSpriteMask = GetComponent<SpriteMask>();
+		thisSpriteMask.sprite = spriteRenderers[0].sprite;
 	}
 
 	void Update()
@@ -56,6 +59,7 @@ public class InteractableUI : MonoBehaviour
 	{
 		isGhostModeActive = active;
 		SetOutlineActive(active);
+		thisSpriteMask.enabled = active;
 
 		if (ghostModePanel != null)
 		{

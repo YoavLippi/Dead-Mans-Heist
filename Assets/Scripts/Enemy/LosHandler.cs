@@ -13,9 +13,15 @@ public class LosHandler : MonoBehaviour
     [SerializeField] private float rayDistance;
     [Range(0,360)][SerializeField] private float fieldOfView;
     [SerializeField] private int rayNumber;
-    [SerializeField] private List<LayerMask> ignoreLayers;
+    [SerializeField] private LayerMask ignoreLayers;
     [SerializeField] private MeshFilter coneMeshFilter;
     [SerializeField] private bool isLooking;
+    [SerializeField] private MeshRenderer coneMeshRenderer;
+    [SerializeField] private bool isSeeingPlayer;
+
+    public delegate void SeePlayer();
+
+    public SeePlayer OnSeePlayer;
 
     /*[SerializeField] private List<test> tester;
 
@@ -27,30 +33,47 @@ public class LosHandler : MonoBehaviour
     }*/
 
     //RUNTIME VARS
-    private LayerMask totalMask;
+    //private LayerMask totalMask;
     private List<Vector3> rayPoints;
     private Mesh coneMesh;
     //staggering checks so that not all raycasters update at once
     private float nextIntervalMilis;
 
+    public Mesh ConeMesh
+    {
+        get => coneMesh;
+        set => coneMesh = value;
+    }
+
+    public bool IsSeeingPlayer => isSeeingPlayer;
+
     private void Start()
     {
-        totalMask = 0;
+        /*totalMask = 0;
         foreach (var mask in ignoreLayers)
         {
             totalMask |= mask;
         }
         //bitwise NOT to make it so we ignore those layers
-        totalMask = ~totalMask;
+        totalMask = ~totalMask;*/
         rayPoints = new List<Vector3>();
 
         coneMesh = new Mesh();
         coneMesh.name = "ViewCone";
         coneMesh.MarkDynamic();
         coneMeshFilter.mesh = coneMesh;
-        
+        //meshRenderer = GetComponent<MeshRenderer>();
         
         StartLooking();
+    }
+    
+    public void LerpSightColor(float lerpPercentage, Color startColor, Color endColor)
+    {
+        coneMeshRenderer.material.color = Color.Lerp(startColor, endColor, lerpPercentage);
+    }
+    public void SetSightColour(Color color) 
+    {
+        coneMeshRenderer.material.color = color;
     }
 
     // Update is called once per frame
@@ -103,6 +126,9 @@ public class LosHandler : MonoBehaviour
             float angleChange = fieldOfView / rayNumber;
             float offsetFOV = -fieldOfView / 2f;
             rayPoints.Add(transform.InverseTransformPoint(eyePos.position));
+
+            int numRaysSeen = 0;
+            bool sawPlayer = false;
             for (int i = 0; i < rayNumber; i++)
             {
                 //we need to adjust the angle for each new ray
@@ -117,21 +143,37 @@ public class LosHandler : MonoBehaviour
                 Vector3 finalPoint;
                 
                 RaycastHit hitInfo;
-                if (Physics.Raycast(eyePos.position, lookDir, out hitInfo, rayDistance, totalMask))
+                if (Physics.Raycast(eyePos.position, lookDir, out hitInfo, rayDistance, ~ignoreLayers))
                 {
+                    //the los has hit something
                     finalPoint = hitInfo.point;
+                    if (hitInfo.collider.CompareTag("Player"))
+                    {
+                        numRaysSeen++;
+                        if (!sawPlayer)
+                        {
+                            sawPlayer = true;
+                        }
+                    }
                 }
                 else
                 {
                     finalPoint = eyePos.position + lookDir * rayDistance;
                 }
                 
-                #if UNITY_EDITOR
+                /*#if UNITY_EDITOR
                 Debug.DrawLine(eyePos.position, finalPoint, Color.red);
-                #endif
+                #endif*/
                 
                 rayPoints.Add(transform.InverseTransformPoint(finalPoint));
             }
+
+            for (int i = 0; i < numRaysSeen; i++)
+            {
+                OnSeePlayer?.Invoke();
+            }
+
+            isSeeingPlayer = sawPlayer;
 
             DrawShape(rayPoints);
             nextIntervalMilis = Random.Range(30, 76);

@@ -19,21 +19,40 @@ public enum EnemyState
     Stunned,
     Recovery
 }
-
-public class Enemy : MonoBehaviour
+public class EnemyAbs : MonoBehaviour
 {
     [System.Serializable]
-    public struct newEvents 
+    public struct newEvents
     {
         public int timeTrigger;
         public UnityEvent attachedEvent;
     }
-    
+
     public List<newEvents> newSchedules;
     [SerializeField] protected bool isOnSchedule;
-    
-    protected EnemyMoveMode currentMoveMode;
-    protected EnemyState currentState;
+    [SerializeField] protected LosHandler attachedLos;
+
+    [SerializeField] protected float detectionSpeed = 0.6f;
+    [SerializeField] protected float suspicionDecreaseSpeed = 0.3f;
+    [SerializeField] protected float currentSuspicion;
+    [SerializeField] protected float maxSuspicion = 100f;
+    [SerializeField] protected EnemyMoveMode currentMoveMode;
+    [SerializeField] protected EnemyState currentState;
+    [SerializeField] protected DetectionUX detectUX;
+    [SerializeField] protected Gradient gradient;
+    [SerializeField] protected float attention = 5;
+
+    public float CurrentSuspicion
+    {
+        get => currentSuspicion;
+        set
+        {   
+            currentSuspicion = value;
+            detectUX.UpdateUXState(value);
+            attachedLos.SetSightColour(gradient.Evaluate(value/maxSuspicion));
+            
+        }
+    }
 
     public EnemyMoveMode CurrentMoveMode
     {
@@ -47,10 +66,6 @@ public class Enemy : MonoBehaviour
     }
 
     //listener handling
-    private void HandleStateChange(EnemyMoveMode val)
-    {
-        Debug.Log($"Current move mode is {val}");
-    }
 
     public EnemyState CurrentState
     {
@@ -60,13 +75,52 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        
+        attachedLos.OnSeePlayer += OnSeePlayer;
+        CurrentSuspicion = 0;
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        if (currentMoveMode != EnemyMoveMode.Chasing && currentSuspicion > 0f)
+        {
+                CurrentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseSpeed);
+              
+        }
+        if (currentSuspicion == 0 && attention == 0) 
+        {
+            currentMoveMode = EnemyMoveMode.Patrolling;
+            attention = 5;
+        }
+       
+    }
+    protected void HandleStateChange(EnemyMoveMode val){}
+    protected virtual void CheckTime(int currentworld) { }
+    public virtual void moveToCheckPoint(Transform target) { }
+
+    public void GetDistracted(Transform distractionPos, DistractionHandler.DistractionSeverity sev)
+    {
+        Debug.Log($"{name} was distracted, pos: {distractionPos.position}, severity {sev.ToString()}");
+        switch (sev)
+        {
+            case DistractionHandler.DistractionSeverity.Severe:
+                //get distracted for 10 seconds, for example
+                break;
+            case DistractionHandler.DistractionSeverity.Moderate:
+                //get distracted for 5 seconds
+                break;
+        }
     }
 
+    private void OnSeePlayer()
+    {
+        CurrentSuspicion = Mathf.Min(currentSuspicion + detectionSpeed, maxSuspicion);
+        if (currentSuspicion >= maxSuspicion && currentMoveMode != EnemyMoveMode.Chasing)
+        {
+            currentMoveMode = EnemyMoveMode.Chasing;
+            isOnSchedule = false;
+            attention = 5;
 
+        }
+    }
 }
 
