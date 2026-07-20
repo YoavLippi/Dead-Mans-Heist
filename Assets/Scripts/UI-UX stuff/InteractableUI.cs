@@ -21,6 +21,7 @@ public class InteractableUI : MonoBehaviour
 
 	private static readonly int OutlineColorID = Shader.PropertyToID("_OutlineColor");
 	private static readonly int OutlineSizeID = Shader.PropertyToID("_OutlineSize");
+	private static readonly int UseOutLineBoolID = Shader.PropertyToID("_UseOutline");
 
 	void Awake()
 	{
@@ -85,12 +86,14 @@ public class InteractableUI : MonoBehaviour
 			{
 				materialProperties.SetColor(OutlineColorID, spectralOutlineColor);
 				materialProperties.SetFloat(OutlineSizeID, maxOutlineThickness);
+				materialProperties.SetFloat(UseOutLineBoolID, 1f);
 				Debug.Log($"[DIAGNOSTIC] Sending values to {spriteRen.gameObject.name}: Color = {spectralOutlineColor}, Size = {maxOutlineThickness}");
 			}
 			else
 			{
 				// Turn off outline by setting its thickness to 0
 				materialProperties.SetFloat(OutlineSizeID, 0f);
+				materialProperties.SetFloat(UseOutLineBoolID, 0f);
 			}
 
 			spriteRen.SetPropertyBlock(materialProperties);
@@ -105,6 +108,7 @@ public class InteractableUI : MonoBehaviour
 		{
 			spriteRen.GetPropertyBlock(materialProperties);
 			materialProperties.SetFloat(OutlineSizeID, currentThickness);
+			materialProperties.SetFloat(UseOutLineBoolID, 1f);
 			spriteRen.SetPropertyBlock(materialProperties);
 		}
 	}

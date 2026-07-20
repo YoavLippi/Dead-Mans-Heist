@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdffc3170d0c6334f92a15efd72ec7ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableUI
-  spectralOutlineColor: {r: 0.7, g: 0.065, b: 0.8, a: 1}
-  maxOutlineThickness: 3
+  spectralOutlineColor: {r: 0, g: 4.237095, b: 3.8599713, a: 1}
+  maxOutlineThickness: 10
   pulseSpeed: 3
   thisSpriteMask: {fileID: 7225912262500173600}
   objectName: Object

@@ -10,6 +10,7 @@ public abstract class Interactable : MonoBehaviour
     private MaterialPropertyBlock materialProperties;
     
     private static readonly int OutlineSizeID = Shader.PropertyToID("_OutlineSize");
+    private static readonly int UseOutLineBoolID = Shader.PropertyToID("_UseOutline");
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public abstract class Interactable : MonoBehaviour
     {
         sr.GetPropertyBlock(materialProperties);
         materialProperties.SetFloat(OutlineSizeID,w);
+        materialProperties.SetFloat(UseOutLineBoolID, (w==0)?0f:1f);
         //sr.material.SetFloat(OutlineSizeID, w);
         sr.SetPropertyBlock(materialProperties);
     }

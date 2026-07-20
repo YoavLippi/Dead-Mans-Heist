@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		// Handle time pausing for mechanics/animations
-		Time.timeScale = (currentState == GameState.Paused) ? 0f : 1f;
+		Time.timeScale = (currentState == GameState.Paused||currentState==GameState.MainMenu) ? 0f : 1f;
 	}
 
 	public void ToggleGhostVision(bool active)
