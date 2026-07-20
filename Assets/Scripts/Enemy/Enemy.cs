@@ -74,7 +74,7 @@ public class EnemyAbs : MonoBehaviour
         set => currentState = value;
     }
 
-    void Start()
+    public virtual void Start()
     {
         attachedLos.OnSeePlayer += OnSeePlayer;
         CurrentSuspicion = 0;

@@ -307,7 +307,7 @@ MonoBehaviour:
   newSchedules: []
   isOnSchedule: 0
   attachedLos: {fileID: 814285465594988406}
-  detectionSpeed: 0.6
+  detectionSpeed: 1.2
   suspicionDecreaseSpeed: 0.3
   currentSuspicion: 0
   maxSuspicion: 100
@@ -351,6 +351,39 @@ MonoBehaviour:
   target: {fileID: 0}
   isChasing: 0
   islookingAround: 0
+  suspicionFalloffCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.2
+      inSlope: -1.4000001
+      outSlope: -1.4000001
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: -0.024483502
+      outSlope: -0.024483502
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.18558279
+    - serializedVersion: 3
+      time: 1
+      value: 0.1
+      inSlope: 0.01460571
+      outSlope: 0.01460571
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3169707
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   turnAngle: 60
   speed: 4
   waitTime: 0.5

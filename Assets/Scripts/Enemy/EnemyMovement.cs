@@ -10,6 +10,7 @@ public class EnemyMovement : EnemyAbs
     [SerializeField] private bool isChasing;
     [SerializeField] private bool islookingAround;
     int lastknownWorldTime;
+    [SerializeField] private AnimationCurve suspicionFalloffCurve;
 
     //this is for like the turn stuffs
     [SerializeField] private float turnAngle = 60f;
@@ -21,9 +22,16 @@ public class EnemyMovement : EnemyAbs
     {
         WorldTime.secondsChange += CheckTime;
     }
-  void OnDisable()
+
+    void OnDisable()
     {
         WorldTime.secondsChange -= CheckTime;
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        target = GameObject.FindWithTag("Player");
     }
 
     public override void FixedUpdate()
@@ -125,7 +133,7 @@ public class EnemyMovement : EnemyAbs
             yield return new WaitForEndOfFrame();
 
         }
-        while (Vector3.Distance(transform.position, pos.position)> 0.5f);
+        while (Vector3.Distance(transform.position, pos.position)> 3f);
 
         yield return StartCoroutine(LookSequence(time));
         isDistracted = false;
