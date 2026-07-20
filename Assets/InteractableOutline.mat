@@ -42,10 +42,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _OutlineSize: 0
-    - _UseOutline: 0
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 4.237095, b: 3.8482978, a: 1}
+    - _OutlineColor: {r: 0, g: 0.7490196, b: 0.6802894, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6536549638221010111
