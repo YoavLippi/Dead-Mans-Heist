@@ -118,7 +118,7 @@ public class EnemyMovement : EnemyAbs
     {
         while (Quaternion.Angle(transform.rotation, targetRot) > 0.1f) 
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, speed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, speed * Time.deltaTime);
             yield return null;
         }
         transform.rotation = targetRot;
@@ -133,7 +133,9 @@ public class EnemyMovement : EnemyAbs
             yield return new WaitForEndOfFrame();
 
         }
-        while (Vector3.Distance(transform.position, pos.position)> 3f);
+        while (Vector3.Distance(transform.position, pos.position)> 2f);
+
+        nav.SetDestination(transform.position);
 
         yield return StartCoroutine(LookSequence(time));
         isDistracted = false;
