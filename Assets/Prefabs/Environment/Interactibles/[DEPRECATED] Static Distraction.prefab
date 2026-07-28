@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4016626461256882405}
   - component: {fileID: 20788519060677423}
   - component: {fileID: 3369411321861529234}
-  - component: {fileID: 4960147529518163324}
+  - component: {fileID: 8012504155542887701}
   m_Layer: 9
-  m_Name: Static Distraction
+  m_Name: '[DEPRECATED] Static Distraction'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1575133773913500617}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.87, y: 0, z: -2.69}
+  m_LocalPosition: {x: 40.253654, y: 1, z: -8.469315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -96,8 +96,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &4960147529518163324
-MeshCollider:
+--- !u!65 &8012504155542887701
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -114,10 +114,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8293128104527671346
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,8 +146,8 @@ Transform:
   m_GameObject: {fileID: 8293128104527671346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.09, y: 0.17, z: 0}
+  m_LocalScale: {x: 0.65036, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4016626461256882405}
@@ -214,12 +213,12 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 37035083f3b18154fb5fc553741b786e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa21ee49d0ded9c48a6836ee7985c5fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.6, y: 3.6}
+  m_Size: {x: 6.02, y: 5.21}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

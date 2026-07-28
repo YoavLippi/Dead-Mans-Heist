@@ -33,8 +33,14 @@ public class CameraSwitchController : MonoBehaviour
 
     private void DrawGizmo()
     {
+        Matrix4x4 defaultMatrix = Gizmos.matrix;
+
+        Gizmos.matrix = thisCol.transform.localToWorldMatrix;
         Gizmos.color = gizmoColor;
-        Gizmos.DrawWireCube(transform .TransformPoint(thisCol.center), Vector3.Scale(thisCol.size, transform.localScale));
+        //Vector3.Scale(thisCol.size, transform.localScale)
+        //transform .TransformPoint(thisCol.center)
+        Gizmos.DrawWireCube(thisCol.center, thisCol.size);
+        Gizmos.matrix = defaultMatrix;
     }
 
     private void OnTriggerEnter(Collider other)
