@@ -8596,23 +8596,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.8200006
+      value: 14.82
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.32097
+      value: 20.66
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.622182
+      value: -35.12
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.71697146
+      value: 0.8729647
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.6971026
+      value: 0.48778343
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -8886,8 +8886,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 183220637725763063, guid: 0d723e9d767a9174092a4fee8e9a609b, type: 3}
+      propertyPath: turnSpeed
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 183220637725763063, guid: 0d723e9d767a9174092a4fee8e9a609b, type: 3}
       propertyPath: isOnSchedule
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 183220637725763063, guid: 0d723e9d767a9174092a4fee8e9a609b, type: 3}
+      propertyPath: isLookingAround
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 183220637725763063, guid: 0d723e9d767a9174092a4fee8e9a609b, type: 3}
+      propertyPath: lookAroundWaitTime
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 183220637725763063, guid: 0d723e9d767a9174092a4fee8e9a609b, type: 3}
       propertyPath: newSchedules.Array.size

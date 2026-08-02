@@ -121,8 +121,6 @@ public class EnemyMovement : EnemyAbs
 
     private void StopNav()
     {
-        // Single, consistent way to halt the agent instead of mixing
-        // ResetPath() in one place and SetDestination(here) in another.
         nav.ResetPath();
     }
 
@@ -130,9 +128,6 @@ public class EnemyMovement : EnemyAbs
     {
         CurrentState = EnemyState.Distracted;
         CurrentSuspicion = suspicion;
-
-        // Walk toward the distraction point, but don't wait forever if
-        // it's unreachable (blocked, off-mesh, rounding error, etc).
         float elapsed = 0f;
         while (Vector3.Distance(transform.position, pos.position) > arrivalDistanceThreshold
                && elapsed < maxTravelToDistractionSeconds)
@@ -145,12 +140,13 @@ public class EnemyMovement : EnemyAbs
 
         yield return StartCoroutine(LookSequence(lookTime));
 
+        CurrentState = EnemyState.None;
+
         while (CurrentSuspicion > 0f)
         {
             yield return null;
         }
 
-        CurrentState = EnemyState.None;
         isOnSchedule = true;
         distractionRoutine = null;
     }
@@ -159,8 +155,6 @@ public class EnemyMovement : EnemyAbs
     {
         Debug.Log($"{name} was distracted, pos: {distractionPos.position}, severity {sev}");
 
-        // Prevent overlapping distraction coroutines from racing each
-        // other's suspicion/state writes.
         if (distractionRoutine != null)
         {
             StopCoroutine(distractionRoutine);
