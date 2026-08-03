@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator spriteAnimator;
     [SerializeField] private InteractionHandler interactionHandler;
     [SerializeField] private GameObject ghostedPlayerPrefab;
-    [SerializeField] private float leashDistance;
+    [SerializeField] private float maxLeashDistance;
     [SerializeField] private AnimationCurve leashResistanceCurve;
     [SerializeField] private float ghostReturnTime;
     
@@ -112,6 +113,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        float moveSpeed = 0f;
+        if (isGhost && ghostedPlayerInstance)
+        {
+            moveSpeed = ghostSpeed;
+            Vector3 currentPos = transform.position, shellPos = ghostedPlayerInstance.transform.position;
+            
+            Vector3 toPlayerShell = shellPos - currentPos;
+            float dist = Vector3.Distance(currentPos, shellPos);
+            float resistance = leashResistanceCurve.Evaluate(dist / maxLeashDistance);
+            
+            charController.Move(toPlayerShell.normalized*resistance);
+        }
+        
         if (currentMoveDir.magnitude != 0)
         {
             Vector3 move;
@@ -132,25 +146,8 @@ public class PlayerController : MonoBehaviour
             {
                 move = new Vector3(currentMoveDir.x, 0, currentMoveDir.y);
             }
-            
-            //moving only in the xz-plane
-            //Vector3 move = new Vector3(currentMoveDir.x, 0, currentMoveDir.y);
-            
-            //for now, just modifying move speed based on current state, can iterate more later
-            float moveSpeed = 0f;
-            if (isGhost && ghostedPlayerInstance)
-            {
-                moveSpeed = ghostSpeed;
-                float dist = Vector3.Distance(transform.position, ghostedPlayerInstance.transform.position);
-                //moveSpeed = ghostSpeed;
-                //moveSpeed = Mathf.Lerp(0f, ghostSpeed, (leashDistance - dist)/leashDistance);
-                if (Vector3.Dot(move.normalized,
-                        (ghostedPlayerInstance.transform.position - transform.position).normalized) < 0)
-                {
-                    moveSpeed -= leashResistanceCurve.Evaluate(dist / leashDistance) * ghostSpeed;
-                }
-            }
-            else
+            //float moveSpeed = 0f;
+            if (!isGhost)
             {
                 switch (currentState)
                 {
@@ -165,7 +162,7 @@ public class PlayerController : MonoBehaviour
                         break;
                 }
             }
-            
+
             charController.Move(move * (moveSpeed * Time.deltaTime));
         }
     }

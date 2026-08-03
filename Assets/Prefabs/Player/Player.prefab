@@ -418,7 +418,7 @@ MonoBehaviour:
   spriteAnimator: {fileID: 4929414376209875277}
   interactionHandler: {fileID: 4788594249765754502}
   ghostedPlayerPrefab: {fileID: 347771865001200465, guid: e6a05b41b049b634fae0d9ab2a67d817, type: 3}
-  leashDistance: 15
+  maxLeashDistance: 15
   leashResistanceCurve:
     serializedVersion: 2
     m_Curve:
