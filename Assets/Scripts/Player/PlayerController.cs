@@ -1,3 +1,6 @@
+using System.Collections;
+using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,14 +19,32 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float baseMoveSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float sneakSpeed;
+    [SerializeField] private float ghostSpeed;
     [SerializeField] private CharacterController charController;
     [SerializeField] private Animator spriteAnimator;
     [SerializeField] private InteractionHandler interactionHandler;
+    [SerializeField] private GameObject ghostedPlayerPrefab;
+    [SerializeField] private float leashDistance;
+    [SerializeField] private AnimationCurve leashResistanceCurve;
+    [SerializeField] private float ghostReturnTime;
     
     [Header("Runtime")]
     [SerializeField] private PlayerState currentState;
     [SerializeField] private Vector2 currentMoveDir;
-    [SerializeField] private bool isRunHeld, isSneakHeld;
+    [SerializeField] private bool isRunHeld, isSneakHeld, isAcceptingInputs=true;
+    [SerializeField] private bool isGhost;
+    [SerializeField] private GameObject ghostedPlayerInstance;
+
+    public bool IsGhost
+    {
+        get => isGhost;
+        set
+        {
+            isGhost = value;
+            spriteAnimator.SetBool("IsGhost", value);
+            SetGhost(value);
+        }
+    }
 
     public PlayerState CurrentState
     {
@@ -44,6 +65,42 @@ public class PlayerController : MonoBehaviour
         interactionHandler = GetComponentInChildren<InteractionHandler>();
     }
 
+    private void SetGhost(bool setGhost)
+    {
+        if (setGhost)
+        {
+            ghostedPlayerInstance = Instantiate(ghostedPlayerPrefab, transform.position, Quaternion.identity);
+            ghostedPlayerInstance.GetComponent<LeashRenderer>().endPoint = gameObject;
+        }
+        else
+        {
+            if (ghostedPlayerInstance)
+            {
+                StartCoroutine(ResetGhostPosInTime(ghostReturnTime));
+                //Destroy(ghostedPlayerInstance);
+            }
+        }
+    }
+
+    private IEnumerator ResetGhostPosInTime(float time)
+    {
+        isAcceptingInputs = false;
+        currentMoveDir = Vector2.zero;
+        float currentTime = 0f;
+        Vector3 startPos = transform.position;
+        do
+        {
+            //charController.transform.position
+            charController.transform.position =
+                Vector3.Lerp(startPos, ghostedPlayerInstance.transform.position, currentTime / time);
+            yield return new WaitForEndOfFrame();
+            currentTime += Time.deltaTime;
+        } while (currentTime < time);
+        
+        isAcceptingInputs = true;
+        Destroy(ghostedPlayerInstance);
+    }
+
     private void SetAnimationFlag(PlayerState newState)
     {
         string runFlag = "IsRunning", moveFlag = "IsWalking", crouchFlag = "IsCrouching";
@@ -57,28 +114,65 @@ public class PlayerController : MonoBehaviour
     {
         if (currentMoveDir.magnitude != 0)
         {
+            Vector3 move;
+            //Adjusting move to work based on direction of camera
+            if (CameraController.Instance.ActiveCam is CinemachineCamera cam)
+            {
+                Vector3 camForward = cam.transform.forward;
+                Vector3 camRight = cam.transform.right;
+
+                camForward.y = 0;
+                camRight.y = 0;
+                camForward.Normalize();
+                camRight.Normalize();
+
+                move = (currentMoveDir.x * camRight) + (currentMoveDir.y * camForward);
+            }
+            else
+            {
+                move = new Vector3(currentMoveDir.x, 0, currentMoveDir.y);
+            }
+            
             //moving only in the xz-plane
-            Vector3 move = new Vector3(currentMoveDir.x, 0, currentMoveDir.y);
+            //Vector3 move = new Vector3(currentMoveDir.x, 0, currentMoveDir.y);
+            
             //for now, just modifying move speed based on current state, can iterate more later
             float moveSpeed = 0f;
-            switch (currentState)
+            if (isGhost && ghostedPlayerInstance)
             {
-                case PlayerState.Walking:
-                    moveSpeed = baseMoveSpeed;
-                    break;
-                case PlayerState.Running:
-                    moveSpeed = runSpeed;
-                    break;
-                case PlayerState.Sneaking:
-                    moveSpeed = sneakSpeed;
-                    break;
+                moveSpeed = ghostSpeed;
+                float dist = Vector3.Distance(transform.position, ghostedPlayerInstance.transform.position);
+                //moveSpeed = ghostSpeed;
+                //moveSpeed = Mathf.Lerp(0f, ghostSpeed, (leashDistance - dist)/leashDistance);
+                if (Vector3.Dot(move.normalized,
+                        (ghostedPlayerInstance.transform.position - transform.position).normalized) < 0)
+                {
+                    moveSpeed -= leashResistanceCurve.Evaluate(dist / leashDistance) * ghostSpeed;
+                }
             }
+            else
+            {
+                switch (currentState)
+                {
+                    case PlayerState.Walking:
+                        moveSpeed = baseMoveSpeed;
+                        break;
+                    case PlayerState.Running:
+                        moveSpeed = runSpeed;
+                        break;
+                    case PlayerState.Sneaking:
+                        moveSpeed = sneakSpeed;
+                        break;
+                }
+            }
+            
             charController.Move(move * (moveSpeed * Time.deltaTime));
         }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!isAcceptingInputs) return;
         //if (!context.performed) return;
         currentMoveDir = context.action.ReadValue<Vector2>();
         spriteAnimator.SetFloat("MoveX", currentMoveDir.x);
@@ -117,6 +211,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSneak(InputAction.CallbackContext context)
     {
+        if (!isAcceptingInputs) return;
         //isSneakHeld = context.performed;
         if (!context.performed) return;
         isSneakHeld = !isSneakHeld;
@@ -132,6 +227,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
+        if (!isAcceptingInputs) return;
         isRunHeld = context.performed;
         //if (isRunHeld) CurrentState = PlayerState.Running;
         if (isRunHeld)
@@ -147,7 +243,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!isAcceptingInputs) return;
         if (!context.performed) return;
         interactionHandler.DoInteract();
+    }
+
+    public void OnGhost(InputAction.CallbackContext context)
+    {
+        if (!isAcceptingInputs) return;
+        if (!context.performed) return;
+        IsGhost = !IsGhost;
     }
 }
