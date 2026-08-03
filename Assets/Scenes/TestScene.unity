@@ -2352,18 +2352,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Static Distraction
       objectReference: {fileID: 0}
-    - target: {fileID: 3879471259030219393, guid: 8c73a02a260c01e47b6ccae8726c2c5a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.65036
-      objectReference: {fileID: 0}
-    - target: {fileID: 3879471259030219393, guid: 8c73a02a260c01e47b6ccae8726c2c5a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 3879471259030219393, guid: 8c73a02a260c01e47b6ccae8726c2c5a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.17
-      objectReference: {fileID: 0}
     - target: {fileID: 4016626461256882405, guid: 8c73a02a260c01e47b6ccae8726c2c5a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.253654
@@ -2403,22 +2391,6 @@ PrefabInstance:
     - target: {fileID: 4016626461256882405, guid: 8c73a02a260c01e47b6ccae8726c2c5a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081741621615800423, guid: 8c73a02a260c01e47b6ccae8726c2c5a, type: 3}
-      propertyPath: m_Size.x
-      value: 6.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081741621615800423, guid: 8c73a02a260c01e47b6ccae8726c2c5a, type: 3}
-      propertyPath: m_Size.y
-      value: 5.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081741621615800423, guid: 8c73a02a260c01e47b6ccae8726c2c5a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: fa21ee49d0ded9c48a6836ee7985c5fc, type: 3}
-    - target: {fileID: 8081741621615800423, guid: 8c73a02a260c01e47b6ccae8726c2c5a, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
