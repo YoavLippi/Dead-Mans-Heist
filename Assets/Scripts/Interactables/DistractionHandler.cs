@@ -48,12 +48,12 @@ public class DistractionHandler : Interactable
 
     private void DrawGizmo()
     {
-        Gizmos.matrix = transform.localToWorldMatrix;
+        //Gizmos.matrix = transform.localToWorldMatrix;
         Gizmos.color = wireColour;
-        Gizmos.DrawWireSphere(Vector3.zero, distractionRadius);
+        Gizmos.DrawWireSphere(transform.position, distractionRadius);
         if (drawWireframeOnly) return;
         Gizmos.color = sphereColour;
-        Gizmos.DrawSphere(Vector3.zero, distractionRadius);
+        Gizmos.DrawSphere(transform.position, distractionRadius);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

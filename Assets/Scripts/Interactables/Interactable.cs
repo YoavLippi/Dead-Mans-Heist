@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -29,5 +30,16 @@ public abstract class Interactable : MonoBehaviour
         materialProperties.SetFloat(UseOutLineBoolID, (w==0)?0f:1f);
         //sr.material.SetFloat(OutlineSizeID, w);
         sr.SetPropertyBlock(materialProperties);
+    }
+
+    public virtual void DoSelfDistruct(float time)
+    {
+        StartCoroutine(DestroyAfterTime(time));
+    }
+
+    private IEnumerator DestroyAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 }

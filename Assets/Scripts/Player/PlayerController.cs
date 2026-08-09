@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
@@ -16,18 +17,28 @@ public class PlayerController : MonoBehaviour
         Hiding
     }
 
-    [Header("Setup")] 
+    [Header("Speeds")] 
     [SerializeField] private float baseMoveSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float sneakSpeed;
     [SerializeField] private float ghostSpeed;
+    [Header("Setup")]
     [SerializeField] private CharacterController charController;
     [SerializeField] private Animator spriteAnimator;
     [SerializeField] private InteractionHandler interactionHandler;
+    
+    [Header("Ghost")]
     [SerializeField] private GameObject ghostedPlayerPrefab;
     [SerializeField] private float maxLeashDistance;
     [SerializeField] private AnimationCurve leashResistanceCurve;
     [SerializeField] private float ghostReturnTime;
+    
+    [Header("Steps")]
+    [SerializeField] private float stepDistance;
+    [SerializeField] private GameObject stepDistractionPrefab;
+    [SerializeField] private float minorStepRadius, moderateStepRadius, severeStepRadius;
+    [SerializeField] private Color minorStepColor, moderateStepColor, severeStepColor;
+    [SerializeField] private bool showStepRadii;
     
     [Header("Runtime")]
     [SerializeField] private PlayerState currentState;
@@ -35,6 +46,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isRunHeld, isSneakHeld, isAcceptingInputs=true;
     [SerializeField] private bool isGhost;
     [SerializeField] private GameObject ghostedPlayerInstance;
+    [SerializeField] private Vector3 lastStepPos;
 
     public bool IsGhost
     {
@@ -52,9 +64,26 @@ public class PlayerController : MonoBehaviour
         get => currentState;
         set
         {
+            if (value == PlayerState.Hiding)
+            {
+                if (currentMoveDir.magnitude != 0) return;
+            }
             currentState = value;
             //we can add listeners here for animation triggers etc
             SetAnimationFlag(value);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (showStepRadii)
+        {
+            Gizmos.color = minorStepColor;
+            Gizmos.DrawWireSphere(transform.position, minorStepRadius);
+            Gizmos.color = moderateStepColor;
+            Gizmos.DrawWireSphere(transform.position, moderateStepRadius);
+            Gizmos.color = severeStepColor;
+            Gizmos.DrawWireSphere(transform.position, severeStepRadius);
         }
     }
 
@@ -64,6 +93,7 @@ public class PlayerController : MonoBehaviour
         charController = GetComponentInChildren<CharacterController>();
         spriteAnimator = GetComponentInChildren<Animator>();
         interactionHandler = GetComponentInChildren<InteractionHandler>();
+        lastStepPos = transform.position;
     }
 
     private void SetGhost(bool setGhost)
@@ -104,10 +134,11 @@ public class PlayerController : MonoBehaviour
 
     private void SetAnimationFlag(PlayerState newState)
     {
-        string runFlag = "IsRunning", moveFlag = "IsWalking", crouchFlag = "IsCrouching";
+        string runFlag = "IsRunning", moveFlag = "IsWalking", crouchFlag = "IsCrouching", hideFlag="IsHiding";
         spriteAnimator.SetBool(runFlag, newState==PlayerState.Running);
         spriteAnimator.SetBool(crouchFlag, newState==PlayerState.Sneaking);
         spriteAnimator.SetBool(moveFlag, newState==PlayerState.Walking);
+        spriteAnimator.SetBool(hideFlag, newState == PlayerState.Hiding);
     }
 
     // Update is called once per frame
@@ -164,7 +195,42 @@ public class PlayerController : MonoBehaviour
             }
 
             charController.Move(move * (moveSpeed * Time.deltaTime));
+
+            if (!isGhost && isAcceptingInputs && Vector3.Distance(lastStepPos, transform.position) > stepDistance)
+            {
+                //do a step sound
+                DoStep();
+                lastStepPos = transform.position;
+            }
         }
+        else
+        {
+            lastStepPos = transform.position;
+        }
+    }
+
+    private void DoStep()
+    {
+        GameObject distraction = Instantiate(stepDistractionPrefab, transform.position, Quaternion.identity);
+        DistractionHandler dh = distraction.GetComponentInChildren<DistractionHandler>();
+        //we can dynamically assign severity and radius based on move state
+        switch (currentState)
+        {
+            case PlayerState.Running:
+                dh.ThisSeverity = DistractionHandler.DistractionSeverity.Severe;
+                dh.DistractionRadius = severeStepRadius;
+                break;
+            case PlayerState.Walking:
+                dh.ThisSeverity = DistractionHandler.DistractionSeverity.Moderate;
+                dh.DistractionRadius = moderateStepRadius;
+                break;
+            case PlayerState.Sneaking:
+                dh.ThisSeverity = DistractionHandler.DistractionSeverity.Minor;
+                dh.DistractionRadius = minorStepRadius;
+                break;
+        }
+        dh.DoInteract();
+        dh.DoSelfDistruct(0.3f);
     }
 
     public void OnMove(InputAction.CallbackContext context)
