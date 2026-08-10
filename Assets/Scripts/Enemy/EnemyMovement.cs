@@ -69,6 +69,7 @@ public class EnemyMovement : EnemyAbs
     protected override void CheckTime(int currentworld)
     {
         lastKnownWorldTime = currentworld;
+        //Debug.Log(lastKnownWorldTime%10);
         if (index >= newSchedules.Count) return;
         if (!isOnSchedule) return;
 
@@ -80,6 +81,14 @@ public class EnemyMovement : EnemyAbs
         }
     }
 
+    public override void moveToCheckPoint(Vector3 target)
+    {
+        if (target != null && nav != null)
+        {
+            nav.SetDestination(target);
+        }
+    }
+    
     public override void moveToCheckPoint(Transform target)
     {
         if (target != null && nav != null)
@@ -124,12 +133,12 @@ public class EnemyMovement : EnemyAbs
         nav.ResetPath();
     }
 
-    private IEnumerator DistractionSequence(float lookTime, Transform pos, float suspicion)
+    private IEnumerator DistractionSequence(float lookTime, Vector3 pos, float suspicion)
     {
         CurrentState = EnemyState.Distracted;
         CurrentSuspicion = suspicion;
         float elapsed = 0f;
-        while (Vector3.Distance(transform.position, pos.position) > arrivalDistanceThreshold
+        while (Vector3.Distance(transform.position, pos) > arrivalDistanceThreshold
                && elapsed < maxTravelToDistractionSeconds)
         {
             elapsed += Time.deltaTime;
@@ -151,9 +160,9 @@ public class EnemyMovement : EnemyAbs
         distractionRoutine = null;
     }
 
-    public override void GetDistracted(Transform distractionPos, DistractionHandler.DistractionSeverity sev)
+    public override void GetDistracted(Vector3 distractionPos, DistractionHandler.DistractionSeverity sev)
     {
-        Debug.Log($"{name} was distracted, pos: {distractionPos.position}, severity {sev}");
+        Debug.Log($"{name} was distracted, pos: {distractionPos}, severity {sev}");
 
         if (distractionRoutine != null)
         {

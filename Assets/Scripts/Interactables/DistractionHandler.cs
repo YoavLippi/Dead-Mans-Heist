@@ -97,7 +97,7 @@ public class DistractionHandler : Interactable
             if (col.GetComponent<EnemyAbs>())
             {
                 //enemiesInRange.Add(col.GetComponent<Enemy>());
-                col.GetComponent<EnemyAbs>().GetDistracted(transform, thisSeverity);
+                col.GetComponent<EnemyAbs>().GetDistracted(transform.position, thisSeverity);
             }
         }
     }

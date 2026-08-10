@@ -453,11 +453,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   ghostReturnTime: 0.3
-  stepDistance: 1.5
+  stepDistance: 2
   stepDistractionPrefab: {fileID: 2801747081541894003, guid: e2e490432ca41b14b841dd7f32690592, type: 3}
-  minorStepRadius: 2.5
-  moderateStepRadius: 5
-  severeStepRadius: 7.5
+  minorStepRadius: 2
+  moderateStepRadius: 4
+  severeStepRadius: 6
   minorStepColor: {r: 0, g: 1, b: 0.07667947, a: 1}
   moderateStepColor: {r: 0.95939255, g: 1, b: 0, a: 1}
   severeStepColor: {r: 1, g: 0.18017924, b: 0, a: 1}

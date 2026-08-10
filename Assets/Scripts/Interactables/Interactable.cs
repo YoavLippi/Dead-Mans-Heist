@@ -40,6 +40,6 @@ public abstract class Interactable : MonoBehaviour
     private IEnumerator DestroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }

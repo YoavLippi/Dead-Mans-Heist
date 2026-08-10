@@ -110,9 +110,10 @@ public class EnemyAbs : MonoBehaviour
 
     protected virtual void CheckTime(int currentworld) { }
 
+    public virtual void moveToCheckPoint(Vector3 target) { }
     public virtual void moveToCheckPoint(Transform target) { }
 
-    public virtual void GetDistracted(Transform distractionPos, DistractionHandler.DistractionSeverity sev) { }
+    public virtual void GetDistracted(Vector3 distractionPos, DistractionHandler.DistractionSeverity sev) { }
 
     private void OnSeePlayer()
     {
