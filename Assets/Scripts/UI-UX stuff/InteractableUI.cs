@@ -118,10 +118,18 @@ public class InteractableUI : MonoBehaviour
 	{
 		pulseSpeed = 6f; // Pulse faster when targeted
 		Debug.Log($"Targeting: {objectName}. Prompt: [Press E to {promptMessage}]");
+		if (HUDManager.Instance != null)
+		{
+			HUDManager.Instance.SetInteractionPrompt(objectName, promptMessage);
+		}
 	}
 
 	public void OnGhostHoverExit()
 	{
 		pulseSpeed = 3f; // Return to slow idle pulse
+		if (HUDManager.Instance != null)
+		{
+			HUDManager.Instance.ClearInteractionPrompt();
+		}
 	}
 }
