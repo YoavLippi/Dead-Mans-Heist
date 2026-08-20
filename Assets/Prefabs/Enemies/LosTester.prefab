@@ -304,8 +304,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe116731bc56e7468d4d229c110ca79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  newSchedules: []
-  isOnSchedule: 0
+  newSchedules:
+  - timeTrigger: 10
+    attachedEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 183220637725763063}
+          m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+          m_MethodName: moveToCheckPoint
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - timeTrigger: 20
+    attachedEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 183220637725763063}
+          m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+          m_MethodName: moveToCheckPoint
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - timeTrigger: 30
+    attachedEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 183220637725763063}
+          m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+          m_MethodName: moveToCheckPoint
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - timeTrigger: 40
+    attachedEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 183220637725763063}
+          m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+          m_MethodName: moveToCheckPoint
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - timeTrigger: 60
+    attachedEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 183220637725763063}
+          m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+          m_MethodName: moveToCheckPoint
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  isOnSchedule: 1
   attachedLos: {fileID: 814285465594988406}
   detectionSpeed: 1.2
   suspicionDecreaseSpeed: 0.3
@@ -345,12 +425,11 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   attention: 5
-  isDistracted: 0
+  defaultAttention: 5
   nav: {fileID: 249264150730694979}
   index: 0
   target: {fileID: 0}
-  isChasing: 0
-  islookingAround: 0
+  isLookingAround: 0
   suspicionFalloffCurve:
     serializedVersion: 2
     m_Curve:
@@ -385,8 +464,15 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   turnAngle: 60
-  speed: 4
-  waitTime: 0.5
+  turnSpeed: 90
+  lookAroundWaitTime: 1.5
+  suspicionThresholdToLookAround: 45
+  severeDistractionDuration: 5
+  severeDistractionSuspicion: 75
+  moderateDistractionDuration: 3
+  moderateDistractionSuspicion: 50
+  arrivalDistanceThreshold: 2
+  maxTravelToDistractionSeconds: 10
 --- !u!195 &249264150730694979
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -413,13 +413,63 @@ MonoBehaviour:
   baseMoveSpeed: 8
   runSpeed: 10
   sneakSpeed: 5
+  ghostSpeed: 15
   charController: {fileID: 6495277162104282501}
   spriteAnimator: {fileID: 4929414376209875277}
   interactionHandler: {fileID: 4788594249765754502}
+  ghostedPlayerPrefab: {fileID: 347771865001200465, guid: e6a05b41b049b634fae0d9ab2a67d817, type: 3}
+  maxLeashDistance: 15
+  leashResistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.65
+      value: 0
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.15229881
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 217.56017
+      outSlope: 217.56017
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.007746219
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ghostReturnTime: 0.3
+  stepDistance: 2
+  stepDistractionPrefab: {fileID: 2801747081541894003, guid: e2e490432ca41b14b841dd7f32690592, type: 3}
+  minorStepRadius: 2
+  moderateStepRadius: 4
+  severeStepRadius: 6
+  minorStepColor: {r: 0, g: 1, b: 0.07667947, a: 1}
+  moderateStepColor: {r: 0.95939255, g: 1, b: 0, a: 1}
+  severeStepColor: {r: 1, g: 0.18017924, b: 0, a: 1}
+  showStepRadii: 0
   currentState: 2
   currentMoveDir: {x: 0, y: 0}
   isRunHeld: 0
   isSneakHeld: 0
+  isAcceptingInputs: 1
+  isGhost: 0
+  ghostedPlayerInstance: {fileID: 0}
+  lastStepPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1274574646084683685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +559,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d551fbab-1a6a-461a-93b4-4254ef29e485
     m_ActionName: 'Ingame/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5808222524373624563}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnGhost
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b5307747-ed40-4f09-a742-b0b5980bd202
+    m_ActionName: 'Ingame/Ghost[/Keyboard/g]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ingame

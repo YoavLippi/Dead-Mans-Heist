@@ -28,6 +28,8 @@ public class InteractableUI : MonoBehaviour
 		// Universally grab all sprite renderers on this object or its children
 		spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 		materialProperties = new MaterialPropertyBlock();
+		materialProperties.SetColor(OutlineColorID, spectralOutlineColor);
+		spriteRenderers[0].SetPropertyBlock(materialProperties);
 		Debug.Log($"[DIAGNOSTIC] {gameObject.name} found {spriteRenderers.Length} SpriteRenderer(s) in its hierarchy.");
 	}
 
