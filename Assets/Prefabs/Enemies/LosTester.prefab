@@ -467,10 +467,13 @@ MonoBehaviour:
   turnSpeed: 90
   lookAroundWaitTime: 1.5
   suspicionThresholdToLookAround: 45
+  currentDistractionSeverity: 3
   severeDistractionDuration: 5
   severeDistractionSuspicion: 75
   moderateDistractionDuration: 3
   moderateDistractionSuspicion: 50
+  minorDistractionDuration: 3
+  minorDistractionSuspicion: 25
   arrivalDistanceThreshold: 2
   maxTravelToDistractionSeconds: 10
 --- !u!195 &249264150730694979

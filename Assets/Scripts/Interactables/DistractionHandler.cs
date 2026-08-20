@@ -8,7 +8,8 @@ public class DistractionHandler : Interactable
     {
         Severe,
         Moderate,
-        Minor
+        Minor,
+        None
     }
 
     [Header("Editor")] 

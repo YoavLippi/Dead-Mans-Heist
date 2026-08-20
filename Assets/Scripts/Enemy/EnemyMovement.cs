@@ -18,12 +18,18 @@ public class EnemyMovement : EnemyAbs
 
     [Header("Attention loss")]
     [SerializeField] private float suspicionThresholdToLookAround = 45f;
+    [SerializeField] private DistractionHandler.DistractionSeverity  currentDistractionSeverity;
 
     [Header("Distraction tuning")]
     [SerializeField] private float severeDistractionDuration = 5f;
     [SerializeField] private float severeDistractionSuspicion = 75f;
     [SerializeField] private float moderateDistractionDuration = 3f;
     [SerializeField] private float moderateDistractionSuspicion = 50f;
+    [SerializeField] private float minorDistractionDuration = 3f;
+    [SerializeField] private float minorDistractionSuspicion = 25f;
+
+
+    [Header("Travelling")]
     [SerializeField] private float arrivalDistanceThreshold = 2f;
     [SerializeField] private float maxTravelToDistractionSeconds = 10f;
 
@@ -144,8 +150,8 @@ public class EnemyMovement : EnemyAbs
             elapsed += Time.deltaTime;
             yield return null;
         }
-
-        StopNav();
+        StopNav(); 
+        nav.SetDestination(transform.position);
 
         yield return StartCoroutine(LookSequence(lookTime));
 
@@ -158,31 +164,56 @@ public class EnemyMovement : EnemyAbs
 
         isOnSchedule = true;
         distractionRoutine = null;
+        currentDistractionSeverity = DistractionHandler.DistractionSeverity.None;
     }
 
     public override void GetDistracted(Vector3 distractionPos, DistractionHandler.DistractionSeverity sev)
-    {
+    {   
+        isOnSchedule = false;
+        if (sev == DistractionHandler.DistractionSeverity.None) return;
         Debug.Log($"{name} was distracted, pos: {distractionPos}, severity {sev}");
-
         if (distractionRoutine != null)
         {
             StopCoroutine(distractionRoutine);
         }
 
-        isOnSchedule = false;
-        moveToCheckPoint(distractionPos);
+        
+       
+
 
         switch (sev)
         {
             case DistractionHandler.DistractionSeverity.Severe:
                 distractionRoutine = StartCoroutine(
                     DistractionSequence(severeDistractionDuration, distractionPos, severeDistractionSuspicion));
+                moveToCheckPoint(distractionPos);
+
                 break;
 
             case DistractionHandler.DistractionSeverity.Moderate:
+
+                if (currentDistractionSeverity == DistractionHandler.DistractionSeverity.Severe) 
+                {
+                    break;
+                }
                 distractionRoutine = StartCoroutine(
                     DistractionSequence(moderateDistractionDuration, distractionPos, moderateDistractionSuspicion));
+                moveToCheckPoint(distractionPos);
+
+                break;
+
+            case DistractionHandler.DistractionSeverity.Minor:
+                if (currentDistractionSeverity == DistractionHandler.DistractionSeverity.Severe || currentDistractionSeverity == DistractionHandler.DistractionSeverity.Moderate)
+                {
+                    break;
+                }
+                distractionRoutine = StartCoroutine(
+                    DistractionSequence(minorDistractionDuration, distractionPos, minorDistractionSuspicion));
+                moveToCheckPoint(distractionPos);
                 break;
         }
+
+        currentDistractionSeverity = sev;
+        
     }
 }
