@@ -1102,7 +1102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039581403566917376, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_Name
-      value: Triggered Switching Camera
+      value: TSC Starting room
       objectReference: {fileID: 0}
     - target: {fileID: 5942066109143466982, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: alwaysDrawGizmo
@@ -1187,7 +1187,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1252738896818885924, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.24
+      value: 12.8
       objectReference: {fileID: 0}
     - target: {fileID: 1252738896818885924, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1195,7 +1195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1252738896818885924, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.4
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: 1830381320125845813, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_LocalScale.x
@@ -1251,7 +1251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039581403566917376, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_Name
-      value: Triggered Switching Camera (6)
+      value: TSC Backroom
       objectReference: {fileID: 0}
     - target: {fileID: 5942066109143466982, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: alwaysDrawGizmo
@@ -1263,11 +1263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8080211637906637996, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25
+      value: 21.03
       objectReference: {fileID: 0}
     - target: {fileID: 8080211637906637996, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.4
+      value: 12.1
       objectReference: {fileID: 0}
     - target: {fileID: 8080211637906637996, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4945,7 +4945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039581403566917376, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_Name
-      value: Triggered Switching Camera (2)
+      value: TSC Storage area
       objectReference: {fileID: 0}
     - target: {fileID: 5942066109143466982, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: alwaysDrawGizmo
@@ -5277,7 +5277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039581403566917376, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_Name
-      value: Triggered Switching Camera (5)
+      value: TSC Above start
       objectReference: {fileID: 0}
     - target: {fileID: 5942066109143466982, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: alwaysDrawGizmo
@@ -5562,7 +5562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039581403566917376, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_Name
-      value: Triggered Switching Camera3
+      value: TSC Long Corridor
       objectReference: {fileID: 0}
     - target: {fileID: 5942066109143466982, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: alwaysDrawGizmo
@@ -7007,7 +7007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039581403566917376, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_Name
-      value: Triggered Switching Camera (1)
+      value: TSC Captain Courters
       objectReference: {fileID: 0}
     - target: {fileID: 5942066109143466982, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: alwaysDrawGizmo
@@ -7993,7 +7993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039581403566917376, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_Name
-      value: Triggered Switching Camera (4)
+      value: TSC room next to start
       objectReference: {fileID: 0}
     - target: {fileID: 5942066109143466982, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: alwaysDrawGizmo
@@ -8120,7 +8120,7 @@ Transform:
   m_GameObject: {fileID: 1447502352}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0.00012338161, z: -0.00012338161, w: 0.7071068}
-  m_LocalPosition: {x: -0.4106664, y: -0.033397622, z: 0.028109407}
+  m_LocalPosition: {x: -0.4107, y: -0.033397622, z: 0.0148}
   m_LocalScale: {x: 0.005960419, y: 0.006386531, z: 0.0015753598}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9879,23 +9879,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.39
+      value: -0.1500063
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.84674
+      value: 19.05979
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.638428
+      value: -15.300656
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9383819
+      value: 0.8223365
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.3456002
+      value: 0.56900156
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -10162,7 +10162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039581403566917376, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: m_Name
-      value: Triggered Switching Camera (3)
+      value: TSC back area
       objectReference: {fileID: 0}
     - target: {fileID: 5942066109143466982, guid: 5a9941dc7f50f4c45bf5467646eaf4ae, type: 3}
       propertyPath: alwaysDrawGizmo
