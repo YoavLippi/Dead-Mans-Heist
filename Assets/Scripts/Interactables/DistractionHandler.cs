@@ -20,6 +20,7 @@ public class DistractionHandler : Interactable
     [Header("Setup")]
     [SerializeField] private DistractionSeverity thisSeverity;
     [SerializeField] private float distractionRadius;
+    [SerializeField] private bool isLowPriorityDistraction;
 
     public DistractionSeverity ThisSeverity
     {
@@ -94,11 +95,12 @@ public class DistractionHandler : Interactable
         foreach (var col in hitColliders)
         {
             if (!col.CompareTag("Enemy")) continue;
-            
-            if (col.GetComponent<EnemyAbs>())
+
+            if (!col.GetComponent<EnemyAbs>()) continue;
+            //enemiesInRange.Add(col.GetComponent<Enemy>());
+            if (!isLowPriorityDistraction || col.GetComponent<EnemyAbs>().CurrentState != EnemyState.Distracted)
             {
-                //enemiesInRange.Add(col.GetComponent<Enemy>());
-                col.GetComponent<EnemyAbs>().GetDistracted(transform.position, thisSeverity);
+                col.GetComponent<EnemyAbs>().GetDistracted(transform.position, thisSeverity); 
             }
         }
     }
