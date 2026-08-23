@@ -126,10 +126,14 @@ public class EnemyMovement : EnemyAbs
 
     private IEnumerator RotateTo(Quaternion targetRot)
     {
-        while (Quaternion.Angle(transform.rotation, targetRot) > 0.1f)
+        float maxTurnTime = 3;
+        float currentTime = 0;
+        while (Quaternion.Angle(transform.rotation, targetRot) > 0.1f && currentTime <= maxTurnTime)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
             yield return null;
+            currentTime += Time.deltaTime;
+            
         }
         transform.rotation = targetRot;
     }
@@ -176,10 +180,6 @@ public class EnemyMovement : EnemyAbs
         {
             StopCoroutine(distractionRoutine);
         }
-
-        
-       
-
 
         switch (sev)
         {
