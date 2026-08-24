@@ -43,6 +43,7 @@ public class EnemyAbs : MonoBehaviour
     [SerializeField] protected Gradient gradient;
     [SerializeField] protected float attention = 5f;
     [SerializeField] protected float defaultAttention = 5f;
+    [SerializeField] protected Collider catchCollider;
 
     // Was a bare bool before; now derived from state so it can't drift
     // out of sync with CurrentState.
@@ -67,6 +68,7 @@ public class EnemyAbs : MonoBehaviour
             if (currentMoveMode == value) return;
             EnemyMoveMode previous = currentMoveMode;
             currentMoveMode = value;
+            catchCollider.enabled = value == EnemyMoveMode.Chasing;
             HandleStateChange(previous, value);
         }
     }
@@ -74,7 +76,11 @@ public class EnemyAbs : MonoBehaviour
     public EnemyState CurrentState
     {
         get => currentState;
-        set => currentState = value;
+        set 
+        {
+            currentState = value;
+        }
+
     }
 
     public virtual void Start()
