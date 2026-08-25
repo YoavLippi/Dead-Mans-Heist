@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: sphereColour.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: isLowPriorityDistraction
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 985948575427596652, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
     m_RemovedGameObjects: []
