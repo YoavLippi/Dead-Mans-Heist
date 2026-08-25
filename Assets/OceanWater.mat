@@ -51,20 +51,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _A_B_Color_Proportion: 0.5
-    - _A_B_Direction_Proportion: 0.5
+    - _A_B_Color_Proportion: 0.406
+    - _A_B_Direction_Proportion: 0.659
     - _A_B_Proportion: 0.5
-    - _Foam_Density: 0.445
+    - _Foam_Density: 0.367
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Rotate_Scroll_A: 0
-    - _Rotate_Scroll_B: 0
-    - _Scale: 100
-    - _Speed_A: 1
-    - _Speed_B: 1
+    - _Rotate_Scroll_A: 4.19
+    - _Rotate_Scroll_B: 20.69
+    - _Scale: 2000
+    - _Speed_A: 0.3
+    - _Speed_B: 0.3
     m_Colors:
     - _Foam_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Foam_Emission_Color: {r: 4, g: 4, b: 4, a: 1}
     - _Over_Color: {r: 0.05882354, g: 0.54556525, b: 0.65882355, a: 1}
-    - _Under_Color: {r: 0, g: 0.10181414, b: 0.23018861, a: 1}
+    - _Under_Color: {r: 0.046472035, g: 0.23018861, b: 0.21351449, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
