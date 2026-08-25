@@ -334,6 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a603e97dc112a64e87eb191256319c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HidingHandler
+  customObjectName: Hiding Spot
+  interactionType: 0
   OnInteract:
     m_PersistentCalls:
       m_Calls:

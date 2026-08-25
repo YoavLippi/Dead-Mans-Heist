@@ -1,8 +1,7 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class HUDManager : MonoBehaviour
 {
@@ -13,12 +12,24 @@ public class HUDManager : MonoBehaviour
 	public GameObject interactionSlot;
 
 	[Header("Skull elimination tracker")]
-	public List<GameObject> skullIcons = new List<GameObject>();
+	public GameObject[] skullIcons = new GameObject[3];
+	public TMP_Text crewEliminatedText;
+	private int currentEliminations = 0;
 
 	[Header("Inventory/Ability Display")]
 	public Image[] inventorySlotIcons = new Image[5];
-
 	private Sprite[] currentInventory = new Sprite[5];
+
+	[Header("Ghost Ability & Cooldown UI")]
+	[Tooltip("The main icon representing Ghost Vision ability.")]
+	public Image ghostAbilityIcon;
+	[Tooltip("UI Image with Image Type set to 'Filled' (Radial 360) that darkens the icon during cooldown.")]
+	public Image ghostCooldownFillImage;
+	[Tooltip("Text overlay displaying remaining cooldown seconds (e.g., '2.5s').")]
+	public TMP_Text ghostCooldownText;
+	[Tooltip("Color to tint the ability icon when Ghost Vision is actively running.")]
+	public Color activeGhostModeColor = Color.cyan;
+	public Color normalGhostModeColor = Color.white;
 
 	private void Awake()
 	{
@@ -35,6 +46,8 @@ public class HUDManager : MonoBehaviour
 	{
 		ClearInteractionPrompt();
 		InitializeSlots();
+		SetGhostCooldown(0f, 0f);
+		SetGhostModeVisualActive(false);
 	}
 
 
@@ -56,12 +69,18 @@ public class HUDManager : MonoBehaviour
 	/// <param name="eliminatedCount">Number of enemies killed so far.</param>
 	public void UpdateSkullEliminations(int eliminatedCount)
 	{
-		for (int i = 0; i < skullIcons.Count; i++)
+		currentEliminations = Mathf.Clamp(eliminatedCount, 0, skullIcons.Length);
+
+		for (int i = 0; i < skullIcons.Length; i++)
 		{
 			if (skullIcons[i] != null)
 			{
-				skullIcons[i].SetActive(i < eliminatedCount);
+				skullIcons[i].SetActive(i < currentEliminations);
 			}
+		}
+		if (crewEliminatedText != null)
+		{
+			crewEliminatedText.text = $"Crew Eliminated: {currentEliminations}/3";
 		}
 	}
 	#endregion
@@ -100,6 +119,56 @@ public class HUDManager : MonoBehaviour
 			currentInventory[slotIndex] = null;
 			inventorySlotIcons[slotIndex].sprite = null;
 			inventorySlotIcons[slotIndex].enabled = false; // Hide icon image
+		}
+	}
+	#endregion
+
+	#region Ghost Mode and Cooldown Display
+	/// <summary>
+	/// Updates the radial cooldown fill and timer text.
+	/// </summary>
+	/// <param name="currentCooldown">Seconds remaining.</param>
+	/// <param name="maxCooldown">Total cooldown duration in seconds.</param>
+
+	public void SetGhostCooldown(float currentCooldown, float maxCooldown)
+	{
+		if (currentCooldown > 0f && maxCooldown > 0f)
+		{
+			if (ghostCooldownFillImage != null)
+			{
+				ghostCooldownFillImage.gameObject.SetActive(true);
+				ghostCooldownFillImage.fillAmount = currentCooldown / maxCooldown;
+			}
+
+			if (ghostCooldownText != null)
+			{
+				ghostCooldownText.gameObject.SetActive(true);
+				ghostCooldownText.text = currentCooldown.ToString("F1") + "s";
+			}
+		}
+		else
+		{
+			if (ghostCooldownFillImage != null)
+			{
+				ghostCooldownFillImage.fillAmount = 0f;
+				ghostCooldownFillImage.gameObject.SetActive(false);
+			}
+
+			if (ghostCooldownText != null)
+			{
+				ghostCooldownText.gameObject.SetActive(false);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Toggles icon highlight color when Ghost Mode is active vs inactive.
+	/// </summary>
+	public void SetGhostModeVisualActive(bool isActive)
+	{
+		if (ghostAbilityIcon != null)
+		{
+			ghostAbilityIcon.color = isActive ? activeGhostModeColor : normalGhostModeColor;
 		}
 	}
 	#endregion

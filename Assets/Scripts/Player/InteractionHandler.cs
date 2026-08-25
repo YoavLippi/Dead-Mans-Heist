@@ -6,91 +6,131 @@ using UnityEngine.Serialization;
 
 public class InteractionHandler : MonoBehaviour
 {
-    [SerializeField] private List<Interactable> interactablesInRange;
-    //this will tell the list when it needs to check again for a new closest interactible
-    [SerializeField] private bool isListDirty = false;
-    [SerializeField] private Vector3 lastPos;
-    [SerializeField] private float movementMax;
-    [SerializeField] private Interactable closestInteractable;
-    [SerializeField] private float closestDist;
+	[SerializeField] private List<Interactable> interactablesInRange;
+	//this will tell the list when it needs to check again for a new closest interactible
+	[SerializeField] private bool isListDirty = false;
+	[SerializeField] private Vector3 lastPos;
+	[SerializeField] private float movementMax;
+	[SerializeField] private Interactable closestInteractable;
+	[SerializeField] private float closestDist;
 
-    private void Awake()
-    {
-        interactablesInRange = new List<Interactable>();
-    }
+	private void Awake()
+	{
+		interactablesInRange = new List<Interactable>();
+	}
 
-    public void DoInteract()
-    {
-        if (closestInteractable != null)
-        {
-            closestInteractable.OnInteract.Invoke();
-        }
-    }
+	public void DoInteract()
+	{
+		if (closestInteractable != null)
+		{
+			closestInteractable.OnInteract.Invoke();
+		}
+	}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Interactable temp = other.GetComponentInChildren<Interactable>();
-        if (temp != null)
-        {
-            if (interactablesInRange.Contains(temp)) return;
-            
-            interactablesInRange.Add(temp);
-            if (interactablesInRange.Count == 1)
-            {
-                closestInteractable = temp;
-                temp.SetOutlineWidth(5f);
-            }
-            else
-            {
-                isListDirty = true;
-            }
-        }
-    }
+	private void OnTriggerEnter(Collider other)
+	{
+		Interactable temp = other.GetComponentInChildren<Interactable>();
+		if (temp != null)
+		{
+			if (interactablesInRange.Contains(temp)) return;
 
-    private void OnTriggerExit(Collider other)
-    {
-        Interactable temp = other.GetComponentInChildren<Interactable>();
-        if (temp != null)
-        {
-            if (!interactablesInRange.Contains(temp)) return;
-            
-            interactablesInRange.Remove(temp);
-            temp.SetOutlineWidth(0);
-            if (interactablesInRange.Count >= 1)
-            {
-                isListDirty = true;
-            } else
-            {
-                closestInteractable = null;
-            }
-        }
-    }
+			interactablesInRange.Add(temp);
+			if (interactablesInRange.Count == 1)
+			{
+				SetClosest(temp);
+				//closestInteractable = temp;
+				//temp.SetOutlineWidth(5f);
+			}
+			else
+			{
+				isListDirty = true;
+			}
+		}
+	}
 
-    private void FixedUpdate()
-    {
-        if ((transform.position - lastPos).magnitude > movementMax)
-        {
-            lastPos = transform.position;
-            isListDirty = true;
-        }
+	private void OnTriggerExit(Collider other)
+	{
+		Interactable temp = other.GetComponentInChildren<Interactable>();
+		if (temp != null)
+		{
+			if (!interactablesInRange.Contains(temp)) return;
 
-        if (isListDirty && interactablesInRange.Count>0)
-        {
-            closestDist = Single.MaxValue;
-            //we want to recalculate if the closest pos is still the one we have
-            foreach (var interactable in interactablesInRange)
-            {
-                interactable.SetOutlineWidth(0);
-                float tempDist = (transform.position - interactable.transform.position).magnitude;
-                if (tempDist < closestDist)
-                {
-                    closestDist = tempDist;
-                    closestInteractable = interactable;
-                }
-            }
-            
-            closestInteractable.SetOutlineWidth(5f);
-            isListDirty = false;
-        }
-    }
+			interactablesInRange.Remove(temp);
+			temp.SetOutlineWidth(0);
+			if (interactablesInRange.Count >= 1)
+			{
+				isListDirty = true;
+			}
+			else
+			{
+				ClearClosest(); 
+				//closestInteractable = null;
+			}
+		}
+	}
+
+	private void FixedUpdate()
+	{
+		if ((transform.position - lastPos).magnitude > movementMax)
+		{
+			lastPos = transform.position;
+			isListDirty = true;
+		}
+
+		if (isListDirty && interactablesInRange.Count > 0)
+		{
+			closestDist = Single.MaxValue;
+			//we want to recalculate if the closest pos is still the one we have
+			Interactable newClosest = null;
+			foreach (var interactable in interactablesInRange)
+			{
+				if (interactable == null) continue;
+
+				interactable.SetOutlineWidth(0);
+				float tempDist = (transform.position - interactable.transform.position).magnitude;
+				if (tempDist < closestDist)
+				{
+					closestDist = tempDist;
+					newClosest = interactable;
+					//closestInteractable = interactable;
+				}
+			}
+			if (newClosest != null)
+			{
+				SetClosest(newClosest);
+			}
+			else
+			{
+				ClearClosest();
+			}
+
+			//closestInteractable.SetOutlineWidth(5f);
+			isListDirty = false;
+		}
+	}
+
+	private void SetClosest(Interactable target)
+	{
+		closestInteractable = target;
+		closestInteractable.SetOutlineWidth(5f);
+
+		if (HUDManager.Instance != null)
+		{
+			HUDManager.Instance.SetInteractionPrompt(closestInteractable.DisplayName, closestInteractable.PromptMessage);
+		}
+	}
+
+	private void ClearClosest()
+	{
+		if (closestInteractable != null)
+		{
+			closestInteractable.SetOutlineWidth(0);
+			closestInteractable = null;
+		}
+
+		if (HUDManager.Instance != null)
+		{
+			HUDManager.Instance.ClearInteractionPrompt();
+		}
+	}
 }
