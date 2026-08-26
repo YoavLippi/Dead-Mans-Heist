@@ -107,6 +107,11 @@ public class GameManager : MonoBehaviour
 	{
 		hasGameStartedOnce = true; // Flips the switch permanently for this session
 		ChangeState(GameState.Playing);
+
+		if (AudioManager.Instance != null && AudioManager.Instance.oceanAmbience != null)
+		{
+			AudioManager.Instance.PlayMusic(AudioManager.Instance.oceanAmbience, 0.6f);
+		}
 	}
 
 	public void RestartGame()

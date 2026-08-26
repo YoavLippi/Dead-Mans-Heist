@@ -54,13 +54,13 @@ public class AudioManager : MonoBehaviour
 		ghostSource.loop = true;
 	}
 
-	private void Start()
-	{
-		if (oceanAmbience != null)
-		{
-			PlayMusic(oceanAmbience);
-		}
-	}
+	//private void Start()
+	//{
+	//	if (oceanAmbience != null)
+	//	{
+	//		PlayMusic(oceanAmbience);
+	//	}
+	//}
 
 	#region 2D Global Playback
 	/// <summary>
