@@ -65,6 +65,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
       propertyPath: wireColour.b
       value: 0.8204694
       objectReference: {fileID: 0}
@@ -96,5 +100,25 @@ PrefabInstance:
     - {fileID: 985948575427596652, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7988498614247935870, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4578560065996359434}
   m_SourcePrefab: {fileID: 100100000, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+--- !u!1 &7221386223960201400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7988498614247935870, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+  m_PrefabInstance: {fileID: 786825539129104326}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4578560065996359434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7221386223960201400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75eca0f5ddc575e448c24199a750065e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FootstepNoise
