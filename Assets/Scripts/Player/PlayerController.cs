@@ -288,7 +288,7 @@ public class PlayerController : MonoBehaviour
 					break;
 			}
 
-			fn.TriggerFootstepAlert(radius, severity, false);
+			fn.TriggerFootstepAlert(radius, severity, true);
 		}
 
 		Destroy(distraction, 0.3f);

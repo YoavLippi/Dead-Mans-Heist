@@ -70,7 +70,11 @@ public class DistractionHandler : Interactable
 
 		a.GetDistracted(transform, thisSeverity);*/
 
+		if (distractionLine) 
+		{
 		distractionLine.gameObject.SetActive(false);
+		}
+		
 		StopAllCoroutines();
 	}
 
@@ -98,18 +102,11 @@ public class DistractionHandler : Interactable
 
 	public override void DoInteract()
 	{
-
-		//if (AudioManager.Instance != null && soundEffect != null)
-		//{
-		//	AudioManager.Instance.PlaySFXAtPosition(soundEffect, transform.position, 1f, distractionRadius);
-		//}
-		//else if (AudioManager.Instance != null && AudioManager.Instance.crateDistraction != null)
-		//{
-		//	// Optional fallback: use default bell distraction clip from AudioManager
-		//	AudioManager.Instance.PlaySFXAtPosition(AudioManager.Instance.crateDistraction, transform.position, 1f, distractionRadius);
-		//}
-
+		if (distractionLine) 
+		{
 		StartCoroutine(ActivateRoutine(distractionLine));
+		}
+		
 
 		if (AudioManager.Instance != null)
 		{
