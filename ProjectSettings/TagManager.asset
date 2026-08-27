@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Catch
+  - DistractionLine
   layers:
   - Default
   - TransparentFX

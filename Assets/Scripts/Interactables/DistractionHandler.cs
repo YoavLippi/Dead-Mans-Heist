@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DistractionHandler : Interactable
@@ -22,6 +24,8 @@ public class DistractionHandler : Interactable
 	[SerializeField] private float distractionRadius;
 	[SerializeField] private bool isLowPriorityDistraction;
 	[SerializeField] private AudioClip soundEffect;
+	[SerializeField] public GameObject distractionLine;
+
 
 	public DistractionSeverity ThisSeverity
 	{
@@ -65,6 +69,9 @@ public class DistractionHandler : Interactable
 		/*Enemy a = new Enemy();
 
 		a.GetDistracted(transform, thisSeverity);*/
+
+		distractionLine.gameObject.SetActive(false);
+		StopAllCoroutines();
 	}
 
 	private void Update()
@@ -102,12 +109,15 @@ public class DistractionHandler : Interactable
 		//	AudioManager.Instance.PlaySFXAtPosition(AudioManager.Instance.crateDistraction, transform.position, 1f, distractionRadius);
 		//}
 
+		StartCoroutine(ActivateRoutine(distractionLine));
+
 		if (AudioManager.Instance != null)
 		{
 			AudioClip clipToPlay = soundEffect != null ? soundEffect : AudioManager.Instance.crateDistraction;
 			if (clipToPlay != null)
 			{
 				AudioManager.Instance.PlaySFX(clipToPlay, 1f, 0.05f);
+				distractionLine.gameObject.SetActive(true);
 			}
 			else
 			{
@@ -128,5 +138,14 @@ public class DistractionHandler : Interactable
 				col.GetComponent<EnemyAbs>().GetDistracted(transform.position, thisSeverity);
 			}
 		}
+	}
+
+	private IEnumerator ActivateRoutine(GameObject obj)
+	{
+		if (obj == null) yield break;
+
+		obj.SetActive(true);
+		yield return new WaitForSecondsRealtime(1f);
+		obj.SetActive(false);
 	}
 }
