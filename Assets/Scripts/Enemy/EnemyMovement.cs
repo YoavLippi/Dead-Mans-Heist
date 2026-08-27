@@ -144,6 +144,7 @@ public class EnemyMovement : EnemyAbs
             currentTime += Time.deltaTime;
             
         }
+
         if (Quaternion.Angle(transform.rotation, targetRot) > 0.1f)
         {
             Quaternion fallbackStart = transform.rotation;
