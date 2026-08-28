@@ -39,7 +39,14 @@ public class CameraSwitchController : MonoBehaviour
         Gizmos.color = gizmoColor;
         //Vector3.Scale(thisCol.size, transform.localScale)
         //transform .TransformPoint(thisCol.center)
-        Gizmos.DrawWireCube(thisCol.center, thisCol.size);
+        foreach (var col in GetComponents<BoxCollider>())
+        {
+            if (col.enabled)
+            {
+                Gizmos.DrawWireCube(col.center, col.size);
+            }
+        }
+        //Gizmos.DrawWireCube(thisCol.center, thisCol.size);
         Gizmos.matrix = defaultMatrix;
     }
 
