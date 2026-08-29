@@ -10,6 +10,7 @@ public class EnemyMovement : EnemyAbs
     [SerializeField] private bool isLookingAround;
     private int lastKnownWorldTime;
     [SerializeField] private AnimationCurve suspicionFalloffCurve;
+    [SerializeField] private int timeOffset = 0;
 
     [Header("Look-around turn")]
     [SerializeField] private float turnAngle = 60f;
@@ -75,12 +76,20 @@ public class EnemyMovement : EnemyAbs
     protected override void CheckTime(int currentworld)
     {
         lastKnownWorldTime = currentworld;
-        //Debug.Log(lastKnownWorldTime%10);
-        if (index >= newSchedules.Count) return;
+
+       
         if (!isOnSchedule) return;
 
+        int localTime = currentworld - timeOffset;
+        if (index >= newSchedules.Count) 
+        {
+            timeOffset += newSchedules[newSchedules.Count - 1].timeTrigger;
+            index = 0;
+            return;
+        }
+
         newEvents next = newSchedules[index];
-        if (currentworld >= next.timeTrigger)
+        if (localTime >= next.timeTrigger)
         {
             next.attachedEvent.Invoke();
             index++;
@@ -135,6 +144,20 @@ public class EnemyMovement : EnemyAbs
             currentTime += Time.deltaTime;
             
         }
+
+        if (Quaternion.Angle(transform.rotation, targetRot) > 0.1f)
+        {
+            Quaternion fallbackStart = transform.rotation;
+            float fallbackDuration = 0.25f;
+            float t = 0f;
+            while (t < fallbackDuration)
+            {
+                t += Time.deltaTime;
+                transform.rotation = Quaternion.Slerp(fallbackStart, targetRot, t / fallbackDuration);
+                yield return null;
+            }
+        }
+
         transform.rotation = targetRot;
     }
 
