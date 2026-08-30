@@ -242,8 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08343030cc41054c9c78cbf0e60e084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DistractionHandler
-  customObjectName: 
-  interactionType: 0
+  customObjectName: Distraction Prop
+  interactionType: 1
   OnInteract:
     m_PersistentCalls:
       m_Calls:
@@ -267,7 +267,7 @@ MonoBehaviour:
   thisSeverity: 1
   distractionRadius: 14.45
   isLowPriorityDistraction: 0
-  soundEffect: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 6bf214a31e7b0244a99a7f7c627162bf, type: 3}
   distractionLine: {fileID: 4060803897413386651}
 --- !u!1 &8293128104527671346
 GameObject:

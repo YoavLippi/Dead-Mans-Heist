@@ -79,6 +79,12 @@ public class PlayerController : MonoBehaviour
 			if (value == PlayerState.Hiding)
 			{
 				if (currentMoveDir.magnitude != 0) return;
+				spriteAnimator.gameObject.SetActive(false);
+			}
+
+			if (currentState == PlayerState.Hiding && value != PlayerState.Hiding)
+			{
+				spriteAnimator.gameObject.SetActive(true);
 			}
 			currentState = value;
 			//we can add listeners here for animation triggers etc

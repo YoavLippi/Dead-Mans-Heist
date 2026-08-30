@@ -81,6 +81,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: alwaysDrawArea
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
       propertyPath: sphereColour.b
       value: 0.8377495
       objectReference: {fileID: 0}
@@ -122,3 +126,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75eca0f5ddc575e448c24199a750065e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FootstepNoise
+  customObjectName: 
+  interactionType: 0
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  sr: {fileID: 0}
+  alwaysDrawArea: 0
+  drawWireframeOnly: 0
+  sphereColour: {r: 0, g: 0, b: 0, a: 0}
+  wireColour: {r: 0, g: 0, b: 0, a: 0}
+  thisSeverity: 0
+  distractionRadius: 0
+  isLowPriorityDistraction: 0
+  soundEffect: {fileID: 0}
+  distractionLine: {fileID: 0}
