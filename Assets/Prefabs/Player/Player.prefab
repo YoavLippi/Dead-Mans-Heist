@@ -410,6 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d17ae7eac489834e817dd9439f1ca80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  gravityScale: 9.8
   baseMoveSpeed: 8
   runSpeed: 10
   sneakSpeed: 5
@@ -470,6 +471,10 @@ MonoBehaviour:
   isGhost: 0
   ghostedPlayerInstance: {fileID: 0}
   lastStepPos: {x: 0, y: 0, z: 0}
+  walkStepInterval: 0.45
+  runStepInterval: 0.28
+  sneakStepInterval: 0.65
+  footstepClip: {fileID: 0}
 --- !u!114 &1274574646084683685
 MonoBehaviour:
   m_ObjectHideFlags: 0

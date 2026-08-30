@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
 		Hiding
 	}
 
-	[Header("Speeds")]
+	[Header("Speeds")] 
+	[SerializeField] private float gravityScale;
 	[SerializeField] private float baseMoveSpeed;
 	[SerializeField] private float runSpeed;
 	[SerializeField] private float sneakSpeed;
@@ -78,6 +79,12 @@ public class PlayerController : MonoBehaviour
 			if (value == PlayerState.Hiding)
 			{
 				if (currentMoveDir.magnitude != 0) return;
+				spriteAnimator.gameObject.SetActive(false);
+			}
+
+			if (currentState == PlayerState.Hiding && value != PlayerState.Hiding)
+			{
+				spriteAnimator.gameObject.SetActive(true);
 			}
 			currentState = value;
 			//we can add listeners here for animation triggers etc
@@ -155,6 +162,10 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+		if (!charController.isGrounded)
+		{
+			charController.Move(Vector3.down * (Time.deltaTime * gravityScale));
+		}
 		float moveSpeed = 0f;
 		if (isGhost && ghostedPlayerInstance)
 		{
@@ -264,7 +275,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		// 2. Alert guards using the footstep noise trigger
-		GameObject distraction = Instantiate(stepDistractionPrefab, transform.position, Quaternion.identity);
+		/*GameObject distraction = Instantiate(stepDistractionPrefab, transform.position, Quaternion.identity);
 		FootstepNoise fn = distraction.GetComponentInChildren<FootstepNoise>();
 
 		if (fn != null)
@@ -291,7 +302,28 @@ public class PlayerController : MonoBehaviour
 			fn.TriggerFootstepAlert(radius, severity, true);
 		}
 
-		Destroy(distraction, 0.3f);
+		Destroy(distraction, 0.3f);*/
+		
+		DistractionHandler.DistractionSeverity severity = DistractionHandler.DistractionSeverity.Minor;
+		float radius = minorStepRadius;
+
+		switch (currentState)
+		{
+			case PlayerState.Running:
+				severity = DistractionHandler.DistractionSeverity.Severe;
+				radius = severeStepRadius;
+				break;
+			case PlayerState.Walking:
+				severity = DistractionHandler.DistractionSeverity.Moderate;
+				radius = moderateStepRadius;
+				break;
+			case PlayerState.Sneaking:
+				severity = DistractionHandler.DistractionSeverity.Minor;
+				radius = minorStepRadius;
+				break;
+		}
+		
+		DistractionHandler.DoDistract(transform.position, radius, severity, true);
 	}
 
 	public void OnMove(InputAction.CallbackContext context)

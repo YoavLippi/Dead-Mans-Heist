@@ -82,29 +82,30 @@ public class DistractionHandler : Interactable
 	{
 		//UseDistraction();
 	}
-
-	/*public void DoDistraction()
+	
+	public static void DoDistract(Vector3 pos, float radius, DistractionSeverity severity, bool isLowPriority)
 	{
-			//List<Enemy> enemiesInRange = new List<Enemy>();
-			Collider[] hitColliders = Physics.OverlapSphere(transform.position, distractionRadius);
-			foreach (var col in hitColliders)
-			{
-					if (!col.CompareTag("Enemy")) continue;
+		Collider[] hitColliders = Physics.OverlapSphere(pos, radius);
+		foreach (var col in hitColliders)
+		{
+			if (!col.CompareTag("Enemy")) continue;
 
-					if (col.GetComponent<EnemyAbs>())
-					{
-							//enemiesInRange.Add(col.GetComponent<Enemy>());
-							col.GetComponent<EnemyAbs>().GetDistracted(transform, thisSeverity);
-					}
+			EnemyAbs enemy = col.GetComponent<EnemyAbs>();
+			if (enemy == null) continue;
+
+			if (!isLowPriority || enemy.CurrentState != EnemyState.Distracted)
+			{
+				enemy.GetDistracted(pos, severity);
 			}
-	}*/
+		}
+	}
 
 
 	public override void DoInteract()
 	{
 		if (distractionLine) 
 		{
-		StartCoroutine(ActivateRoutine(distractionLine));
+			StartCoroutine(ActivateRoutine(distractionLine));
 		}
 		
 
@@ -123,7 +124,7 @@ public class DistractionHandler : Interactable
 		}
 
 		//List<Enemy> enemiesInRange = new List<Enemy>();
-		Collider[] hitColliders = Physics.OverlapSphere(transform.position, distractionRadius);
+		/*Collider[] hitColliders = Physics.OverlapSphere(transform.position, distractionRadius);
 		foreach (var col in hitColliders)
 		{
 			if (!col.CompareTag("Enemy")) continue;
@@ -134,7 +135,8 @@ public class DistractionHandler : Interactable
 			{
 				col.GetComponent<EnemyAbs>().GetDistracted(transform.position, thisSeverity);
 			}
-		}
+		}*/
+		DoDistract(transform.position, distractionRadius, thisSeverity, isLowPriorityDistraction);
 	}
 
 	private IEnumerator ActivateRoutine(GameObject obj)
