@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class FootstepNoise : MonoBehaviour
+public class FootstepNoise : DistractionHandler
 {
-	public void TriggerFootstepAlert(float radius, DistractionHandler.DistractionSeverity severity, bool isLowPriority)
+	public void TriggerFootstepAlert(float radius, DistractionSeverity severity, bool isLowPriority)
 	{
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
 		foreach (var col in hitColliders)
