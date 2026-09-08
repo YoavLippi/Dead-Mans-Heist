@@ -14,11 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueConversation
   thisConversationName: 1
   conversation:
-  - speakerName: Player
+  - ID: Start
+    speakerName: Player
     text: Ahoy!
-  - speakerName: Davy
+    hasOptions: 0
+    options: []
+    nextBox: Davy Response
+  - ID: Davy Response
+    speakerName: Davy
     text: Why are we still talking? Go loot!
-  - speakerName: Player
+    hasOptions: 0
+    options: []
+    nextBox: Player Pause
+  - ID: Player Pause
+    speakerName: Player
     text: ...
-  - speakerName: Player
+    hasOptions: 0
+    options: []
+    nextBox: Player Response
+  - ID: Player Response
+    speakerName: Player
     text: Fine, be that way, then. (Sad yarr)
+    hasOptions: 0
+    options: []
+    nextBox: Exit
