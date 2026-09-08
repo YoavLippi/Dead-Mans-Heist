@@ -15,6 +15,7 @@ public class Parrot : MonoBehaviour
     [SerializeField] protected DetectionUX detectUX;
     [SerializeField] protected Gradient gradient;
     [SerializeField] protected bool isSeeingPlayer;
+    [SerializeField] protected GameObject noiseMaker;
 
     [Header("Look-around turn")]
     [SerializeField] private float turnAngle = 60f;
@@ -41,6 +42,7 @@ public class Parrot : MonoBehaviour
     [SerializeField] private GameObject distractionPrefab;
     [SerializeField] private int distractionInterval = 2;
     private Coroutine distractionLoop;
+    private bool isplayDistraction;
 
     public float CurrentSuspicion
     {
@@ -92,16 +94,10 @@ public class Parrot : MonoBehaviour
         CurrentSuspicion = currentSuspicion + detectionSpeed;
         if (currentSuspicion >= maxSuspicion)
         {
-            //if (lookRoutine != null) 
-            //{
-            //    StopCoroutine(lookRoutine);
-            //    lookRoutine = null;
-            //    isLookingAround = false;
-            //}
-            //if(distractionLoop == null)
-            //{
-            //    //StartCoroutine(DistractionSoundLoop());
-            //}
+            if (distractionLoop == null && !isplayDistraction)
+            {
+                StartCoroutine(DistractionSoundLoop());
+            }
             Debug.Log("start making noise");
            
         }
@@ -109,11 +105,13 @@ public class Parrot : MonoBehaviour
 
     public IEnumerator DistractionSoundLoop() 
     {
-        while (attachedLos.IsSeeingPlayer) 
+        isplayDistraction = true;
+        while (isSeeingPlayer) 
         {
-            Instantiate(distractionPrefab);
+            Instantiate(distractionPrefab, noiseMaker.transform.position, noiseMaker.transform.rotation);
             yield return new WaitForSeconds(distractionInterval);
         }
+        isplayDistraction = false;
     }
     public void lookAround() => lookRoutine = StartCoroutine(LookSequence(3f));
 
