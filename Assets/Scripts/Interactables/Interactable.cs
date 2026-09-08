@@ -8,7 +8,8 @@ public enum InteractionType
 	Hide,               // Barrels, crates
 	Distract,           // For now: Barrels and crates but can later be: hanging bells, thrown bottles, whistling pipes
 	CollectItem,        // Keys, artifacts, tools
-	ToggleMechanism     // Levers, doors, pressure plates
+	ToggleMechanism,    // Levers, doors, pressure plates
+	Dialogue
 }
 
 //very basic helper script for now, but it should let us categorise later
