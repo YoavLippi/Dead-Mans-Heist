@@ -40,6 +40,7 @@ public class Parrot : MonoBehaviour
     [Header("Distraction")]
     [SerializeField] private GameObject distractionPrefab;
     [SerializeField] private int distractionInterval = 2;
+    private Coroutine distractionLoop;
 
     public float CurrentSuspicion
     {
@@ -62,6 +63,7 @@ public class Parrot : MonoBehaviour
     {
         attachedLos.OnSeePlayer -= OnSeePlayer;
         WorldTime.secondsChange -= CheckTime;
+        if (distractionLoop != null) StopCoroutine(distractionLoop);
     }
     public void Start()
     {
@@ -70,11 +72,18 @@ public class Parrot : MonoBehaviour
     }
     public virtual void FixedUpdate()
     {
-        isSeeingPlayer = attachedLos.IsSeeingPlayer && currentSuspicion < maxSuspicion;
         if (currentSuspicion > 0f && !attachedLos.IsSeeingPlayer)
         {
                 CurrentSuspicion = currentSuspicion - suspicionDecreaseSpeed;
                 
+        }
+        if (attachedLos.IsSeeingPlayer) 
+        {
+            isSeeingPlayer = true;
+        }
+        if (currentSuspicion == 0) 
+        {
+            isSeeingPlayer = false;
         }
 
     }
@@ -83,14 +92,18 @@ public class Parrot : MonoBehaviour
         CurrentSuspicion = currentSuspicion + detectionSpeed;
         if (currentSuspicion >= maxSuspicion)
         {
-            if (lookRoutine != null) 
-            {
-                StopCoroutine(lookRoutine);
-                lookRoutine = null;
-                isLookingAround = false;
-            }
-
-            StartCoroutine(DistractionSoundLoop());
+            //if (lookRoutine != null) 
+            //{
+            //    StopCoroutine(lookRoutine);
+            //    lookRoutine = null;
+            //    isLookingAround = false;
+            //}
+            //if(distractionLoop == null)
+            //{
+            //    //StartCoroutine(DistractionSoundLoop());
+            //}
+            Debug.Log("start making noise");
+           
         }
     }
 
