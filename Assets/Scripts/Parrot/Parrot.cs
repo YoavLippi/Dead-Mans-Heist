@@ -108,7 +108,8 @@ public class Parrot : MonoBehaviour
         isplayDistraction = true;
         while (isSeeingPlayer) 
         {
-            Instantiate(distractionPrefab, noiseMaker.transform.position, noiseMaker.transform.rotation);
+            //Instantiate(distractionPrefab, noiseMaker.transform.position, noiseMaker.transform.rotation);
+            DistractionHandler.DoDistract(noiseMaker.transform.position, 10, DistractionHandler.DistractionSeverity.Severe, false);
             yield return new WaitForSeconds(distractionInterval);
         }
         isplayDistraction = false;
