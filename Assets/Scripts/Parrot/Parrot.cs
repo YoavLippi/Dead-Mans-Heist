@@ -8,6 +8,13 @@ public class Parrot : MonoBehaviour
 {
 
     [SerializeField] protected LosHandler attachedLos;
+    [SerializeField] protected MeshRenderer coneRenderer;
+    [SerializeField] protected float flightSpeed = 2f;
+    [SerializeField] private float flyUpHeight;
+    [SerializeField] private float perchHeight;
+
+
+
     [SerializeField] protected float detectionSpeed = 0.6f;
     [SerializeField] protected float suspicionDecreaseSpeed = 0.3f;
     [SerializeField] protected float currentSuspicion;
@@ -24,6 +31,7 @@ public class Parrot : MonoBehaviour
 
     [SerializeField] private Quaternion startingRotation;
     private Coroutine lookRoutine;
+    private Coroutine flightRoutine;
 
  
     [Header("Look schedule")]
@@ -43,6 +51,9 @@ public class Parrot : MonoBehaviour
     [SerializeField] private int distractionInterval = 2;
     private Coroutine distractionLoop;
     private bool isplayDistraction;
+    [SerializeField] private Transform[] perches;
+    private int perchIndex;
+
 
     public float CurrentSuspicion
     {
@@ -165,6 +176,50 @@ public class Parrot : MonoBehaviour
         //}
 
         transform.rotation = targetRot;
+    }
+
+    protected void FlyUp(float targetY) 
+    {
+
+        Vector3 target = new Vector3(transform.position.x, targetY, transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, target, flightSpeed * Time.deltaTime);
+    }
+    protected void FlyDown(float targetY)
+    {
+        Vector3 target = new Vector3(transform.position.x, targetY, transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, target, flightSpeed * Time.deltaTime);
+    }
+
+    protected IEnumerator MoveToNewLocation(Transform newLocation) 
+    {
+        coneRenderer.enabled = false;
+        while (Mathf.Abs(transform.position.y - flyUpHeight) > 0.05f) 
+        {
+            FlyUp(flyUpHeight);
+            yield return null;
+            continue;
+           
+        }
+        Vector3 pos = transform.position;
+        transform.position = new Vector3(newLocation.position.x, pos.y, newLocation.position.z);
+        yield return new WaitForSeconds(0.5f);
+        while (Mathf.Abs(transform.position.y - perchHeight) > 0.05f)
+        {
+            FlyDown(perchHeight);
+            yield return null;
+            continue;
+
+        }
+        coneRenderer.enabled = true;
+        
+
+    }
+
+    public void flight()
+    {
+        Transform nextPerch = perches[perchIndex];
+        perchIndex = (perchIndex + 1) % perches.Length;
+        flightRoutine = StartCoroutine(MoveToNewLocation(nextPerch));
     }
     private void CheckTime(int currentworld)
     {
