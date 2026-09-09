@@ -45,7 +45,8 @@ GameObject:
   - component: {fileID: 111835509271833588}
   - component: {fileID: 7106950620206431435}
   - component: {fileID: 4237126437775405869}
-  - component: {fileID: 8014327760337137061}
+  - component: {fileID: 4223113897277174282}
+  - component: {fileID: 5002898510313689018}
   m_Layer: 9
   m_Name: Static Distraction Collision
   m_TagString: Untagged
@@ -138,7 +139,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8014327760337137061
+--- !u!114 &4223113897277174282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,18 +148,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4918615329274546441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4f50cfbac2c4060b26c237ce84badcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 30137daae7ddfe54eb81b693872d3b27, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueHandler
-  customObjectName: 
-  interactionType: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  customObjectName: Chat
+  interactionType: 4
   OnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8014327760337137061}
-        m_TargetAssemblyTypeName: DialogueHandler, Assembly-CSharp
-        m_MethodName: DoInteract
-        m_Mode: 1
+      - m_Target: {fileID: 5002898510313689018}
+        m_TargetAssemblyTypeName: ConversationSender, Assembly-CSharp
+        m_MethodName: SendConversation
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -168,7 +169,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   sr: {fileID: 8081741621615800423}
-  corrConversation: 0
+--- !u!114 &5002898510313689018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4918615329274546441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2edad2402ff4974fbb02ac0f230ada4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConversationSender
+  Conversations:
+  - {fileID: 11400000, guid: d2c8e2ede40871f4bba534158bb948df, type: 2}
 --- !u!1 &8293128104527671346
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +213,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.09, y: 0.17, z: 0}
-  m_LocalScale: {x: 0.65036, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4016626461256882405}

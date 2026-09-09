@@ -13,7 +13,7 @@ public enum InteractionType
 }
 
 //very basic helper script for now, but it should let us categorise later
-public abstract class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
 	//[Header("HUD Display Settings")]
 	//[SerializeField] public string objectName = "Object";

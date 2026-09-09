@@ -10,31 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 812e25f310a26d249ab6745d018280f0, type: 3}
-  m_Name: DavyBasic
+  m_Name: DavyIntro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueConversation
-  thisConversationName: 1
   conversation:
   - ID: Start
-    speakerName: Player
-    text: Ahoy!
-    hasOptions: 0
-    options: []
-    nextBox: Davy Response
-  - ID: Davy Response
     speakerName: Davy
-    text: Why are we still talking? Go loot!
+    text: <b>Harrrk!</b> Be there a <i>landlubber</i> who dare go there? Arrr!
     hasOptions: 0
     options: []
-    nextBox: Player Pause
-  - ID: Player Pause
+    nextBox: PlayerResponse
+  - ID: PlayerResponse
     speakerName: Player
-    text: ...
+    text: Arr! I be no landlubber! I be a true blue pirate, just like you!
     hasOptions: 0
     options: []
-    nextBox: Player Response
-  - ID: Player Response
-    speakerName: Player
-    text: Fine, be that way, then. (Sad yarr)
+    nextBox: DavyOh
+  - ID: DavyOh
+    speakerName: Davy
+    text: Oh
     hasOptions: 0
     options: []
     nextBox: Exit

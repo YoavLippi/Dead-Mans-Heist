@@ -5,12 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DialogueConversation", menuName = "Scriptable Objects/Dialogue Conversation")]
 public class DialogueConversation : ScriptableObject
 {
-    public enum ConversationName
+    [Serializable]
+    public struct Option
     {
-        DavyIntro,
-        DavyBasic
+        [TextArea(1,6)]
+        public string text;
+        [TextArea(1,6)]
+        public string nextBox;
     }
-    public ConversationName thisConversationName;
+    
     [Serializable]
     public struct Snippet
     {
@@ -19,7 +22,7 @@ public class DialogueConversation : ScriptableObject
         [TextArea(1,6)]
         public string text;
         public bool hasOptions;
-        public string[] options;
+        public Option[] options;
         public string nextBox;
     }
 
