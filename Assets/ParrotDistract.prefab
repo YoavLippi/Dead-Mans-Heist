@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &786825539129104326
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 805928656680604880, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 985948575427596652, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1456075464394078626, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173511103757183157, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_Name
+      value: ParrotDistract
+      objectReference: {fileID: 0}
+    - target: {fileID: 5044454663892988181, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365967000822068262, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988498614247935870, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_Name
+      value: ParrotDistract
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: thisSeverity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: wireColour.b
+      value: 0.8204694
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: wireColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: wireColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: alwaysDrawArea
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: sphereColour.b
+      value: 0.8377495
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: sphereColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: sphereColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: isLowPriorityDistraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8136741675187835942}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DoSelfDistruct
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DoInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DistractionHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 985948575427596652, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 581029129668351109, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+--- !u!114 &8136741675187835942 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8791271499660968928, guid: c76f8334b6f3bb841a0013fa8f29672b, type: 3}
+  m_PrefabInstance: {fileID: 786825539129104326}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08343030cc41054c9c78cbf0e60e084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DistractionHandler
