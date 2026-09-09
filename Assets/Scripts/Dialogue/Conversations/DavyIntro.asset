@@ -12,10 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812e25f310a26d249ab6745d018280f0, type: 3}
   m_Name: DavyIntro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueConversation
+  thisConversationName: 0
   conversation:
-  - speakerName: Davy
-    text: <b>Harrrk!</b> Be there a landlubber who dare go there? Arrr!
-  - speakerName: Player
+  - ID: Start
+    speakerName: Davy
+    text: <b>Harrrk!</b> Be there a <i>landlubber</i> who dare go there? Arrr!
+    hasOptions: 0
+    options: []
+    nextBox: PlayerResponse
+  - ID: PlayerResponse
+    speakerName: Player
     text: Arr! I be no landlubber! I be a true blue pirate, just like you!
-  - speakerName: Davy
+    hasOptions: 0
+    options: []
+    nextBox: DavyOh
+  - ID: DavyOh
+    speakerName: Davy
     text: Oh
+    hasOptions: 0
+    options: []
+    nextBox: Exit

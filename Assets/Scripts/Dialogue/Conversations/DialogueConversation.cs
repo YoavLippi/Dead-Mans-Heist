@@ -14,9 +14,13 @@ public class DialogueConversation : ScriptableObject
     [Serializable]
     public struct Snippet
     {
+        public string ID;
         public string speakerName;
         [TextArea(1,6)]
         public string text;
+        public bool hasOptions;
+        public string[] options;
+        public string nextBox;
     }
 
     public List<Snippet> conversation = new List<Snippet>();
