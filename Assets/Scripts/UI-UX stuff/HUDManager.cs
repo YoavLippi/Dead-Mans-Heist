@@ -17,6 +17,8 @@ public class HUDManager : MonoBehaviour
 	private int currentEliminations = 0;
 
 	[Header("Inventory/Ability Display")]
+	public TMP_Text keysCollectedText;
+	public Image inventoryBackground;
 	public Image[] inventorySlotIcons = new Image[5];
 	private Sprite[] currentInventory = new Sprite[5];
 
@@ -100,6 +102,8 @@ public class HUDManager : MonoBehaviour
 			{
 				currentInventory[i] = itemSprite;
 				inventorySlotIcons[i].sprite = itemSprite;
+				keysCollectedText.enabled = true;
+				inventoryBackground.enabled = true;
 				inventorySlotIcons[i].enabled = true; // Show the icon inside the slot frame
 				return true;
 			}
