@@ -23,6 +23,29 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private DialogueConversation currentConvo;
     [SerializeField] private int currentConvoIndex;
     [SerializeField] private DialogueConversation.Snippet currentSnippet;
+    
+    //NB: these should be in the game manager, just here for now for testing
+    [SerializeField] private List<Flag> flags;
+    [SerializeField] private Quest[] quests;
+    
+    [Serializable]
+    public struct Flag
+    {
+        public Flag(string name, bool isSet)
+        {
+            this.name = name;
+            this.isSet = isSet;
+        }
+        public string name;
+        public bool isSet;
+    }
+
+    [Serializable]
+    public struct Quest
+    {
+        public string questID;
+        public bool isComplete;
+    }
 
     public static DialogueManager Instance;
 
@@ -37,23 +60,6 @@ public class DialogueManager : MonoBehaviour
             Instance = this;
         }
     }
-
-    /*public void PlayDialogue(DialogueConversation.ConversationName conversationName)
-    {
-        if (dialoguePanel.activeSelf) return;
-        dialoguePanel.SetActive(true);
-        if (TryGetConversationByName(conversationName, out DialogueConversation convo))
-        {
-            currentConvo = convo;
-        }
-
-        if (currentConvo == null) return;
-        if (TryGetSnippetByID("Start", out DialogueConversation.Snippet s))
-        {
-            SetDialogue(s);
-        }
-    }*/
-
     public void PlayDialogue(DialogueConversation d)
     {
         if (dialoguePanel.activeSelf) return;
@@ -97,6 +103,8 @@ public class DialogueManager : MonoBehaviour
 
     public void LoadNextSnippet(DialogueConversation.Option o)
     {
+        HandleActions(o.actions);
+        //o.optionEvent.Invoke();
         if (TryGetSnippetByID(o.nextBox, out DialogueConversation.Snippet s))
         {
             SetDialogue(s);
@@ -123,6 +131,9 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        //currentSnippet.snippetCompletionEvent.Invoke();
+        //now assuming it is a snippet
+        HandleActions(currentSnippet.snippetCompletionActions);
         if (TryGetSnippetByID(currentSnippet.nextBox, out DialogueConversation.Snippet s))
         {
             SetDialogue(s);
@@ -137,6 +148,64 @@ public class DialogueManager : MonoBehaviour
                 dialoguePanel.SetActive(false);
             //}
         }
+    }
+
+    public void HandleActions(DialogueConversation.DialogueAction[] actions)
+    {
+        for (int i = 0; i < actions.Length; i++)
+        {
+            switch (actions[i].type)
+            {
+                case DialogueConversation.DialogueActionType.None:
+                    break;
+                case DialogueConversation.DialogueActionType.StartQuest:
+                    break;
+                case DialogueConversation.DialogueActionType.CompleteQuest:
+                    break;
+                case DialogueConversation.DialogueActionType.GiveItem:
+                    break;
+                case DialogueConversation.DialogueActionType.RemoveItem:
+                    break;
+                case DialogueConversation.DialogueActionType.SetFlag:
+                    //set gameController state control stuff here
+                    //"I learned LINQ, can you tell?" ahh condition
+                    var matchingFlagArr = flags.Where(p => p.name == actions[i].parameter).ToArray();
+                    if (matchingFlagArr.Length!=0)
+                    {
+                        matchingFlagArr[0].isSet = Boolean.Parse(actions[i].value);
+                    }
+                    else
+                    {
+                        Flag newFlag = new Flag(actions[i].parameter, Boolean.Parse(actions[i].value));
+                        flags.Add(newFlag);
+                    }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }   
+    }
+
+    public bool IsFlagSet(string flag)
+    {
+        var a = flags.Where(p => p.name.Equals(flag,StringComparison.OrdinalIgnoreCase)).ToArray();
+        if (a.Length != 0)
+        {
+            return a[0].isSet;
+        }
+
+        return false;
+    }
+
+    public bool IsQuestComplete(string qID)
+    {
+        var a = quests.Where(p => p.questID == qID).ToArray();
+        if (a.Length !=0)
+        {
+            return a[0].isComplete;
+        }
+
+        return false;
     }
 
     /*private bool TryGetConversationByName(DialogueConversation.ConversationName inputName, [CanBeNull] out DialogueConversation outConvo)

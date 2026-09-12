@@ -12,34 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812e25f310a26d249ab6745d018280f0, type: 3}
   m_Name: DavyBasic
   m_EditorClassIdentifier: Assembly-CSharp::DialogueConversation
+  conditions:
+  - {fileID: 11400000, guid: fe43a76d34f5ec248baadf1ccc0c5980, type: 2}
   conversation:
   - ID: Start
     speakerName: Player
     text: Ahoy!
     hasOptions: 0
     options: []
+    snippetCompletionActions: []
     nextBox: Davy Response
   - ID: Davy Response
     speakerName: Davy
     text: Why are we still talking? Go loot!
     hasOptions: 0
     options: []
+    snippetCompletionActions: []
     nextBox: Player Pause
   - ID: Player Pause
     speakerName: Player
     text: ...
     hasOptions: 0
     options: []
+    snippetCompletionActions: []
     nextBox: Player Response
   - ID: Player Response
     speakerName: Player
     text: Fine, be that way, then. (Sad yarr)
     hasOptions: 0
     options: []
+    snippetCompletionActions: []
     nextBox: New
   - ID: New
     speakerName: Narrator
     text: And so he was <color=blue>sad</color>
     hasOptions: 0
     options: []
+    snippetCompletionActions: []
     nextBox: Exit

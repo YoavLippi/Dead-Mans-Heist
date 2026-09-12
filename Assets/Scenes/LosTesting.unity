@@ -1335,7 +1335,10 @@ MonoBehaviour:
     text: 
     hasOptions: 0
     options: []
+    snippetCompletionActions: []
     nextBox: 
+  flags: []
+  quests: []
 --- !u!4 &556709712
 Transform:
   m_ObjectHideFlags: 0
@@ -2521,6 +2524,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4223113897277174282, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223113897277174282, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectAndSendConversation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223113897277174282, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
       objectReference: {fileID: 0}
@@ -2529,7 +2540,19 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
+      propertyPath: conversations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
       propertyPath: 'Conversations.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 24e434058acd94b4f8c45c11d7f5f78e, type: 2}
+    - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
+      propertyPath: 'conversations.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bbaefa073f442ac45ada35b9b5780243, type: 2}
+    - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
+      propertyPath: 'conversations.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 24e434058acd94b4f8c45c11d7f5f78e, type: 2}
     m_RemovedComponents: []
