@@ -12,7 +12,7 @@ public class LockedDoor : MonoBehaviour
 
     [SerializeField] private bool isOpening = false;
     [SerializeField] private bool isOpen = false;
-    private Quaternion targetRotation;
+    [SerializeField]private Quaternion targetRotation;
 
 
 
@@ -39,6 +39,8 @@ public class LockedDoor : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         doorPivot.rotation = Quaternion.Slerp(doorPivot.rotation, closedPivot.rotation, Time.deltaTime * smoothSpeed);
+        isOpening = false;
+        isOpening = false;
     }
 
     private void OnTriggerEnter(Collider other)
