@@ -44,7 +44,7 @@ public class LockedDoor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         PlayerInventory playerInventory = GetComponent<PlayerInventory>();
-        if (isLocked)
+        if (isLocked && other.CompareTag("Player"))
         {
             if (playerInventory.HasKey(requiredKey))
             {

@@ -4603,7 +4603,7 @@ MonoBehaviour:
   doorPivot: {fileID: 1935948056}
   closedPivot: {fileID: 1268352984}
   openAngle: 90
-  smoothSpeed: 2
+  smoothSpeed: 10
   isOpening: 0
   isOpen: 0
 --- !u!65 &709335291
