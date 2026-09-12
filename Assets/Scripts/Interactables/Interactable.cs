@@ -46,8 +46,8 @@ public class Interactable : MonoBehaviour
 					return "Press E to Hide";
 				case InteractionType.Distract:
 					return "Press E to Cause Distraction";
-				//case InteractionType.CollectItem:
-				//	return "Press E to Pick Up";
+				case InteractionType.CollectItem:
+					return "Press E to Pick Up";
 				//case InteractionType.ToggleMechanism:
 				//	return "Press E to Activate";
 				default:
