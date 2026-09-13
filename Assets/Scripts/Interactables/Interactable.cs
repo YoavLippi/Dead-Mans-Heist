@@ -8,11 +8,12 @@ public enum InteractionType
 	Hide,               // Barrels, crates
 	Distract,           // For now: Barrels and crates but can later be: hanging bells, thrown bottles, whistling pipes
 	CollectItem,        // Keys, artifacts, tools
-	ToggleMechanism     // Levers, doors, pressure plates
+	ToggleMechanism,    // Levers, doors, pressure plates
+	Dialogue
 }
 
 //very basic helper script for now, but it should let us categorise later
-public abstract class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
 	//[Header("HUD Display Settings")]
 	//[SerializeField] public string objectName = "Object";

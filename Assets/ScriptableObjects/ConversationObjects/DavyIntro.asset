@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812e25f310a26d249ab6745d018280f0, type: 3}
+  m_Name: DavyIntro
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueConversation
+  conditions: []
+  conversation:
+  - ID: Start
+    speakerName: Davy
+    text: <b>Harrrk!</b> Be there a <i>landlubber</i> who dare go there? Arrr!
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: PlayerResponse
+  - ID: PlayerResponse
+    speakerName: Player
+    text: Arr! I be no landlubber! I be a true blue pirate, just like you!
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: DavyOh
+  - ID: DavyOh
+    speakerName: Davy
+    text: Oh
+    hasOptions: 0
+    options: []
+    snippetCompletionActions:
+    - type: 5
+      parameter: IntroDone
+      value: true
+    nextBox: Exit
