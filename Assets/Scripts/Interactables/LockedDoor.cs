@@ -56,8 +56,8 @@ public class LockedDoor : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         if (isLocked)
         {
-            HUDManager playerInventory = GetComponent<HUDManager>();
-            if (playerInventory.HasKey(requiredKey))
+            
+            if (HUDManager.Instance != null && HUDManager.Instance.HasKey(requiredKey))
             {
                 isLocked = false;
                 isOpening = true;
