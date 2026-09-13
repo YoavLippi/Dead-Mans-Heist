@@ -24,12 +24,12 @@ public class KeyItem : Interactable
 		OnInteract.AddListener(DoInteract);
 	}
 
-	public override void DoInteract()
+    public override void DoInteract()
 	{
 		if (HUDManager.Instance != null && keyIcon != null)
 		{
 			bool added = HUDManager.Instance.AddItemToSlot(keyIcon);
-			PlayerInventory.AddKey(keyType);
+			HUDManager.AddKey(keyType);
 			if (!added)
 			{
 				Debug.LogWarning("Cannot pick up key: Inventory is full!");
