@@ -27,7 +27,6 @@ public class Parrot : MonoBehaviour
     [Header("Look-around turn")]
     [SerializeField] private float turnAngle = 60f;
     [SerializeField] private float turnSpeed = 4f;
-    [SerializeField] private float lookAroundWaitTime = 0.3f;
 
     [SerializeField] private Quaternion startingRotation;
     private Coroutine lookRoutine;

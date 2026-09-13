@@ -29,6 +29,7 @@ public class KeyItem : Interactable
 		if (HUDManager.Instance != null && keyIcon != null)
 		{
 			bool added = HUDManager.Instance.AddItemToSlot(keyIcon);
+			PlayerInventory.AddKey(keyType);
 			if (!added)
 			{
 				Debug.LogWarning("Cannot pick up key: Inventory is full!");
