@@ -43,6 +43,7 @@ public class EnemyMovement : EnemyAbs
     private Quaternion startingRotation;
     private Coroutine distractionRoutine;
     private Coroutine lookRoutine;
+    private Coroutine waitRoutine;
 
     void OnEnable() => WorldTime.secondsChange += CheckTime;
     void OnDisable() => WorldTime.secondsChange -= CheckTime;
@@ -180,6 +181,7 @@ public class EnemyMovement : EnemyAbs
     }
 
     public void lookAround() => lookRoutine = StartCoroutine(LookSequence(3f));
+    public void waitAround() => waitRoutine = StartCoroutine(WaitSequence());
 
     private IEnumerator LookSequence(float time)
     {
@@ -198,6 +200,10 @@ public class EnemyMovement : EnemyAbs
 
         isLookingAround = false;
         lookRoutine = null;
+    }
+    private IEnumerator WaitSequence()
+    {
+        yield return new WaitForSeconds(3f);
     }
 
     private IEnumerator RotateTo(Quaternion targetRot)
