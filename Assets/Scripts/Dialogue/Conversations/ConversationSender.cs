@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -5,22 +6,28 @@ public class ConversationSender : MonoBehaviour
 {
     [FormerlySerializedAs("Conversations")] public DialogueConversation[] conversations;
 
+    private DialogueConversation[] GetOrderedConvos()
+    {
+        return conversations.OrderByDescending(p => p.conditions.Count).ToArray();
+    }
+
     public void SendConversation(int index = 0)
     {
         //Debug.Log("Sending conversation");
-        DialogueManager.Instance?.PlayDialogue(conversations[index]);
+        DialogueManager.Instance.PlayDialogue(conversations[index]);
     }
 
     public void SelectAndSendConversation()
     {
-        DialogueManager.Instance?.PlayDialogue(conversations[SelectConversation()]);
+        DialogueManager.Instance?.PlayDialogue(GetOrderedConvos()[SelectConversation()]);
     }
     
     private int SelectConversation()
     {
-        for (var i = 0; i < conversations.Length; i++)
+        var tempConversations = GetOrderedConvos();
+        for (var i = 0; i < tempConversations.Length; i++)
         {
-            if (IsValid(conversations[i]))
+            if (IsValid(tempConversations[i]))
             {
                 return i;
             }
