@@ -20,3 +20,15 @@ public class QuestCompleteCondition : DialogueCondition
         return DialogueManager.Instance.IsQuestComplete(questID);
     }
 }
+
+[CreateAssetMenu(menuName = "Dialogue/Conditions/Random Chance")]
+public class RandomChance : DialogueCondition
+{
+    [SerializeField] private int percentChance;
+    public override bool Evaluate()
+    {
+        //random number btwn 1 & 100
+        int chanceEval = Random.Range(1, 101);
+        return chanceEval <= percentChance;
+    }
+}
