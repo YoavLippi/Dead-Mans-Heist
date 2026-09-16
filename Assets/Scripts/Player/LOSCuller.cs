@@ -9,7 +9,7 @@ public class LOSCuller : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         if (other.CompareTag("Enemy"))
         {
             enemiesInRange.Add(other.gameObject);
