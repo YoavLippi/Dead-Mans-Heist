@@ -10408,7 +10408,7 @@ PrefabInstance:
     - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: footstepClip
       value: 
-      objectReference: {fileID: 8300000, guid: 46e060650cc2a114cae4a8313aeb3359, type: 3}
+      objectReference: {fileID: 8300000, guid: 6ce41bc00d21a394a8cde4c75a3eef2a, type: 3}
     - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: showStepRadii
       value: 0
@@ -12836,6 +12836,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1242496362687412974, guid: ad2d9ea1d3e6308459b1d5950f3b63f7, type: 3}
   m_PrefabInstance: {fileID: 2986568745355880147}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1592448089 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4943345856782707397, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
+  m_PrefabInstance: {fileID: 1706127782}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1606841937
 GameObject:
   m_ObjectHideFlags: 0
@@ -13606,10 +13611,26 @@ PrefabInstance:
     - target: {fileID: 5238849349757149479, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 116439}
+    - target: {fileID: 5238849349757149479, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238849349757149479, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6220354761187921479, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 116439}
+    - target: {fileID: 6220354761187921479, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGameApplication
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220354761187921479, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8199266860625910821, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
       propertyPath: m_text
@@ -13617,7 +13638,10 @@ PrefabInstance:
         have your soul in the palm of her hands."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2957377159805836834, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
+    - {fileID: 4278959396743284461, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
+    - {fileID: 7856482215902179358, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62188ec7391f0c4448ec833a55e4b708, type: 3}
@@ -16071,6 +16095,7 @@ GameObject:
   - component: {fileID: 1097655881982058365}
   - component: {fileID: 3686800045677704901}
   - component: {fileID: 3101694985690026280}
+  - component: {fileID: 3686800045677704902}
   m_Layer: 5
   m_Name: Game UI
   m_TagString: Untagged
@@ -17481,6 +17506,19 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &3686800045677704902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256206171271698443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7504c6664d82624db93495f339808ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverManager
+  losePanel: {fileID: 1592448089}
 --- !u!114 &3687699295339214034
 MonoBehaviour:
   m_ObjectHideFlags: 0
