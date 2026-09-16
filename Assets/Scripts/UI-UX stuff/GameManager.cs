@@ -131,6 +131,10 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("Exiting Game Application...");
 		Application.Quit();
+		// Allows it to quit play mode inside the Unity Editor
+#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+#endif
 	}
 	#endregion
 }
