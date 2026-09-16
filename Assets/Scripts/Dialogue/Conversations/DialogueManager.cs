@@ -5,6 +5,8 @@ using System.Linq;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class DialogueManager : MonoBehaviour
@@ -59,6 +61,7 @@ public class DialogueManager : MonoBehaviour
         {
             Instance = this;
         }
+        DontDestroyOnLoad(this.gameObject);
     }
     public void PlayDialogue(DialogueConversation d)
     {
@@ -179,6 +182,15 @@ public class DialogueManager : MonoBehaviour
                         Flag newFlag = new Flag(actions[i].parameter, Boolean.Parse(actions[i].value));
                         flags.Add(newFlag);
                     }
+                    break;
+                case DialogueConversation.DialogueActionType.SetScene:
+                    if (int.TryParse(actions[i].parameter, out int index))
+                    {
+                        SceneManager.LoadScene(index);
+                        break;
+                    }
+
+                    SceneManager.LoadScene(actions[i].parameter);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

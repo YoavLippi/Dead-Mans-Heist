@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812e25f310a26d249ab6745d018280f0, type: 3}
+  m_Name: DavySendoff
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueConversation
+  conditions:
+  - {fileID: 11400000, guid: fe43a76d34f5ec248baadf1ccc0c5980, type: 2}
+  conversation:
+  - ID: Start
+    speakerName: Davy
+    text: '<color=green>Avast, ye scurvy dog! Why be ye standing around like a buccaneer
+      without a peg?!</color> '
+    hasOptions: 1
+    options:
+    - text: I... don't <i>have</i> a peg.
+      actions: []
+      nextBox: DavyResponse1a
+    - text: I was <b>just</b> about to go!
+      actions: []
+      nextBox: DavyResponse1b
+    snippetCompletionActions: []
+    nextBox: 
+  - ID: DavyResponse1a
+    speakerName: Davy
+    text: '<color=green><i>Squints at you</i> ...Well I''ll be! A lad without a pegleg!
+      Are ye sure ye be a pirate?</color> '
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: Completion
+  - ID: DavyResponse1b
+    speakerName: Davy
+    text: '<color=green>Uh huh, sure ye were. Better hurry up then, lad. Time be
+      tickin'', and soon ye will be feedin'' the fishes if ye dally! Savvy?</color> '
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: Completion
+  - ID: Completion
+    speakerName: Davy
+    text: '<color=green>Anyways, be ye ready to go, shark bait?</color> '
+    hasOptions: 1
+    options:
+    - text: Yes
+      actions: []
+      nextBox: Final
+    - text: No
+      actions: []
+      nextBox: Exit
+    snippetCompletionActions: []
+    nextBox: 
+  - ID: Final
+    speakerName: Davy
+    text: '<color=green>Good. Get me booty back at all costs, whelp. Then we''ll
+      see about pinning yer soul back to yer body, eh?</color> '
+    hasOptions: 0
+    options:
+    - text: Yes
+      actions:
+      - type: 6
+        parameter: TestScene
+        value: 
+      nextBox: Exit
+    - text: No
+      actions: []
+      nextBox: Exit
+    snippetCompletionActions:
+    - type: 6
+      parameter: TestScene
+      value: 
+    nextBox: 

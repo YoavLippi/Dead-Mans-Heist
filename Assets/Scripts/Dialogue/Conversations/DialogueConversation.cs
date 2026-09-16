@@ -13,7 +13,8 @@ public class DialogueConversation : ScriptableObject
         CompleteQuest,
         GiveItem,
         RemoveItem,
-        SetFlag
+        SetFlag,
+        SetScene
     }
     
     [Serializable]

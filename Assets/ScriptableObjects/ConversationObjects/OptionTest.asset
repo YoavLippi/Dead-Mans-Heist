@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812e25f310a26d249ab6745d018280f0, type: 3}
   m_Name: OptionTest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueConversation
+  conditions: []
   conversation:
   - ID: Start
     speakerName: Ezekiel
@@ -19,19 +20,24 @@ MonoBehaviour:
     hasOptions: 1
     options:
     - text: ...WHAAT?!
+      actions: []
       nextBox: Filler Box
     - text: Tony!
+      actions: []
       nextBox: Final
+    snippetCompletionActions: []
     nextBox: 
   - ID: Filler Box
     speakerName: Ezekiel
     text: <b>I SAID!</b>
     hasOptions: 0
     options: []
+    snippetCompletionActions: []
     nextBox: Start
   - ID: Final
     speakerName: Ezekiel
     text: FUCK YOU TONY!
     hasOptions: 0
     options: []
+    snippetCompletionActions: []
     nextBox: Exit
