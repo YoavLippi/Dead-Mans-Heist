@@ -582,7 +582,7 @@ MonoBehaviour:
           m_CallState: 2
   isOnSchedule: 1
   attachedLos: {fileID: 814285465594988406}
-  detectionSpeed: 1.2
+  detectionSpeed: 4
   suspicionDecreaseSpeed: 0.3
   currentSuspicion: 0
   maxSuspicion: 100
