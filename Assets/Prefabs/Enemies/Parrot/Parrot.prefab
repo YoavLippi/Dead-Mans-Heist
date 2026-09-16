@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 1906597409602437145}
   m_Layer: 0
   m_Name: Parrot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -367,7 +367,6 @@ MonoBehaviour:
   noiseMaker: {fileID: 4785756184117353011}
   turnAngle: 60
   turnSpeed: 40
-  lookAroundWaitTime: 5
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
   lookIndex: 0
   timeOffset: 0
