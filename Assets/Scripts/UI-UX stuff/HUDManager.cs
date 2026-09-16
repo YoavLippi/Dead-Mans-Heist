@@ -17,8 +17,13 @@ public class HUDManager : MonoBehaviour
 	private int currentEliminations = 0;
 
 	[Header("Inventory/Ability Display")]
+	public TMP_Text keysCollectedText;
+	public Image inventoryBackground;
 	public Image[] inventorySlotIcons = new Image[5];
 	private Sprite[] currentInventory = new Sprite[5];
+
+
+	private static List<string>  keys = new List<string>();
 
 	[Header("Ghost Ability & Cooldown UI")]
 	[Tooltip("The main icon representing Ghost Vision ability.")]
@@ -83,16 +88,37 @@ public class HUDManager : MonoBehaviour
 			crewEliminatedText.text = $"Crew Eliminated: {currentEliminations}/3";
 		}
 	}
-	#endregion
+    #endregion
 
 
-	#region 5-Slot Inventory Logic
-	/// <summary>
-	/// Adds an item icon to the first available slot (up to 5).
-	/// </summary>
-	/// <param name="itemSprite">The icon sprite to display.</param>
-	/// <returns>Returns true if item was successfully added, false if inventory was full.</returns>
-	public bool AddItemToSlot(Sprite itemSprite)
+    #region 5-Slot Inventory Logic
+    /// <summary>
+    /// Adds an item icon to the first available slot (up to 5).
+    /// </summary>
+    /// <param name="itemSprite">The icon sprite to display.</param>
+    /// <returns>Returns true if item was successfully added, false if inventory was full.</returns>
+    /// 
+
+    public static void AddKey(KeyType key)
+    {
+        Debug.Log("Key collected: " + key);
+		string currentKey = key.ToString();
+		keys.Add(currentKey);
+		
+    }
+    public bool HasKey(string key)
+    {
+		foreach (string current in keys)
+		{
+			if (current.Equals(key))
+			{
+				return true;
+			}
+			
+		}
+		return false;
+	}
+    public bool AddItemToSlot(Sprite itemSprite)
 	{
 		for (int i = 0; i < currentInventory.Length; i++)
 		{
@@ -100,6 +126,8 @@ public class HUDManager : MonoBehaviour
 			{
 				currentInventory[i] = itemSprite;
 				inventorySlotIcons[i].sprite = itemSprite;
+				keysCollectedText.enabled = true;
+				inventoryBackground.enabled = true;
 				inventorySlotIcons[i].enabled = true; // Show the icon inside the slot frame
 				return true;
 			}

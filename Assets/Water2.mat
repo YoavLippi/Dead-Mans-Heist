@@ -39,21 +39,36 @@ Material:
     m_Ints: []
     m_Floats:
     - _CellDensity: 3
+    - _CellHoleSize: 0.09
     - _CrestThreshold: 0.75
     - _DepthDistance: 3
+    - _FoamFade: 10
+    - _FoamFadeaRange: 40
+    - _FoamScale: 0.8
     - _HullFoamDistance: 0.6
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 2.5
+    - _WakeFoamWidth: 0.85
+    - _WakeLength: 0.8
+    - _WakeWidth: 0.2
     - _WaveFrequency: 0.1
     - _WaveHeight: 0.4
     - _WaveSpeed: 1.5
     m_Colors:
     - _CausticColor: {r: 0.23032385, g: 0.9924528, b: 0.98483926, a: 1}
     - _CausticSpeed: {r: 0.02, g: 0.01, b: 0, a: 0}
+    - _Cerulean: {r: 0, g: 0.5490196, b: 0.8901961, a: 1}
     - _DeepColor: {r: 0.044250555, g: 0.21650246, b: 0.42641503, a: 1}
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DeepNavy: {r: 0.03921569, g: 0.18039218, b: 0.39999998, a: 1}
+    - _FoamColor: {r: 0.68235296, g: 0.9490196, b: 0.9764706, a: 1}
+    - _LighAqua: {r: 0.30588236, g: 0.8901961, b: 0.8901961, a: 1}
+    - _OceanStreamSpeed: {r: 0, g: -0.5, b: 0, a: 0}
     - _ShallowColor: {r: 0.20164466, g: 0.7196458, b: 0.8415094, a: 1}
+    - _ShipForward: {r: -1.0000002, g: 0.000000019036053, b: -0.000000019036053, a: 0}
+    - _ShipPosition: {r: 12.5199995, g: 0.87119865, b: 3.5702095, a: 0}
+    - _ShipRight: {r: 0.000000019036053, g: 0.00000011920929, b: -1.0000001, a: 0}
+    - _Stretch: {r: 0.4, g: 1.4, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6419194693492465464

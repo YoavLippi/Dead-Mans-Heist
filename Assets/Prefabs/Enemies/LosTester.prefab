@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8895198672926707631}
   - component: {fileID: 2806202779318767415}
+  - component: {fileID: 3417737476471284489}
   m_Layer: 6
   m_Name: CatchCollider
   m_TagString: Untagged
@@ -174,6 +175,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3417737476471284489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013974058338091423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227676b7d14607d468eda526bea00708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &8051005523604376858
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +582,7 @@ MonoBehaviour:
           m_CallState: 2
   isOnSchedule: 1
   attachedLos: {fileID: 814285465594988406}
-  detectionSpeed: 1.2
+  detectionSpeed: 4
   suspicionDecreaseSpeed: 0.3
   currentSuspicion: 0
   maxSuspicion: 100
