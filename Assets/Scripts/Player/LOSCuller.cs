@@ -1,16 +1,28 @@
+using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class LOSCuller : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private List<GameObject> enemiesInRange;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        //Debug.Log(other.gameObject.name);
+        if (other.CompareTag("Enemy"))
+        {
+            enemiesInRange.Add(other.gameObject);
+            other.gameObject.GetComponentInChildren<LosHandler>().StartLooking();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        if (other.CompareTag("Enemy"))
+        {
+            enemiesInRange.Remove(other.gameObject);
+            other.gameObject.GetComponentInChildren<LosHandler>().StopLooking();
+        }
     }
 }

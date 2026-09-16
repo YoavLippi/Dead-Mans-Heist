@@ -191,7 +191,7 @@ PrefabInstance:
     - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
       propertyPath: 'conversations.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: d2c8e2ede40871f4bba534158bb948df, type: 2}
+      objectReference: {fileID: 11400000, guid: 11cfed8c57482b64cb405660231366df, type: 2}
     - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
       propertyPath: 'conversations.Array.data[1]'
       value: 
@@ -814,7 +814,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1868736931337236022, guid: e4ce4894529023e4ba317b851c02c882, type: 3}
+    - {fileID: 61665504350919261, guid: e4ce4894529023e4ba317b851c02c882, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ce4894529023e4ba317b851c02c882, type: 3}

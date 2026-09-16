@@ -16,13 +16,14 @@ MonoBehaviour:
   conversation:
   - ID: Start
     speakerName: Davy
-    text: <b>Harrrk!</b> Be there a <i>landlubber</i> who dare go there? Arrr!
+    text: <color=green><b>Harrrk!</b> Be there a <i>landlubber</i> who dare go there?
+      Arrr!</color>
     hasOptions: 0
     options: []
     snippetCompletionActions: []
     nextBox: PlayerResponse
   - ID: PlayerResponse
-    speakerName: Player
+    speakerName: You
     text: Arr! I be no landlubber! I be a true blue pirate, just like you!
     hasOptions: 0
     options: []
@@ -30,7 +31,37 @@ MonoBehaviour:
     nextBox: DavyOh
   - ID: DavyOh
     speakerName: Davy
-    text: Oh
+    text: '<color=green>Shiver me timbers! It be a pirate who plundered me cursed
+      treasure?</color> '
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: PlayerStutter
+  - ID: PlayerStutter
+    speakerName: You
+    text: 'Oh, umm. Well in me defense, yer treasure was buried... '
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: DavyResponse2
+  - ID: DavyResponse2
+    speakerName: Davy
+    text: '<color=green>...It was?</color> '
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: PlayerResponse3
+  - ID: PlayerResponse3
+    speakerName: You
+    text: 'Aye! And with a marked treasure map beside. '
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: DavyResponse3
+  - ID: DavyResponse3
+    speakerName: Davy
+    text: <color=green>Well, be that as it may. <b>You will return it, <color=red>thief,</color>
+      or ye will be sailing on my ghost fleet for eternities to come!</b></color>
     hasOptions: 0
     options: []
     snippetCompletionActions:
