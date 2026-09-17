@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour
         {
             Instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this);
     }
     public void PlayDialogue(DialogueConversation d)
     {
