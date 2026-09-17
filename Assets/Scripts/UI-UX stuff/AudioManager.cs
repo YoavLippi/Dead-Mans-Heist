@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
 	//public AudioClip itemPickup;
 	//public AudioClip skullElimination;
 	//public AudioClip doorUnlock;
+	public AudioClip parrotSqwak;
 	public AudioClip footSteps;
 	public AudioClip crateDistraction;
 

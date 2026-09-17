@@ -4808,6 +4808,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2469958084695133449, guid: a71bb19fe097adb499136a8edf778630, type: 3}
+      propertyPath: squawkClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f1c7d0c717c73846bfc97c3fe472ee3, type: 3}
+    - target: {fileID: 2469958084695133449, guid: a71bb19fe097adb499136a8edf778630, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2116129607}
+    - target: {fileID: 2469958084695133449, guid: a71bb19fe097adb499136a8edf778630, type: 3}
       propertyPath: perches.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -15798,6 +15806,7 @@ MonoBehaviour:
   ghostSource: {fileID: 86749804}
   oceanAmbience: {fileID: 8300000, guid: 3305ddc8621d7f24aa6363855cd233ce, type: 3}
   ghostVisionEnter: {fileID: 0}
+  parrotSqwak: {fileID: 0}
   footSteps: {fileID: 8300000, guid: 7afbe46df86bb9649bfdd240033f966c, type: 3}
   crateDistraction: {fileID: 8300000, guid: 6bf214a31e7b0244a99a7f7c627162bf, type: 3}
 --- !u!4 &1751936194
@@ -16577,23 +16586,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34
+      value: -0.1500063
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.809404
+      value: 19.05979
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.716065
+      value: -15.300656
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8729647
+      value: 0.8223365
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.48778343
+      value: 0.56900156
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -20332,6 +20341,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2469958084695133449, guid: a71bb19fe097adb499136a8edf778630, type: 3}
+      propertyPath: squawkClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f1c7d0c717c73846bfc97c3fe472ee3, type: 3}
+    - target: {fileID: 2469958084695133449, guid: a71bb19fe097adb499136a8edf778630, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2116129607}
     - target: {fileID: 2469958084695133449, guid: a71bb19fe097adb499136a8edf778630, type: 3}
       propertyPath: perches.Array.size
       value: 4
