@@ -8,6 +8,8 @@ public class GameOverManager : MonoBehaviour
 	[Header("UI Reference")]
 	[Tooltip("The root GameObject of your Game Over / Lose Panel.")]
 	[SerializeField] private GameObject losePanel;
+	[SerializeField] private GameObject winPanel;
+	[SerializeField] private AudioClip winSFX;
 
 	private bool isGameOver = false;
 
@@ -26,6 +28,10 @@ public class GameOverManager : MonoBehaviour
 		if (losePanel != null)
 		{
 			losePanel.SetActive(false);
+		}
+		if (winPanel != null)
+		{
+			winPanel.SetActive(false);
 		}
 		Time.timeScale = 1f;
 	}
@@ -46,5 +52,19 @@ public class GameOverManager : MonoBehaviour
 		// 3. Unlock and reveal the cursor for UI interaction
 		//Cursor.lockState = CursorLockMode.None;
 		//Cursor.visible = true;
+	}
+
+	public void TriggerWin()
+	{
+		if (isGameOver) return;
+		isGameOver = true;
+
+		if (winPanel != null) winPanel.SetActive(true);
+
+		if (AudioManager.Instance != null && winSFX != null)
+		{
+			AudioManager.Instance.PlaySFX(winSFX);
+		}
+		Time.timeScale = 0f;
 	}
 }
