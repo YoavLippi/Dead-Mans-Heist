@@ -16,6 +16,7 @@ public class InteractableUI : MonoBehaviour
 
 	private SpriteRenderer[] spriteRenderers;
 	private bool isGhostModeActive = false;
+	private bool isTreasure = false;
 	private MaterialPropertyBlock materialProperties;
 	public GameObject ghostModePanel;
 
@@ -25,24 +26,50 @@ public class InteractableUI : MonoBehaviour
 
 	void Awake()
 	{
+		isTreasure = CompareTag("Treasure");
 		// Universally grab all sprite renderers on this object or its children
 		spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 		materialProperties = new MaterialPropertyBlock();
-		materialProperties.SetColor(OutlineColorID, spectralOutlineColor);
-		spriteRenderers[0].SetPropertyBlock(materialProperties);
-		Debug.Log($"[DIAGNOSTIC] {gameObject.name} found {spriteRenderers.Length} SpriteRenderer(s) in its hierarchy.");
+
+		if (spriteRenderers.Length > 0)
+		{
+			//Color initialColor = isTreasure ? treasureOutlineColor : spectralOutlineColor;
+			materialProperties.SetColor(OutlineColorID, spectralOutlineColor);
+			spriteRenderers[0].SetPropertyBlock(materialProperties);
+			Debug.Log($"[DIAGNOSTIC] {gameObject.name} found {spriteRenderers.Length} SpriteRenderer(s) in its hierarchy.");
+		}
 	}
 
 	void Start()
 	{
-		SetOutlineActive(false);
-		if (ghostModePanel != null) ghostModePanel.SetActive(false);
+		//SetOutlineActive(false);
+
 		thisSpriteMask = GetComponent<SpriteMask>();
-		thisSpriteMask.sprite = spriteRenderers[0].sprite;
+		if (thisSpriteMask != null && spriteRenderers.Length > 0)
+		{
+			thisSpriteMask.sprite = spriteRenderers[0].sprite;
+		}
+		if (isTreasure)
+		{
+			SetOutlineActive(true, spectralOutlineColor);
+			if (thisSpriteMask != null) thisSpriteMask.enabled = true;
+		}
+		else
+		{
+			SetOutlineActive(false, spectralOutlineColor);
+			if (thisSpriteMask != null) thisSpriteMask.enabled = false;
+		}
+		if (ghostModePanel != null) ghostModePanel.SetActive(false);
 	}
 
 	void Update()
 	{
+		if (isTreasure)
+		{
+			ApplyPulseEffect(spectralOutlineColor);
+			return;
+		}
+
 		if (GameManager.Instance == null) return;
 
 		bool currentGlobalGhostState = GameManager.Instance.isGhostModeActive;
@@ -51,7 +78,7 @@ public class InteractableUI : MonoBehaviour
 		if (currentGlobalGhostState != isGhostModeActive)
 		{
 			isGhostModeActive = currentGlobalGhostState;
-			SetOutlineActive(isGhostModeActive);
+			SetOutlineActive(isGhostModeActive, spectralOutlineColor);
 
 			if (thisSpriteMask != null)
 			{
@@ -62,7 +89,7 @@ public class InteractableUI : MonoBehaviour
 		// If ghost mode is active, the sprite outline pulse dynamically
 		if (isGhostModeActive)
 		{
-			ApplyPulseEffect();
+			ApplyPulseEffect(spectralOutlineColor);
 		}
 	}
 
@@ -78,7 +105,7 @@ public class InteractableUI : MonoBehaviour
 	//	}
 	//}
 
-	private void SetOutlineActive(bool state)
+	private void SetOutlineActive(bool state, Color targetColor)
 	{
 		foreach (SpriteRenderer spriteRen in spriteRenderers)
 		{
@@ -102,7 +129,7 @@ public class InteractableUI : MonoBehaviour
 		}
 	}
 
-	private void ApplyPulseEffect()
+	private void ApplyPulseEffect(Color targetColor)
 	{
 		float currentThickness = Mathf.PingPong(Time.time * pulseSpeed, maxOutlineThickness);
 
