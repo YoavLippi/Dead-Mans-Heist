@@ -15,7 +15,7 @@ MonoBehaviour:
   conditions: []
   conversation:
   - ID: Start
-    speakerName: Davy
+    speakerName: Davie
     text: <color=green><b>Harrrk!</b> Be there a <i>landlubber</i> who dare go there?
       Arrr!</color>
     hasOptions: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
     snippetCompletionActions: []
     nextBox: DavyOh
   - ID: DavyOh
-    speakerName: Davy
+    speakerName: Davie
     text: '<color=green>Shiver me timbers! It be a pirate who plundered me cursed
       treasure?</color> '
     hasOptions: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
     snippetCompletionActions: []
     nextBox: DavyResponse2
   - ID: DavyResponse2
-    speakerName: Davy
+    speakerName: Davie
     text: '<color=green>...It was?</color> '
     hasOptions: 0
     options: []
@@ -59,9 +59,16 @@ MonoBehaviour:
     snippetCompletionActions: []
     nextBox: DavyResponse3
   - ID: DavyResponse3
-    speakerName: Davy
-    text: <color=green>Well, be that as it may. <b>You will return it, <color=red>thief,</color>
-      or ye will be sailing on my ghost fleet for eternities to come!</b></color>
+    speakerName: Davie
+    text: <color=green>Well... be that as it may.</color>
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: DavyResponse4
+  - ID: DavyResponse4
+    speakerName: Davie
+    text: <color=green><b>Ye will return it, <color=red><i>thief,</i></color> or
+      ye will be sailing on my ghost fleet for eternities to come!</b></color>
     hasOptions: 0
     options: []
     snippetCompletionActions:

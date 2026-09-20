@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe43a76d34f5ec248baadf1ccc0c5980, type: 2}
   conversation:
   - ID: Start
-    speakerName: Davy
+    speakerName: Davie
     text: '<color=green>Avast, ye scurvy dog! Why be ye standing around like a buccaneer
       without a peg?!</color> '
     hasOptions: 1
@@ -30,7 +30,7 @@ MonoBehaviour:
     snippetCompletionActions: []
     nextBox: 
   - ID: DavyResponse1a
-    speakerName: Davy
+    speakerName: Davie
     text: '<color=green><i>Squints at you</i> ...Well I''ll be! A lad without a pegleg!
       Are ye sure ye be a pirate?</color> '
     hasOptions: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     snippetCompletionActions: []
     nextBox: Completion
   - ID: DavyResponse1b
-    speakerName: Davy
+    speakerName: Davie
     text: '<color=green>Uh huh, sure ye were. Better hurry up then, lad. Time be
       tickin'', and soon ye will be feedin'' the fishes if ye dally! Savvy?</color> '
     hasOptions: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
     snippetCompletionActions: []
     nextBox: Completion
   - ID: Completion
-    speakerName: Davy
+    speakerName: Davie
     text: '<color=green>Anyways, be ye ready to go, shark bait?</color> '
     hasOptions: 1
     options:
@@ -59,7 +59,7 @@ MonoBehaviour:
     snippetCompletionActions: []
     nextBox: 
   - ID: Final
-    speakerName: Davy
+    speakerName: Davie
     text: '<color=green>Good. Get me booty back at all costs, whelp. Then we''ll
       see about pinning yer soul back to yer body, eh?</color> '
     hasOptions: 0
