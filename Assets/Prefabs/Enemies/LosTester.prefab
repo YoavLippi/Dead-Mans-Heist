@@ -622,6 +622,8 @@ MonoBehaviour:
   attention: 5
   defaultAttention: 5
   catchCollider: {fileID: 2806202779318767415}
+  chaseSpeed: 5
+  patrolSpeed: 3.5
   nav: {fileID: 249264150730694979}
   index: 0
   target: {fileID: 0}

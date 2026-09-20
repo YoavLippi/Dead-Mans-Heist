@@ -306,7 +306,7 @@ MonoBehaviour:
   rayNumber: 5
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   coneMeshFilter: {fileID: 7530549884440866496}
   isLooking: 0
   coneMeshRenderer: {fileID: 8472123571475068199}
@@ -328,7 +328,7 @@ MonoBehaviour:
   flightSpeed: 20
   flyUpHeight: 20
   perchHeight: 6.5
-  detectionSpeed: 0.6
+  detectionSpeed: 4
   suspicionDecreaseSpeed: 0.3
   currentSuspicion: 0
   maxSuspicion: 100
@@ -389,11 +389,12 @@ MonoBehaviour:
           m_CallState: 2
   isLookingAround: 0
   distractionPrefab: {fileID: 1254182859057161347, guid: 960fdf8964e145b4a94da36f02d86101, type: 3}
-  distractionInterval: 2
   perches:
   - {fileID: 5467105476301067219}
   - {fileID: 842708027012802258}
   - {fileID: 4958869079922855449}
+  squawkClip: {fileID: 0}
+  squawkDelay: 0.5
 --- !u!136 &1906597409602437145
 CapsuleCollider:
   m_ObjectHideFlags: 0

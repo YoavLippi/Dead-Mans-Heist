@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 [Serializable]
@@ -44,6 +45,9 @@ public class EnemyAbs : MonoBehaviour
     [SerializeField] protected float attention = 5f;
     [SerializeField] protected float defaultAttention = 5f;
     [SerializeField] protected Collider catchCollider;
+    [SerializeField] protected float chaseSpeed = 6;
+    [SerializeField] protected float patrolSpeed = 3.5f;
+    protected NavMeshAgent nv;
 
     // Was a bare bool before; now derived from state so it can't drift
     // out of sync with CurrentState.
@@ -88,6 +92,7 @@ public class EnemyAbs : MonoBehaviour
         attachedLos.OnSeePlayer += OnSeePlayer;
         CurrentSuspicion = 0;
         attention = defaultAttention;
+        nv = GetComponent<NavMeshAgent>();
     }
 
     public virtual void FixedUpdate()
@@ -104,6 +109,7 @@ public class EnemyAbs : MonoBehaviour
         {
             isOnSchedule = true;
             CurrentMoveMode = EnemyMoveMode.Patrolling;
+            nv.speed = patrolSpeed;
             attention = defaultAttention;
         }
     }
@@ -127,6 +133,8 @@ public class EnemyAbs : MonoBehaviour
         if (currentSuspicion >= maxSuspicion && currentMoveMode != EnemyMoveMode.Chasing)
         {
             CurrentMoveMode = EnemyMoveMode.Chasing;
+           
+            nv.speed = chaseSpeed;
             isOnSchedule = false;
             attention = defaultAttention;
         }
