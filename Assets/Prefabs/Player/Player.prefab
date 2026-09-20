@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 4788594249765754502}
   m_Layer: 10
   m_Name: Interaction Collision
-  m_TagString: Player
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
