@@ -218,7 +218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.16, y: 0.55}
+  m_AnchoredPosition: {x: -2.16, y: 0.05}
   m_SizeDelta: {x: 10, y: 1.5187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &25491534 stripped
@@ -1480,7 +1480,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315246951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b59336f95ae0c694ea1bb4cce0efab0c, type: 3}
   m_Name: 
@@ -1956,7 +1956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.99, y: 0.56}
+  m_AnchoredPosition: {x: -1.99, y: 0.21}
   m_SizeDelta: {x: 10, y: 2.7859}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &402094237
@@ -2335,7 +2335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &563413560
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3120,7 +3120,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933936123}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b59336f95ae0c694ea1bb4cce0efab0c, type: 3}
   m_Name: 
@@ -3575,7 +3575,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982610462}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b59336f95ae0c694ea1bb4cce0efab0c, type: 3}
   m_Name: 
@@ -3779,7 +3779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.02, y: 0.65}
+  m_AnchoredPosition: {x: -2.02, y: 0.11}
   m_SizeDelta: {x: 10, y: 3.6051}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1020366022
@@ -4273,7 +4273,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124650193}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b59336f95ae0c694ea1bb4cce0efab0c, type: 3}
   m_Name: 
@@ -4423,7 +4423,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138497739}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b59336f95ae0c694ea1bb4cce0efab0c, type: 3}
   m_Name: 
@@ -6149,7 +6149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1866676530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6230,7 +6230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.2673, y: 0.37}
+  m_AnchoredPosition: {x: -2.2673, y: 0.01}
   m_SizeDelta: {x: 7.8206, y: 3.858}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1872878893 stripped
