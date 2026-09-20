@@ -8,6 +8,7 @@ TagManager:
   - Catch
   - DistractionLine
   - Treasure
+  - Interaction
   layers:
   - Default
   - TransparentFX
