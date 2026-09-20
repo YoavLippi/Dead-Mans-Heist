@@ -44,6 +44,7 @@ public class EnemyMovement : EnemyAbs
     private Coroutine distractionRoutine;
     private Coroutine lookRoutine;
     private Coroutine waitRoutine;
+    private GameObject catchColliderObj;
 
     void OnEnable() => WorldTime.secondsChange += CheckTime;
     void OnDisable() => WorldTime.secondsChange -= CheckTime;
@@ -52,6 +53,7 @@ public class EnemyMovement : EnemyAbs
     {
         base.Start();
         target = GameObject.FindWithTag("Player");
+        catchColliderObj = transform.Find("CatchCollider").gameObject;
     }
 
     public override void FixedUpdate()
@@ -116,17 +118,22 @@ public class EnemyMovement : EnemyAbs
             anim.SetFloat("FacingY", facingY);
             //facingDir *= camAngle;
         }
-        
+
         //Debug.Log(facingDir.eulerAngles);
-        
-        
+
+
         if (CurrentMoveMode == EnemyMoveMode.Chasing)
         {
             nav.SetDestination(target.transform.position);
+            catchColliderObj.SetActive(true);
             if (!attachedLos.IsSeeingPlayer)
             {
                 attention = Mathf.Max(0, attention - Time.deltaTime);
             }
+        }
+        else 
+        {
+            catchColliderObj.SetActive(false);
         }
     }
 
