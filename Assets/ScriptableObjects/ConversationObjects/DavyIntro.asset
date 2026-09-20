@@ -16,22 +16,23 @@ MonoBehaviour:
   conversation:
   - ID: Start
     speakerName: Davie
-    text: <color=green><b>Harrrk!</b> Be there a <i>landlubber</i> who dare go there?
-      Arrr!</color>
+    text: <color=#50C878><b>Harrrk!</b> Be there a <i>landlubber</i> who dare go
+      there? Arrr!</color>
     hasOptions: 0
     options: []
     snippetCompletionActions: []
     nextBox: PlayerResponse
   - ID: PlayerResponse
     speakerName: You
-    text: Arr! I be no landlubber! I be a true blue pirate, just like you!
+    text: <color=#ADD8E6>Arr! I be no landlubber! I be a true blue pirate, just like
+      you!</color>
     hasOptions: 0
     options: []
     snippetCompletionActions: []
     nextBox: DavyOh
   - ID: DavyOh
     speakerName: Davie
-    text: '<color=green>Shiver me timbers! It be a pirate who plundered me cursed
+    text: '<color=#50C878>Shiver me timbers! It be a pirate who plundered me cursed
       treasure?</color> '
     hasOptions: 0
     options: []
@@ -39,36 +40,36 @@ MonoBehaviour:
     nextBox: PlayerStutter
   - ID: PlayerStutter
     speakerName: You
-    text: 'Oh, umm. Well in me defense, yer treasure was buried... '
+    text: '<color=#ADD8E6>Oh, umm. Well in me defense, yer treasure was buried...</color> '
     hasOptions: 0
     options: []
     snippetCompletionActions: []
     nextBox: DavyResponse2
   - ID: DavyResponse2
     speakerName: Davie
-    text: '<color=green>...It was?</color> '
+    text: '<color=#50C878>...It was?</color> '
     hasOptions: 0
     options: []
     snippetCompletionActions: []
     nextBox: PlayerResponse3
   - ID: PlayerResponse3
     speakerName: You
-    text: 'Aye! And with a marked treasure map beside. '
+    text: '<color=#ADD8E6>Aye! And with a marked treasure map beside.</color> '
     hasOptions: 0
     options: []
     snippetCompletionActions: []
     nextBox: DavyResponse3
   - ID: DavyResponse3
     speakerName: Davie
-    text: <color=green>Well... be that as it may.</color>
+    text: <color=#50C878>Well... be that as it may.</color>
     hasOptions: 0
     options: []
     snippetCompletionActions: []
     nextBox: DavyResponse4
   - ID: DavyResponse4
     speakerName: Davie
-    text: <color=green><b>Ye will return it, <color=red><i>thief,</i></color> or
-      ye will be sailing on my ghost fleet for eternities to come!</b></color>
+    text: <color=#50C878><b>Ye will return it, <color=#8B0000><i>thief,</i></color>
+      or ye will be sailing on my ghost fleet for eternities to come!</b></color>
     hasOptions: 0
     options: []
     snippetCompletionActions:

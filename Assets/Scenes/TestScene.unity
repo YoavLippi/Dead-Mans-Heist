@@ -18518,7 +18518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6000893473786830795, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: m_Name
-      value: Gold Key (1)
+      value: CaptainsKey
       objectReference: {fileID: 0}
     - target: {fileID: 6664614642527359927, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: m_Sprite
