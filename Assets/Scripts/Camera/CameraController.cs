@@ -45,6 +45,7 @@ public class CameraController : MonoBehaviour
         newActive.Priority = 20;
         ghostVisionPanel.transform.position = (newActive.transform.position + newActive.transform.forward);
         ghostVisionPanel.transform.rotation = newActive.transform.rotation;
+        ghostVisionPanel.transform.parent = newActive.transform;
         activeCam = newActive;
     }
 }
