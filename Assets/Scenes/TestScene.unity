@@ -6859,7 +6859,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2986568745355880147}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -16373,7 +16373,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2986568745355880147}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -30260,7 +30260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5858540765413282577, guid: ad2d9ea1d3e6308459b1d5950f3b63f7, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5858540765413282577, guid: ad2d9ea1d3e6308459b1d5950f3b63f7, type: 3}
       propertyPath: m_fontSize
@@ -30364,7 +30364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7315626181100041868, guid: ad2d9ea1d3e6308459b1d5950f3b63f7, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7764748647758769842, guid: ad2d9ea1d3e6308459b1d5950f3b63f7, type: 3}
       propertyPath: m_Enabled
