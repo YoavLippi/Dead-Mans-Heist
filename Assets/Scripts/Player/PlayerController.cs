@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private CharacterController charController;
 	[SerializeField] private Animator spriteAnimator;
 	[SerializeField] private InteractionHandler interactionHandler;
+	[SerializeField] private ToolHandler toolHandler;
 
 	[Header("Ghost")]
 	[SerializeField] private GameObject ghostedPlayerPrefab;
@@ -398,11 +399,26 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void OnScroll(InputAction.CallbackContext context)
+	{
+		if (!isAcceptingInputs) return;
+		if (!context.performed) return;
+		if (context.ReadValue<float>() > 0)
+		{
+			toolHandler.ScrollUp();
+		}
+		else
+		{
+			toolHandler.ScrollDown();
+		}
+	}
+
 	public void OnInteract(InputAction.CallbackContext context)
 	{
 		if (!isAcceptingInputs) return;
 		if (!context.performed) return;
-		interactionHandler.DoInteract();
+		//interactionHandler.DoInteract();
+		toolHandler.UseSelected();
 	}
 
 	public void OnGhost(InputAction.CallbackContext context)

@@ -13,10 +13,13 @@ public class InteractionHandler : MonoBehaviour
 	[SerializeField] private float movementMax;
 	[SerializeField] private Interactable closestInteractable;
 	[SerializeField] private float closestDist;
+	[SerializeField] private float timeSinceClean;
+	[SerializeField] private float refreshPeriod;
 
 	private void Awake()
 	{
 		interactablesInRange = new List<Interactable>();
+		timeSinceClean = 0;
 	}
 
 	public void DoInteract()
@@ -71,6 +74,13 @@ public class InteractionHandler : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		//current implementation assumes nothing is moving, so I'll add a periodic check as well which should catch other things
+		timeSinceClean += Time.deltaTime;
+		if (timeSinceClean >= refreshPeriod)
+		{
+			isListDirty = true;
+			timeSinceClean = 0;
+		}
 		if ((transform.position - lastPos).magnitude > movementMax)
 		{
 			lastPos = transform.position;
