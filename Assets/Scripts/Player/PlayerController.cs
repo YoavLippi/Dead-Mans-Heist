@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private GameObject ghostedPlayerInstance;
 	[SerializeField] private Vector3 lastStepPos;
 
+	public event Action<PlayerState> onStateChange;
+
 	//--------------------- STUFF ARYANNA ADDED IN --------------- I was trying to sort out the audio stuff, but everything is still here, just in comments.
 	[Header("Footstep Cadence")]
 	[SerializeField] private float walkStepInterval = 0.45f;
@@ -88,8 +90,10 @@ public class PlayerController : MonoBehaviour
 				spriteAnimator.gameObject.SetActive(true);
 			}
 			currentState = value;
+			
 			//we can add listeners here for animation triggers etc
 			SetAnimationFlag(value);
+			onStateChange?.Invoke(value);
 		}
 	}
 
