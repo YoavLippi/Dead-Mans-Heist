@@ -80,3 +80,6 @@ MonoBehaviour:
   _toolID: Hand
   _charges: -1
   usable: 1
+  interactionHandler: {fileID: 0}
+  _interactsWithEntities: 1
+  _interactionType: 0

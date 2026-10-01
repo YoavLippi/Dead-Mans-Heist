@@ -80,3 +80,6 @@ MonoBehaviour:
   _toolID: Knife
   _charges: 3
   usable: 1
+  interactionHandler: {fileID: 0}
+  _interactsWithEntities: 1
+  _interactionType: 1

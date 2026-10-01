@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DistractionHandler
   customObjectName: Distraction Prop
   interactionType: 1
-  OnInteract:
+  InteractionEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2733237813491730973}
@@ -259,6 +259,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  conditionalEvents:
+  - interactionType: 0
+    parameterValue: 
+    attachedEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2733237813491730973}
+          m_TargetAssemblyTypeName: DistractionHandler, Assembly-CSharp
+          m_MethodName: DoInteract
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   sr: {fileID: 8081741621615800423}
   alwaysDrawArea: 1
   drawWireframeOnly: 1

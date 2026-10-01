@@ -9,6 +9,7 @@ public class ToolHandler : MonoBehaviour
     private List<GameObject> instancedToolsArr = new List<GameObject>();
     [SerializeField] private int selectedIndex;
     [SerializeField] private GameObject selectedTool;
+    [SerializeField] private InteractionHandler interactionHandler;
 
     private int SelectedIndex
     {
@@ -76,19 +77,28 @@ public class ToolHandler : MonoBehaviour
     {
         SelectedIndex++;
         SelectedIndex %= toolsArr.Count;
+        UpdateInteractionHandler();
         //the open hand can always be used so this shouldn't be able to loop infinitely
-        if (!instancedToolsArr[selectedIndex].GetComponent<Tool>().CanBeUsed()) ScrollDown();
+        if (!instancedToolsArr[SelectedIndex].GetComponent<Tool>().CanBeUsed()) ScrollDown();
     }
 
     public void ScrollUp()
     {
         SelectedIndex--;
         if (SelectedIndex < 0) SelectedIndex = toolsArr.Count - 1;
+        UpdateInteractionHandler();
         if (!instancedToolsArr[selectedIndex].GetComponent<Tool>().CanBeUsed()) ScrollUp();
+    }
+
+    public void UpdateInteractionHandler()
+    {
+        Tool currentTool = toolsArr[SelectedIndex].GetComponent<Tool>();
+        interactionHandler.CurrentInteractionType = currentTool.ThisInteractionType;
     }
 
     public void UseSelected()
     {
         instancedToolsArr[selectedIndex].GetComponent<Tool>().Use();
+        if (!selectedTool.GetComponent<Tool>().CanBeUsed()) ScrollDown();
     }
 }
