@@ -3,8 +3,7 @@ using UnityEngine;
 
 [Serializable]
 public class OpenHand : Tool
-{
-    public InteractionHandler interactionHandler;
+{ 
     public override void Use()
     {
         if (!CanBeUsed()) return;
@@ -13,7 +12,7 @@ public class OpenHand : Tool
         
         if (interactionHandler)
         {
-            interactionHandler.GetComponentInChildren<InteractionHandler>().DoInteract();
+            interactionHandler.GetComponentInChildren<InteractionHandler>().DoInteract(_interactionType);
         }
     }
 }

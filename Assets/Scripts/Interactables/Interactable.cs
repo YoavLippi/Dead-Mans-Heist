@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public enum InteractionType
 {
@@ -10,6 +13,13 @@ public enum InteractionType
 	CollectItem,        // Keys, artifacts, tools
 	ToggleMechanism,    // Levers, doors, pressure plates
 	Dialogue
+}
+
+//The conditional events will use these specifically, to be used with tools as well so they can talk to each other
+public enum ConditionInteraction
+{
+	Interact,
+	Kill
 }
 
 //very basic helper script for now, but it should let us categorise later
@@ -26,7 +36,9 @@ public class Interactable : MonoBehaviour
 	[Tooltip("Defines what category of interaction this object performs.")]
 	[SerializeField] private InteractionType interactionType = InteractionType.Hide;
 
-	public UnityEvent OnInteract;
+	//[FormerlySerializedAs("OnInteract")] public UnityEvent InteractionEvent;
+	[SerializeField] private List<ConditionalEvent> conditionalEvents;
+	
 	[SerializeField] private SpriteRenderer sr;
 	private MaterialPropertyBlock materialProperties;
 
@@ -57,6 +69,28 @@ public class Interactable : MonoBehaviour
 	}
 
 	public InteractionType Type => interactionType;
+
+	public bool HasConditionalEvent => conditionalEvents.Count > 0;
+
+	[Serializable]
+	private struct ConditionalEvent
+	{
+		public ConditionInteraction interactionType;
+		public string parameterValue;
+		public UnityEvent attachedEvent;
+	}
+
+	public virtual void TriggerConditionalEvent(ConditionInteraction type, string value = "")
+	{
+		foreach (var cEvent in conditionalEvents)
+		{
+			if (type == cEvent.interactionType && (cEvent.parameterValue.Equals(value, StringComparison.OrdinalIgnoreCase) || value == ""))
+			{
+				cEvent.attachedEvent.Invoke();
+			}
+		}
+	}
+	
 	protected virtual void Awake()
 	{
 		materialProperties = new MaterialPropertyBlock();
@@ -64,6 +98,25 @@ public class Interactable : MonoBehaviour
 		{
 			sr = GetComponentInChildren<SpriteRenderer>();
 		}
+	}
+
+	public bool HasConditionalEventOfType(ConditionInteraction type)
+	{
+		if (!HasConditionalEvent) return false;
+		return conditionalEvents.Any(ce => ce.interactionType == type);
+	}
+
+	public bool TryGetConditionalEventOfType(ConditionInteraction type, out UnityEvent e)
+	{
+		e = null;
+		foreach (var ce in conditionalEvents)
+		{
+			if (ce.interactionType != type) continue;
+			e = ce.attachedEvent;
+			return true;
+		}
+
+		return false;
 	}
 
 	public virtual void DoInteract()

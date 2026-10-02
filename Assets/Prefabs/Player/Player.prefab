@@ -255,6 +255,7 @@ MonoBehaviour:
   closestDist: 0
   timeSinceClean: 0
   refreshPeriod: 0.33333334
+  currentInteractionType: 0
 --- !u!1 &6531576289731663119
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +497,7 @@ MonoBehaviour:
   - {fileID: 769960553969404082, guid: 1e3b2cc971c87cc4dbd432ade26888b7, type: 3}
   selectedIndex: 0
   selectedTool: {fileID: 0}
+  interactionHandler: {fileID: 4788594249765754502}
 --- !u!114 &1274574646084683685
 MonoBehaviour:
   m_ObjectHideFlags: 0
