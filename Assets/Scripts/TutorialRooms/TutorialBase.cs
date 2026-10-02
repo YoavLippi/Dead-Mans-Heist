@@ -23,6 +23,10 @@ public abstract class TutorialBase : MonoBehaviour
         starting = true;
         OnRoomStarted();
     }
+    private void OnTriggerExit(Collider other)
+    {
+        ShowPrompt("");
+    }
 
     protected void ShowPrompt(string text) => onPromptChange?.Invoke(text);
 
