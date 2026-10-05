@@ -52,9 +52,11 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Vector3 lastStepPos;
 
 	public event Action<PlayerState> onStateChange;
+    public event Action<bool> onGhostChange;
+    public event Action onGhostReturned;
 
-	//--------------------- STUFF ARYANNA ADDED IN --------------- I was trying to sort out the audio stuff, but everything is still here, just in comments.
-	[Header("Footstep Cadence")]
+    //--------------------- STUFF ARYANNA ADDED IN --------------- I was trying to sort out the audio stuff, but everything is still here, just in comments.
+    [Header("Footstep Cadence")]
 	[SerializeField] private float walkStepInterval = 0.45f;
 	[SerializeField] private float runStepInterval = 0.28f;
 	[SerializeField] private float sneakStepInterval = 0.65f;
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
 			isGhost = value;
 			spriteAnimator.SetBool("IsGhost", value);
 			SetGhost(value);
+			onGhostChange?.Invoke(value);
 		}
 	}
 
@@ -153,6 +156,7 @@ public class PlayerController : MonoBehaviour
 
 		isAcceptingInputs = true;
 		Destroy(ghostedPlayerInstance);
+		onGhostReturned?.Invoke();
 	}
 
 	private void SetAnimationFlag(PlayerState newState)

@@ -1067,7 +1067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119698156}
   - component: {fileID: 119698155}
-  - component: {fileID: 119698154}
+  - component: {fileID: 119698157}
   m_Layer: 0
   m_Name: Room2
   m_TagString: Untagged
@@ -1075,18 +1075,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &119698154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119698153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd6cde8c8fbc98348b4de0133a19cb9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Room2
 --- !u!65 &119698155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1124,6 +1112,57 @@ Transform:
   - {fileID: 231895275}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &119698157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119698153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab2c12d33225794fab9eb22de8d457c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialRoom
+  onRoomComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1234179740}
+        m_TargetAssemblyTypeName: LockedDoor, Assembly-CSharp
+        m_MethodName: isOpeningMethod
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPromptChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1639279692}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  steps:
+  - action: 3
+    prompt: go into ghost with Q
+  - action: 4
+    prompt: Snap back to the body by pressing Q Again
+  - action: 5
+    prompt: Hide by going up to the object and pressing E
+  - action: 6
+    prompt: Leave the object by moving
 --- !u!1001 &127650011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2369,7 +2408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 241692605}
   - component: {fileID: 241692604}
-  - component: {fileID: 241692603}
+  - component: {fileID: 241692606}
   m_Layer: 0
   m_Name: Room1
   m_TagString: Untagged
@@ -2377,55 +2416,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &241692603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241692602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4485f88491607d042ba03b562ed78391, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Room1
-  onRoomComplete:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1971655749}
-        m_TargetAssemblyTypeName: LockedDoor, Assembly-CSharp
-        m_MethodName: isOpeningMethod
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onPromptChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1639279692}
-        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-        m_MethodName: SetText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  steps:
-  - action: 1
-    prompt: Please Sneak
-  - action: 0
-    prompt: Please Walk
-  - action: 2
-    prompt: Please Run
 --- !u!65 &241692604
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2463,6 +2453,55 @@ Transform:
   - {fileID: 1177298308}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &241692606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241692602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab2c12d33225794fab9eb22de8d457c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialRoom
+  onRoomComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1971655749}
+        m_TargetAssemblyTypeName: LockedDoor, Assembly-CSharp
+        m_MethodName: isOpeningMethod
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPromptChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1639279692}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  steps:
+  - action: 1
+    prompt: sneak by pressing ctrl
+  - action: 0
+    prompt: walk with WASD
+  - action: 2
+    prompt: Sprint with Shift
 --- !u!4 &258466845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2875271142196401258, guid: f2655abebba8b7742bb2c7cf3e934092, type: 3}
@@ -10763,31 +10802,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.46
+      value: -24.230001
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.525
+      value: 7.2500005
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.29
+      value: 18.630001
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9085129
+      value: 0.9468857
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.41785687
+      value: 0.32157043
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000022235001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000010226654
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
