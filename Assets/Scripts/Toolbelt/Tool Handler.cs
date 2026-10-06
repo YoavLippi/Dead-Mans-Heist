@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class ToolHandler : MonoBehaviour
     [SerializeField] private int selectedIndex;
     [SerializeField] private GameObject selectedTool;
     [SerializeField] private InteractionHandler interactionHandler;
+    [SerializeField] private GameObject hotbarParent;
 
     private int SelectedIndex
     {
@@ -30,6 +32,37 @@ public class ToolHandler : MonoBehaviour
             instancedToolsArr.Add(Instantiate(tool));
         }
         SelectedIndex = 0;
+        hotbarParent = GameObject.FindWithTag("Hotbar");
+        InitialiseSlots();
+        SetupVisualsAfterDelay(250);
+    }
+
+    private void InitialiseSlots()
+    {
+        ToolbeltVisualHandler tb = hotbarParent.GetComponent<ToolbeltVisualHandler>();
+        tb.SetupSlots(toolsArr.ToArray());
+        SetupVisuals();
+    }
+
+    private void SetupVisuals()
+    {
+        ToolbeltVisualHandler tb = hotbarParent.GetComponent<ToolbeltVisualHandler>();
+        for (int i = 0; i < toolsArr.Count; i++)
+        {
+            tb.SetSlotImage(i, toolsArr[i].GetComponent<SpriteRenderer>().sprite);   
+        }
+        SetHotbarVisualPos();
+    }
+
+    private async void SetupVisualsAfterDelay(int milis)
+    {
+        await Task.Delay(milis);
+        SetHotbarVisualPos();
+    }
+    
+    private void SetHotbarVisualPos()
+    {
+        hotbarParent.GetComponent<ToolbeltVisualHandler>().CurrentSelection = selectedIndex;
     }
 
     public void AddTool(GameObject t)
@@ -38,6 +71,7 @@ public class ToolHandler : MonoBehaviour
         {
             toolsArr.Add(t);
             instancedToolsArr.Add(Instantiate(t));
+            InitialiseSlots();
         }
     }
 
@@ -45,6 +79,7 @@ public class ToolHandler : MonoBehaviour
     {
         toolsArr.Remove(t);
         instancedToolsArr.Remove(t);
+        InitialiseSlots();
     }
 
     public void RemoveTool(string toolID)
@@ -65,12 +100,14 @@ public class ToolHandler : MonoBehaviour
                 return;
             }
         }
+        InitialiseSlots();
     }
 
     public void ClearToolbelt()
     {
         toolsArr.Clear();
         instancedToolsArr.Clear();
+        InitialiseSlots();
     }
 
     public void ScrollDown()
@@ -78,6 +115,7 @@ public class ToolHandler : MonoBehaviour
         SelectedIndex++;
         SelectedIndex %= toolsArr.Count;
         UpdateInteractionHandler();
+        SetHotbarVisualPos();
         //the open hand can always be used so this shouldn't be able to loop infinitely
         if (!instancedToolsArr[SelectedIndex].GetComponent<Tool>().CanBeUsed()) ScrollDown();
     }
@@ -87,6 +125,7 @@ public class ToolHandler : MonoBehaviour
         SelectedIndex--;
         if (SelectedIndex < 0) SelectedIndex = toolsArr.Count - 1;
         UpdateInteractionHandler();
+        SetHotbarVisualPos();
         if (!instancedToolsArr[selectedIndex].GetComponent<Tool>().CanBeUsed()) ScrollUp();
     }
 
