@@ -411,6 +411,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!isAcceptingInputs) return;
 		if (!context.performed) return;
+		if (IsGhost) return;
 		if (context.ReadValue<float>() > 0)
 		{
 			toolHandler.ScrollUp();
@@ -426,7 +427,15 @@ public class PlayerController : MonoBehaviour
 		if (!isAcceptingInputs) return;
 		if (!context.performed) return;
 		//interactionHandler.DoInteract();
-		toolHandler.UseSelected();
+		if (!IsGhost)
+		{
+			toolHandler.UseSelected();	
+		}
+		else
+		{
+			interactionHandler.DoInteract(ConditionInteraction.Distract);
+			IsGhost = false;
+		}
 	}
 
 	public void OnGhost(InputAction.CallbackContext context)
@@ -434,5 +443,13 @@ public class PlayerController : MonoBehaviour
 		if (!isAcceptingInputs) return;
 		if (!context.performed) return;
 		IsGhost = !IsGhost;
+		if (IsGhost)
+		{
+			interactionHandler.CurrentInteractionType = ConditionInteraction.Distract;
+		}
+		else
+		{
+			toolHandler.UpdateInteractionHandler();
+		}
 	}
 }

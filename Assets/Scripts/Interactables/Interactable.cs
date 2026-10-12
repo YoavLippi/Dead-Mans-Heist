@@ -19,7 +19,8 @@ public enum InteractionType
 public enum ConditionInteraction
 {
 	Interact,
-	Kill
+	Kill,
+	Distract
 }
 
 //very basic helper script for now, but it should let us categorise later
