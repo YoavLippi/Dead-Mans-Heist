@@ -76,8 +76,8 @@ public class Interactable : MonoBehaviour
 	[Serializable]
 	private struct ConditionalEvent
 	{
+		public string eventID;
 		public ConditionInteraction interactionType;
-		public string parameterValue;
 		public UnityEvent attachedEvent;
 	}
 
@@ -85,7 +85,7 @@ public class Interactable : MonoBehaviour
 	{
 		foreach (var cEvent in conditionalEvents)
 		{
-			if (type == cEvent.interactionType && (cEvent.parameterValue.Equals(value, StringComparison.OrdinalIgnoreCase) || value == ""))
+			if (type == cEvent.interactionType && (cEvent.eventID.Equals(value, StringComparison.OrdinalIgnoreCase) || value == ""))
 			{
 				cEvent.attachedEvent.Invoke();
 			}

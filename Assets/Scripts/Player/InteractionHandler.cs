@@ -41,11 +41,19 @@ public class InteractionHandler : MonoBehaviour
 		}
 	}*/
 
-	public void DoInteract(ConditionInteraction interaction)
+	public void DoInteract(ConditionInteraction interaction, string eID = "")
 	{
 		if (closestInteractable != null)
 		{
-			closestInteractable.TriggerConditionalEvent(interaction);
+			closestInteractable.TriggerConditionalEvent(interaction, eID);
+		}
+	}
+
+	public void DoInteract()
+	{
+		if (closestInteractable != null)
+		{
+			closestInteractable.TriggerConditionalEvent(CurrentInteractionType);
 		}
 	}
 
