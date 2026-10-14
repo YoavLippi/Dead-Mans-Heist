@@ -97,7 +97,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: ec1e719b94d94f44d9c5e5284c9df260, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.645283, g: 0.645283, b: 0.645283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -336,21 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HidingHandler
   customObjectName: Hiding Spot
   interactionType: 0
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 30728535214761158}
-        m_TargetAssemblyTypeName: HidingHandler, Assembly-CSharp
-        m_MethodName: DoInteract
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  conditionalEvents: []
   sr: {fileID: 805928656680604880}
   alwaysDrawArea: 1
   drawWireframeOnly: 1
