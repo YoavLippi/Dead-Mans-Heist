@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private CharacterController charController;
 	[SerializeField] private Animator spriteAnimator;
 	[SerializeField] private InteractionHandler interactionHandler;
+	[SerializeField] private ToolHandler toolHandler;
 
 	[Header("Ghost")]
 	[SerializeField] private GameObject ghostedPlayerPrefab;
@@ -50,8 +51,12 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private GameObject ghostedPlayerInstance;
 	[SerializeField] private Vector3 lastStepPos;
 
-	//--------------------- STUFF ARYANNA ADDED IN --------------- I was trying to sort out the audio stuff, but everything is still here, just in comments.
-	[Header("Footstep Cadence")]
+	public event Action<PlayerState> onStateChange;
+    public event Action<bool> onGhostChange;
+    public event Action onGhostReturned;
+
+    //--------------------- STUFF ARYANNA ADDED IN --------------- I was trying to sort out the audio stuff, but everything is still here, just in comments.
+    [Header("Footstep Cadence")]
 	[SerializeField] private float walkStepInterval = 0.45f;
 	[SerializeField] private float runStepInterval = 0.28f;
 	[SerializeField] private float sneakStepInterval = 0.65f;
@@ -68,6 +73,7 @@ public class PlayerController : MonoBehaviour
 			isGhost = value;
 			spriteAnimator.SetBool("IsGhost", value);
 			SetGhost(value);
+			onGhostChange?.Invoke(value);
 		}
 	}
 
@@ -87,8 +93,10 @@ public class PlayerController : MonoBehaviour
 				spriteAnimator.gameObject.SetActive(true);
 			}
 			currentState = value;
+			
 			//we can add listeners here for animation triggers etc
 			SetAnimationFlag(value);
+			onStateChange?.Invoke(value);
 		}
 	}
 
@@ -148,6 +156,7 @@ public class PlayerController : MonoBehaviour
 
 		isAcceptingInputs = true;
 		Destroy(ghostedPlayerInstance);
+		onGhostReturned?.Invoke();
 	}
 
 	private void SetAnimationFlag(PlayerState newState)
@@ -398,11 +407,26 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void OnScroll(InputAction.CallbackContext context)
+	{
+		if (!isAcceptingInputs) return;
+		if (!context.performed) return;
+		if (context.ReadValue<float>() > 0)
+		{
+			toolHandler.ScrollUp();
+		}
+		else
+		{
+			toolHandler.ScrollDown();
+		}
+	}
+
 	public void OnInteract(InputAction.CallbackContext context)
 	{
 		if (!isAcceptingInputs) return;
 		if (!context.performed) return;
-		interactionHandler.DoInteract();
+		//interactionHandler.DoInteract();
+		toolHandler.UseSelected();
 	}
 
 	public void OnGhost(InputAction.CallbackContext context)

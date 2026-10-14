@@ -152,22 +152,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   customObjectName: Chat
-  interactionType: 4
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5002898510313689018}
-        m_TargetAssemblyTypeName: ConversationSender, Assembly-CSharp
-        m_MethodName: SendConversation
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  interactionType: 5
+  conditionalEvents:
+  - interactionType: 0
+    parameterValue: 
+    attachedEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5002898510313689018}
+          m_TargetAssemblyTypeName: ConversationSender, Assembly-CSharp
+          m_MethodName: SelectAndSendConversation
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   sr: {fileID: 8081741621615800423}
 --- !u!114 &5002898510313689018
 MonoBehaviour:
@@ -181,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2edad2402ff4974fbb02ac0f230ada4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConversationSender
-  Conversations:
+  conversations:
   - {fileID: 11400000, guid: d2c8e2ede40871f4bba534158bb948df, type: 2}
 --- !u!1 &8293128104527671346
 GameObject:

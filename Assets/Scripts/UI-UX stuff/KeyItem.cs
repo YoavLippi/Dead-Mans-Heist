@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public enum KeyType
@@ -21,7 +22,10 @@ public class KeyItem : Interactable
 	protected override void Awake()
 	{
 		base.Awake();
-		OnInteract.AddListener(DoInteract);
+		if (TryGetConditionalEventOfType(ConditionInteraction.Interact, out UnityEvent e))
+		{
+			e.AddListener(DoInteract);
+		}
 	}
 
     public override void DoInteract()

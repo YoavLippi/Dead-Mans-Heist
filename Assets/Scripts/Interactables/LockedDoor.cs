@@ -46,10 +46,15 @@ public class LockedDoor : MonoBehaviour
     //        doorPivot.rotation = Quaternion.Slerp(doorPivot.rotation, closedPivot.rotation, Time.deltaTime * smoothSpeed);
     //        yield return null;
     //    }
-       
+
     //    isClosing = false;
-       
+
     //}
+
+    public void isOpeningMethod() 
+    {
+        isOpening = true;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
