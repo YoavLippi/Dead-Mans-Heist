@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour
 		spriteAnimator = GetComponentInChildren<Animator>();
 		interactionHandler = GetComponentInChildren<InteractionHandler>();
 		lastStepPos = transform.position;
+		toolHandler.UpdateInteractionHandler();
 	}
 
 	private void SetGhost(bool setGhost)
@@ -134,6 +135,7 @@ public class PlayerController : MonoBehaviour
 			if (ghostedPlayerInstance)
 			{
 				StartCoroutine(ResetGhostPosInTime(ghostReturnTime));
+				toolHandler.UpdateInteractionHandler();
 				//Destroy(ghostedPlayerInstance);
 			}
 		}

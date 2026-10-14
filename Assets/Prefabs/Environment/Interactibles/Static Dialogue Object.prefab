@@ -154,8 +154,8 @@ MonoBehaviour:
   customObjectName: Chat
   interactionType: 5
   conditionalEvents:
-  - interactionType: 0
-    parameterValue: 
+  - eventID: 
+    interactionType: 1
     attachedEvent:
       m_PersistentCalls:
         m_Calls:

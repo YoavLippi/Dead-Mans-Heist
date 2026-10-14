@@ -245,8 +245,8 @@ MonoBehaviour:
   customObjectName: Distraction Prop
   interactionType: 1
   conditionalEvents:
-  - interactionType: 2
-    parameterValue: 
+  - eventID: 
+    interactionType: 3
     attachedEvent:
       m_PersistentCalls:
         m_Calls:
