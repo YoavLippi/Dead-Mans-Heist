@@ -61,6 +61,7 @@ public class TutorialRoom : TutorialBase
             ShowPrompt(step.prompt);
             yield return new WaitUntil(() => actionDone);
         }
+        ShowPrompt("You may leave the room and talk to Davi Jones to continue");
         CompleteRoom();
     }
 
