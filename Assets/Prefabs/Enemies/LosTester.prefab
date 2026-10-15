@@ -716,8 +716,8 @@ MonoBehaviour:
   customObjectName: Enemy
   interactionType: 6
   conditionalEvents:
-  - interactionType: 1
-    parameterValue: 
+  - eventID: 
+    interactionType: 2
     attachedEvent:
       m_PersistentCalls:
         m_Calls:
@@ -800,11 +800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1953627062700939278, guid: ad37674ece9c41c47b5c00defaf6aba6, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1953627062700939278, guid: ad37674ece9c41c47b5c00defaf6aba6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 402482189
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7034460070084001691, guid: ad37674ece9c41c47b5c00defaf6aba6, type: 3}
       propertyPath: m_Name

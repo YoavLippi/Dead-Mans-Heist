@@ -29,7 +29,9 @@ public class ToolHandler : MonoBehaviour
     {
         foreach (var tool in toolsArr)
         {
-            instancedToolsArr.Add(Instantiate(tool));
+            GameObject temp = Instantiate(tool, transform);
+            temp.GetComponent<SpriteRenderer>().enabled = false;
+            instancedToolsArr.Add(temp);
         }
         SelectedIndex = 0;
         hotbarParent = GameObject.FindWithTag("Hotbar");
@@ -42,6 +44,7 @@ public class ToolHandler : MonoBehaviour
         ToolbeltVisualHandler tb = hotbarParent.GetComponent<ToolbeltVisualHandler>();
         tb.SetupSlots(toolsArr.ToArray());
         SetupVisuals();
+        selectedTool.GetComponent<Tool>().IsSelected = true;
     }
 
     private void SetupVisuals()
@@ -112,20 +115,24 @@ public class ToolHandler : MonoBehaviour
 
     public void ScrollDown()
     {
+        instancedToolsArr[selectedIndex].GetComponent<Tool>().IsSelected = false;
         SelectedIndex++;
         SelectedIndex %= toolsArr.Count;
         UpdateInteractionHandler();
         SetHotbarVisualPos();
+        instancedToolsArr[selectedIndex].GetComponent<Tool>().IsSelected = true;
         //the open hand can always be used so this shouldn't be able to loop infinitely
         if (!instancedToolsArr[SelectedIndex].GetComponent<Tool>().CanBeUsed()) ScrollDown();
     }
 
     public void ScrollUp()
     {
+        instancedToolsArr[selectedIndex].GetComponent<Tool>().IsSelected = false;
         SelectedIndex--;
         if (SelectedIndex < 0) SelectedIndex = toolsArr.Count - 1;
         UpdateInteractionHandler();
         SetHotbarVisualPos();
+        instancedToolsArr[selectedIndex].GetComponent<Tool>().IsSelected = true;
         if (!instancedToolsArr[selectedIndex].GetComponent<Tool>().CanBeUsed()) ScrollUp();
     }
 
@@ -137,7 +144,9 @@ public class ToolHandler : MonoBehaviour
 
     public void UseSelected()
     {
-        instancedToolsArr[selectedIndex].GetComponent<Tool>().Use();
-        if (!selectedTool.GetComponent<Tool>().CanBeUsed()) ScrollDown();
+        Tool currentTool = selectedTool.GetComponent<Tool>();
+        currentTool.Use();
+        hotbarParent.GetComponent<ToolbeltVisualHandler>().SetSlotCharge(currentTool.ToolID,currentTool.Charges);
+        if (!currentTool.CanBeUsed()) ScrollDown();
     }
 }

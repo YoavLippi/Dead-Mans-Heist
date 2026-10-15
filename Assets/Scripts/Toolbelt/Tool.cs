@@ -9,12 +9,23 @@ public abstract class Tool : MonoBehaviour
     public InteractionHandler interactionHandler;
     [SerializeField] protected bool _interactsWithEntities;
     [SerializeField] protected ConditionInteraction _interactionType;
+    [SerializeField] protected bool isSelected;
     
 
     public string ToolID => _toolID;
     public ConditionInteraction ThisInteractionType => _interactionType;
     public bool InteractsWithEntities => _interactsWithEntities;
 
+    public bool IsSelected
+    {
+        get=>isSelected;
+        set
+        {
+            isSelected=value;
+            HandleSelection(value);
+        }
+    }
+    
     private void Start()
     {
         if (!interactionHandler) interactionHandler = GameObject.FindWithTag("Interaction").GetComponentInChildren<InteractionHandler>();
@@ -26,9 +37,8 @@ public abstract class Tool : MonoBehaviour
         set => _charges = value;
     }
 
-    public virtual void Use()
-    {
-    }
+    public virtual void Use() {}
+    public virtual void HandleSelection(bool val){}
 
     public bool CanBeUsed()
     {

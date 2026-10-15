@@ -9,6 +9,8 @@ TagManager:
   - DistractionLine
   - Treasure
   - Interaction
+  - Hotbar
+  - HotbarSelector
   layers:
   - Default
   - TransparentFX
@@ -43,9 +45,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 2604144847
     locked: 0
@@ -54,6 +53,9 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 402482189
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: UI
     uniqueID: 4096736121

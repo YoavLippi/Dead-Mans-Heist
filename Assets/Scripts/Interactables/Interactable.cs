@@ -18,6 +18,7 @@ public enum InteractionType
 //The conditional events will use these specifically, to be used with tools as well so they can talk to each other
 public enum ConditionInteraction
 {
+	None,
 	Interact,
 	Kill,
 	Distract

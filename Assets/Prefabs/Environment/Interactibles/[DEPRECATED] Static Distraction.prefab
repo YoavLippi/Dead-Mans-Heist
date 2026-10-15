@@ -246,7 +246,7 @@ MonoBehaviour:
   interactionType: 1
   conditionalEvents:
   - eventID: 
-    interactionType: 2
+    interactionType: 3
     attachedEvent:
       m_PersistentCalls:
         m_Calls:

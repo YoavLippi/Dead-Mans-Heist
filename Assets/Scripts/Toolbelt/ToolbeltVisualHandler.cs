@@ -37,7 +37,27 @@ public class ToolbeltVisualHandler : MonoBehaviour
         foreach (var slot in slots)
         {
             GameObject temp = Instantiate(slotPrefab, hotbarParent.transform);
+            if (slot.TryGetComponent<Tool>(out Tool t))
+            {
+                temp.GetComponent<HotbarSlotController>().AttachedToolID = t.ToolID;
+                temp.GetComponent<HotbarSlotController>().UpdateUsageIndicator(t.Charges);
+            }
             hotbarSlots.Add(temp);
+        }
+    }
+
+    public void SetSlotCharge(string toolID, int chargeVal)
+    {
+        foreach (var slot in hotbarSlots)
+        {
+            if (slot.TryGetComponent<HotbarSlotController>(out HotbarSlotController controller))
+            {
+                if (controller.AttachedToolID == toolID)
+                {
+                    controller.UpdateUsageIndicator(chargeVal);
+                    return;
+                }
+            }
         }
     }
 }
