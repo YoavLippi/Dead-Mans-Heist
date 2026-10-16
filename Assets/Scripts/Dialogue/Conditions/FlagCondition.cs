@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Dialogue/Conditions/Flag")]
@@ -8,5 +9,10 @@ public class FlagCondition : DialogueCondition
     public override bool Evaluate()
     {
         return DialogueManager.Instance.IsFlagSet(flagName);
+    }
+
+    private void OnValidate()
+    {
+        flagName = name;
     }
 }

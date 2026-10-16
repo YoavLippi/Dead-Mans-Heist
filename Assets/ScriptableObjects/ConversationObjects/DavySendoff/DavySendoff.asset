@@ -36,7 +36,7 @@ MonoBehaviour:
     hasOptions: 0
     options: []
     snippetCompletionActions: []
-    nextBox: Completion
+    nextBox: Tutorial Prompt
   - ID: DavyResponse1b
     speakerName: Davie
     text: '<color=green>Uh huh, sure ye were. Better hurry up then, lad. Time be
@@ -44,17 +44,42 @@ MonoBehaviour:
     hasOptions: 0
     options: []
     snippetCompletionActions: []
-    nextBox: Completion
+    nextBox: Tutorial Prompt
+  - ID: Tutorial Prompt
+    speakerName: Davie
+    text: '<color=green>Hmmm... need ye a tutorial before ye set sail?</color> '
+    hasOptions: 1
+    options:
+    - text: Yes
+      actions:
+      - type: 5
+        parameter: SendoffComplete
+        value: true
+      - type: 7
+        parameter: Player
+        value: Teleport 1
+      - type: 5
+        parameter: TutorialComplete
+        value: false
+      nextBox: Exit
+    - text: No
+      actions: []
+      nextBox: Completion
+    snippetCompletionActions: []
+    nextBox: 
   - ID: Completion
     speakerName: Davie
-    text: '<color=green>Anyways, be ye ready to go, shark bait?</color> '
+    text: '<color=green>Be ye ready to go, shark bait?</color> '
     hasOptions: 1
     options:
     - text: Yes
       actions: []
       nextBox: Final
     - text: No
-      actions: []
+      actions:
+      - type: 5
+        parameter: SendoffComplete
+        value: true
       nextBox: Exit
     snippetCompletionActions: []
     nextBox: 

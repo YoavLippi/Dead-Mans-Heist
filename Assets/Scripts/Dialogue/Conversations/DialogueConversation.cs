@@ -14,7 +14,8 @@ public class DialogueConversation : ScriptableObject
         GiveItem,
         RemoveItem,
         SetFlag,
-        SetScene
+        SetScene,
+        MoveObject
     }
     
     [Serializable]
