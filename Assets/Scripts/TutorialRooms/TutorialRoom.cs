@@ -11,13 +11,15 @@ public enum TutActions
     GhostOn,
     GhostReturned,
     Hide,
-    Unhide
+    Unhide,
+    UseTool
 }
 
 [Serializable]
 public struct TutorialStep
 {
     public TutActions action;
+    public string toolID;
     [TextArea] public string prompt;
 }
 
@@ -29,11 +31,15 @@ public class TutorialRoom : TutorialBase
     private TutActions currentAction;
     private Coroutine routine;
 
+    private string currentToolID;
+
+
     protected override void OnRoomStarted()
     {
         playerController.onStateChange += HandleStateChanged;
         playerController.onGhostChange += HandleGhostChanged;
         playerController.onGhostReturned += HandleGhostReturned;
+        Tool.OnToolUsed += HandleToolUsed;
         routine = StartCoroutine(RunTutorial());
     }
 
@@ -44,6 +50,7 @@ public class TutorialRoom : TutorialBase
             playerController.onStateChange -= HandleStateChanged;
             playerController.onGhostChange -= HandleGhostChanged;
             playerController.onGhostReturned -= HandleGhostReturned;
+            Tool.OnToolUsed -= HandleToolUsed;
         }
         if (routine != null)
         {
@@ -57,6 +64,7 @@ public class TutorialRoom : TutorialBase
         foreach (var step in steps)
         {
             currentAction = step.action;
+            currentToolID = step.toolID;
             actionDone = false;
             ShowPrompt(step.prompt);
             yield return new WaitUntil(() => actionDone);
@@ -91,4 +99,11 @@ public class TutorialRoom : TutorialBase
         if (currentAction == TutActions.GhostReturned)
             actionDone = true;
     }
-}
+    private void HandleToolUsed(Tool tool)
+    {
+        if (currentAction == TutActions.UseTool && currentToolID == tool.ToolID) 
+        {
+            actionDone = true;
+        }
+    }
+    }

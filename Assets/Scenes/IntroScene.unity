@@ -1188,13 +1188,17 @@ MonoBehaviour:
         m_CallState: 2
   steps:
   - action: 3
+    toolID: 
     prompt: 'go into ghost form with <color=red>G</color> '
   - action: 4
+    toolID: 
     prompt: Snap back to the body by pressing <color=red>G</color> Again or by interacting
       with any <color=red>Distractable Object in range with E</color>
   - action: 5
+    toolID: 
     prompt: Hide by going up to the object and pressing <color=red>E</color>
   - action: 6
+    toolID: 
     prompt: Leave the object by <color=red>Moving</color> or pressing <color=red>E</color>
 --- !u!1001 &127650011
 PrefabInstance:
@@ -2656,10 +2660,13 @@ MonoBehaviour:
         m_CallState: 2
   steps:
   - action: 1
+    toolID: 
     prompt: Sneak to reduce noise By using <color=red>CTRL</color>
   - action: 0
+    toolID: 
     prompt: Walk by using <color=red>WASD</color> once out of crouch
   - action: 2
+    toolID: 
     prompt: Use the <color=red>Shift</color> key to make the maximum noise and move
       the fastest
 --- !u!4 &258466845 stripped
@@ -4062,7 +4069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426316817}
   - component: {fileID: 426316816}
-  - component: {fileID: 426316815}
+  - component: {fileID: 426316818}
   m_Layer: 0
   m_Name: Room3
   m_TagString: Untagged
@@ -4070,18 +4077,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &426316815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426316814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a7e429541e2a5e44b4c07e92c1cbef7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Room3
 --- !u!65 &426316816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4120,6 +4115,58 @@ Transform:
   - {fileID: 1090925191}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &426316818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426316814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab2c12d33225794fab9eb22de8d457c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialRoom
+  onRoomComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 676380426}
+        m_TargetAssemblyTypeName: LockedDoor, Assembly-CSharp
+        m_MethodName: isOpeningMethod
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPromptChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1639279692}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  steps:
+  - action: 7
+    toolID: 1
+    prompt: Use the tool
+  - action: 7
+    toolID: 2
+    prompt: Use the tool
+  - action: 7
+    toolID: 3
+    prompt: Use the tool
 --- !u!1 &438570969
 GameObject:
   m_ObjectHideFlags: 0
@@ -11655,31 +11702,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.230001
+      value: -2.46
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.2500005
+      value: 11.525
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.59
+      value: -3.29
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9468857
+      value: 0.9085129
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.32157043
+      value: 0.41785687
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.000000022235001
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.000000010226654
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
