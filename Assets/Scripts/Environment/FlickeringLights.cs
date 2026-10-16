@@ -3,7 +3,7 @@ using UnityEngine;
 public class FlickeringLights : MonoBehaviour
 {
 
-    [SerializeField]private Light light;
+    [SerializeField]private Light currentLight;
     [SerializeField] private float minIntensity;
     [SerializeField] private float maxIntensity;
 
@@ -14,7 +14,7 @@ public class FlickeringLights : MonoBehaviour
 
     void Start()
     {
-        light = GetComponent<Light>();
+        currentLight = GetComponent<Light>();
     }
 
     void Update()
@@ -23,7 +23,7 @@ public class FlickeringLights : MonoBehaviour
 
         if (timer >= flickerSpeed) 
         {
-            light.intensity = Random.Range(minIntensity, maxIntensity);
+            currentLight.intensity = Random.Range(minIntensity, maxIntensity);
             timer = 0;
         }
         
