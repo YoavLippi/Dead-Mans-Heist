@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 402482189
   m_SortingLayer: -1
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -495,6 +495,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToolHandler
   toolsArr:
   - {fileID: 769960553969404082, guid: 1e3b2cc971c87cc4dbd432ade26888b7, type: 3}
+  - {fileID: 359821573689934432, guid: d0b76a72eabdbe74aa9680b13f5c28e4, type: 3}
+  - {fileID: 9194719870058306775, guid: 31d3f4f2ebda50b4899acb04f3033144, type: 3}
   selectedIndex: 0
   selectedTool: {fileID: 0}
   interactionHandler: {fileID: 4788594249765754502}
