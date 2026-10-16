@@ -32149,6 +32149,7 @@ GameObject:
   - component: {fileID: 2026378985}
   - component: {fileID: 2026378987}
   - component: {fileID: 2026378986}
+  - component: {fileID: 2026378988}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -32265,6 +32266,22 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &2026378988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026378984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  light: {fileID: 0}
+  minIntensity: 20
+  maxIntensity: 50
+  flickerSpeed: 2
 --- !u!1 &2026502271
 GameObject:
   m_ObjectHideFlags: 0
