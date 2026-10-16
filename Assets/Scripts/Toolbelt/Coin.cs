@@ -15,7 +15,7 @@ public class Coin : Tool
     [SerializeField] private LayerMask rayIgnoreLayers;
     [SerializeField] private float maxCoinDistance=20;
     
-    private void Update()
+    private void FixedUpdate()
     {
         if (!IsSelected) return;
         //~ignoreLayers
@@ -69,6 +69,7 @@ public class Coin : Tool
     public override void Use()
     {
         if (!CanBeUsed()) return;
+        base.Use();
         Charges--;
         DistractionHandler.DoDistract(distractionSphere.transform.position, distractionRadius, distractionSeverity, false);
     }

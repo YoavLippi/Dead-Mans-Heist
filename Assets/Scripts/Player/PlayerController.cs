@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
 			isGhost = value;
 			spriteAnimator.SetBool("IsGhost", value);
 			SetGhost(value);
+			GameManager.Instance?.ToggleGhostVision(value);
 			onGhostChange?.Invoke(value);
 		}
 	}

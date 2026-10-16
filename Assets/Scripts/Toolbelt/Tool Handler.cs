@@ -7,11 +7,13 @@ using UnityEngine;
 public class ToolHandler : MonoBehaviour
 {
     [SerializeReference] private List<GameObject> toolsArr = new List<GameObject>();
-    private List<GameObject> instancedToolsArr = new List<GameObject>();
     [SerializeField] private int selectedIndex;
     [SerializeField] private GameObject selectedTool;
     [SerializeField] private InteractionHandler interactionHandler;
     [SerializeField] private GameObject hotbarParent;
+    
+    [Header("Runtime Only")]
+    public List<GameObject> instancedToolsArr = new List<GameObject>();
 
     private int SelectedIndex
     {
@@ -115,6 +117,7 @@ public class ToolHandler : MonoBehaviour
 
     public void ScrollDown()
     {
+        if (Time.timeScale == 0) return;
         instancedToolsArr[selectedIndex].GetComponent<Tool>().IsSelected = false;
         SelectedIndex++;
         SelectedIndex %= toolsArr.Count;
@@ -127,6 +130,7 @@ public class ToolHandler : MonoBehaviour
 
     public void ScrollUp()
     {
+        if (Time.timeScale == 0) return;
         instancedToolsArr[selectedIndex].GetComponent<Tool>().IsSelected = false;
         SelectedIndex--;
         if (SelectedIndex < 0) SelectedIndex = toolsArr.Count - 1;

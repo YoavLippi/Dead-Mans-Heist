@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -54,11 +55,13 @@ public class GameManager : MonoBehaviour
 				else if (currentState == GameState.Paused) ChangeState(GameState.Playing);
 			}
 
+			//Moving this behaviour to the player controller
+			/*
 			// Toggle Ghost Mode (G key) ONLY while actively playing the game
 			if (Keyboard.current.gKey.wasPressedThisFrame && currentState == GameState.Playing)
 			{
 				ToggleGhostVision(!isGhostModeActive);
-			}
+			}*/
 		}
 	}
 

@@ -63,9 +63,11 @@ public class DialogueManager : MonoBehaviour
         }
         DontDestroyOnLoad(this);
     }
+    
     public void PlayDialogue(DialogueConversation d)
     {
         if (dialoguePanel.activeSelf) return;
+        Time.timeScale = 0;
         dialoguePanel.SetActive(true);
         currentConvo = d;
         if (TryGetSnippetByID("Start", out DialogueConversation.Snippet s))
@@ -118,8 +120,7 @@ public class DialogueManager : MonoBehaviour
             //if (currentSnippet.nextBox.Equals("Next", StringComparison.OrdinalIgnoreCase))
             //{
             //exit the dialogue
-            Debug.Log("That was the end");
-            dialoguePanel.SetActive(false);
+            ExitDialogue();
             //}
         }
     }
@@ -147,10 +148,16 @@ public class DialogueManager : MonoBehaviour
             //if (currentSnippet.nextBox.Equals("Next", StringComparison.OrdinalIgnoreCase))
             //{
                 //exit the dialogue
-                Debug.Log("That was the end");
-                dialoguePanel.SetActive(false);
+                ExitDialogue();
             //}
         }
+    }
+
+    private void ExitDialogue()
+    {
+        //Debug.Log("That was the end");
+        Time.timeScale = 1;
+        dialoguePanel.SetActive(false);
     }
 
     public void HandleActions(DialogueConversation.DialogueAction[] actions)

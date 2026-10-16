@@ -246,7 +246,7 @@ MonoBehaviour:
   interactionType: 1
   conditionalEvents:
   - eventID: 
-    interactionType: 2
+    interactionType: 3
     attachedEvent:
       m_PersistentCalls:
         m_Calls:
@@ -365,7 +365,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 402482189
-  m_SortingLayer: 3
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: fa21ee49d0ded9c48a6836ee7985c5fc, type: 3}
