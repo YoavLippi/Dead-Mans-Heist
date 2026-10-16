@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812e25f310a26d249ab6745d018280f0, type: 3}
+  m_Name: R2_enter
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueConversation
+  conditions: []
+  conversation:
+  - ID: Start
+    speakerName: Davie
+    text: <color=#50C878>Now then...<br>Let's see what ye can do with that loose
+      soul o' ye's.</color>
+    hasOptions: 0
+    options: []
+    snippetCompletionActions: []
+    nextBox: Exit

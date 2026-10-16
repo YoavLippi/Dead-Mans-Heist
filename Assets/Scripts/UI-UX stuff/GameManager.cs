@@ -17,11 +17,11 @@ public class GameManager : MonoBehaviour
 	public GameObject startButton;
 	public GameObject restartButton;
 
-	[Header("Ghost Vision Elements")]
+	/*[Header("Ghost Vision Elements")]
 	[Tooltip("The 2D World Space object with the sprite tint.")]
 	public GameObject ghostVisionWorldObject;
 	[Tooltip("The UI Canvas overlay that displays text/images when Ghost Vision is active.")]
-	public GameObject ghostVisionCanvasUI;
+	public GameObject ghostVisionCanvasUI;*/
 
 	[Header("Ghost Mode Settings")]
 	public bool isGhostModeActive = false;
@@ -83,14 +83,14 @@ public class GameManager : MonoBehaviour
 		// 3. If we pause or quit, cleanly force Ghost Vision off
 		if (currentState != GameState.Playing)
 		{
-			ToggleGhostVision(false);
+			CameraController.Instance.ToggleGhostVision(false);
 		}
 
 		// Handle time pausing for mechanics/animations
 		Time.timeScale = (currentState == GameState.Paused||currentState==GameState.MainMenu) ? 0f : 1f;
 	}
 
-	public void ToggleGhostVision(bool active)
+	/*public void ToggleGhostVision(bool active)
 	{
 		isGhostModeActive = active;
 
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 		{
 			ghostVisionCanvasUI.SetActive(isGhostModeActive);
 		}
-	}
+	}*/
 
 	#region UI Button Hookups
 	public void StartGame()

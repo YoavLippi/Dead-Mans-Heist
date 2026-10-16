@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineBrain camBrain;
     [SerializeField] private ICinemachineCamera activeCam;
     [SerializeField] private GameObject ghostVisionPanel;
+    public bool isGhostPanelActive;
 
     public CinemachineBrain CamBrain => camBrain;
 
@@ -47,5 +48,13 @@ public class CameraController : MonoBehaviour
         ghostVisionPanel.transform.rotation = newActive.transform.rotation;
         ghostVisionPanel.transform.parent = newActive.transform;
         activeCam = newActive;
+    }
+    public void ToggleGhostVision(bool value)
+    {
+        isGhostPanelActive = value;
+        if (ghostVisionPanel != null)
+        {
+            ghostVisionPanel.SetActive(value);
+        }
     }
 }

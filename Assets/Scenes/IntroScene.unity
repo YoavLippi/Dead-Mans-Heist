@@ -620,7 +620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 40610210}
   m_Layer: 0
-  m_Name: Teleport
+  m_Name: Teleport 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -635,7 +635,7 @@ Transform:
   m_GameObject: {fileID: 40610209}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.58, y: 0, z: -1.13}
+  m_LocalPosition: {x: 8.58, y: 1, z: -1.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -703,7 +703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
       propertyPath: conversations.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
       propertyPath: 'conversations.Array.data[0]'
@@ -712,7 +712,15 @@ PrefabInstance:
     - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
       propertyPath: 'conversations.Array.data[1]'
       value: 
+      objectReference: {fileID: 11400000, guid: d5d1dbfe613c8cf42979adbac67de27f, type: 2}
+    - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
+      propertyPath: 'conversations.Array.data[2]'
+      value: 
       objectReference: {fileID: 11400000, guid: bbaefa073f442ac45ada35b9b5780243, type: 2}
+    - target: {fileID: 5002898510313689018, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
+      propertyPath: 'conversations.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 40f24d039c850bf42a1975826053e77e, type: 2}
     - target: {fileID: 8081741621615800423, guid: 7d0d5f5e022cf6248a326447e9905645, type: 3}
       propertyPath: m_Color.b
       value: 0.47058824
@@ -1412,6 +1420,7 @@ GameObject:
   - component: {fileID: 119698156}
   - component: {fileID: 119698155}
   - component: {fileID: 119698157}
+  - component: {fileID: 119698158}
   m_Layer: 0
   m_Name: Room2
   m_TagString: Untagged
@@ -1469,6 +1478,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab2c12d33225794fab9eb22de8d457c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialRoom
+  OnRoomBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 119698158}
+        m_TargetAssemblyTypeName: ConversationSender, Assembly-CSharp
+        m_MethodName: SendConversation
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRoomComplete:
     m_PersistentCalls:
       m_Calls:
@@ -1480,6 +1504,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 119698158}
+        m_TargetAssemblyTypeName: ConversationSender, Assembly-CSharp
+        m_MethodName: SendConversation
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1499,6 +1535,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  cs: {fileID: 0}
   steps:
   - action: 3
     toolID: 
@@ -1513,6 +1550,21 @@ MonoBehaviour:
   - action: 6
     toolID: 
     prompt: Leave the object by <color=red>Moving</color> or pressing <color=red>E</color>
+--- !u!114 &119698158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119698153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2edad2402ff4974fbb02ac0f230ada4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConversationSender
+  conversations:
+  - {fileID: 11400000, guid: ef86996c93296d247bfccc849d4e61b1, type: 2}
+  - {fileID: 11400000, guid: 1703b93f200770941bb5704ca32d4387, type: 2}
 --- !u!1001 &127650011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2884,6 +2936,7 @@ GameObject:
   - component: {fileID: 241692605}
   - component: {fileID: 241692604}
   - component: {fileID: 241692606}
+  - component: {fileID: 241692607}
   m_Layer: 0
   m_Name: Room1
   m_TagString: Untagged
@@ -2941,17 +2994,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab2c12d33225794fab9eb22de8d457c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialRoom
-  onRoomComplete:
+  OnRoomBegin:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LockedDoor, Assembly-CSharp
-        m_MethodName: isOpeningMethod
-        m_Mode: 1
+      - m_Target: {fileID: 241692607}
+        m_TargetAssemblyTypeName: ConversationSender, Assembly-CSharp
+        m_MethodName: SendConversation
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRoomComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 241692607}
+        m_TargetAssemblyTypeName: ConversationSender, Assembly-CSharp
+        m_MethodName: SendConversation
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2971,6 +3039,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  cs: {fileID: 0}
   steps:
   - action: 1
     toolID: 
@@ -2982,6 +3051,21 @@ MonoBehaviour:
     toolID: 
     prompt: Use the <color=red>Shift</color> key to make the maximum noise and move
       the fastest
+--- !u!114 &241692607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241692602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2edad2402ff4974fbb02ac0f230ada4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConversationSender
+  conversations:
+  - {fileID: 11400000, guid: db8927314c5972d42878022b9707c99e, type: 2}
+  - {fileID: 11400000, guid: 029d3a91f8a6f234a9f88aced69f30ac, type: 2}
 --- !u!4 &258466845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2875271142196401258, guid: f2655abebba8b7742bb2c7cf3e934092, type: 3}
@@ -3699,7 +3783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 333817015}
   m_Layer: 0
-  m_Name: Teleport
+  m_Name: Teleport 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3714,7 +3798,7 @@ Transform:
   m_GameObject: {fileID: 333817014}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.31514, y: -0.40999997, z: 2.9562893}
+  m_LocalPosition: {x: -8.31514, y: 1, z: 2.9562893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9580,7 +9664,9 @@ MonoBehaviour:
     options: []
     snippetCompletionActions: []
     nextBox: 
-  flags: []
+  flags:
+  - name: TutorialComplete
+    isSet: 1
   quests: []
 --- !u!1001 &1211720933
 PrefabInstance:
@@ -9717,7 +9803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1217399673}
   m_Layer: 0
-  m_Name: Teleport
+  m_Name: Teleport 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9732,7 +9818,7 @@ Transform:
   m_GameObject: {fileID: 1217399672}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.34, y: 0, z: -1.71}
+  m_LocalPosition: {x: -8.34, y: 1, z: -1.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -61,6 +61,7 @@ public class TutorialRoom : TutorialBase
 
     private IEnumerator RunTutorial()
     {
+        OnRoomBegin.Invoke();
         foreach (var step in steps)
         {
             currentAction = step.action;

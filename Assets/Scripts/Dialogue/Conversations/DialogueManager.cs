@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -70,6 +71,7 @@ public class DialogueManager : MonoBehaviour
         Time.timeScale = 0;
         dialoguePanel.SetActive(true);
         currentConvo = d;
+        Debug.Log("Populating convo: "+d.name);
         if (TryGetSnippetByID("Start", out DialogueConversation.Snippet s))
         {
             SetDialogue(s);
@@ -78,7 +80,7 @@ public class DialogueManager : MonoBehaviour
 
     private void SetDialogue(DialogueConversation.Snippet s)
     {
-        //Debug.Log("Populating dialogue");
+        //Debug.Log("Populating dialogue with snippet");
         currentSnippet = s;
 
         optionPanel.SetActive(s.hasOptions);
@@ -135,6 +137,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        dialogueBox.pageToDisplay = 1;
         //currentSnippet.snippetCompletionEvent.Invoke();
         //now assuming it is a snippet
         HandleActions(currentSnippet.snippetCompletionActions);
@@ -178,8 +181,27 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case DialogueConversation.DialogueActionType.SetFlag:
                     //set gameController state control stuff here
+                    bool found = false;
+                    for (int j = 0; j < flags.Count; j++)
+                    {
+                        var flag = flags[j];
+                        if (flag.name == actions[i].parameter)
+                        {
+                            flag.isSet = Boolean.Parse(actions[i].value);
+                            flags[j] = flag;
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        Flag newFlag = new Flag(actions[i].parameter, Boolean.Parse(actions[i].value));
+                        flags.Add(newFlag);
+                    }
+                    
                     //"I learned LINQ, can you tell?" ahh condition
-                    var matchingFlagArr = flags.Where(p => p.name == actions[i].parameter).ToArray();
+                    /*var matchingFlagArr = flags.Where(p => p.name == actions[i].parameter).ToArray();
                     if (matchingFlagArr.Length!=0)
                     {
                         matchingFlagArr[0].isSet = Boolean.Parse(actions[i].value);
@@ -188,7 +210,7 @@ public class DialogueManager : MonoBehaviour
                     {
                         Flag newFlag = new Flag(actions[i].parameter, Boolean.Parse(actions[i].value));
                         flags.Add(newFlag);
-                    }
+                    }*/
                     break;
                 case DialogueConversation.DialogueActionType.SetScene:
                     if (int.TryParse(actions[i].parameter, out int index))
@@ -199,10 +221,43 @@ public class DialogueManager : MonoBehaviour
 
                     SceneManager.LoadScene(actions[i].parameter);
                     break;
+                case DialogueConversation.DialogueActionType.MoveObject:
+                    //param => object Name
+                    //value => new pos transform name
+                    //maybe issue with timing and the timescale messing up?
+                    GameObject obj = GameObject.Find(actions[i].parameter);
+                    GameObject newPos = GameObject.Find(actions[i].value);
+                    if (obj !=null && newPos !=null)
+                    {
+                        obj.transform.position = newPos.transform.position;
+                        Physics.SyncTransforms();
+                        //StartCoroutine(moveAfterDelay(obj, newPos.transform.position, 100));
+                    }
+                    else
+                    {
+                        List<string> missingVals = new List<string>();
+                        if (!obj) missingVals.Add("The name in the parameter field");
+                        if (!newPos) missingVals.Add("The name in the value field");
+                        string warning = "Could not find:\t";
+                        foreach (var val in missingVals)
+                        {
+                            warning += val + "\t";
+                        }
+                        Debug.LogWarning(warning);
+                    }
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }   
+    }
+
+    private IEnumerator moveAfterDelay(GameObject obj, Vector3 newPos, int millis)
+    {
+        yield return new WaitForSeconds(millis / 1000f);
+        obj.transform.position = newPos;
+        Physics.SyncTransforms();
+        
     }
 
     public bool IsFlagSet(string flag)

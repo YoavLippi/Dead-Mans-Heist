@@ -70,9 +70,9 @@ public class InteractableUI : MonoBehaviour
 			return;
 		}
 
-		if (GameManager.Instance == null) return;
+		if (CameraController.Instance == null) return;
 
-		bool currentGlobalGhostState = GameManager.Instance.isGhostModeActive;
+		bool currentGlobalGhostState = CameraController.Instance.isGhostPanelActive;
 
 		// 1. Handles when Ghost Mode is turned ON or OFF
 		if (currentGlobalGhostState != isGhostModeActive)
