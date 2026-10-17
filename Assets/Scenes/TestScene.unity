@@ -2228,6 +2228,7 @@ GameObject:
   - component: {fileID: 156460900}
   - component: {fileID: 156460902}
   - component: {fileID: 156460901}
+  - component: {fileID: 156460903}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -2344,6 +2345,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &156460903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156460899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 156460902}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 8
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &156656202 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6531576289731663119, guid: 071067f6fae392b44946b7f955f33594, type: 3}
@@ -3112,6 +3131,7 @@ GameObject:
   - component: {fileID: 218931658}
   - component: {fileID: 218931660}
   - component: {fileID: 218931659}
+  - component: {fileID: 218931661}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -3228,6 +3248,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &218931661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218931657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 218931660}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 4
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &223995138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3356238851566626305, guid: de4e04ef922316044a27ab0d83433e9d, type: 3}
@@ -3662,6 +3700,7 @@ GameObject:
   - component: {fileID: 296244498}
   - component: {fileID: 296244497}
   - component: {fileID: 296244496}
+  - component: {fileID: 296244499}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -3778,6 +3817,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 925071916}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &296244499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296244495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 296244497}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 6
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &296994195 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8528359184008996054, guid: 0d723e9d767a9174092a4fee8e9a609b, type: 3}
@@ -3922,6 +3979,7 @@ GameObject:
   - component: {fileID: 301064943}
   - component: {fileID: 301064945}
   - component: {fileID: 301064944}
+  - component: {fileID: 301064946}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -4038,6 +4096,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &301064946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301064942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 301064945}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 4
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &301503881
 GameObject:
   m_ObjectHideFlags: 0
@@ -5502,6 +5578,7 @@ GameObject:
   - component: {fileID: 430773864}
   - component: {fileID: 430773866}
   - component: {fileID: 430773865}
+  - component: {fileID: 430773867}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -5618,6 +5695,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &430773867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430773863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 430773866}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 8
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &431907001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5741,6 +5836,7 @@ GameObject:
   - component: {fileID: 434204704}
   - component: {fileID: 434204706}
   - component: {fileID: 434204705}
+  - component: {fileID: 434204707}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -5857,6 +5953,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &434204707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434204703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 434204706}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 2
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &436638947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6844,6 +6958,7 @@ GameObject:
   - component: {fileID: 461873027}
   - component: {fileID: 461873029}
   - component: {fileID: 461873028}
+  - component: {fileID: 461873030}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -6960,6 +7075,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &461873030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461873026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 461873029}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 4
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &464679893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2278335980900011897, guid: c7803b5315b35b54ab454e568a5b87f7, type: 3}
@@ -8192,6 +8325,7 @@ GameObject:
   - component: {fileID: 551675230}
   - component: {fileID: 551675232}
   - component: {fileID: 551675231}
+  - component: {fileID: 551675233}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -8308,6 +8442,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &551675233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551675229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 551675232}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 2
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &573421753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9072,6 +9224,7 @@ GameObject:
   - component: {fileID: 643097020}
   - component: {fileID: 643097022}
   - component: {fileID: 643097021}
+  - component: {fileID: 643097023}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -9188,6 +9341,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &643097023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643097019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 643097022}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 2
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &643791297 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8528359184008996054, guid: 0d723e9d767a9174092a4fee8e9a609b, type: 3}
@@ -10599,6 +10770,7 @@ GameObject:
   - component: {fileID: 744392088}
   - component: {fileID: 744392090}
   - component: {fileID: 744392089}
+  - component: {fileID: 744392091}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -10715,6 +10887,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &744392091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744392087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 744392090}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 4
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &747522452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4179340408633560540, guid: 95e8424f1aa4cbc4caa3cb0cd9eddbcf, type: 3}
@@ -11215,6 +11405,7 @@ GameObject:
   - component: {fileID: 773445838}
   - component: {fileID: 773445840}
   - component: {fileID: 773445839}
+  - component: {fileID: 773445841}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -11331,6 +11522,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &773445841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773445837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 773445840}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 8
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &775282512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11654,6 +11863,7 @@ GameObject:
   - component: {fileID: 790460544}
   - component: {fileID: 790460546}
   - component: {fileID: 790460545}
+  - component: {fileID: 790460547}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -11770,6 +11980,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &790460547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790460543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 790460546}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 6
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &790812657 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8398528876254444017, guid: 12fb80a8f66941b42979aeceb559aed1, type: 3}
@@ -14276,6 +14504,7 @@ GameObject:
   - component: {fileID: 940217794}
   - component: {fileID: 940217796}
   - component: {fileID: 940217795}
+  - component: {fileID: 940217797}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -14392,6 +14621,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &940217797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940217793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 940217796}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 8
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &943957404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16052,6 +16299,7 @@ GameObject:
   - component: {fileID: 1056282003}
   - component: {fileID: 1056282005}
   - component: {fileID: 1056282004}
+  - component: {fileID: 1056282006}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -16168,6 +16416,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1056282006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056282002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1056282005}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 4
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &1057916714
 GameObject:
   m_ObjectHideFlags: 0
@@ -17157,6 +17423,7 @@ GameObject:
   - component: {fileID: 1121986020}
   - component: {fileID: 1121986022}
   - component: {fileID: 1121986021}
+  - component: {fileID: 1121986023}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -17273,6 +17540,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1121986023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121986019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1121986022}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 2
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &1131406058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18090,6 +18375,7 @@ GameObject:
   - component: {fileID: 1183142332}
   - component: {fileID: 1183142334}
   - component: {fileID: 1183142333}
+  - component: {fileID: 1183142335}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -18206,6 +18492,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1183142335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183142331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1183142334}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 6
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &1186265253
 GameObject:
   m_ObjectHideFlags: 0
@@ -18868,6 +19172,7 @@ GameObject:
   - component: {fileID: 1222736105}
   - component: {fileID: 1222736107}
   - component: {fileID: 1222736106}
+  - component: {fileID: 1222736108}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -18984,6 +19289,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1222736108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222736104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1222736107}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 4
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &1233256227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8946660040297601765, guid: 1ecf09c1255999043ad0d0135c9b9bec, type: 3}
@@ -19053,6 +19376,7 @@ GameObject:
   - component: {fileID: 1235719669}
   - component: {fileID: 1235719671}
   - component: {fileID: 1235719670}
+  - component: {fileID: 1235719672}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -19169,6 +19493,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1235719672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235719668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1235719671}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 8
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &1246200637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21365,6 +21707,7 @@ GameObject:
   - component: {fileID: 1389976081}
   - component: {fileID: 1389976083}
   - component: {fileID: 1389976082}
+  - component: {fileID: 1389976084}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -21481,6 +21824,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1389976084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389976080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1389976083}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 6
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &1394601112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21604,6 +21965,7 @@ GameObject:
   - component: {fileID: 1400752657}
   - component: {fileID: 1400752659}
   - component: {fileID: 1400752658}
+  - component: {fileID: 1400752660}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -21720,6 +22082,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1400752660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400752656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1400752659}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 4
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &1400932996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8946660040297601765, guid: 1ecf09c1255999043ad0d0135c9b9bec, type: 3}
@@ -23305,6 +23685,7 @@ GameObject:
   - component: {fileID: 1528866814}
   - component: {fileID: 1528866816}
   - component: {fileID: 1528866815}
+  - component: {fileID: 1528866817}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -23421,6 +23802,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1528866817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528866813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 218931660}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 6
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &1531325374 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2875271142196401258, guid: f2655abebba8b7742bb2c7cf3e934092, type: 3}
@@ -26334,6 +26733,7 @@ GameObject:
   - component: {fileID: 1740203019}
   - component: {fileID: 1740203021}
   - component: {fileID: 1740203020}
+  - component: {fileID: 1740203022}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -26450,6 +26850,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1740203022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740203018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1740203021}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 6
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &1744499101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26573,6 +26991,7 @@ GameObject:
   - component: {fileID: 1745809861}
   - component: {fileID: 1745809863}
   - component: {fileID: 1745809862}
+  - component: {fileID: 1745809864}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -26689,6 +27108,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1745809864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745809860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1745809863}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 2
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &1750260372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ecf09c1255999043ad0d0135c9b9bec, type: 3}
@@ -26763,6 +27200,7 @@ GameObject:
   - component: {fileID: 1753038827}
   - component: {fileID: 1753038829}
   - component: {fileID: 1753038828}
+  - component: {fileID: 1753038830}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -26879,6 +27317,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1753038830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753038826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1753038829}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 8
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &1760988228
 GameObject:
   m_ObjectHideFlags: 0
@@ -26890,6 +27346,7 @@ GameObject:
   - component: {fileID: 1760988229}
   - component: {fileID: 1760988231}
   - component: {fileID: 1760988230}
+  - component: {fileID: 1760988232}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -27006,6 +27463,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1760988232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760988228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1760988231}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 6
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &1763166901 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4237012294995637024, guid: a71bb19fe097adb499136a8edf778630, type: 3}
@@ -27118,6 +27593,7 @@ GameObject:
   - component: {fileID: 1772650820}
   - component: {fileID: 1772650822}
   - component: {fileID: 1772650821}
+  - component: {fileID: 1772650823}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -27234,6 +27710,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1772650823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772650819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1772650822}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 4
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &1775578428 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8509380750685276238, guid: f9c088ac278bcb549bf16393940e27ba, type: 3}
@@ -32713,6 +33207,7 @@ GameObject:
   - component: {fileID: 1839060037}
   - component: {fileID: 1839060039}
   - component: {fileID: 1839060038}
+  - component: {fileID: 1839060040}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -32829,6 +33324,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1839060040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839060036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1839060039}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 8
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &1841906078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1654955170831241004, guid: 261ad5d657ff15445b29f5cc6d1985ff, type: 3}
@@ -33232,15 +33745,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 64.61876
+      value: 39.71
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.61
+      value: 28.850481
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.03
+      value: -18.358965
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33475,6 +33988,7 @@ GameObject:
   - component: {fileID: 1882193660}
   - component: {fileID: 1882193662}
   - component: {fileID: 1882193661}
+  - component: {fileID: 1882193663}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -33591,6 +34105,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1882193663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882193659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1882193662}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 6
+  targetIntensity: 0
+  smoothing: 10
 --- !u!4 &1884060243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8946660040297601765, guid: 1ecf09c1255999043ad0d0135c9b9bec, type: 3}
@@ -33607,6 +34139,7 @@ GameObject:
   - component: {fileID: 1885002718}
   - component: {fileID: 1885002720}
   - component: {fileID: 1885002719}
+  - component: {fileID: 1885002721}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -33723,6 +34256,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1885002721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885002717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 1885002720}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 2
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &1896114456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35630,10 +36181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
-  currentLight: {fileID: 0}
-  minIntensity: 20
+  currentLight: {fileID: 2026378987}
+  minIntensity: 30
   maxIntensity: 50
   flickerSpeed: 2
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &2026502271
 GameObject:
   m_ObjectHideFlags: 0
@@ -35645,6 +36198,7 @@ GameObject:
   - component: {fileID: 2026502272}
   - component: {fileID: 2026502274}
   - component: {fileID: 2026502273}
+  - component: {fileID: 2026502275}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -35761,6 +36315,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &2026502275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026502271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 2026502274}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 4
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1 &2026883049
 GameObject:
   m_ObjectHideFlags: 0
@@ -36702,6 +37274,7 @@ GameObject:
   - component: {fileID: 2097179458}
   - component: {fileID: 2097179460}
   - component: {fileID: 2097179459}
+  - component: {fileID: 2097179461}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -36818,6 +37391,24 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &2097179461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097179457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
+  currentLight: {fileID: 2097179460}
+  minIntensity: 30
+  maxIntensity: 50
+  flickerSpeed: 2
+  targetIntensity: 0
+  smoothing: 10
 --- !u!1001 &2105844534
 PrefabInstance:
   m_ObjectHideFlags: 0
