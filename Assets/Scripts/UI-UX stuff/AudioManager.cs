@@ -12,11 +12,13 @@ public class AudioManager : MonoBehaviour
 
 	[Header("Audio Sources")]
 	[SerializeField] private AudioSource musicSource;
+	[SerializeField] private AudioSource ambienceSource;
 	[SerializeField] private AudioSource sfxSource;
 	[SerializeField] private AudioSource ghostSource;
 
 	[Header("Common Sound Clips")]
 	public AudioClip oceanAmbience;
+	public AudioClip pirateMusic;
 	public AudioClip ghostVisionEnter;
 	//public AudioClip ghostVisionLoop;
 	//public AudioClip itemPickup;
@@ -59,7 +61,12 @@ public class AudioManager : MonoBehaviour
 	//{
 	//	if (oceanAmbience != null)
 	//	{
-	//		PlayMusic(oceanAmbience);
+	//		PlayAmbience(oceanAmbience, 0.4f);
+	//	}
+
+	//	if (pirateMusic != null)
+	//	{
+	//		PlayMusic(pirateMusic, 0.5f);
 	//	}
 	//}
 
@@ -82,6 +89,15 @@ public class AudioManager : MonoBehaviour
 		musicSource.clip = clip;
 		musicSource.volume = volume;
 		musicSource.Play();
+	}
+
+	public void PlayAmbience(AudioClip clip, float volume = 0.4f)
+	{
+		if (clip == null) return;
+		ambienceSource.clip = clip;
+		ambienceSource.volume = volume;
+		ambienceSource.loop = true;
+		ambienceSource.Play();
 	}
 	#endregion
 
