@@ -1449,6 +1449,9 @@ MonoBehaviour:
   smoothSpeed: 2
   isOpening: 0
   targetRotation: {x: 0, y: 0.70710677, z: 0, w: -0.70710677}
+  doorOpenSFX: {fileID: 0}
+  doorLockedSFX: {fileID: 0}
+  openDelay: 0.35
 --- !u!65 &174449794
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4098,6 +4101,9 @@ MonoBehaviour:
   smoothSpeed: 2
   isOpening: 0
   targetRotation: {x: 0, y: 0.70710677, z: 0, w: -0.70710677}
+  doorOpenSFX: {fileID: 0}
+  doorLockedSFX: {fileID: 0}
+  openDelay: 0.35
 --- !u!65 &424389054
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4335,9 +4341,11 @@ MonoBehaviour:
   sfxGroup: {fileID: -8835568986759672357, guid: 61f0bc1e159ae0943adb233d14bed0c7, type: 2}
   ghostGroup: {fileID: 2210635946989791953, guid: 61f0bc1e159ae0943adb233d14bed0c7, type: 2}
   musicSource: {fileID: 900610214}
+  ambienceSource: {fileID: 0}
   sfxSource: {fileID: 1765844961}
   ghostSource: {fileID: 1163276372}
   oceanAmbience: {fileID: 8300000, guid: 3305ddc8621d7f24aa6363855cd233ce, type: 3}
+  pirateMusic: {fileID: 0}
   ghostVisionEnter: {fileID: 0}
   parrotSqwak: {fileID: 0}
   footSteps: {fileID: 8300000, guid: 6ce41bc00d21a394a8cde4c75a3eef2a, type: 3}
@@ -5439,6 +5447,9 @@ MonoBehaviour:
   smoothSpeed: 2
   isOpening: 0
   targetRotation: {x: 0, y: 0.70710677, z: 0, w: -0.70710677}
+  doorOpenSFX: {fileID: 0}
+  doorLockedSFX: {fileID: 0}
+  openDelay: 0.35
 --- !u!1001 &684586775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9515,6 +9526,9 @@ MonoBehaviour:
   smoothSpeed: 2
   isOpening: 0
   targetRotation: {x: 0, y: 0.70710677, z: 0, w: -0.70710677}
+  doorOpenSFX: {fileID: 0}
+  doorLockedSFX: {fileID: 0}
+  openDelay: 0.35
 --- !u!65 &1211720937
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12125,7 +12139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.59
+      value: 18.630001
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.w
