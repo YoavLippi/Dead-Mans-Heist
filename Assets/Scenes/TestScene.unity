@@ -216,8 +216,6 @@ MonoBehaviour:
   unifiedMenuPanel: {fileID: 6427625448976024499}
   startButton: {fileID: 4794255413266032413}
   restartButton: {fileID: 1002195786675253725}
-  ghostVisionWorldObject: {fileID: 1368698296}
-  ghostVisionCanvasUI: {fileID: 387956732734839082}
   isGhostModeActive: 0
 --- !u!1 &3436622
 GameObject:
@@ -15399,11 +15397,15 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 5f3f19c51aaab1f40b8c872ec03b00f1, type: 3}
     - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: conditionalEvents.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].interactionType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -15412,6 +15414,58 @@ PrefabInstance:
     - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DoInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 857315479}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 857315479}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DoInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DoInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: KeyItem, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: KeyItem, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6000893473786830795, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: m_Name
@@ -17768,6 +17822,8 @@ MonoBehaviour:
   smoothSpeed: 10
   isOpening: 0
   targetRotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
+  doorOpenSFX: {fileID: 8300000, guid: 60f9b6a965e022a49b1eec3dbdfde3f5, type: 3}
+  doorLockedSFX: {fileID: 8300000, guid: 440d0c0fa6c964d46a3f33e1338c7f45, type: 3}
 --- !u!1 &1275455325
 GameObject:
   m_ObjectHideFlags: 0
@@ -20495,6 +20551,8 @@ MonoBehaviour:
   smoothSpeed: 10
   isOpening: 0
   targetRotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
+  doorOpenSFX: {fileID: 8300000, guid: 60f9b6a965e022a49b1eec3dbdfde3f5, type: 3}
+  doorLockedSFX: {fileID: 8300000, guid: 440d0c0fa6c964d46a3f33e1338c7f45, type: 3}
 --- !u!65 &1487351907
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21662,6 +21720,10 @@ PrefabInstance:
     - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DoInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6000893473786830795, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: m_Name
@@ -22908,6 +22970,8 @@ MonoBehaviour:
   smoothSpeed: 10
   isOpening: 0
   targetRotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
+  doorOpenSFX: {fileID: 8300000, guid: 60f9b6a965e022a49b1eec3dbdfde3f5, type: 3}
+  doorLockedSFX: {fileID: 8300000, guid: 440d0c0fa6c964d46a3f33e1338c7f45, type: 3}
 --- !u!65 &1703520776
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23973,7 +24037,7 @@ MonoBehaviour:
   oceanAmbience: {fileID: 8300000, guid: 3305ddc8621d7f24aa6363855cd233ce, type: 3}
   ghostVisionEnter: {fileID: 0}
   parrotSqwak: {fileID: 0}
-  footSteps: {fileID: 8300000, guid: 7afbe46df86bb9649bfdd240033f966c, type: 3}
+  footSteps: {fileID: 8300000, guid: 6ce41bc00d21a394a8cde4c75a3eef2a, type: 3}
   crateDistraction: {fileID: 8300000, guid: 6bf214a31e7b0244a99a7f7c627162bf, type: 3}
 --- !u!4 &1751936194
 Transform:
@@ -30251,15 +30315,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.76
+      value: 39.71
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.370502
+      value: 28.850481
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.9668703
+      value: -18.358965
       objectReference: {fileID: 0}
     - target: {fileID: 5650714738089538432, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31389,6 +31453,10 @@ PrefabInstance:
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DoInteract
       objectReference: {fileID: 0}
+    - target: {fileID: 917962147307061434, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
+      propertyPath: conditionalEvents.Array.data[0].attachedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6000893473786830795, guid: e89d73b2eb50b244db9d54329d62d8e6, type: 3}
       propertyPath: m_Name
       value: Gold Key
@@ -32294,7 +32362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de9335e0fc49fa4ea01f24076bdffec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlickeringLights
-  light: {fileID: 0}
+  currentLight: {fileID: 0}
   minIntensity: 20
   maxIntensity: 50
   flickerSpeed: 2
