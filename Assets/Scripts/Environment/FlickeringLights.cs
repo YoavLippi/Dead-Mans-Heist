@@ -8,6 +8,8 @@ public class FlickeringLights : MonoBehaviour
     [SerializeField] private float maxIntensity;
 
     [SerializeField] private float flickerSpeed;
+    [SerializeField] private float targetIntensity;
+    [SerializeField] private float smoothing;
 
     private float timer;
 
@@ -15,6 +17,7 @@ public class FlickeringLights : MonoBehaviour
     void Start()
     {
         currentLight = GetComponent<Light>();
+        targetIntensity = currentLight.intensity;
     }
 
     void Update()
@@ -23,9 +26,10 @@ public class FlickeringLights : MonoBehaviour
 
         if (timer >= flickerSpeed) 
         {
-            currentLight.intensity = Random.Range(minIntensity, maxIntensity);
+            targetIntensity = Random.Range(minIntensity, maxIntensity);
             timer = 0;
         }
+        currentLight.intensity = Mathf.Lerp(currentLight.intensity, targetIntensity, Time.deltaTime * smoothing);
         
     }
 }
