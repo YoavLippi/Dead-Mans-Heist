@@ -18,6 +18,7 @@ public class LockedDoor : MonoBehaviour
 	[Header("Door Audio")]
 	[SerializeField] private AudioClip doorOpenSFX;
 	[SerializeField] private AudioClip doorLockedSFX;
+	[SerializeField] private float openDelay = 0.35f;
 
 	private bool hasPlayedOpenAudio = false;
 	private float nextAllowedLockedSoundTime = 0f;
@@ -31,7 +32,7 @@ public class LockedDoor : MonoBehaviour
 			//closedPivot.rotation = doorPivot.rotation;
 		}
 		targetRotation = doorPivot.rotation * Quaternion.Euler(0, openAngle, 0);
-
+		StopAllCoroutines();
 	}
 
 	void Update()
@@ -60,7 +61,8 @@ public class LockedDoor : MonoBehaviour
 
 	public void isOpeningMethod()
 	{
-		StartOpening();
+		//StartOpening();
+		TriggerOpenSequence();
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -72,7 +74,8 @@ public class LockedDoor : MonoBehaviour
 			if (HUDManager.Instance != null && HUDManager.Instance.HasKey(requiredKey))
 			{
 				isLocked = false;
-				isOpening = true;
+				//isOpening = true;
+				TriggerOpenSequence();
 				Debug.Log("Opening door");
 			}
 			else
@@ -84,7 +87,7 @@ public class LockedDoor : MonoBehaviour
 		}
 		else
 		{
-			StartOpening();
+			TriggerOpenSequence();
 		}
 	}
 	//if we want the doors to close
@@ -97,22 +100,53 @@ public class LockedDoor : MonoBehaviour
 	//    }
 	//}
 
-	private void StartOpening()
-	{
-		isOpening = true;
+	//private void StartOpening()
+	//{
+	//	isOpening = true;
 
+	//	if (!hasPlayedOpenAudio)
+	//	{
+	//		if (doorOpenSFX != null)
+	//		{
+	//			hasPlayedOpenAudio = true;
+	//			PlayClip(doorOpenSFX); // Ensure this is active, not commented out!
+	//		}
+	//		else
+	//		{
+	//			Debug.LogWarning($"[DOOR] 'doorOpenSFX' is not assigned on {gameObject.name}!");
+	//		}
+	//	}
+	//}
+
+	private void TriggerOpenSequence()
+	{
 		if (!hasPlayedOpenAudio)
 		{
-			if (doorOpenSFX != null)
-			{
-				hasPlayedOpenAudio = true;
-				//PlayClip(doorOpenSFX);
-			}
-			else
-			{
-				Debug.LogWarning($"[DOOR] Cannot play open sound: 'doorOpenSFX' is not assigned in the Inspector on {gameObject.name}!");
-			}
+			hasPlayedOpenAudio = true;
+			StartCoroutine(PlaySoundThenOpenRoutine());
 		}
+	}
+
+	private IEnumerator PlaySoundThenOpenRoutine()
+	{
+		// 1. Play the audio immediately
+		if (doorOpenSFX != null)
+		{
+			PlayClip(doorOpenSFX);
+		}
+		else
+		{
+			Debug.LogWarning($"[DOOR] 'doorOpenSFX' is missing on {gameObject.name}!");
+		}
+
+		// 2. Wait for the audio lead-in (latch/handle movement)
+		if (openDelay > 0f)
+		{
+			yield return new WaitForSeconds(openDelay);
+		}
+
+		// 3. Begin physical door rotation
+		isOpening = true;
 	}
 
 	private void PlayLockedAudio()
@@ -128,6 +162,8 @@ public class LockedDoor : MonoBehaviour
 	}
 	private void PlayClip(AudioClip clip)
 	{
+		if (clip == null) return;
+
 		if (AudioManager.Instance != null)
 		{
 			AudioManager.Instance.PlaySFX(clip);
