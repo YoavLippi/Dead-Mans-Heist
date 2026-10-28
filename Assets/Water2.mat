@@ -67,7 +67,7 @@ Material:
     - _ShallowColor: {r: 0.20164466, g: 0.7196458, b: 0.8415094, a: 1}
     - _ShipForward: {r: -1.0000002, g: 0.000000019036053, b: -0.000000019036053, a: 0}
     - _ShipPosition: {r: 12.5199995, g: 0.87119865, b: 3.5702095, a: 0}
-    - _ShipRight: {r: 0.000000019036053, g: 0.00000011920929, b: -1.0000001, a: 0}
+    - _ShipRight: {r: 0.000000019036053, g: -1.26, b: -1.0000001, a: 0}
     - _Stretch: {r: 0.4, g: 1.4, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

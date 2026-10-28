@@ -45,7 +45,7 @@ Material:
     - _FoamFade: 5
     - _FoamFadeaRange: 0.6
     - _FoamScale: 0.54
-    - _HullFoamDistance: 0.8
+    - _HullFoamDistance: 9.1
     - _Scale: 7
     - _WakeFoamWidth: 0.8
     - _WakeLength: 0.1
