@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Animator spriteAnimator;
 	[SerializeField] private InteractionHandler interactionHandler;
 	[SerializeField] private ToolHandler toolHandler;
+	[SerializeField] private OTSCameraController otsCam;
 
 	[Header("Ghost")]
 	[SerializeField] private GameObject ghostedPlayerPrefab;
@@ -122,6 +123,7 @@ public class PlayerController : MonoBehaviour
 		interactionHandler = GetComponentInChildren<InteractionHandler>();
 		lastStepPos = transform.position;
 		toolHandler.UpdateInteractionHandler();
+		otsCam = GameObject.FindGameObjectWithTag("OTSCam").GetComponent<OTSCameraController>();
 	}
 
 	private void SetGhost(bool setGhost)
@@ -414,15 +416,16 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!isAcceptingInputs) return;
 		if (!context.performed) return;
-		if (IsGhost) return;
-		if (context.ReadValue<float>() > 0)
+		otsCam.HandleMouseScroll(context);
+		//if (IsGhost) return;
+		/*if (context.ReadValue<float>() > 0)
 		{
 			toolHandler.ScrollUp();
 		}
 		else
 		{
 			toolHandler.ScrollDown();
-		}
+		}*/
 	}
 
 	public void OnInteract(InputAction.CallbackContext context)

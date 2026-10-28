@@ -26,7 +26,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private DialogueConversation currentConvo;
     [SerializeField] private int currentConvoIndex;
     [SerializeField] private DialogueConversation.Snippet currentSnippet;
-    
+
+    private CursorLockMode prevLockMode;
     //NB: these should be in the game manager, just here for now for testing
     [SerializeField] private List<Flag> flags;
     [SerializeField] private Quest[] quests;
@@ -68,6 +69,8 @@ public class DialogueManager : MonoBehaviour
     public void PlayDialogue(DialogueConversation d)
     {
         if (dialoguePanel.activeSelf) return;
+        prevLockMode = Cursor.lockState;
+        Cursor.lockState = CursorLockMode.Confined;
         Time.timeScale = 0;
         dialoguePanel.SetActive(true);
         currentConvo = d;
@@ -161,6 +164,7 @@ public class DialogueManager : MonoBehaviour
         //Debug.Log("That was the end");
         Time.timeScale = 1;
         dialoguePanel.SetActive(false);
+        Cursor.lockState = prevLockMode;
     }
 
     public void HandleActions(DialogueConversation.DialogueAction[] actions)
