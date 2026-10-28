@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyMovement : EnemyAbs
 {
-    [SerializeField] private NavMeshAgent nav;
     [SerializeField] private int index;
     [SerializeField] private GameObject target;
     [SerializeField] private bool isLookingAround;
@@ -19,8 +18,7 @@ public class EnemyMovement : EnemyAbs
     [SerializeField] private float lookAroundWaitTime = 0.3f;
 
     [Header("Attention loss")]
-    [SerializeField] private float suspicionThresholdToLookAround = 45f;
-    [SerializeField] private DistractionHandler.DistractionSeverity  currentDistractionSeverity;
+    [SerializeField] private DistractionHandler.DistractionSeverity currentDistractionSeverity;
 
     [Header("Distraction tuning")]
     [SerializeField] private float severeDistractionDuration = 5f;
@@ -35,7 +33,7 @@ public class EnemyMovement : EnemyAbs
     [SerializeField] private float arrivalDistanceThreshold = 2f;
     [SerializeField] private float maxTravelToDistractionSeconds = 10f;
 
-    [Header("Animation")] 
+    [Header("Animation")]
     [SerializeField] private float facingX;
     [SerializeField] private float facingY;
     [SerializeField] private Animator anim;
@@ -44,7 +42,9 @@ public class EnemyMovement : EnemyAbs
     private Coroutine distractionRoutine;
     private Coroutine lookRoutine;
     private Coroutine waitRoutine;
-    private GameObject catchColliderObj;
+
+    private float lastSeenTime;
+    [SerializeField] private float alertTurnSpeed = 300f;
 
     void OnEnable() => WorldTime.secondsChange += CheckTime;
     void OnDisable() => WorldTime.secondsChange -= CheckTime;
@@ -53,13 +53,11 @@ public class EnemyMovement : EnemyAbs
     {
         base.Start();
         target = GameObject.FindWithTag("Player");
-        catchColliderObj = transform.Find("CatchCollider").gameObject;
     }
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        HandleLostAttention();
         /*if (CameraController.Instance.ActiveCam is CinemachineCamera cam)
         {
             Vector3 camForward = cam.transform.forward;
@@ -119,44 +117,35 @@ public class EnemyMovement : EnemyAbs
             //facingDir *= camAngle;
         }
 
-        //Debug.Log(facingDir.eulerAngles);
-
-
-        if (CurrentMoveMode == EnemyMoveMode.Chasing)
+        //Debug.Log(facingDir.eulerAngles);  
+        if (isAlerted)
         {
-            nav.SetDestination(target.transform.position);
-            catchColliderObj.SetActive(true);
-            if (!attachedLos.IsSeeingPlayer)
+            Vector3 dir = target.transform.position - transform.position;
+            dir.y = 0;
+            if (dir != Vector3.zero)
             {
-                attention = Mathf.Max(0, attention - Time.deltaTime);
+                Quaternion look = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.RotateTowards(
+                    transform.rotation, look, alertTurnSpeed * Time.deltaTime);
+            }
+
+            if (Time.time - lastSeenTime >= 1f)
+            {
+                isAlerted = false;
+                nv.isStopped = false;
             }
         }
-        else 
-        {
-            catchColliderObj.SetActive(false);
-        }
-    }
-
-    private void HandleLostAttention()
-    {
-        if (attention != 0f) return;
-        if (isLookingAround) return;
-        if (CurrentSuspicion < suspicionThresholdToLookAround) return;
-
-        StopNav();
-        CurrentMoveMode = EnemyMoveMode.Idle;
-        lookRoutine = StartCoroutine(LookSequence(lookAroundWaitTime * 3f));
     }
 
     protected override void CheckTime(int currentworld)
     {
         lastKnownWorldTime = currentworld;
 
-       
+
         if (!isOnSchedule) return;
 
         int localTime = currentworld - timeOffset;
-        if (index >= newSchedules.Count) 
+        if (index >= newSchedules.Count)
         {
             timeOffset += newSchedules[newSchedules.Count - 1].timeTrigger;
             index = 0;
@@ -173,17 +162,17 @@ public class EnemyMovement : EnemyAbs
 
     public override void moveToCheckPoint(Vector3 target)
     {
-        if (target != null && nav != null)
+        if (target != null && nv != null)
         {
-            nav.SetDestination(target);
+            nv.SetDestination(target);
         }
     }
-    
+
     public override void moveToCheckPoint(Transform target)
     {
-        if (target != null && nav != null)
+        if (target != null && nv != null)
         {
-            nav.SetDestination(target.position);
+            nv.SetDestination(target.position);
         }
     }
 
@@ -222,7 +211,7 @@ public class EnemyMovement : EnemyAbs
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
             yield return null;
             currentTime += Time.deltaTime;
-            
+
         }
 
         if (Quaternion.Angle(transform.rotation, targetRot) > 0.1f)
@@ -243,7 +232,7 @@ public class EnemyMovement : EnemyAbs
 
     private void StopNav()
     {
-        nav.ResetPath();
+        nv.ResetPath();
     }
 
     private IEnumerator DistractionSequence(float lookTime, Vector3 pos, float suspicion)
@@ -257,8 +246,8 @@ public class EnemyMovement : EnemyAbs
             elapsed += Time.deltaTime;
             yield return null;
         }
-        StopNav(); 
-        nav.SetDestination(transform.position);
+        StopNav();
+        nv.SetDestination(transform.position);
 
         yield return StartCoroutine(LookSequence(lookTime));
 
@@ -275,7 +264,7 @@ public class EnemyMovement : EnemyAbs
     }
 
     public override void GetDistracted(Vector3 distractionPos, DistractionHandler.DistractionSeverity sev)
-    {   
+    {
         isOnSchedule = false;
         if (sev == DistractionHandler.DistractionSeverity.None) return;
         Debug.Log($"{name} was distracted, pos: {distractionPos}, severity {sev}");
@@ -295,7 +284,7 @@ public class EnemyMovement : EnemyAbs
 
             case DistractionHandler.DistractionSeverity.Moderate:
 
-                if (currentDistractionSeverity == DistractionHandler.DistractionSeverity.Severe) 
+                if (currentDistractionSeverity == DistractionHandler.DistractionSeverity.Severe)
                 {
                     break;
                 }
@@ -317,6 +306,23 @@ public class EnemyMovement : EnemyAbs
         }
 
         currentDistractionSeverity = sev;
-        
+
+    }
+    protected override void OnSeePlayer()
+    {
+        base.OnSeePlayer();
+        lastSeenTime = Time.time;
+        if (!isAlerted) EnterAlert();
+    }
+    protected void EnterAlert() 
+    {
+        isAlerted = true;
+        if (lookRoutine != null) 
+        {
+            StopCoroutine(lookRoutine);
+            lookRoutine = null;
+            nv.isStopped = true;
+            isLookingAround = false;
+        }
     }
 }

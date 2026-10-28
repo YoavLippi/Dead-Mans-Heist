@@ -5,14 +5,6 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 
 [Serializable]
-public enum EnemyMoveMode
-{
-    Patrolling,
-    Chasing,
-    Idle
-}
-
-[Serializable]
 public enum EnemyState
 {
     None,
@@ -38,16 +30,16 @@ public class EnemyAbs : MonoBehaviour
     [SerializeField] protected float suspicionDecreaseSpeed = 0.3f;
     [SerializeField] protected float currentSuspicion;
     [SerializeField] protected float maxSuspicion = 100f;
-    [SerializeField] protected EnemyMoveMode currentMoveMode;
     [SerializeField] protected EnemyState currentState;
     [SerializeField] protected DetectionUX detectUX;
     [SerializeField] protected Gradient gradient;
-    [SerializeField] protected float attention = 5f;
-    [SerializeField] protected float defaultAttention = 5f;
     [SerializeField] protected Collider catchCollider;
     [SerializeField] protected float chaseSpeed = 6;
     [SerializeField] protected float patrolSpeed = 3.5f;
     protected NavMeshAgent nv;
+    [SerializeField]protected bool isAlerted;
+    private bool gameOverTriggered;
+    public static event Action OnPlayerCaught;
 
     // Was a bare bool before; now derived from state so it can't drift
     // out of sync with CurrentState.
@@ -64,23 +56,10 @@ public class EnemyAbs : MonoBehaviour
         }
     }
 
-    public EnemyMoveMode CurrentMoveMode
-    {
-        get => currentMoveMode;
-        set
-        {
-            if (currentMoveMode == value) return;
-            EnemyMoveMode previous = currentMoveMode;
-            currentMoveMode = value;
-            catchCollider.enabled = value == EnemyMoveMode.Chasing;
-            HandleStateChange(previous, value);
-        }
-    }
-
     public EnemyState CurrentState
     {
         get => currentState;
-        set 
+        set
         {
             currentState = value;
         }
@@ -91,33 +70,15 @@ public class EnemyAbs : MonoBehaviour
     {
         attachedLos.OnSeePlayer += OnSeePlayer;
         CurrentSuspicion = 0;
-        attention = defaultAttention;
         nv = GetComponent<NavMeshAgent>();
     }
 
     public virtual void FixedUpdate()
     {
-        if (currentState != EnemyState.Distracted)
+        if (currentState != EnemyState.Distracted && !isAlerted && currentSuspicion > 0f)
         {
-            if (currentMoveMode != EnemyMoveMode.Chasing && currentSuspicion > 0f)
-            {
-                CurrentSuspicion = currentSuspicion - suspicionDecreaseSpeed;
-            }
+            CurrentSuspicion = currentSuspicion - suspicionDecreaseSpeed;
         }
-
-        if (currentSuspicion == 0f && attention == 0f && currentMoveMode != EnemyMoveMode.Patrolling)
-        {
-            isOnSchedule = true;
-            CurrentMoveMode = EnemyMoveMode.Patrolling;
-            nv.speed = patrolSpeed;
-            attention = defaultAttention;
-        }
-    }
-
- 
-    protected virtual void HandleStateChange(EnemyMoveMode previous, EnemyMoveMode next)
-    {
-      
     }
 
     protected virtual void CheckTime(int currentworld) { }
@@ -127,16 +88,14 @@ public class EnemyAbs : MonoBehaviour
 
     public virtual void GetDistracted(Vector3 distractionPos, DistractionHandler.DistractionSeverity sev) { }
 
-    private void OnSeePlayer()
+    protected virtual void OnSeePlayer()
     {
+        if (gameOverTriggered) return;
         CurrentSuspicion = currentSuspicion + detectionSpeed;
-        if (currentSuspicion >= maxSuspicion && currentMoveMode != EnemyMoveMode.Chasing)
+        if (currentSuspicion >= maxSuspicion)
         {
-            CurrentMoveMode = EnemyMoveMode.Chasing;
-           
-            nv.speed = chaseSpeed;
-            isOnSchedule = false;
-            attention = defaultAttention;
+            gameOverTriggered = true;
+            OnPlayerCaught?.Invoke();
         }
     }
 }
