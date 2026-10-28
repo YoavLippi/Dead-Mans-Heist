@@ -3,7 +3,27 @@ guid: dac91164cd19fe540965227f6ff6eff9
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Barrel01
+    second: {fileID: 2100000, guid: b3d350b42d0953d46bf52e42227e4a35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Barrel02
+    second: {fileID: 2100000, guid: 705173014f72e8945bcf8498c9479d99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Barrel03-05
+    second: {fileID: 2100000, guid: 7d58be7808e008540bc41b29ca8ebb63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kegs
+    second: {fileID: 2100000, guid: f17efb14fc5d1564b84049ade4273640, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
