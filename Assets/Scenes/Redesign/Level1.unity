@@ -20695,6 +20695,10 @@ PrefabInstance:
       propertyPath: spriteAnimator
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
+      propertyPath: moderateStepRadius
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6364085772223566543, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: hotbarParent
       value: 
