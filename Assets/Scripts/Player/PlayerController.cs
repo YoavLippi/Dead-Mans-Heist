@@ -30,8 +30,11 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private InteractionHandler interactionHandler;
 	[SerializeField] private ToolHandler toolHandler;
 	[SerializeField] private OTSCameraController otsCam;
+    [SerializeField] private float turnSpeed = 720f;
+    [SerializeField] private Transform modelPivot;
+	[SerializeField] private GameObject playerMesh;
 
-	[Header("Ghost")]
+    [Header("Ghost")]
 	[SerializeField] private GameObject ghostedPlayerPrefab;
 	[SerializeField] private float maxLeashDistance;
 	[SerializeField] private AnimationCurve leashResistanceCurve;
@@ -176,6 +179,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+		playerMesh.transform.position = modelPivot.position;
 		if (!charController.isGrounded)
 		{
 			charController.Move(Vector3.down * (Time.deltaTime * gravityScale));
@@ -213,8 +217,14 @@ public class PlayerController : MonoBehaviour
 			{
 				move = new Vector3(currentMoveDir.x, 0, currentMoveDir.y);
 			}
-			//float moveSpeed = 0f;
-			if (!isGhost)
+            move.y = 0;
+            if (move.sqrMagnitude > 0.0001f)
+            {
+                Quaternion look = Quaternion.LookRotation(move);
+                modelPivot.rotation = Quaternion.RotateTowards(modelPivot.rotation, look, turnSpeed * Time.deltaTime);
+            }
+            //float moveSpeed = 0f;
+            if (!isGhost)
 			{
 				switch (currentState)
 				{
@@ -345,12 +355,12 @@ public class PlayerController : MonoBehaviour
 		if (!isAcceptingInputs) return;
 		//if (!context.performed) return;
 		currentMoveDir = context.action.ReadValue<Vector2>();
-		spriteAnimator.SetFloat("MoveX", currentMoveDir.x);
-		spriteAnimator.SetFloat("MoveY", currentMoveDir.y);
 		if (currentMoveDir.magnitude != 0)
 		{
-			//running takes priority
-			if (isRunHeld)
+            spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
+            spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
+            //running takes priority
+            if (isRunHeld)
 			{
 				CurrentState = PlayerState.Running;
 			}
