@@ -36,9 +36,9 @@ public class ToolHandler : MonoBehaviour
             instancedToolsArr.Add(temp);
         }
         SelectedIndex = 0;
-        hotbarParent = GameObject.FindWithTag("Hotbar");
-        InitialiseSlots();
-        SetupVisualsAfterDelay(250);
+        //hotbarParent = GameObject.FindWithTag("Hotbar");
+        //InitialiseSlots();
+        //SetupVisualsAfterDelay(250);
     }
 
     private void InitialiseSlots()
@@ -122,7 +122,7 @@ public class ToolHandler : MonoBehaviour
         SelectedIndex++;
         SelectedIndex %= toolsArr.Count;
         UpdateInteractionHandler();
-        SetHotbarVisualPos();
+        //SetHotbarVisualPos();
         instancedToolsArr[selectedIndex].GetComponent<Tool>().IsSelected = true;
         //the open hand can always be used so this shouldn't be able to loop infinitely
         if (!instancedToolsArr[SelectedIndex].GetComponent<Tool>().CanBeUsed()) ScrollDown();
@@ -135,7 +135,7 @@ public class ToolHandler : MonoBehaviour
         SelectedIndex--;
         if (SelectedIndex < 0) SelectedIndex = toolsArr.Count - 1;
         UpdateInteractionHandler();
-        SetHotbarVisualPos();
+        //SetHotbarVisualPos();
         instancedToolsArr[selectedIndex].GetComponent<Tool>().IsSelected = true;
         if (!instancedToolsArr[selectedIndex].GetComponent<Tool>().CanBeUsed()) ScrollUp();
     }
@@ -150,7 +150,7 @@ public class ToolHandler : MonoBehaviour
     {
         Tool currentTool = selectedTool.GetComponent<Tool>();
         currentTool.Use();
-        hotbarParent.GetComponent<ToolbeltVisualHandler>().SetSlotCharge(currentTool.ToolID,currentTool.Charges);
-        if (!currentTool.CanBeUsed()) ScrollDown();
+        //hotbarParent.GetComponent<ToolbeltVisualHandler>().SetSlotCharge(currentTool.ToolID,currentTool.Charges);
+        //if (!currentTool.CanBeUsed()) ScrollDown();
     }
 }
