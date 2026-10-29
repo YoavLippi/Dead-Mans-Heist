@@ -9,15 +9,7 @@ public class WorldTime : MonoBehaviour
     [SerializeField] private float seconds = 1f;
    [SerializeField] private int currentSecond = 0;
     private float timer = 0f;
-    [SerializeField]private TextMeshProUGUI text;
 
-    
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         timer += Time.deltaTime;
@@ -25,18 +17,8 @@ public class WorldTime : MonoBehaviour
         if (timer >= seconds) 
         {
             timer -= seconds;
-            convertSeconds();
             currentSecond++;
             secondsChange?.Invoke(currentSecond);
         }
     }
-
-    private void convertSeconds() 
-    {
-        if (text != null) {
-        TimeSpan time = TimeSpan.FromSeconds(currentSecond);
-        text.text = time.ToString("mm':'ss");
-
-
-    } }
 }
