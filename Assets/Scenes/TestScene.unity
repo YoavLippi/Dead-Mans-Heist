@@ -36160,6 +36160,10 @@ PrefabInstance:
       propertyPath: ghostVisionPanel
       value: 
       objectReference: {fileID: 1368698296}
+    - target: {fileID: 2952140755002678774, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
+      propertyPath: m_RequiresDepthTextureOption
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3961663514527282812, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: m_Name
       value: Main Camera (1)
