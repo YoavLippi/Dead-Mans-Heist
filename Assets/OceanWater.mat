@@ -56,20 +56,20 @@ Material:
     m_Ints: []
     m_Floats:
     - _CellDensity: 4
-    - _CellHoleSize: 0.5
+    - _CellHoleSize: 0.72
     - _CrestThreshold: 0.5
     - _DepthDistance: 10
-    - _FoamFade: 4.57
-    - _FoamFadeaRange: 0.6
-    - _FoamScale: -3.2
-    - _HullFoamDistance: 0.4
+    - _FoamFade: 10.3
+    - _FoamFadeaRange: 0
+    - _FoamScale: -4.66
+    - _HullFoamDistance: -0.09
     - _NormalStrength: 0.31
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 7.19
-    - _WakeFoamWidth: 0.9
-    - _WakeLength: 2.08
-    - _WakeWidth: 15
+    - _WakeFoamWidth: 3.71
+    - _WakeLength: 8.7
+    - _WakeWidth: 18.79
     - _WaterClarity: 2.15
     - _WaveFrequency: 1.2
     - _WaveHeight: 0.15
@@ -86,7 +86,7 @@ Material:
     - _OceanStreamSpeed: {r: 1.05, g: 0, b: 0, a: 0}
     - _ShallowColor: {r: 0.20164466, g: 0.7196458, b: 0.8415094, a: 1}
     - _ShipForward: {r: -1.0000002, g: 0.000000019036053, b: -0.000000019036053, a: 0}
-    - _ShipPosition: {r: 12.52, g: 0.87119865, b: 3.57021, a: 0}
+    - _ShipPosition: {r: -52, g: 0.87119865, b: 3.57021, a: 0}
     - _ShipRight: {r: 0.000000019036053, g: -1.26, b: -1.0000001, a: 0}
     - _Stretch: {r: 0.4, g: 1.4, b: 0, a: 0}
   m_BuildTextureStacks: []
