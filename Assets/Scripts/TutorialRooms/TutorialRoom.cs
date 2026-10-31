@@ -15,12 +15,14 @@ public enum TutActions
 public struct TutorialStep
 {
     public TutActions action;
+    public Sprite image;
     [TextArea] public string prompt;
 }
 
 public class TutorialRoom : TutorialBase
 {
     [SerializeField] private List<TutorialStep> steps;
+    [SerializeField] private TutorialFade promptUI;
 
     private bool actionDone;
     private TutActions currentAction;
@@ -45,6 +47,11 @@ public class TutorialRoom : TutorialBase
             routine = null;
         }
     }
+    private void ShowStep(string text, Sprite sprite)
+    {
+        if (promptUI != null) promptUI.Show(text, sprite);
+        else Debug.LogError("TutorialRoom: promptUI isn't assigned.", this);
+    }
 
     private IEnumerator RunTutorial()
     {
@@ -53,10 +60,10 @@ public class TutorialRoom : TutorialBase
         {
             currentAction = step.action;
             actionDone = false;
-            ShowPrompt(step.prompt);
+            ShowStep(step.prompt, step.image);
             yield return new WaitUntil(() => actionDone);
         }
-        ShowPrompt("You may leave the room and talk to Davi Jones to continue");
+        ShowStep("tester complete", null);
         CompleteRoom();
     }
 
