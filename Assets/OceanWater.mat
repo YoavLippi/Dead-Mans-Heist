@@ -59,16 +59,16 @@ Material:
     - _CellHoleSize: 0.5
     - _CrestThreshold: 0.5
     - _DepthDistance: 3
-    - _FoamFade: 5
+    - _FoamFade: 4.57
     - _FoamFadeaRange: 0.6
-    - _FoamScale: 0.54
-    - _HullFoamDistance: 1.5
-    - _NormalStrength: -0.17
+    - _FoamScale: -3.2
+    - _HullFoamDistance: 0.21
+    - _NormalStrength: 0.31
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 7.19
     - _WakeFoamWidth: 0.9
-    - _WakeLength: 0.1
+    - _WakeLength: 2.08
     - _WakeWidth: 15
     - _WaveFrequency: 1.2
     - _WaveHeight: 0.15
@@ -79,7 +79,7 @@ Material:
     - _Cerulean: {r: 0.04054823, g: 0.22584602, b: 0.3207547, a: 1}
     - _DeepColor: {r: 0.044250555, g: 0.21650246, b: 0.42641503, a: 1}
     - _DeepNavy: {r: 0.0066001974, g: 0.02152492, b: 0.03396219, a: 1}
-    - _FoamColor: {r: 0.13191174, g: 0.34567901, b: 0.3660378, a: 1}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _LighAqua: {r: 0.30588236, g: 0.8901961, b: 0.8901961, a: 1}
     - _MoonLightSkyColour: {r: 0.20887859, g: 0.3654066, b: 0.4792453, a: 1}
     - _OceanStreamSpeed: {r: 1.05, g: 0, b: 0, a: 0}
