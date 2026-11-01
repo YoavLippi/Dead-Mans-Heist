@@ -45,7 +45,7 @@ Material:
     - _CellDensity: 3
     - _CellHoleSize: 0.09
     - _CrestThreshold: 0.75
-    - _DepthDistance: 3
+    - _DepthDistance: 5
     - _FoamFade: 10
     - _FoamFadeaRange: 40
     - _FoamScale: 0.8
@@ -57,6 +57,7 @@ Material:
     - _WakeFoamWidth: 0.85
     - _WakeLength: 0.8
     - _WakeWidth: 0.2
+    - _WaterClarity: 2.15
     - _WaveFrequency: 0.1
     - _WaveHeight: 0.4
     - _WaveSpeed: 1.5
