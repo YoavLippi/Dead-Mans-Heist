@@ -383,7 +383,6 @@ public class PlayerController : MonoBehaviour
 		//if (!context.performed) return;
 		if (CurrentState == PlayerState.Hiding)
 		{
-			CurrentState = PlayerState.Idle;
 			return;
 		}
 		currentMoveDir = context.action.ReadValue<Vector2>();
