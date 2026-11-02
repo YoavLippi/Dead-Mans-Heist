@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using NUnit.Framework;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -47,10 +48,34 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Color minorStepColor, moderateStepColor, severeStepColor;
 	[SerializeField] private bool showStepRadii;
 
+	[Header("Hide Timings")] 
+	[SerializeField] private float startHideAnimationTime;
+	[SerializeField] private float enterHideAnimationTime;
+	[SerializeField] private float exitHideAnimationTime;
+	private Vector3 exitPos;
+	private Vector3 currentHidePos;
+
 	[Header("Runtime")]
 	[SerializeField] private PlayerState currentState;
 	[SerializeField] private Vector2 currentMoveDir;
 	[SerializeField] private bool isRunHeld, isSneakHeld, isAcceptingInputs = true;
+
+	private bool IsAcceptingInputs
+	{
+		get => isAcceptingInputs;
+		set
+		{
+			isAcceptingInputs = value;
+			if (!value)
+			{
+				//clear all inputs
+				currentMoveDir = Vector2.zero;
+				CurrentState = PlayerState.Idle;
+				spriteAnimator.SetBool("IsMoving", false);
+			}
+		}
+	}
+
 	[SerializeField] private bool isGhost;
 	[SerializeField] private GameObject ghostedPlayerInstance;
 	[SerializeField] private Vector3 lastStepPos;
@@ -90,12 +115,14 @@ public class PlayerController : MonoBehaviour
 			if (value == PlayerState.Hiding)
 			{
 				if (currentMoveDir.magnitude != 0) return;
-				spriteAnimator.gameObject.SetActive(false);
+				isSneakHeld = false;
+				//spriteAnimator.gameObject.SetActive(false);
 			}
 
 			if (currentState == PlayerState.Hiding && value != PlayerState.Hiding)
 			{
-				spriteAnimator.gameObject.SetActive(true);
+				//spriteAnimator.gameObject.SetActive(true);
+				DoUnhide();
 			}
 			currentState = value;
 			
@@ -149,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
 	private IEnumerator ResetGhostPosInTime(float time)
 	{
-		isAcceptingInputs = false;
+		IsAcceptingInputs = false;
 		currentMoveDir = Vector2.zero;
 		float currentTime = 0f;
 		Vector3 startPos = transform.position;
@@ -162,7 +189,7 @@ public class PlayerController : MonoBehaviour
 			currentTime += Time.deltaTime;
 		} while (currentTime < time);
 
-		isAcceptingInputs = true;
+		IsAcceptingInputs = true;
 		Destroy(ghostedPlayerInstance);
 		onGhostReturned?.Invoke();
 	}
@@ -180,7 +207,7 @@ public class PlayerController : MonoBehaviour
 	void FixedUpdate()
 	{
 		playerMesh.transform.position = modelPivot.position;
-		if (!charController.isGrounded)
+		if (!charController.isGrounded && IsAcceptingInputs)
 		{
 			charController.Move(Vector3.down * (Time.deltaTime * gravityScale));
 		}
@@ -242,13 +269,13 @@ public class PlayerController : MonoBehaviour
 
 			charController.Move(move * (moveSpeed * Time.deltaTime));
 
-			//if (!isGhost && isAcceptingInputs && Vector3.Distance(lastStepPos, transform.position) > stepDistance)
+			//if (!isGhost && IsAcceptingInputs && Vector3.Distance(lastStepPos, transform.position) > stepDistance)
 			//{
 			//	//do a step sound
 			//	DoStep();
 			//	lastStepPos = transform.position;
 			//}
-			if (!isGhost && isAcceptingInputs)
+			if (!isGhost && IsAcceptingInputs)
 			{
 				float currentInterval = walkStepInterval;
 				if (currentState == PlayerState.Running) currentInterval = runStepInterval;
@@ -352,8 +379,13 @@ public class PlayerController : MonoBehaviour
 
 	public void OnMove(InputAction.CallbackContext context)
 	{
-		if (!isAcceptingInputs) return;
+		if (!IsAcceptingInputs) return;
 		//if (!context.performed) return;
+		if (CurrentState == PlayerState.Hiding)
+		{
+			CurrentState = PlayerState.Idle;
+			return;
+		}
 		currentMoveDir = context.action.ReadValue<Vector2>();
 		if (currentMoveDir.magnitude != 0)
 		{
@@ -392,9 +424,10 @@ public class PlayerController : MonoBehaviour
 
 	public void OnSneak(InputAction.CallbackContext context)
 	{
-		if (!isAcceptingInputs) return;
+		if (!IsAcceptingInputs) return;
 		//isSneakHeld = context.performed;
 		if (!context.performed) return;
+		if (CurrentState == PlayerState.Hiding) return;
 		isSneakHeld = !isSneakHeld;
 		if (isSneakHeld)
 		{
@@ -408,7 +441,7 @@ public class PlayerController : MonoBehaviour
 
 	public void OnSprint(InputAction.CallbackContext context)
 	{
-		if (!isAcceptingInputs) return;
+		if (!IsAcceptingInputs) return;
 		isRunHeld = context.performed;
 		//if (isRunHeld) CurrentState = PlayerState.Running;
 		if (isRunHeld)
@@ -424,7 +457,7 @@ public class PlayerController : MonoBehaviour
 
 	public void OnScroll(InputAction.CallbackContext context)
 	{
-		if (!isAcceptingInputs) return;
+		if (!IsAcceptingInputs) return;
 		if (!context.performed) return;
 		otsCam.HandleMouseScroll(context);
 		//if (IsGhost) return;
@@ -440,7 +473,7 @@ public class PlayerController : MonoBehaviour
 
 	public void OnInteract(InputAction.CallbackContext context)
 	{
-		if (!isAcceptingInputs) return;
+		if (!IsAcceptingInputs) return;
 		if (!context.performed) return;
 		//interactionHandler.DoInteract();
 		if (!IsGhost)
@@ -456,7 +489,7 @@ public class PlayerController : MonoBehaviour
 
 	public void OnGhost(InputAction.CallbackContext context)
 	{
-		if (!isAcceptingInputs) return;
+		if (!IsAcceptingInputs) return;
 		if (!context.performed) return;
 		IsGhost = !IsGhost;
 		if (IsGhost)
@@ -467,5 +500,64 @@ public class PlayerController : MonoBehaviour
 		{
 			toolHandler.UpdateInteractionHandler();
 		}
+	}
+
+	public void DoHide(Vector3 enterPos, Vector3 inExitPos, Vector3 hidePos)
+	{
+		IsAcceptingInputs = false;
+		StartCoroutine(HideRoutine(enterPos, hidePos));
+		exitPos = inExitPos;
+		currentHidePos = hidePos;
+	}
+
+	private IEnumerator HideRoutine(Vector3 enterPos, Vector3 hidePos)
+	{
+		CurrentState = PlayerState.Hiding;
+		Vector3 startPos = enterPos, endPos = hidePos;
+		Vector3 initialPos = transform.position;
+		float currentTime = 0;
+		
+		do
+		{
+			//beginning of animation
+			transform.position = Vector3.Lerp(initialPos, startPos, currentTime / startHideAnimationTime);
+			Physics.SyncTransforms();
+			yield return new WaitForEndOfFrame();
+			currentTime += Time.deltaTime;
+		} while (currentTime < startHideAnimationTime);
+
+		currentTime = 0;
+		do
+		{
+			//enter animation
+			//lerp the position
+			transform.position = Vector3.Lerp(startPos, endPos, currentTime / enterHideAnimationTime);
+			Physics.SyncTransforms();
+			yield return new WaitForEndOfFrame();
+			currentTime += Time.deltaTime;
+		} while (currentTime < enterHideAnimationTime);
+
+		IsAcceptingInputs = true;
+	}
+
+	private IEnumerator ExitHideRoutine()
+	{
+		float currentTime = 0;
+		do
+		{
+			transform.position = Vector3.Lerp(currentHidePos, exitPos, currentTime / enterHideAnimationTime);
+			Physics.SyncTransforms();
+			yield return new WaitForEndOfFrame();
+			currentTime += Time.deltaTime;
+		} while (currentTime < exitHideAnimationTime);
+		
+		IsAcceptingInputs = true;
+	}
+
+	public void DoUnhide()
+	{
+		if (!IsAcceptingInputs) return;
+		IsAcceptingInputs = false;
+		StartCoroutine(ExitHideRoutine());
 	}
 }

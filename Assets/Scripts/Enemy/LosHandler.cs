@@ -56,12 +56,12 @@ public class LosHandler : MonoBehaviour
         }
         //bitwise NOT to make it so we ignore those layers
         totalMask = ~totalMask;*/
-        rayPoints = new List<Vector3>();
+        //rayPoints = new List<Vector3>();
 
-        coneMesh = new Mesh();
-        coneMesh.name = "ViewCone";
-        coneMesh.MarkDynamic();
-        coneMeshFilter.mesh = coneMesh;
+        //coneMesh = new Mesh();
+        //coneMesh.name = "ViewCone";
+        //coneMesh.MarkDynamic();
+        //coneMeshFilter.mesh = coneMesh;
         //meshRenderer = GetComponent<MeshRenderer>();
         
         //StartLooking();
@@ -161,11 +161,11 @@ public class LosHandler : MonoBehaviour
                     finalPoint = eyePos.position + lookDir * rayDistance;
                 }
                 
-                /*#if UNITY_EDITOR
+                #if UNITY_EDITOR
                 Debug.DrawLine(eyePos.position, finalPoint, Color.red);
-                #endif*/
+                #endif
                 
-                rayPoints.Add(transform.InverseTransformPoint(finalPoint));
+                //rayPoints.Add(transform.InverseTransformPoint(finalPoint));
             }
 
             for (int i = 0; i < numRaysSeen; i++)
@@ -175,7 +175,7 @@ public class LosHandler : MonoBehaviour
 
             isSeeingPlayer = sawPlayer;
 
-            DrawShape(rayPoints);
+            //DrawShape(rayPoints);
             nextIntervalMilis = Random.Range(30, 76);
             yield return new WaitForSeconds(nextIntervalMilis / 1000);
         }
