@@ -11,7 +11,7 @@ public class LosHandler : MonoBehaviour
 {
     [SerializeField] private Transform eyePos;
     [SerializeField] private float rayDistance;
-    [Range(0,360)][SerializeField] private float fieldOfView;
+    [Range(0, 360)][SerializeField] private float fieldOfView;
     [SerializeField] private int rayNumber;
     [SerializeField] private LayerMask ignoreLayers;
     [SerializeField] private MeshFilter coneMeshFilter;
@@ -34,7 +34,7 @@ public class LosHandler : MonoBehaviour
 
     //RUNTIME VARS
     //private LayerMask totalMask;
-    private List<Vector3> rayPoints;
+    //private List<Vector3> rayPoints;
     private Mesh coneMesh;
     //staggering checks so that not all raycasters update at once
     private float nextIntervalMilis;
@@ -63,15 +63,15 @@ public class LosHandler : MonoBehaviour
         //coneMesh.MarkDynamic();
         //coneMeshFilter.mesh = coneMesh;
         //meshRenderer = GetComponent<MeshRenderer>();
-        
+
         //StartLooking();
     }
-    
+
     public void LerpSightColor(float lerpPercentage, Color startColor, Color endColor)
     {
         coneMeshRenderer.material.color = Color.Lerp(startColor, endColor, lerpPercentage);
     }
-    public void SetSightColour(Color color) 
+    public void SetSightColour(Color color)
     {
         coneMeshRenderer.material.color = color;
     }
@@ -122,10 +122,10 @@ public class LosHandler : MonoBehaviour
     {
         while (isLooking)
         {
-            rayPoints.Clear();
+            //rayPoints.Clear();
             float angleChange = fieldOfView / rayNumber;
             float offsetFOV = -fieldOfView / 2f;
-            rayPoints.Add(transform.InverseTransformPoint(eyePos.position));
+            //rayPoints.Add(transform.InverseTransformPoint(eyePos.position));
 
             int numRaysSeen = 0;
             bool sawPlayer = false;
@@ -134,14 +134,14 @@ public class LosHandler : MonoBehaviour
                 //we need to adjust the angle for each new ray
                 float currentAngle = offsetFOV + angleChange * i;
                 //Vector3 lookDir = Quaternion.AngleAxis(currentAngle, Vector3.up) * transform.forward;
-                
+
                 //Optimisation from online, instead of the Quaternion approach from before
                 float radians = currentAngle * Mathf.Deg2Rad;
                 Vector3 lookDir = transform.forward * Mathf.Cos(radians) + transform.right * Mathf.Sin(radians);
-            
+
                 //Debug.DrawLine(eyePos.position, eyePos.position+(rayDistance*lookDir), Color.red);
                 Vector3 finalPoint;
-                
+
                 RaycastHit hitInfo;
                 if (Physics.Raycast(eyePos.position, lookDir, out hitInfo, rayDistance, ~ignoreLayers))
                 {
@@ -160,11 +160,11 @@ public class LosHandler : MonoBehaviour
                 {
                     finalPoint = eyePos.position + lookDir * rayDistance;
                 }
-                
-                #if UNITY_EDITOR
+
+#if UNITY_EDITOR
                 Debug.DrawLine(eyePos.position, finalPoint, Color.red);
-                #endif
-                
+#endif
+
                 //rayPoints.Add(transform.InverseTransformPoint(finalPoint));
             }
 
@@ -200,7 +200,7 @@ public class LosHandler : MonoBehaviour
                 triCount++;
             }
         }
-        
+
         //Removing this because it's very expensive to recreate each time
         //we need just the verts and tris for now
         /*Mesh cone = new Mesh()
