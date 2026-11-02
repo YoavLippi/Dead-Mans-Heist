@@ -12,6 +12,7 @@ TagManager:
   - Hotbar
   - HotbarSelector
   - OTSCam
+  - TutorialEnemy
   layers:
   - Default
   - TransparentFX
