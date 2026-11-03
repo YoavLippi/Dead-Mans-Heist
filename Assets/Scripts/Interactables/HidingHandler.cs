@@ -9,6 +9,9 @@ public class HidingHandler : Interactable
     [SerializeField] private Color sphereColour;
     [SerializeField] private Color wireColour;
     [SerializeField] private float hideRadius;
+    [SerializeField] private Transform enterPos;
+    [SerializeField] private Transform exitPos;
+    [SerializeField] private Transform hidePos;
     
     private void OnDrawGizmos()
     {
@@ -44,8 +47,15 @@ public class HidingHandler : Interactable
             {
                 if (controller.CurrentState != PlayerController.PlayerState.Hiding)
                 {
-                    controller.CurrentState = PlayerController.PlayerState.Hiding;
+                    //controller.CurrentState = PlayerController.PlayerState.Hiding;
+                    controller.DoHide(enterPos.position,exitPos.position,hidePos.position);
                 }
+                else
+                {
+                    controller.DoUnhide();
+                }
+
+                return;
             }
         }
     }

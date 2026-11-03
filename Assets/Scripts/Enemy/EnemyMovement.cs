@@ -58,66 +58,7 @@ public class EnemyMovement : EnemyAbs
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        /*if (CameraController.Instance.ActiveCam is CinemachineCamera cam)
-        {
-            Vector3 camForward = cam.transform.forward;
-            Vector3 camRight = cam.transform.right;
-
-            camForward.y = 0;
-            camRight.y = 0;
-            camForward.Normalize();
-            camRight.Normalize();
-
-            move = (currentMoveDir.x * camRight) + (currentMoveDir.y * camForward);
-        }
-        else
-        {
-            move = new Vector3(currentMoveDir.x, 0, currentMoveDir.y);
-        }*/
-
-        if (CameraController.Instance.ActiveCam is CinemachineCamera cam)
-        {
-            Vector3 facingDir = transform.forward;
-            Vector3 localRotation = cam.transform.InverseTransformDirection(facingDir);
-
-            localRotation.y = 0;
-            localRotation.Normalize();
-
-            float angle = Mathf.Atan2(localRotation.x, localRotation.z);
-
-            if (angle < 0) angle += 2 * Mathf.PI;
-
-            facingY = Mathf.Cos(angle);
-            facingX = Mathf.Sin(angle);
-
-            /*facingX = 0;
-            facingY = 0;
-            switch (Mathf.RoundToInt(angle / 90f) % 4)
-            {
-                case 0:
-                    //Debug.Log("Up");
-                    facingY = 1;
-                    break;
-                case 1:
-                    //Debug.Log("Right");
-                    facingX = 1;
-                    break;
-                case 2:
-                    //Debug.Log("Down");
-                    facingY = -1;
-                    break;
-                case 3:
-                    //Debug.Log("Left");
-                    facingX = -1;
-                    break;
-            }*/
-
-            anim.SetFloat("FacingX", facingX);
-            anim.SetFloat("FacingY", facingY);
-            //facingDir *= camAngle;
-        }
-
-        //Debug.Log(facingDir.eulerAngles);  
+        anim.SetFloat("Speed", nv.velocity.magnitude, 0.1f, Time.deltaTime);
         if (isAlerted)
         {
             Vector3 dir = target.transform.position - transform.position;

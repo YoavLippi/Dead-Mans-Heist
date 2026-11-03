@@ -218,8 +218,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1015453625227649886}
+  m_Children: []
   m_Father: {fileID: 995684328670280297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5532116475864519912
@@ -355,6 +354,7 @@ Transform:
   - {fileID: 6780964571229506902}
   - {fileID: 6811278106560678331}
   - {fileID: 8895198672926707631}
+  - {fileID: 1015453625227649886}
   - {fileID: 8517699994271483922}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -587,7 +587,6 @@ MonoBehaviour:
   suspicionDecreaseSpeed: 0.3
   currentSuspicion: 0
   maxSuspicion: 100
-  currentMoveMode: 0
   currentState: 0
   detectUX: {fileID: 5524011204958812131}
   gradient:
@@ -620,12 +619,10 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  attention: 5
-  defaultAttention: 5
   catchCollider: {fileID: 2806202779318767415}
   chaseSpeed: 5
   patrolSpeed: 3.5
-  nav: {fileID: 249264150730694979}
+  isAlerted: 0
   index: 0
   target: {fileID: 0}
   isLookingAround: 0
@@ -666,7 +663,6 @@ MonoBehaviour:
   turnAngle: 60
   turnSpeed: 90
   lookAroundWaitTime: 1.5
-  suspicionThresholdToLookAround: 45
   currentDistractionSeverity: 3
   severeDistractionDuration: 5
   severeDistractionSuspicion: 75
@@ -679,6 +675,7 @@ MonoBehaviour:
   facingX: 0
   facingY: 0
   anim: {fileID: 1238809938624904967}
+  alertTurnSpeed: 300
 --- !u!195 &249264150730694979
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -740,11 +737,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8517699994271483922}
+    m_TransformParent: {fileID: 995684328670280297}
     m_Modifications:
     - target: {fileID: 1275072742263849882, guid: ad37674ece9c41c47b5c00defaf6aba6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.01
+      value: 0.010000001
       objectReference: {fileID: 0}
     - target: {fileID: 1275072742263849882, guid: ad37674ece9c41c47b5c00defaf6aba6, type: 3}
       propertyPath: m_LocalScale.y
@@ -752,7 +749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275072742263849882, guid: ad37674ece9c41c47b5c00defaf6aba6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.01
+      value: 0.010000001
       objectReference: {fileID: 0}
     - target: {fileID: 1275072742263849882, guid: ad37674ece9c41c47b5c00defaf6aba6, type: 3}
       propertyPath: m_LocalPosition.x

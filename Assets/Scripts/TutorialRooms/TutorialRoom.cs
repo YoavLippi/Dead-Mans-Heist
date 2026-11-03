@@ -2,44 +2,42 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum TutActions
 {
     Walk,
     Sneak,
-    Sprint,
-    GhostOn,
-    GhostReturned,
     Hide,
     Unhide,
-    UseTool
+    SneakToZone
 }
 
 [Serializable]
 public struct TutorialStep
 {
     public TutActions action;
-    public string toolID;
+    public Sprite image;
+    public SneakZone zone;
     [TextArea] public string prompt;
+    public UnityEvent onStepStart; 
+    public UnityEvent onStepComplete;
 }
 
 public class TutorialRoom : TutorialBase
 {
     [SerializeField] private List<TutorialStep> steps;
+    [SerializeField] private TutorialFade promptUI;
 
     private bool actionDone;
     private TutActions currentAction;
     private Coroutine routine;
-
-    private string currentToolID;
+    private SneakZone activeZone;
 
 
     protected override void OnRoomStarted()
     {
         playerController.onStateChange += HandleStateChanged;
-        playerController.onGhostChange += HandleGhostChanged;
-        playerController.onGhostReturned += HandleGhostReturned;
-        Tool.OnToolUsed += HandleToolUsed;
         routine = StartCoroutine(RunTutorial());
     }
 
@@ -48,15 +46,18 @@ public class TutorialRoom : TutorialBase
         if (playerController != null)
         {
             playerController.onStateChange -= HandleStateChanged;
-            playerController.onGhostChange -= HandleGhostChanged;
-            playerController.onGhostReturned -= HandleGhostReturned;
-            Tool.OnToolUsed -= HandleToolUsed;
         }
+        UnhookZone();
         if (routine != null)
         {
             StopCoroutine(routine);
             routine = null;
         }
+    }
+    private void ShowStep(string text, Sprite sprite)
+    {
+        if (promptUI != null) promptUI.Show(text, sprite);
+        else Debug.LogError("TutorialRoom: promptUI isn't assigned.", this);
     }
 
     private IEnumerator RunTutorial()
@@ -65,12 +66,25 @@ public class TutorialRoom : TutorialBase
         foreach (var step in steps)
         {
             currentAction = step.action;
-            currentToolID = step.toolID;
             actionDone = false;
-            ShowPrompt(step.prompt);
+
+            if (step.action == TutActions.SneakToZone)
+            {
+                if (step.zone == null)
+                {
+                    Debug.LogError("TutorialRoom: SneakToZone step has no zone assigned.", this);
+                    continue;
+                }
+                activeZone = step.zone;
+                activeZone.PlayerSneakedIn += HandleZoneReached;
+            }
+            step.onStepStart?.Invoke();
+            ShowStep(step.prompt, step.image);
             yield return new WaitUntil(() => actionDone);
+            step.onStepComplete?.Invoke();
+            UnhookZone() ;
         }
-        ShowPrompt("You may leave the room and talk to Davi Jones to continue");
+        ShowStep("tester complete", null);
         CompleteRoom();
     }
 
@@ -80,7 +94,6 @@ public class TutorialRoom : TutorialBase
         {
             TutActions.Walk => state == PlayerController.PlayerState.Walking,
             TutActions.Sneak => state == PlayerController.PlayerState.Sneaking,
-            TutActions.Sprint => state == PlayerController.PlayerState.Running,
             TutActions.Hide => state == PlayerController.PlayerState.Hiding,
             TutActions.Unhide => state != PlayerController.PlayerState.Hiding,
             _ => false
@@ -88,23 +101,12 @@ public class TutorialRoom : TutorialBase
 
         if (matched) actionDone = true;
     }
+    private void HandleZoneReached() => actionDone = true;
 
-    private void HandleGhostChanged(bool ghosted)
+    private void UnhookZone()
     {
-        if (currentAction == TutActions.GhostOn && ghosted)
-            actionDone = true;
+        if (activeZone == null) return;
+        activeZone.PlayerSneakedIn -= HandleZoneReached;
+        activeZone = null;
     }
-
-    private void HandleGhostReturned()
-    {
-        if (currentAction == TutActions.GhostReturned)
-            actionDone = true;
-    }
-    private void HandleToolUsed(Tool tool)
-    {
-        if (currentAction == TutActions.UseTool && currentToolID == tool.ToolID) 
-        {
-            actionDone = true;
-        }
-    }
-    }
+}
