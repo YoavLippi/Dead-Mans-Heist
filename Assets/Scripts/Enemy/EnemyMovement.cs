@@ -258,11 +258,12 @@ public class EnemyMovement : EnemyAbs
     protected void EnterAlert() 
     {
         isAlerted = true;
+        nv.isStopped = true;
         if (lookRoutine != null) 
         {
             StopCoroutine(lookRoutine);
             lookRoutine = null;
-            nv.isStopped = true;
+            
             isLookingAround = false;
         }
     }

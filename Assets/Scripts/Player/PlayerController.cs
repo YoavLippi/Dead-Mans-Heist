@@ -60,7 +60,19 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Vector2 currentMoveDir;
 	[SerializeField] private bool isRunHeld, isSneakHeld, isAcceptingInputs = true;
 
-	private bool IsAcceptingInputs
+    [Header("Crouch")]
+    [SerializeField] private float crouchHeight = 1f;
+    [SerializeField] private float heightChangeSpeed = 8f;
+	[SerializeField] private CapsuleCollider capsule;
+    [SerializeField] private CapsuleCollider catchCollider;
+    [SerializeField] private float standHeight;
+    private Vector3 standCenter;
+    private float capStandHeight;
+    private Vector3 capStandCenter;
+    private float targetHeight;
+
+
+    private bool IsAcceptingInputs
 	{
 		get => isAcceptingInputs;
 		set
@@ -125,9 +137,10 @@ public class PlayerController : MonoBehaviour
 				DoUnhide();
 			}
 			currentState = value;
-			
-			//we can add listeners here for animation triggers etc
-			SetAnimationFlag(value);
+            targetHeight = (value == PlayerState.Sneaking) ? crouchHeight : standHeight;
+
+            //we can add listeners here for animation triggers etc
+            SetAnimationFlag(value);
 			onStateChange?.Invoke(value);
 		}
 	}
@@ -148,15 +161,48 @@ public class PlayerController : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-		charController = GetComponentInChildren<CharacterController>();
+        charController = GetComponentInChildren<CharacterController>();
 		spriteAnimator = GetComponentInChildren<Animator>();
 		interactionHandler = GetComponentInChildren<InteractionHandler>();
 		lastStepPos = transform.position;
 		toolHandler.UpdateInteractionHandler();
 		otsCam = GameObject.FindGameObjectWithTag("OTSCam").GetComponent<OTSCameraController>();
-	}
+        standHeight = charController.height;
+        standCenter = charController.center;
+        targetHeight = standHeight;
+        if (capsule)
+        {
+            capStandHeight = capsule.height;
+            capStandCenter = capsule.center;
+        }
+    }
+    private void ApplyHeight(float h)
+    {
+        float shrink = standHeight - h;
 
-	private void SetGhost(bool setGhost)
+        charController.height = h;
+        charController.center = new Vector3(
+            standCenter.x,
+            standCenter.y - shrink / 2f,
+            standCenter.z);
+
+        if (capsule)
+        {
+            float capH = capStandHeight - shrink;
+            capsule.height = capH;
+			catchCollider.height = capH;
+            capsule.center = new Vector3(
+                capStandCenter.x,
+                capStandCenter.y - shrink / 2f,
+                capStandCenter.z);
+            catchCollider.center = new Vector3(
+               capStandCenter.x,
+               capStandCenter.y - shrink / 2f,
+               capStandCenter.z);
+        }
+    }
+
+    private void SetGhost(bool setGhost)
 	{
 		if (setGhost)
 		{
@@ -223,8 +269,14 @@ public class PlayerController : MonoBehaviour
 
 			charController.Move(toPlayerShell.normalized * resistance);
 		}
+        if (!Mathf.Approximately(charController.height, targetHeight))
+        {
+            float newHeight = Mathf.MoveTowards(charController.height, targetHeight,
+                                                heightChangeSpeed * Time.deltaTime);
+            ApplyHeight(newHeight);
+        }
 
-		if (currentMoveDir.magnitude > 0.01f)
+        if (currentMoveDir.magnitude > 0.01f)
 		{
 			Vector3 move;
 			//Adjusting move to work based on direction of camera
