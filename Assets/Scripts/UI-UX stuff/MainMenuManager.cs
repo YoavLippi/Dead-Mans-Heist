@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-	[SerializeField] private string firstLevelSceneName = "Level 1";
+	[SerializeField] private int firstLevelScene = 1;
 
 	void Start()
 	{
@@ -20,8 +20,8 @@ public class MainMenuManager : MonoBehaviour
 		//	AudioManager.Instance.PlayMusic(AudioManager.Instance.oceanAmbience, 0.6f);
 		//}
 
-		Debug.Log($"[MAIN MENU] Loading scene: {firstLevelSceneName}");
-		SceneManager.LoadScene(firstLevelSceneName);
+		Debug.Log($"[MAIN MENU] Loading scene: {firstLevelScene}");
+		SceneManager.LoadScene(firstLevelScene);
 	}
 
 	public void ExitGame()
