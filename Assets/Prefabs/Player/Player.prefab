@@ -306,6 +306,11 @@ MonoBehaviour:
   timeSinceClean: 0
   refreshPeriod: 0.33333334
   currentInteractionType: 0
+  reachDistance: 13
+  highlightedInteractable: {fileID: 0}
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 2816
 --- !u!1 &6531576289731663119
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,9 +529,9 @@ MonoBehaviour:
   moderateStepColor: {r: 0.95939255, g: 1, b: 0, a: 1}
   severeStepColor: {r: 1, g: 0.18017924, b: 0, a: 1}
   showStepRadii: 0
-  startHideAnimationTime: 0
-  enterHideAnimationTime: 0
-  exitHideAnimationTime: 0
+  startHideAnimationTime: 0.5
+  enterHideAnimationTime: 0.5
+  exitHideAnimationTime: 0.5
   currentState: 2
   currentMoveDir: {x: 0, y: 0}
   isRunHeld: 0
