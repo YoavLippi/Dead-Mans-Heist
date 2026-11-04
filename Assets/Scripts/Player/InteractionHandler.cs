@@ -167,7 +167,7 @@ public class InteractionHandler : MonoBehaviour
 	private void SetClosest(Interactable target)
 	{
 		closestInteractable = target;
-		closestInteractable.SetOutlineWidth(5f);
+		closestInteractable.SetOutlineWidth(0.03f);
 
 		if (HUDManager.Instance != null)
 		{

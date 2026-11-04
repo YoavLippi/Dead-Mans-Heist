@@ -22,17 +22,22 @@ public struct TutorialStep
     [TextArea] public string prompt;
     public UnityEvent onStepStart; 
     public UnityEvent onStepComplete;
+
+    public AudioClip startAudio;
+    public AudioClip endAudio;
 }
 
 public class TutorialRoom : TutorialBase
 {
     [SerializeField] private List<TutorialStep> steps;
     [SerializeField] private TutorialFade promptUI;
+    [SerializeField] protected PlayAudio tutaudio;
 
     private bool actionDone;
     private TutActions currentAction;
     private Coroutine routine;
     private SneakZone activeZone;
+
 
 
     protected override void OnRoomStarted()
@@ -79,9 +84,13 @@ public class TutorialRoom : TutorialBase
                 activeZone.PlayerSneakedIn += HandleZoneReached;
             }
             step.onStepStart?.Invoke();
+            if (tutaudio != null) tutaudio.play(step.startAudio);
+            else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
             ShowStep(step.prompt, step.image);
             yield return new WaitUntil(() => actionDone);
             step.onStepComplete?.Invoke();
+            if (tutaudio != null) tutaudio.play(step.endAudio);
+            else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
             UnhookZone() ;
         }
         ShowStep("tester complete", null);
