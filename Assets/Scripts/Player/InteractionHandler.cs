@@ -177,22 +177,25 @@ public class InteractionHandler : MonoBehaviour
 			camDir = cam.transform.forward;
 		}
 
-		if (Physics.Raycast(camPos, camDir, out var hit, reachDistance, hitLayers))
-		{
-			//we've hit an interactable
-			//just to plug into what's here already
-			if (hit.transform.TryGetComponent(out Interactable i))
-			{
-				closestInteractable = i;
-			}
-		}
-		else
-		{
-			closestInteractable = null;
-		}
-		
-		#if UNITY_EDITOR
-		Debug.DrawLine(camPos, camPos + camDir * reachDistance, Color.green);
+        Interactable found = null;
+        if (Physics.Raycast(camPos, camDir, out var hit, reachDistance, hitLayers))
+        {
+            Interactable candidate = hit.transform.GetComponentInParent<Interactable>();
+
+            if (candidate != null && candidate.HasConditionalEventOfType(currentInteractionType))
+            {
+                found = candidate;
+            }
+        }
+
+        if (found != closestInteractable)
+        {
+            if (closestInteractable != null) ClearClosest();
+            if (found != null) SetClosest(found);
+        }
+
+#if UNITY_EDITOR
+        Debug.DrawLine(camPos, camPos + camDir * reachDistance, Color.green);
 		#endif
 	}
 

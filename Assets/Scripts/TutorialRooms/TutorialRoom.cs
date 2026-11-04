@@ -84,12 +84,12 @@ public class TutorialRoom : TutorialBase
                 activeZone.PlayerSneakedIn += HandleZoneReached;
             }
             step.onStepStart?.Invoke();
-            if (tutaudio != null) tutaudio.play(step.startAudio);
+            if (tutaudio != null) tutaudio.Play(step.startAudio);
             else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
             ShowStep(step.prompt, step.image);
             yield return new WaitUntil(() => actionDone);
             step.onStepComplete?.Invoke();
-            if (tutaudio != null) tutaudio.play(step.endAudio);
+            if (tutaudio != null) tutaudio.Play(step.endAudio);
             else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
             UnhookZone() ;
         }
