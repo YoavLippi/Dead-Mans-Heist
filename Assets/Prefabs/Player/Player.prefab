@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OTSCamTarget
   playerObj: {fileID: 0}
-  playerOffset: {x: 2.89, y: 3.68}
+  playerOffset: {x: 1.5, y: 2.5}
   hitLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -532,6 +532,11 @@ MonoBehaviour:
   isRunHeld: 0
   isSneakHeld: 0
   isAcceptingInputs: 1
+  crouchHeight: 1
+  heightChangeSpeed: 8
+  capsule: {fileID: 0}
+  catchCollider: {fileID: 0}
+  standHeight: 0
   isGhost: 0
   ghostedPlayerInstance: {fileID: 0}
   lastStepPos: {x: 0, y: 0, z: 0}
