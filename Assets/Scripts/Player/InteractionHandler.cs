@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Cinemachine;
@@ -7,34 +8,39 @@ using UnityEngine.Serialization;
 
 public class InteractionHandler : MonoBehaviour
 {
-	[SerializeField] private List<Interactable> interactablesInRange;
+	/*[SerializeField] private List<Interactable> interactablesInRange;
 	//this will tell the list when it needs to check again for a new closest interactible
 	[SerializeField] private bool isListDirty = false;
 	[SerializeField] private Vector3 lastPos;
 	[SerializeField] private float movementMax;
-	[SerializeField] private Interactable closestInteractable;
 	[SerializeField] private float closestDist;
 	[SerializeField] private float timeSinceClean;
-	[SerializeField] private float refreshPeriod;
+	[SerializeField] private float refreshPeriod;*/
+	[SerializeField] private Interactable closestInteractable;
 	[SerializeField] private ConditionInteraction currentInteractionType = ConditionInteraction.Interact;
 
 	[SerializeField] private float reachDistance = 13f;
 	[SerializeField] private Interactable highlightedInteractable;
 	[SerializeField] private LayerMask hitLayers;
+	[SerializeField] private Vector3 cursorHitPoint;
+
+	[Header("Holding")] 
+	[SerializeField] private Interactable currentlyHeldObj;
 	public ConditionInteraction CurrentInteractionType
 	{
 		get => currentInteractionType;
 		set
 		{
 			currentInteractionType = value;
-			ResetRange();
+			//ResetRange();
 		}
 	}
 
 	private void Awake()
 	{
-		interactablesInRange = new List<Interactable>();
-		timeSinceClean = 0;
+		Cursor.lockState = CursorLockMode.Locked;
+		//interactablesInRange = new List<Interactable>();
+		//timeSinceClean = 0;
 	}
 
 	/*public void DoInteract()
@@ -50,6 +56,9 @@ public class InteractionHandler : MonoBehaviour
 		if (closestInteractable != null)
 		{
 			closestInteractable.TriggerConditionalEvent(interaction, eID);
+		} else if (currentlyHeldObj != null)
+		{
+			currentlyHeldObj.TriggerConditionalEvent(interaction, eID);
 		}
 	}
 
@@ -58,6 +67,9 @@ public class InteractionHandler : MonoBehaviour
 		if (closestInteractable != null)
 		{
 			closestInteractable.TriggerConditionalEvent(CurrentInteractionType);
+		} else if (currentlyHeldObj != null)
+		{
+			currentlyHeldObj.TriggerConditionalEvent(currentInteractionType);
 		}
 	}
 
@@ -69,11 +81,11 @@ public class InteractionHandler : MonoBehaviour
 
 	private void ResetRange()
 	{
-		foreach (var col in Physics.OverlapSphere(transform.position, GetComponent<SphereCollider>().radius))
+		/*foreach (var col in Physics.OverlapSphere(transform.position, GetComponent<SphereCollider>().radius))
 		{
-			//OnTriggerExit(col);
-			//OnTriggerEnter(col);
-		}
+			OnTriggerExit(col);
+			OnTriggerEnter(col);
+		}*/
 	}
 
 	/*private void OnTriggerEnter(Collider other)
@@ -186,6 +198,11 @@ public class InteractionHandler : MonoBehaviour
             {
                 found = candidate;
             }
+            cursorHitPoint = hit.point;
+        }
+        else
+        {
+	        cursorHitPoint = camPos + camDir * reachDistance;
         }
 
         if (found != closestInteractable)
@@ -197,6 +214,29 @@ public class InteractionHandler : MonoBehaviour
 #if UNITY_EDITOR
         Debug.DrawLine(camPos, camPos + camDir * reachDistance, Color.green);
 		#endif
+	}
+
+	public void StartPlacementRoutine(Movable objToPlace)
+	{
+		StartCoroutine(PlacementRoutine(objToPlace));
+		currentlyHeldObj = objToPlace;
+	}
+
+	private IEnumerator PlacementRoutine(Movable objToPlace)
+	{
+		while (objToPlace.isInMovingState)
+		{
+			yield return new WaitForEndOfFrame();
+			objToPlace.transform.position = cursorHitPoint;
+			//push it into the ground
+			LayerMask ignorePushLayers = LayerMask.GetMask("Triggers", "Ignore Raycast");
+			if (Physics.Raycast(cursorHitPoint, Vector3.down, out var hit, 100f, ~ignorePushLayers))
+			{
+				objToPlace.transform.position = hit.point;
+			}
+		}
+		yield return new WaitForEndOfFrame();
+		currentlyHeldObj = null;
 	}
 
 	private void SetClosest(Interactable target)
