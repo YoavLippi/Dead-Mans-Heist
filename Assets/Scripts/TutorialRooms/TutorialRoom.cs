@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum TutActions
 {
@@ -9,6 +10,7 @@ public enum TutActions
     Sneak,
     Hide,
     Unhide,
+    SneakToZone
 }
 
 [Serializable]
@@ -16,7 +18,10 @@ public struct TutorialStep
 {
     public TutActions action;
     public Sprite image;
+    public SneakZone zone;
     [TextArea] public string prompt;
+    public UnityEvent onStepStart; 
+    public UnityEvent onStepComplete;
 }
 
 public class TutorialRoom : TutorialBase
@@ -27,6 +32,7 @@ public class TutorialRoom : TutorialBase
     private bool actionDone;
     private TutActions currentAction;
     private Coroutine routine;
+    private SneakZone activeZone;
 
 
     protected override void OnRoomStarted()
@@ -41,6 +47,7 @@ public class TutorialRoom : TutorialBase
         {
             playerController.onStateChange -= HandleStateChanged;
         }
+        UnhookZone();
         if (routine != null)
         {
             StopCoroutine(routine);
@@ -60,8 +67,22 @@ public class TutorialRoom : TutorialBase
         {
             currentAction = step.action;
             actionDone = false;
+
+            if (step.action == TutActions.SneakToZone)
+            {
+                if (step.zone == null)
+                {
+                    Debug.LogError("TutorialRoom: SneakToZone step has no zone assigned.", this);
+                    continue;
+                }
+                activeZone = step.zone;
+                activeZone.PlayerSneakedIn += HandleZoneReached;
+            }
+            step.onStepStart?.Invoke();
             ShowStep(step.prompt, step.image);
             yield return new WaitUntil(() => actionDone);
+            step.onStepComplete?.Invoke();
+            UnhookZone() ;
         }
         ShowStep("tester complete", null);
         CompleteRoom();
@@ -80,4 +101,12 @@ public class TutorialRoom : TutorialBase
 
         if (matched) actionDone = true;
     }
+    private void HandleZoneReached() => actionDone = true;
+
+    private void UnhookZone()
+    {
+        if (activeZone == null) return;
+        activeZone.PlayerSneakedIn -= HandleZoneReached;
+        activeZone = null;
     }
+}

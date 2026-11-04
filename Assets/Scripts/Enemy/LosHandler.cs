@@ -18,6 +18,7 @@ public class LosHandler : MonoBehaviour
     [SerializeField] private bool isLooking;
     [SerializeField] private MeshRenderer coneMeshRenderer;
     [SerializeField] private bool isSeeingPlayer;
+    [SerializeField] private PlayerController player;
 
     public delegate void SeePlayer();
 
@@ -49,6 +50,7 @@ public class LosHandler : MonoBehaviour
 
     private void Start()
     {
+       
         /*totalMask = 0;
         foreach (var mask in ignoreLayers)
         {
@@ -64,7 +66,7 @@ public class LosHandler : MonoBehaviour
         //coneMeshFilter.mesh = coneMesh;
         //meshRenderer = GetComponent<MeshRenderer>();
 
-        //StartLooking();
+        StartLooking();
     }
 
     public void LerpSightColor(float lerpPercentage, Color startColor, Color endColor)
@@ -149,9 +151,13 @@ public class LosHandler : MonoBehaviour
                     finalPoint = hitInfo.point;
                     if (hitInfo.collider.CompareTag("Player"))
                     {
-                        numRaysSeen++;
-                        if (!sawPlayer)
+                        if (player == null) 
+                            player = hitInfo.collider.GetComponentInParent<PlayerController>();
+                        bool hidden = player != null && player.CurrentState == PlayerController.PlayerState.Hiding;
+
+                        if (!hidden)
                         {
+                            numRaysSeen++;
                             sawPlayer = true;
                         }
                     }
