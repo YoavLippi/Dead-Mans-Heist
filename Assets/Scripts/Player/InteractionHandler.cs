@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,6 +18,9 @@ public class InteractionHandler : MonoBehaviour
 	[SerializeField] private float refreshPeriod;
 	[SerializeField] private ConditionInteraction currentInteractionType = ConditionInteraction.Interact;
 
+	[SerializeField] private float reachDistance = 13f;
+	[SerializeField] private Interactable highlightedInteractable;
+	[SerializeField] private LayerMask hitLayers;
 	public ConditionInteraction CurrentInteractionType
 	{
 		get => currentInteractionType;
@@ -67,12 +71,12 @@ public class InteractionHandler : MonoBehaviour
 	{
 		foreach (var col in Physics.OverlapSphere(transform.position, GetComponent<SphereCollider>().radius))
 		{
-			OnTriggerExit(col);
-			OnTriggerEnter(col);
+			//OnTriggerExit(col);
+			//OnTriggerEnter(col);
 		}
 	}
 
-	private void OnTriggerEnter(Collider other)
+	/*private void OnTriggerEnter(Collider other)
 	{
 		Interactable temp = other.GetComponentInChildren<Interactable>();
 		//if it doesn't have a specific interaction, we assume it's the default interact
@@ -94,9 +98,9 @@ public class InteractionHandler : MonoBehaviour
 				isListDirty = true;
 			}
 		}
-	}
+	}*/
 
-	private void OnTriggerExit(Collider other)
+	/*private void OnTriggerExit(Collider other)
 	{
 		Interactable temp = other.GetComponentInChildren<Interactable>();
 		if (temp != null)
@@ -115,10 +119,11 @@ public class InteractionHandler : MonoBehaviour
 				//closestInteractable = null;
 			}
 		}
-	}
+	}*/
 
 	private void FixedUpdate()
 	{
+		/*
 		//current implementation assumes nothing is moving, so I'll add a periodic check as well which should catch other things
 		timeSinceClean += Time.deltaTime;
 		if (timeSinceClean >= refreshPeriod)
@@ -161,7 +166,34 @@ public class InteractionHandler : MonoBehaviour
 
 			//closestInteractable.SetOutlineWidth(5f);
 			isListDirty = false;
+		}*/
+		//do new raycast
+		//we need to know where the camera is and where it's pointed
+		Vector3 camPos = Vector3.zero;
+		Vector3 camDir = Vector3.zero;
+		if (CameraController.Instance.ActiveCam is CinemachineCamera cam)
+		{
+			camPos = cam.State.GetFinalPosition();
+			camDir = cam.transform.forward;
 		}
+
+		if (Physics.Raycast(camPos, camDir, out var hit, reachDistance, hitLayers))
+		{
+			//we've hit an interactable
+			//just to plug into what's here already
+			if (hit.transform.TryGetComponent(out Interactable i))
+			{
+				closestInteractable = i;
+			}
+		}
+		else
+		{
+			closestInteractable = null;
+		}
+		
+		#if UNITY_EDITOR
+		Debug.DrawLine(camPos, camPos + camDir * reachDistance, Color.green);
+		#endif
 	}
 
 	private void SetClosest(Interactable target)
