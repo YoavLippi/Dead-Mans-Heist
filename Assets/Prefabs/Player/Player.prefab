@@ -127,6 +127,56 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &2394472226953497589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066776410818219403}
+  - component: {fileID: 8307310000503297617}
+  m_Layer: 7
+  m_Name: Cam Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2066776410818219403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394472226953497589}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8683776894332988048}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8307310000503297617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394472226953497589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63b860ce725d524f928339302f71179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OTSCamTarget
+  playerObj: {fileID: 0}
+  playerOffset: {x: 2.89, y: 3.68}
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  moveSpeed: 200
 --- !u!1 &3546376382763921916
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +346,7 @@ Transform:
   - {fileID: 5812440031577820866}
   - {fileID: 986211024110822370}
   - {fileID: 479350074975490051}
+  - {fileID: 2066776410818219403}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6610897857485832006
@@ -424,6 +475,10 @@ MonoBehaviour:
   spriteAnimator: {fileID: 4929414376209875277}
   interactionHandler: {fileID: 4788594249765754502}
   toolHandler: {fileID: 6364085772223566543}
+  otsCam: {fileID: 0}
+  turnSpeed: 720
+  modelPivot: {fileID: 0}
+  playerMesh: {fileID: 0}
   ghostedPlayerPrefab: {fileID: 347771865001200465, guid: e6a05b41b049b634fae0d9ab2a67d817, type: 3}
   maxLeashDistance: 15
   leashResistanceCurve:
@@ -469,6 +524,9 @@ MonoBehaviour:
   moderateStepColor: {r: 0.95939255, g: 1, b: 0, a: 1}
   severeStepColor: {r: 1, g: 0.18017924, b: 0, a: 1}
   showStepRadii: 0
+  startHideAnimationTime: 0
+  enterHideAnimationTime: 0
+  exitHideAnimationTime: 0
   currentState: 2
   currentMoveDir: {x: 0, y: 0}
   isRunHeld: 0
@@ -499,6 +557,7 @@ MonoBehaviour:
   selectedTool: {fileID: 0}
   interactionHandler: {fileID: 4788594249765754502}
   hotbarParent: {fileID: 0}
+  instancedToolsArr: []
 --- !u!114 &1274574646084683685
 MonoBehaviour:
   m_ObjectHideFlags: 0
