@@ -8419,7 +8419,7 @@ Transform:
   m_GameObject: {fileID: 281920572}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.551, y: 0, z: 1.287}
+  m_LocalPosition: {x: 0.427, y: 1.664, z: 1.287}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16700,7 +16700,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  sr: {fileID: 0}
+  sr: {fileID: 1285192995}
   alwaysDrawArea: 0
   drawWireframeOnly: 0
   sphereColour: {r: 0, g: 0, b: 0, a: 0}
@@ -20061,7 +20061,7 @@ Transform:
   m_GameObject: {fileID: 679868692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.925, z: 0.218}
+  m_LocalPosition: {x: 0.565, y: 1.925, z: 0.663}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29225,6 +29225,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: -7001727568414692356, guid: 04d7d230cfccb3147a02f08d34e602fb, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7001727568414692356, guid: 04d7d230cfccb3147a02f08d34e602fb, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ab1816c7f9b4f3943b742eae54b6dd16, type: 2}
+    - target: {fileID: -2719735790042055922, guid: 04d7d230cfccb3147a02f08d34e602fb, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2719735790042055922, guid: 04d7d230cfccb3147a02f08d34e602fb, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ab1816c7f9b4f3943b742eae54b6dd16, type: 2}
     - target: {fileID: -2113670006983759465, guid: 04d7d230cfccb3147a02f08d34e602fb, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -37446,6 +37462,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9f4efed92da1904ab295ab1bbab4f99, type: 3}
+--- !u!23 &1285192995 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7001727568414692356, guid: 04d7d230cfccb3147a02f08d34e602fb, type: 3}
+  m_PrefabInstance: {fileID: 998423587}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1287999833
 GameObject:
   m_ObjectHideFlags: 0
@@ -42308,7 +42329,7 @@ MonoBehaviour:
   - action: 3
     image: {fileID: 21300000, guid: 18419654993532246ac5d8ef593acb40, type: 3}
     zone: {fileID: 0}
-    prompt: leave the closet afte he passes
+    prompt: leave the closet after he passes
     onStepStart:
       m_PersistentCalls:
         m_Calls: []
@@ -42697,7 +42718,7 @@ Transform:
   m_GameObject: {fileID: 1436390905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.521, z: 1.339}
+  m_LocalPosition: {x: 0.524, y: 1.85, z: 1.339}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60291,6 +60312,10 @@ PrefabInstance:
       propertyPath: m_Height
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3635358640571335879, guid: 071067f6fae392b44946b7f955f33594, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: otsCam
       value: 
@@ -60338,6 +60363,18 @@ PrefabInstance:
     - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: moderateStepRadius
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
+      propertyPath: exitHideAnimationTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
+      propertyPath: enterHideAnimationTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
+      propertyPath: startHideAnimationTime
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6364085772223566543, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: hotbarParent

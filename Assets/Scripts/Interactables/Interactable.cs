@@ -40,9 +40,9 @@ public class Interactable : MonoBehaviour
 
 	//[FormerlySerializedAs("OnInteract")] public UnityEvent InteractionEvent;
 	[SerializeField] private List<ConditionalEvent> conditionalEvents;
-	
-	[SerializeField] private SpriteRenderer sr;
-	private MaterialPropertyBlock materialProperties;
+
+    [SerializeField] private Renderer sr;
+    private MaterialPropertyBlock materialProperties;
 
 	private static readonly int OutlineSizeID = Shader.PropertyToID("_OutlineSize");
 	private static readonly int UseOutLineBoolID = Shader.PropertyToID("_UseOutline");
@@ -96,11 +96,8 @@ public class Interactable : MonoBehaviour
 	protected virtual void Awake()
 	{
 		materialProperties = new MaterialPropertyBlock();
-		if (sr == null)
-		{
-			sr = GetComponentInChildren<SpriteRenderer>();
-		}
-	}
+        if (sr == null) sr = GetComponentInChildren<Renderer>();
+    }
 
 	public bool HasConditionalEventOfType(ConditionInteraction type)
 	{

@@ -601,7 +601,8 @@ public class PlayerController : MonoBehaviour
 			yield return new WaitForEndOfFrame();
 			currentTime += Time.deltaTime;
 		} while (currentTime < exitHideAnimationTime);
-		
+
+		transform.position = exitPos;
 		IsAcceptingInputs = true;
 	}
 
