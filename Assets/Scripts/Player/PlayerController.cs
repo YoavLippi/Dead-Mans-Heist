@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 		Hiding
 	}
 
-	[Header("Speeds")] 
+	[Header("Speeds")]
 	[SerializeField] private float gravityScale;
 	[SerializeField] private float baseMoveSpeed;
 	[SerializeField] private float runSpeed;
@@ -31,11 +31,11 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private InteractionHandler interactionHandler;
 	[SerializeField] private ToolHandler toolHandler;
 	[SerializeField] private OTSCameraController otsCam;
-    [SerializeField] private float turnSpeed = 720f;
-    [SerializeField] private Transform modelPivot;
+	[SerializeField] private float turnSpeed = 720f;
+	[SerializeField] private Transform modelPivot;
 	[SerializeField] private GameObject playerMesh;
 
-    [Header("Ghost")]
+	[Header("Ghost")]
 	[SerializeField] private GameObject ghostedPlayerPrefab;
 	[SerializeField] private float maxLeashDistance;
 	[SerializeField] private AnimationCurve leashResistanceCurve;
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Color minorStepColor, moderateStepColor, severeStepColor;
 	[SerializeField] private bool showStepRadii;
 
-	[Header("Hide Timings")] 
+	[Header("Hide Timings")]
 	[SerializeField] private float startHideAnimationTime;
 	[SerializeField] private float enterHideAnimationTime;
 	[SerializeField] private float exitHideAnimationTime;
@@ -60,19 +60,19 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Vector2 currentMoveDir;
 	[SerializeField] private bool isRunHeld, isSneakHeld, isAcceptingInputs = true;
 
-    [Header("Crouch")]
-    [SerializeField] private float crouchHeight = 1f;
-    [SerializeField] private float heightChangeSpeed = 8f;
+	[Header("Crouch")]
+	[SerializeField] private float crouchHeight = 1f;
+	[SerializeField] private float heightChangeSpeed = 8f;
 	[SerializeField] private CapsuleCollider capsule;
-    [SerializeField] private CapsuleCollider catchCollider;
-    [SerializeField] private float standHeight;
-    private Vector3 standCenter;
-    private float capStandHeight;
-    private Vector3 capStandCenter;
-    private float targetHeight;
+	[SerializeField] private CapsuleCollider catchCollider;
+	[SerializeField] private float standHeight;
+	private Vector3 standCenter;
+	private float capStandHeight;
+	private Vector3 capStandCenter;
+	private float targetHeight;
 
 
-    private bool IsAcceptingInputs
+	private bool IsAcceptingInputs
 	{
 		get => isAcceptingInputs;
 		set
@@ -93,18 +93,19 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Vector3 lastStepPos;
 
 	public event Action<PlayerState> onStateChange;
-    public event Action<bool> onGhostChange;
-    public event Action onGhostReturned;
+	public event Action<bool> onGhostChange;
+	public event Action onGhostReturned;
 
-    //--------------------- STUFF ARYANNA ADDED IN --------------- I was trying to sort out the audio stuff, but everything is still here, just in comments.
-    [Header("Footstep Cadence")]
+	public event Action onStepTaken;
+
+	//--------------------- STUFF ARYANNA ADDED IN --------------- I was trying to sort out the audio stuff, but everything is still here, just in comments.
+	[Header("Footstep Cadence")]
 	[SerializeField] private float walkStepInterval = 0.45f;
 	[SerializeField] private float runStepInterval = 0.28f;
 	[SerializeField] private float sneakStepInterval = 0.65f;
 	private float stepTimer = 0f;
 
-	[Header("Audio")]
-	[SerializeField] private AudioClip footstepClip;
+
 
 	public bool IsGhost
 	{
@@ -137,10 +138,10 @@ public class PlayerController : MonoBehaviour
 				DoUnhide();
 			}
 			currentState = value;
-            targetHeight = (value == PlayerState.Sneaking) ? crouchHeight : standHeight;
+			targetHeight = (value == PlayerState.Sneaking) ? crouchHeight : standHeight;
 
-            //we can add listeners here for animation triggers etc
-            SetAnimationFlag(value);
+			//we can add listeners here for animation triggers etc
+			SetAnimationFlag(value);
 			onStateChange?.Invoke(value);
 		}
 	}
@@ -161,48 +162,48 @@ public class PlayerController : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-        charController = GetComponentInChildren<CharacterController>();
+		charController = GetComponentInChildren<CharacterController>();
 		spriteAnimator = GetComponentInChildren<Animator>();
 		interactionHandler = GetComponentInChildren<InteractionHandler>();
 		lastStepPos = transform.position;
 		toolHandler.UpdateInteractionHandler();
 		otsCam = GameObject.FindGameObjectWithTag("OTSCam").GetComponent<OTSCameraController>();
-        standHeight = charController.height;
-        standCenter = charController.center;
-        targetHeight = standHeight;
-        if (capsule)
-        {
-            capStandHeight = capsule.height;
-            capStandCenter = capsule.center;
-        }
-    }
-    private void ApplyHeight(float h)
-    {
-        float shrink = standHeight - h;
+		standHeight = charController.height;
+		standCenter = charController.center;
+		targetHeight = standHeight;
+		if (capsule)
+		{
+			capStandHeight = capsule.height;
+			capStandCenter = capsule.center;
+		}
+	}
+	private void ApplyHeight(float h)
+	{
+		float shrink = standHeight - h;
 
-        charController.height = h;
-        charController.center = new Vector3(
-            standCenter.x,
-            standCenter.y - shrink / 2f,
-            standCenter.z);
+		charController.height = h;
+		charController.center = new Vector3(
+				standCenter.x,
+				standCenter.y - shrink / 2f,
+				standCenter.z);
 
-        if (capsule)
-        {
-            float capH = capStandHeight - shrink;
-            capsule.height = capH;
+		if (capsule)
+		{
+			float capH = capStandHeight - shrink;
+			capsule.height = capH;
 			catchCollider.height = capH;
-            capsule.center = new Vector3(
-                capStandCenter.x,
-                capStandCenter.y - shrink / 2f,
-                capStandCenter.z);
-            catchCollider.center = new Vector3(
-               capStandCenter.x,
-               capStandCenter.y - shrink / 2f,
-               capStandCenter.z);
-        }
-    }
+			capsule.center = new Vector3(
+					capStandCenter.x,
+					capStandCenter.y - shrink / 2f,
+					capStandCenter.z);
+			catchCollider.center = new Vector3(
+				 capStandCenter.x,
+				 capStandCenter.y - shrink / 2f,
+				 capStandCenter.z);
+		}
+	}
 
-    private void SetGhost(bool setGhost)
+	private void SetGhost(bool setGhost)
 	{
 		if (setGhost)
 		{
@@ -269,14 +270,14 @@ public class PlayerController : MonoBehaviour
 
 			charController.Move(toPlayerShell.normalized * resistance);
 		}
-        if (!Mathf.Approximately(charController.height, targetHeight))
-        {
-            float newHeight = Mathf.MoveTowards(charController.height, targetHeight,
-                                                heightChangeSpeed * Time.deltaTime);
-            ApplyHeight(newHeight);
-        }
+		if (!Mathf.Approximately(charController.height, targetHeight))
+		{
+			float newHeight = Mathf.MoveTowards(charController.height, targetHeight,
+																					heightChangeSpeed * Time.deltaTime);
+			ApplyHeight(newHeight);
+		}
 
-        if (currentMoveDir.magnitude > 0.01f)
+		if (currentMoveDir.magnitude > 0.01f)
 		{
 			Vector3 move;
 			//Adjusting move to work based on direction of camera
@@ -296,14 +297,14 @@ public class PlayerController : MonoBehaviour
 			{
 				move = new Vector3(currentMoveDir.x, 0, currentMoveDir.y);
 			}
-            move.y = 0;
-            if (move.sqrMagnitude > 0.0001f)
-            {
-                Quaternion look = Quaternion.LookRotation(move);
-                modelPivot.rotation = Quaternion.RotateTowards(modelPivot.rotation, look, turnSpeed * Time.deltaTime);
-            }
-            //float moveSpeed = 0f;
-            if (!isGhost)
+			move.y = 0;
+			if (move.sqrMagnitude > 0.0001f)
+			{
+				Quaternion look = Quaternion.LookRotation(move);
+				modelPivot.rotation = Quaternion.RotateTowards(modelPivot.rotation, look, turnSpeed * Time.deltaTime);
+			}
+			//float moveSpeed = 0f;
+			if (!isGhost)
 			{
 				switch (currentState)
 				{
@@ -371,11 +372,6 @@ public class PlayerController : MonoBehaviour
 		//dh.DoInteract();
 		//dh.DoSelfDistruct(0.3f);
 
-		if (AudioManager.Instance != null && footstepClip != null)
-		{
-			float stepVol = (currentState == PlayerState.Running) ? 1f : (currentState == PlayerState.Walking ? 0.6f : 0.2f);
-			AudioManager.Instance.PlaySFX(footstepClip, stepVol, 0.1f);
-		}
 
 		// 2. Alert guards using the footstep noise trigger
 		/*GameObject distraction = Instantiate(stepDistractionPrefab, transform.position, Quaternion.identity);
@@ -406,7 +402,9 @@ public class PlayerController : MonoBehaviour
 		}
 
 		Destroy(distraction, 0.3f);*/
-		
+
+		onStepTaken?.Invoke();
+
 		DistractionHandler.DistractionSeverity severity = DistractionHandler.DistractionSeverity.Minor;
 		float radius = minorStepRadius;
 
@@ -425,7 +423,7 @@ public class PlayerController : MonoBehaviour
 				radius = minorStepRadius;
 				break;
 		}
-		
+
 		DistractionHandler.DoDistract(transform.position, radius, severity, true);
 	}
 
@@ -440,10 +438,10 @@ public class PlayerController : MonoBehaviour
 		currentMoveDir = context.action.ReadValue<Vector2>();
 		if (currentMoveDir.magnitude != 0)
 		{
-            spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
-            spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
-            //running takes priority
-            if (isRunHeld)
+			spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
+			spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
+			//running takes priority
+			if (isRunHeld)
 			{
 				CurrentState = PlayerState.Running;
 			}
@@ -511,15 +509,6 @@ public class PlayerController : MonoBehaviour
 		if (!IsAcceptingInputs) return;
 		if (!context.performed) return;
 		otsCam.HandleMouseScroll(context);
-		//if (IsGhost) return;
-		/*if (context.ReadValue<float>() > 0)
-		{
-			toolHandler.ScrollUp();
-		}
-		else
-		{
-			toolHandler.ScrollDown();
-		}*/
 	}
 
 	public void OnInteract(InputAction.CallbackContext context)
@@ -529,7 +518,7 @@ public class PlayerController : MonoBehaviour
 		//interactionHandler.DoInteract();
 		if (!IsGhost)
 		{
-			toolHandler.UseSelected();	
+			toolHandler.UseSelected();
 		}
 		else
 		{
@@ -567,7 +556,7 @@ public class PlayerController : MonoBehaviour
 		Vector3 startPos = enterPos, endPos = hidePos;
 		Vector3 initialPos = transform.position;
 		float currentTime = 0;
-		
+
 		do
 		{
 			//beginning of animation
@@ -601,7 +590,7 @@ public class PlayerController : MonoBehaviour
 			yield return new WaitForEndOfFrame();
 			currentTime += Time.deltaTime;
 		} while (currentTime < exitHideAnimationTime);
-		
+
 		IsAcceptingInputs = true;
 	}
 
