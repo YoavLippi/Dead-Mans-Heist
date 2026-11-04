@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyMovement : EnemyAbs
 {
@@ -58,6 +59,10 @@ public class EnemyMovement : EnemyAbs
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+        if (currentSuspicion >= maxSuspicion) 
+        {
+            RestartLevel();
+        }
         anim.SetFloat("Speed", nv.velocity.magnitude, 0.1f, Time.deltaTime);
         if (isAlerted)
         {
@@ -77,7 +82,10 @@ public class EnemyMovement : EnemyAbs
             }
         }
     }
-
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     protected override void CheckTime(int currentworld)
     {
         lastKnownWorldTime = currentworld;
