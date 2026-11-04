@@ -7,20 +7,23 @@ public class PlayerAudio : MonoBehaviour
 	[SerializeField] private PlayerController playerController;
 	[SerializeField] private AudioSource audioSource;
 
-	[Header("Ground Audio Clips")]
-	[SerializeField] private AudioClip[] groundStepClips;
+	[Header("Dry Surface Clips (Wood / Deck)")]
+	[SerializeField] private AudioClip[] walkClips;
+	[SerializeField] private AudioClip[] sneakClips;
 
-	[Header("Water Audio Clips")]
-	[SerializeField] private AudioClip[] waterStepClips;
+	[Header("Water Surface Clips (Shallow / Bilge)")]
+	[SerializeField] private AudioClip[] waterWalkClips;
+	[SerializeField] private AudioClip[] waterSneakClips;
 
-	[Header("Volume Levels")]
-	[Range(0f, 1f)][SerializeField] private float sneakVolume = 0.2f;
-	[Range(0f, 1f)][SerializeField] private float walkVolume = 0.55f;
-	[Range(0f, 1f)][SerializeField] private float runVolume = 0.9f;
+	[Header("Volume by State")]
+	[Range(0f, 1f)][SerializeField] private float walkVolume = 0.6f;
+	[Range(0f, 1f)][SerializeField] private float sneakVolume = 0.25f;
+	[Range(0f, 1f)][SerializeField] private float waterWalkVolume = 0.75f;
+	[Range(0f, 1f)][SerializeField] private float waterSneakVolume = 0.35f;
 
 	[Header("Pitch Variation")]
-	[Range(0.8f, 1.2f)][SerializeField] private float minPitch = 0.93f;
-	[Range(0.8f, 1.2f)][SerializeField] private float maxPitch = 1.07f;
+	[Range(0.8f, 1.2f)][SerializeField] private float minPitch = 0.94f;
+	[Range(0.8f, 1.2f)][SerializeField] private float maxPitch = 1.06f;
 
 	[Header("Water Detection")]
 	[SerializeField] private string waterTag = "Water";
@@ -51,52 +54,62 @@ public class PlayerAudio : MonoBehaviour
 
 	private void HandleFootstep()
 	{
-		// Ignore ghost mode or hidden states
-		if (playerController.CurrentState == PlayerController.PlayerState.Hiding || playerController.CurrentState == PlayerController.PlayerState.Idle)
-			return;
-
-		AudioClip[] targetClips = isInWater ? waterStepClips : groundStepClips;
-
-		if (targetClips == null || targetClips.Length == 0)
-			return;
-
-		// Select a random clip from the active pool
-		AudioClip selectedClip = targetClips[Random.Range(0, targetClips.Length)];
-
-		// Determine volume by player state
-		float volume = walkVolume;
-		switch (playerController.CurrentState)
+		// Ignore hiding, or idle
+		if (playerController.CurrentState == PlayerController.PlayerState.Hiding ||	playerController.CurrentState == PlayerController.PlayerState.Idle)
 		{
-			case PlayerController.PlayerState.Sneaking:
-				volume = sneakVolume;
-				break;
-			case PlayerController.PlayerState.Running:
-				volume = runVolume;
-				break;
-			case PlayerController.PlayerState.Walking:
-				volume = walkVolume;
-				break;
+			return;
 		}
 
-		// Water wading sounds tend to be naturally noisier
+		bool isSneaking = playerController.CurrentState == PlayerController.PlayerState.Sneaking;
+
+		AudioClip[] targetClips;
+		float volume;
+
+		// Route to the appropriate clip pool and volume level
 		if (isInWater)
 		{
-			volume = Mathf.Clamp01(volume * 1.15f);
+			if (isSneaking)
+			{
+				targetClips = waterSneakClips;
+				volume = waterSneakVolume;
+			}
+			else
+			{
+				targetClips = waterWalkClips;
+				volume = waterWalkVolume;
+			}
+		}
+		else
+		{
+			if (isSneaking)
+			{
+				targetClips = sneakClips;
+				volume = sneakVolume;
+			}
+			else
+			{
+				targetClips = walkClips;
+				volume = walkVolume;
+			}
 		}
 
-		// Apply audio via AudioManager or local 3D AudioSource
-		if (AudioManager.Instance != null)
+		// Safety fallback: if specific sneak clips aren't assigned, fall back to walk clips
+		if ((targetClips == null || targetClips.Length == 0) && isSneaking)
 		{
-			AudioManager.Instance.PlaySFX(selectedClip, volume, 0.1f);
+			targetClips = isInWater ? waterWalkClips : walkClips;
 		}
-		else if (audioSource != null)
+
+		if (targetClips == null || targetClips.Length == 0) return;
+
+		AudioClip selectedClip = targetClips[Random.Range(0, targetClips.Length)];
+
+		if (audioSource != null)
 		{
 			audioSource.pitch = Random.Range(minPitch, maxPitch);
 			audioSource.PlayOneShot(selectedClip, volume);
 		}
 	}
 
-	// Trigger detection for water volumes (puddles, shorelines, bilge water)
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag(waterTag) || ((1 << other.gameObject.layer) & waterLayer) != 0)
