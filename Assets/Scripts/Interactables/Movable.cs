@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Movable : Interactable
@@ -8,6 +9,8 @@ public class Movable : Interactable
     [SerializeField] private Material baseMat;
     [SerializeField] private Material placementMat;
     [SerializeField] private bool isPlaceable;
+    [SerializeField] private List<Collider> overlappingCols;
+    public float rotationSensitivity = 5f;
 
     public bool IsPlaceable
     {
@@ -63,11 +66,20 @@ public class Movable : Interactable
         playerInteractionHandler.StartPlacementRoutine(this);
     }
 
+    private void Update()
+    {
+        if (!isInMovingState) return;
+        IsPlaceable = overlappingCols.Count == 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (isInMovingState)
         {
-            IsPlaceable = false;
+            if (!overlappingCols.Contains(other))
+            {
+                overlappingCols.Add(other);
+            }
         }
     }
 
@@ -75,7 +87,11 @@ public class Movable : Interactable
     {
         if (isInMovingState)
         {
-            IsPlaceable = true;
+            //IsPlaceable = true;
+            if (overlappingCols.Contains(other))
+            {
+                overlappingCols.Remove(other);
+            }
         }
     }
 }

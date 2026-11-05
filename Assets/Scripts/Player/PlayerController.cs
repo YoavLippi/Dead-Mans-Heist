@@ -508,7 +508,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!IsAcceptingInputs) return;
 		if (!context.performed) return;
-		otsCam.HandleMouseScroll(context);
+		interactionHandler?.HandleScroll(context);
+		//otsCam.HandleMouseScroll(context);
 		//if (IsGhost) return;
 		/*if (context.ReadValue<float>() > 0)
 		{
