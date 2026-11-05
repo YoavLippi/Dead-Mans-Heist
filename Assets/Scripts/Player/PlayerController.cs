@@ -402,7 +402,6 @@ public class PlayerController : MonoBehaviour
 		}
 
 		Destroy(distraction, 0.3f);*/
-
 		onStepTaken?.Invoke();
 
 		DistractionHandler.DistractionSeverity severity = DistractionHandler.DistractionSeverity.Minor;

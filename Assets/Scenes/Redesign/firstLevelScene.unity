@@ -20046,7 +20046,7 @@ MonoBehaviour:
   TransparentLayers:
     serializedVersion: 2
     m_Bits: 2176
-  MinimumDistanceFromTarget: 0.3
+  MinimumDistanceFromTarget: 1
   AvoidObstacles:
     Enabled: 1
     DistanceLimit: 0
@@ -20057,9 +20057,9 @@ MonoBehaviour:
       YOffset: 0
     Strategy: 0
     MaximumEffort: 4
-    SmoothingTime: 0
-    Damping: 0.4
-    DampingWhenOccluded: 0.2
+    SmoothingTime: 0.5
+    Damping: 0.75
+    DampingWhenOccluded: 0.5
   ShotQualityEvaluation:
     Enabled: 0
     OptimalDistance: 10
@@ -20089,7 +20089,7 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0, y: 0}
+  Damping: {x: 0.12, y: 0.12}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -20110,7 +20110,7 @@ MonoBehaviour:
   TargetOffset: {x: 0, y: 0, z: 0}
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 0, y: 0, z: 0}
+    PositionDamping: {x: 0.1, y: 0.1, z: 0.1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
@@ -61165,16 +61165,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 595449291}
     - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
-      propertyPath: showStepRadii
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: spriteAnimator
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
-      propertyPath: moderateStepRadius
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6364085772223566543, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: m_Enabled
