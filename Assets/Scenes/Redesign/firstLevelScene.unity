@@ -20022,15 +20022,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654419747}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a6af9b366653de49b89a69192524141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OTSCameraController
-  zoomSpeed: 2
-  zoomLerpSpeed: 10
-  minDist: 5
-  maxDist: 5
 --- !u!114 &654419751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54780,6 +54776,8 @@ MonoBehaviour:
   baseMat: {fileID: 2100000, guid: 39da558b93fc91844a013ca1ff8f1333, type: 2}
   placementMat: {fileID: 2100000, guid: f298e7b2a99a06644bfa3e4bf7035208, type: 2}
   isPlaceable: 0
+  overlappingCols: []
+  rotationSensitivity: 5
 --- !u!54 &1878782502
 Rigidbody:
   m_ObjectHideFlags: 0
