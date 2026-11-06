@@ -25,11 +25,12 @@ public class OTSCamTarget : MonoBehaviour
         Vector3 targetPos = playerObj.transform.position + realOffset;
         Vector3 playerPos = playerObj.transform.position;
         //raycast to make sure it isn't phasing through anything
-        if (Physics.SphereCast(playerPos, 1f, (targetPos - playerPos).normalized, out var hit, realOffset.magnitude,
+        Vector3 dir = (targetPos - playerPos).normalized;
+        if (Physics.SphereCast(playerPos, 1f, dir, out var hit, realOffset.magnitude,
                 hitLayers))
         {
             //collided
-            targetPos = hit.point;
+            targetPos = playerPos + dir * hit.distance;
         }
 
         //move towards it
