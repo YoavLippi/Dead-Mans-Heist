@@ -28,7 +28,7 @@ TagManager:
   - Triggers
   - Interactable
   - IgnoreNav
-  - 
+  - CollidetoPlayer
   - 
   - 
   - 
