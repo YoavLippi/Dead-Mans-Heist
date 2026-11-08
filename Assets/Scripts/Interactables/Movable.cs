@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Movable : Interactable
 {
     public static float rotationSensitivity = 5f;
@@ -13,9 +14,15 @@ public class Movable : Interactable
     [SerializeField] private bool isPlaceable;
     [SerializeField] private List<Collider> overlappingCols;
     [SerializeField] private string movableID;
+    [SerializeField] private bool checkGrounded;
+    [SerializeField] private List<Transform> raycastPositions;
+    [SerializeField] private float groundedCheckLength=0.5f;
+    [SerializeField] private LayerMask validGroundLayers;
+    private float objectHeight;
     public UnityEvent snapEvent;
 
     public string MovableID => movableID;
+    public float ObjectHeight => objectHeight;
 
     public bool IsPlaceable
     {
@@ -29,8 +36,10 @@ public class Movable : Interactable
 
     private void Start()
     {
+        GetComponent<Rigidbody>().isKinematic = true;
         playerInteractionHandler = GameObject.FindWithTag("Player").transform.root.gameObject.GetComponentInChildren<InteractionHandler>();
         baseMat = GetComponent<Renderer>().material;
+        objectHeight = GetComponent<Collider>().bounds.size.y;
         if (placementMat)
         {
             placementMat.mainTexture = baseMat.mainTexture;
@@ -80,7 +89,21 @@ public class Movable : Interactable
     private void Update()
     {
         if (!isInMovingState) return;
-        IsPlaceable = overlappingCols.Count == 0;
+        IsPlaceable = overlappingCols.Count == 0 && IsFullyGrounded();
+    }
+
+    private bool IsFullyGrounded()
+    {
+        if (!checkGrounded) return true;
+        foreach (Transform pos in raycastPositions)
+        {
+            if (!Physics.Raycast(pos.position, Vector3.down, groundedCheckLength, validGroundLayers))
+            {
+                return false;
+            }
+        }
+        
+        return true;
     }
 
     private void OnTriggerEnter(Collider other)
