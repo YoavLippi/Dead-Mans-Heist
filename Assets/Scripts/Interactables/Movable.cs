@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Movable : Interactable
 {
@@ -12,6 +13,7 @@ public class Movable : Interactable
     [SerializeField] private bool isPlaceable;
     [SerializeField] private List<Collider> overlappingCols;
     [SerializeField] private string movableID;
+    public UnityEvent snapEvent;
 
     public string MovableID => movableID;
 
@@ -58,8 +60,10 @@ public class Movable : Interactable
         GetComponent<Renderer>().material = baseMat;
         gameObject.layer = LayerMask.NameToLayer("Interactable");
         GetComponent<Collider>().isTrigger = false;
+        //this is a snap
         if (disable)
         {
+            snapEvent.Invoke();
             Destroy(this);
         }
     }
