@@ -267,7 +267,7 @@ public class InteractionHandler : MonoBehaviour
 	{
 		if (currentlyHeldObj && currentlyHeldObj is Movable c)
 		{
-			currentlyHeldObj.transform.Rotate(Vector3.forward, context.ReadValue<float>()*c.rotationSensitivity);
+			currentlyHeldObj.transform.Rotate(Vector3.forward, context.ReadValue<float>()*Movable.rotationSensitivity);
 		}
 	}
 }

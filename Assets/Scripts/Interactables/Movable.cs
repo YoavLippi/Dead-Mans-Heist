@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Movable : Interactable
 {
+    public static float rotationSensitivity = 5f;
     public bool isInMovingState = false;
     [SerializeField] private InteractionHandler playerInteractionHandler;
     [SerializeField] private Material baseMat;
     [SerializeField] private Material placementMat;
     [SerializeField] private bool isPlaceable;
     [SerializeField] private List<Collider> overlappingCols;
-    public float rotationSensitivity = 5f;
+    [SerializeField] private string movableID;
+
+    public string MovableID => movableID;
 
     public bool IsPlaceable
     {
@@ -49,12 +52,16 @@ public class Movable : Interactable
         }
     }
 
-    private void DoPlace()
+    public void DoPlace(bool disable = false)
     {
         IsPlaceable = true;
         GetComponent<Renderer>().material = baseMat;
         gameObject.layer = LayerMask.NameToLayer("Interactable");
         GetComponent<Collider>().isTrigger = false;
+        if (disable)
+        {
+            Destroy(this);
+        }
     }
 
     private void DoMove()
