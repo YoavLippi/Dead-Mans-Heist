@@ -18,6 +18,7 @@ public class Movable : Interactable
     [SerializeField] private List<Transform> raycastPositions;
     [SerializeField] private float groundedCheckLength=0.5f;
     [SerializeField] private LayerMask validGroundLayers;
+    [SerializeField] private Renderer _renderer;
     private float objectHeight;
     public UnityEvent snapEvent;
 
@@ -30,22 +31,27 @@ public class Movable : Interactable
         set
         {
             isPlaceable = value;
-            GetComponent<Renderer>().material.SetFloat("_IsPlaceable", value ? 1 : 0);
+            _renderer.material.SetFloat("_IsPlaceable", value ? 1 : 0);
         }
     }
 
     private void Start()
     {
+        if (TryGetComponent(out Renderer r)) 
+        {
+            _renderer = r;
+        }
         GetComponent<Rigidbody>().isKinematic = true;
         playerInteractionHandler = GameObject.FindWithTag("Player").transform.root.gameObject.GetComponentInChildren<InteractionHandler>();
-        baseMat = GetComponent<Renderer>().material;
+        baseMat = _renderer.material;
         objectHeight = GetComponent<Collider>().bounds.size.y;
         if (placementMat)
         {
             placementMat.mainTexture = baseMat.mainTexture;
         }
+        
     }
-
+    
     public override void DoInteract()
     {
         //pickup the thing
@@ -66,7 +72,7 @@ public class Movable : Interactable
     public void DoPlace(bool disable = false)
     {
         IsPlaceable = true;
-        GetComponent<Renderer>().material = baseMat;
+        _renderer.material = baseMat;
         gameObject.layer = LayerMask.NameToLayer("Interactable");
         GetComponent<Collider>().isTrigger = false;
         //this is a snap
@@ -79,7 +85,7 @@ public class Movable : Interactable
 
     private void DoMove()
     {
-        GetComponent<Renderer>().material = placementMat;
+        _renderer.material = placementMat;
         IsPlaceable = true;
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         GetComponent<Collider>().isTrigger = true;
