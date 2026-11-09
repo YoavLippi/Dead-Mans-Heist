@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,21 +8,35 @@ using UnityEngine.Events;
 public class Movable : Interactable
 {
     public static float rotationSensitivity = 5f;
+    [Header("___________________________________________________________")]
+    [Space]
+    
+    [Header("<color=#ffffff><size=18>Setup</size></color>")]
+    [Space]
+    [SerializeField] private Renderer _renderer;
+    [SerializeField] private Material placementMat;
+    
+    [Header("<color=#ffffff><size=18>Runtime Movement</size></color>")]
+    [Space]
     public bool isInMovingState = false;
     [SerializeField] private InteractionHandler playerInteractionHandler;
     [SerializeField] private Material baseMat;
-    [SerializeField] private Material placementMat;
     [SerializeField] private bool isPlaceable;
     [SerializeField] private List<Collider> overlappingCols;
     [SerializeField] private string movableID;
+    
+    [Header("<color=#ffffff><size=18>Grounded Checks</size></color>")]
+    [Space]
     [SerializeField] private bool checkGrounded;
     [SerializeField] private List<Transform> raycastPositions;
     [SerializeField] private float groundedCheckLength=0.5f;
     [SerializeField] private LayerMask validGroundLayers;
-    [SerializeField] private Renderer _renderer;
-    private float objectHeight;
+    
+    [Header("<color=#ffffff><size=18>Snapping</size></color>")]
+    [Space]
     public UnityEvent snapEvent;
-
+    private float objectHeight;
+    
     public string MovableID => movableID;
     public float ObjectHeight => objectHeight;
 
