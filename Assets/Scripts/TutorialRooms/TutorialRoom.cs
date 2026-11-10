@@ -10,7 +10,8 @@ public enum TutActions
     Sneak,
     Hide,
     Unhide,
-    SneakToZone
+    SneakToZone,
+    MoveToZone
 }
 
 [Serializable]
@@ -73,7 +74,7 @@ public class TutorialRoom : TutorialBase
             currentAction = step.action;
             actionDone = false;
 
-            if (step.action == TutActions.SneakToZone)
+            if (step.action == TutActions.SneakToZone || step.action == TutActions.MoveToZone)
             {
                 if (step.zone == null)
                 {
