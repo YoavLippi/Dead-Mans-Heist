@@ -19,21 +19,18 @@ public class OTSCamTarget : MonoBehaviour
     {
         Vector3 realOffset = Vector3.zero;
         //transform from cam to a 2D offset
-
-        if (CameraController.Instance.ActiveCam is CinemachineCamera cam)
-        {
-            realOffset = Camera.main.transform.right * playerOffset.x + Camera.main.transform.up * playerOffset.y;
-        }
+        realOffset = Camera.main.transform.right * playerOffset.x + Camera.main.transform.up * playerOffset.y;
 
         //target pos
         Vector3 targetPos = playerObj.transform.position + realOffset;
         Vector3 playerPos = playerObj.transform.position;
         //raycast to make sure it isn't phasing through anything
-        if (Physics.SphereCast(playerPos, 1f, (targetPos - playerPos).normalized, out var hit, realOffset.magnitude,
+        Vector3 dir = (targetPos - playerPos).normalized;
+        if (Physics.SphereCast(playerPos, 1f, dir, out var hit, realOffset.magnitude,
                 hitLayers))
         {
             //collided
-            targetPos = hit.point;
+            targetPos = playerPos + dir * hit.distance;
         }
 
         //move towards it

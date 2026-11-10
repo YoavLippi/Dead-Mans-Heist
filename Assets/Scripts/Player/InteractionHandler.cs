@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public class InteractionHandler : MonoBehaviour
@@ -53,7 +54,7 @@ public class InteractionHandler : MonoBehaviour
 
 	public void DoInteract(ConditionInteraction interaction, string eID = "")
 	{
-		if (closestInteractable != null)
+		if (closestInteractable != null && currentlyHeldObj == null)
 		{
 			closestInteractable.TriggerConditionalEvent(interaction, eID);
 		} else if (currentlyHeldObj != null)
@@ -64,7 +65,7 @@ public class InteractionHandler : MonoBehaviour
 
 	public void DoInteract()
 	{
-		if (closestInteractable != null)
+		if (closestInteractable != null && currentlyHeldObj == null)
 		{
 			closestInteractable.TriggerConditionalEvent(CurrentInteractionType);
 		} else if (currentlyHeldObj != null)
@@ -226,16 +227,14 @@ public class InteractionHandler : MonoBehaviour
 	{
 		while (objToPlace.isInMovingState)
 		{
-			yield return new WaitForEndOfFrame();
-			objToPlace.transform.position = cursorHitPoint;
 			//push it into the ground
 			LayerMask ignorePushLayers = LayerMask.GetMask("Triggers", "Ignore Raycast");
 			if (Physics.Raycast(cursorHitPoint, Vector3.down, out var hit, 100f, ~ignorePushLayers))
 			{
-				objToPlace.transform.position = hit.point;
+				objToPlace.transform.position = hit.point+(Vector3.up * (objToPlace.ObjectHeight+0.2f)/2);
 			}
+			yield return new WaitForEndOfFrame();
 		}
-		yield return new WaitForEndOfFrame();
 		currentlyHeldObj = null;
 	}
 
@@ -261,6 +260,14 @@ public class InteractionHandler : MonoBehaviour
 		if (HUDManager.Instance != null)
 		{
 			HUDManager.Instance.ClearInteractionPrompt();
+		}
+	}
+
+	public void HandleScroll(InputAction.CallbackContext context)
+	{
+		if (currentlyHeldObj && currentlyHeldObj is Movable c)
+		{
+			currentlyHeldObj.transform.Rotate(Vector3.up, context.ReadValue<float>()*Movable.rotationSensitivity, Space.World);
 		}
 	}
 }
