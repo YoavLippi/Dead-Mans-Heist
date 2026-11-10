@@ -10,8 +10,11 @@ public class Scheduler : MonoBehaviour
     public class EventWrapper
     {
         [SerializeField, ReadableOnly] public string name;
+        [Tooltip("If the schedule is looping, but this event should only play once, tick this box")]
+        [SerializeField] public bool playOneshot;
         [SerializeField] public int time;
         [SerializeField] public UnityEvent onTimeReached;
+        private bool hasPlayed = false;
         
         public void OnValidate()
         {
@@ -20,11 +23,14 @@ public class Scheduler : MonoBehaviour
 
         public void Invoke()
         {
+            if (playOneshot && hasPlayed) return;
+            hasPlayed = true;
             onTimeReached.Invoke();
         }
     }
     [SerializeField] private int lastKnownTime;
     [SerializeField] private bool isOnSchedule = true;
+    [SerializeField] private bool loopSchedule = true;
     [SerializeField] private List<EventWrapper> schedule;
     private void OnEnable() => WorldTime.secondsChange += CheckTime;
 
@@ -38,13 +44,20 @@ public class Scheduler : MonoBehaviour
 
     private void CheckTime(int time)
     {
-        time %= GetHighestTriggerTime()+1;
+        if (loopSchedule)
+        {
+            time %= GetHighestTriggerTime()+1;
+        }
+        else
+        {
+            if (time > GetHighestTriggerTime()) return;
+        }
         lastKnownTime = time;
         if (!isOnSchedule) return;
         var currentEvents = schedule.Where(p => p.time == lastKnownTime);
         foreach (var e in currentEvents)
         {
-            Debug.Log($"Invoking event for time: {lastKnownTime}");
+            //Debug.Log($"Invoking event for time: {lastKnownTime}");
             e.Invoke();
         }
     }
@@ -58,7 +71,7 @@ public class Scheduler : MonoBehaviour
     {
         foreach (var ew in schedule)
         {
-            ew.OnValidate();
+            ew?.OnValidate();
         }
     }
 }
