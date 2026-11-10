@@ -94,7 +94,7 @@ public class TutorialRoom : TutorialBase
             else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
             UnhookZone() ;
         }
-        ShowStep("tester complete", null);
+        ShowStep("", null);
         CompleteRoom();
     }
 
