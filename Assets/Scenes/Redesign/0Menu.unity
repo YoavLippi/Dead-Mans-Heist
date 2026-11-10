@@ -1286,7 +1286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a1aa61f274ec945828425b8d21d53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
-  firstLevelScene: 
+  firstLevelScene: firstLevelScene
 --- !u!4 &799817627
 Transform:
   m_ObjectHideFlags: 0
@@ -2192,6 +2192,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1139717902976566127, guid: 7688dacc4494f5b49a60cb1ffad5ab85, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1143
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139717902976566127, guid: 7688dacc4494f5b49a60cb1ffad5ab85, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2261e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139717902976566127, guid: 7688dacc4494f5b49a60cb1ffad5ab85, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.22238
+      objectReference: {fileID: 0}
     - target: {fileID: 1264955887069666124, guid: 7688dacc4494f5b49a60cb1ffad5ab85, type: 3}
       propertyPath: m_Name
       value: Office desk
