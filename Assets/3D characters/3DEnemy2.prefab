@@ -495,7 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LosHandler
   eyePos: {fileID: 469111186196329781}
   rayDistance: 30
-  fieldOfView: 180
+  fieldOfView: 150
   rayNumber: 30
   ignoreLayers:
     serializedVersion: 2
@@ -520,7 +520,7 @@ MonoBehaviour:
   newSchedules: []
   isOnSchedule: 0
   attachedLos: {fileID: 4181193661878866221}
-  detectionSpeed: 2
+  detectionSpeed: 1
   suspicionDecreaseSpeed: 0.3
   currentSuspicion: 0
   maxSuspicion: 100
