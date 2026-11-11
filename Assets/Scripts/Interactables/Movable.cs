@@ -24,6 +24,7 @@ public class Movable : Interactable
     [SerializeField] private bool isPlaceable;
     [SerializeField] private List<Collider> overlappingCols;
     [SerializeField] private string movableID;
+    [SerializeField] private Vector3 centerOffset;
     
     [Header("<color=#ffffff><size=18>Grounded Checks</size></color>")]
     [Space]
@@ -35,7 +36,7 @@ public class Movable : Interactable
     [Header("<color=#ffffff><size=18>Snapping</size></color>")]
     [Space]
     public UnityEvent snapEvent;
-    private float objectHeight;
+    [SerializeField] private float objectHeight;
     
     public string MovableID => movableID;
     public float ObjectHeight => objectHeight;
@@ -60,11 +61,19 @@ public class Movable : Interactable
         playerInteractionHandler = GameObject.FindWithTag("Player").transform.root.gameObject.GetComponentInChildren<InteractionHandler>();
         baseMat = _renderer.material;
         objectHeight = GetComponent<Collider>().bounds.size.y;
+        Vector3 center = GetComponent<Collider>().bounds.center;
+        //we want the new position to be for the center, but we need to move the transform to match it instead
+        centerOffset = transform.position - center;
         if (placementMat)
         {
             placementMat.mainTexture = baseMat.mainTexture;
         }
         
+    }
+
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position + centerOffset;
     }
     
     public override void DoInteract()

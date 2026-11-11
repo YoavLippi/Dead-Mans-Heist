@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DefaultNamespace;
 using NUnit.Framework;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
@@ -7,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, iSaveable
 {
 	public enum PlayerState
 	{
@@ -693,4 +694,34 @@ public class PlayerController : MonoBehaviour
 		IsAcceptingInputs = false;
 		StartCoroutine(ExitHideRoutine());
 	}
+	
+	#region Saving
+
+	[Header("Saving")] 
+	[SerializeField] private Vector3 savedPos;
+	[SerializeField] private Quaternion savedRot;
+    
+	private void OnEnable()
+	{
+		((iSaveable)this).OnEnable();
+	}
+
+	private void OnDisable()
+	{
+		((iSaveable)this).OnDisable();
+	}
+
+	public void DoSave()
+	{
+		savedPos = transform.position;
+		savedRot = modelPivot.rotation;
+	}
+    
+	public void DoLoad()
+	{
+		transform.position = savedPos;
+		modelPivot.rotation = savedRot;
+	}
+    
+	#endregion
 }

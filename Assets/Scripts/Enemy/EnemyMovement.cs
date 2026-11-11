@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
+using DefaultNamespace;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class EnemyMovement : EnemyAbs
+public class EnemyMovement : EnemyAbs, iSaveable
 {
     [SerializeField] private int index;
     [SerializeField] private GameObject target;
@@ -47,8 +49,17 @@ public class EnemyMovement : EnemyAbs
     private float lastSeenTime;
     [SerializeField] private float alertTurnSpeed = 300f;
 
-    void OnEnable() => WorldTime.secondsChange += CheckTime;
-    void OnDisable() => WorldTime.secondsChange -= CheckTime;
+    void OnEnable()
+    {
+        ((iSaveable)this).OnEnable();
+        WorldTime.secondsChange += CheckTime;
+    }
+
+    void OnDisable()
+    {
+        ((iSaveable)this).OnDisable();
+        WorldTime.secondsChange -= CheckTime;
+    } 
 
     public override void Start()
     {
@@ -61,7 +72,8 @@ public class EnemyMovement : EnemyAbs
         base.FixedUpdate();
         if (currentSuspicion >= maxSuspicion) 
         {
-            RestartLevel();
+            //RestartLevel();
+            WorldController.DoLoad();
         }
         anim.SetFloat("Speed", nv.velocity.magnitude, 0.1f, Time.deltaTime);
         if (isAlerted)
@@ -89,12 +101,16 @@ public class EnemyMovement : EnemyAbs
     protected override void CheckTime(int currentworld)
     {
         lastKnownWorldTime = currentworld;
-
-
+        
         if (!isOnSchedule) return;
 
-        int localTime = currentworld - timeOffset;
-        if (index >= newSchedules.Count)
+        int localTime = currentworld % (GetHighestTriggerTime()+1);
+
+        foreach (var e in newSchedules)
+        {
+            if (e.timeTrigger==localTime) e.attachedEvent.Invoke();
+        }
+        /*if (index >= newSchedules.Count)
         {
             timeOffset += newSchedules[newSchedules.Count - 1].timeTrigger;
             index = 0;
@@ -106,7 +122,18 @@ public class EnemyMovement : EnemyAbs
         {
             next.attachedEvent.Invoke();
             index++;
+        }*/
+    }
+
+    private int GetHighestTriggerTime()
+    {
+        int highest = Int32.MinValue;
+        foreach (var e in newSchedules)
+        {
+            if (e.timeTrigger > highest) highest = e.timeTrigger;
         }
+
+        return highest;
     }
 
     public override void moveToCheckPoint(Vector3 target)
@@ -275,4 +302,29 @@ public class EnemyMovement : EnemyAbs
             isLookingAround = false;
         }
     }
+
+    #region Saving
+    //iSaveable variables
+    [Header("Saving Stuff")] 
+    
+    [SerializeField] private Vector3 savedPos;
+    [SerializeField] private Quaternion savedRot;
+    [SerializeField] private Vector3 savedNavDestination;
+    //iSaveable methods
+    public void DoSave()
+    {
+        //save current transform information
+        savedPos = transform.position;
+        savedRot = transform.rotation;
+        savedNavDestination = nv.destination;
+    }
+
+    public void DoLoad()
+    {
+        transform.position = savedPos;
+        transform.rotation = savedRot;
+        nv.destination = savedNavDestination;
+    }
+
+    #endregion
 }
