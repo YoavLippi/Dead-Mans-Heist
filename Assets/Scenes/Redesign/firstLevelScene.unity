@@ -17533,6 +17533,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
+  soundDelay: 0.45
 --- !u!95 &398408912
 Animator:
   serializedVersion: 7
@@ -27931,6 +27932,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
+  soundDelay: 0.45
 --- !u!95 &630297355
 Animator:
   serializedVersion: 7
@@ -42677,6 +42679,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
+  soundDelay: 0.45
 --- !u!95 &992411482
 Animator:
   serializedVersion: 7
@@ -71201,7 +71204,8 @@ MonoBehaviour:
   parameterName: Fall
   audioSource: {fileID: 1669254599}
   impactSound: {fileID: 8300000, guid: 328904eaa8cfffe4a9db9279898e982f, type: 3}
-  volume: 1
+  volume: 0.4
+  soundDelay: 1.2
 --- !u!95 &1669254595
 Animator:
   serializedVersion: 7
@@ -71281,7 +71285,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -71992,6 +71996,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
+  soundDelay: 0.45
 --- !u!95 &1687592144
 Animator:
   serializedVersion: 7
