@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class EnemyMovement : EnemyAbs, iSaveable
 {
@@ -30,6 +31,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
     [SerializeField] private float moderateDistractionSuspicion = 50f;
     [SerializeField] private float minorDistractionDuration = 3f;
     [SerializeField] private float minorDistractionSuspicion = 25f;
+    [SerializeField] private AudioClip[] catchAudios;
 
 
     [Header("Travelling")]
@@ -72,8 +74,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
         base.FixedUpdate();
         if (currentSuspicion >= maxSuspicion) 
         {
-            //RestartLevel();
-            WorldController.DoLoad();
+            RestartLevel();
         }
         anim.SetFloat("Speed", nv.velocity.magnitude, 0.1f, Time.deltaTime);
         if (isAlerted)
@@ -96,7 +97,11 @@ public class EnemyMovement : EnemyAbs, iSaveable
     }
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        AudioClip c = catchAudios[Random.Range(0, catchAudios.Length)];
+        float duration = c.length;
+        CameraController.Instance.FadeToBlackAndReload(duration);
+        PlayerAudio.Instance.PlayAudioOneShot(c, 1, true);
     }
     protected override void CheckTime(int currentworld)
     {
@@ -321,6 +326,10 @@ public class EnemyMovement : EnemyAbs, iSaveable
 
     public void DoLoad()
     {
+        gameOverTriggered = false;
+        CurrentState = EnemyState.None;
+        CurrentSuspicion = 0;
+        isAlerted = false;
         transform.position = savedPos;
         transform.rotation = savedRot;
         nv.destination = savedNavDestination;

@@ -236,12 +236,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63b860ce725d524f928339302f71179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OTSCamTarget
-  playerObj: {fileID: 0}
+  playerObj: {fileID: 1292620722180843509}
   playerOffset: {x: 1.5, y: 2.5}
   hitLayers:
     serializedVersion: 2
-    m_Bits: 0
-  moveSpeed: 50
+    m_Bits: 513
+  moveSpeed: 100
 --- !u!1 &3546376382763921916
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +349,9 @@ MonoBehaviour:
     m_Bits: 2816
   cursorHitPoint: {x: 0, y: 0, z: 0}
   currentlyHeldObj: {fileID: 0}
+  ignorePushLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6531576289731663119
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,8 +565,8 @@ MonoBehaviour:
   stepDistance: 2
   stepDistractionPrefab: {fileID: 2801747081541894003, guid: e2e490432ca41b14b841dd7f32690592, type: 3}
   minorStepRadius: 5
-  moderateStepRadius: 8
-  severeStepRadius: 20
+  moderateStepRadius: 12
+  severeStepRadius: 25
   minorStepColor: {r: 0, g: 1, b: 0.07667947, a: 1}
   moderateStepColor: {r: 0.95939255, g: 1, b: 0, a: 1}
   severeStepColor: {r: 1, g: 0.18017924, b: 0, a: 1}
@@ -596,6 +599,8 @@ MonoBehaviour:
   walkStepInterval: 0.45
   runStepInterval: 0.28
   sneakStepInterval: 0.65
+  savedPos: {x: 0, y: 0, z: 0}
+  savedRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &6364085772223566543
 MonoBehaviour:
   m_ObjectHideFlags: 0

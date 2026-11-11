@@ -30,6 +30,9 @@ public class PlayerAudio : MonoBehaviour
 	[SerializeField] private LayerMask waterLayer;
 
 	private bool isInWater = false;
+	
+	//singleton stuff so we can play audio from here any time
+	public static PlayerAudio Instance;
 
 	private void Awake()
 	{
@@ -38,6 +41,8 @@ public class PlayerAudio : MonoBehaviour
 
 		if (audioSource == null)
 			audioSource = GetComponent<AudioSource>();
+
+		Instance = this;
 	}
 
 	private void OnEnable()
@@ -50,6 +55,15 @@ public class PlayerAudio : MonoBehaviour
 	{
 		if (playerController != null)
 			playerController.onStepTaken -= HandleFootstep;
+	}
+
+	public void PlayAudioOneShot(AudioClip clip, float volume, bool playSolo = false)
+	{
+		if (playSolo)
+		{
+			audioSource.Stop();
+		}
+		audioSource.PlayOneShot(clip,volume);
 	}
 
 	private void HandleFootstep()

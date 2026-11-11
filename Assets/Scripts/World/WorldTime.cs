@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,17 @@ public class WorldTime : MonoBehaviour, iSaveable
     [SerializeField] private float seconds = 1f;
     [SerializeField] private int currentSecond = 0;
     private float timer = 0f;
+
+    private void Start()
+    {
+        StartCoroutine(DoLateStart());
+    }
+
+    private IEnumerator DoLateStart()
+    {
+        yield return new WaitForEndOfFrame();
+        WorldController.DoSave();
+    }
 
     void FixedUpdate()
     {

@@ -607,12 +607,20 @@ MonoBehaviour:
   moderateDistractionSuspicion: 50
   minorDistractionDuration: 3
   minorDistractionSuspicion: 25
+  catchAudios:
+  - {fileID: 8300000, guid: f55bc46ba51dd80488006826eadaaf49, type: 3}
+  - {fileID: 8300000, guid: 76434cf1223be3247bb35a02ecddc0c4, type: 3}
+  - {fileID: 8300000, guid: f381df3a7551ce641be6827de1d33b04, type: 3}
+  - {fileID: 8300000, guid: 34a612e970d1e854fb55792bcc9dfaf9, type: 3}
   arrivalDistanceThreshold: 2
   maxTravelToDistractionSeconds: 10
   facingX: 0
   facingY: 0
   anim: {fileID: 985345818934917749}
   alertTurnSpeed: 300
+  savedPos: {x: 0, y: 0, z: 0}
+  savedRot: {x: 0, y: 0, z: 0, w: 0}
+  savedNavDestination: {x: 0, y: 0, z: 0}
 --- !u!195 &1234830684786915847
 NavMeshAgent:
   m_ObjectHideFlags: 0

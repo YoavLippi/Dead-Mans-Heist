@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 			isGhost = value;
 			spriteAnimator.SetBool("IsGhost", value);
 			SetGhost(value);
-			CameraController.Instance?.ToggleGhostVision(value);
+			CameraController.Instance?.ToggleVisionPanel(value);
 			onGhostChange?.Invoke(value);
 		}
 	}
@@ -721,6 +721,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 	{
 		transform.position = savedPos;
 		modelPivot.rotation = savedRot;
+		Physics.SyncTransforms();
 	}
     
 	#endregion

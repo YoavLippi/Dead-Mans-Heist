@@ -6611,7 +6611,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   sr: {fileID: 0}
-  _renderer: {fileID: 0}
+  _renderer: {fileID: 1655115933}
   placementMat: {fileID: 2100000, guid: f298e7b2a99a06644bfa3e4bf7035208, type: 2}
   isInMovingState: 0
   playerInteractionHandler: {fileID: 0}
@@ -6619,6 +6619,7 @@ MonoBehaviour:
   isPlaceable: 0
   overlappingCols: []
   movableID: CannonBall
+  centerOffset: {x: 0, y: 0, z: 0}
   checkGrounded: 0
   raycastPositions: []
   groundedCheckLength: 0.5
@@ -6640,6 +6641,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  objectHeight: 0
 --- !u!54 &153540169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15957,6 +15959,10 @@ PrefabInstance:
       propertyPath: field of view
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2860011917410498374, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
+      propertyPath: visionPanel
+      value: 
+      objectReference: {fileID: 1465444942}
     - target: {fileID: 2860011917410498374, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: ghostVisionPanel
       value: 
@@ -32037,7 +32043,7 @@ MonoBehaviour:
   TransparentLayers:
     serializedVersion: 2
     m_Bits: 2176
-  MinimumDistanceFromTarget: 1.5
+  MinimumDistanceFromTarget: 0.2
   AvoidObstacles:
     Enabled: 1
     DistanceLimit: 0
@@ -32048,9 +32054,9 @@ MonoBehaviour:
       YOffset: 0
     Strategy: 0
     MaximumEffort: 4
-    SmoothingTime: 0.45
-    Damping: 2
-    DampingWhenOccluded: 1
+    SmoothingTime: 0
+    Damping: 1
+    DampingWhenOccluded: 0.25
   ShotQualityEvaluation:
     Enabled: 0
     OptimalDistance: 10
@@ -33346,7 +33352,6 @@ Transform:
   - {fileID: 2054926753}
   - {fileID: 1341356207}
   - {fileID: 727374861}
-  - {fileID: 1850738722}
   m_Father: {fileID: 1027998192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &689094908
@@ -35053,7 +35058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9026970220845964610, guid: 3a766f161820b6c40a3e8dd0efa2614f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9026970220845964610, guid: 3a766f161820b6c40a3e8dd0efa2614f, type: 3}
       propertyPath: m_TagString
@@ -49327,11 +49332,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 44ece3a7faa73cb4380fa10e30bc0ed9, type: 3}
   m_PrefabInstance: {fileID: 1056215721}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1057202611 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1292620722180843509, guid: 071067f6fae392b44946b7f955f33594, type: 3}
-  m_PrefabInstance: {fileID: 2095128312}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1057869784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53988,6 +53988,7 @@ GameObject:
   - component: {fileID: 1172546253}
   - component: {fileID: 1172546252}
   - component: {fileID: 1172546254}
+  - component: {fileID: 1172546255}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -68881,7 +68882,7 @@ SpriteRenderer:
   m_SortingLayerID: -198231175
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_MaskInteraction: 2
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0.03529412, b: 0.29803923, a: 0.47058824}
   m_FlipX: 0
@@ -76756,6 +76757,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9f4efed92da1904ab295ab1bbab4f99, type: 3}
+--- !u!23 &1655115933 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 952917563289748557, guid: 29d45dd9ed646a840a5ef76748709773, type: 3}
+  m_PrefabInstance: {fileID: 865378074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1658497126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77001,7 +77007,7 @@ MonoBehaviour:
   audioSource: {fileID: 1669254599}
   impactSound: {fileID: 8300000, guid: 328904eaa8cfffe4a9db9279898e982f, type: 3}
   volume: 0.1
-  soundDelay: 1.2
+  soundDelay: 0.45
 --- !u!95 &1669254595
 Animator:
   serializedVersion: 7
@@ -97975,18 +97981,6 @@ PrefabInstance:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 8307310000503297617, guid: 071067f6fae392b44946b7f955f33594, type: 3}
-      propertyPath: moveSpeed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307310000503297617, guid: 071067f6fae392b44946b7f955f33594, type: 3}
-      propertyPath: playerObj
-      value: 
-      objectReference: {fileID: 1057202611}
-    - target: {fileID: 8307310000503297617, guid: 071067f6fae392b44946b7f955f33594, type: 3}
-      propertyPath: hitLayers.m_Bits
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8371002030105207011, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: m_Enabled
       value: 1
