@@ -27,6 +27,8 @@ public class InteractionHandler : MonoBehaviour
 
 	[Header("Holding")] 
 	[SerializeField] private Interactable currentlyHeldObj;
+
+	[SerializeField] private LayerMask ignorePushLayers;
 	public ConditionInteraction CurrentInteractionType
 	{
 		get => currentInteractionType;
@@ -228,10 +230,10 @@ public class InteractionHandler : MonoBehaviour
 		while (objToPlace.isInMovingState)
 		{
 			//push it into the ground
-			LayerMask ignorePushLayers = LayerMask.GetMask("Triggers", "Ignore Raycast");
 			if (Physics.Raycast(cursorHitPoint, Vector3.down, out var hit, 100f, ~ignorePushLayers))
 			{
-				objToPlace.transform.position = hit.point+(Vector3.up * (objToPlace.ObjectHeight+0.2f)/2);
+				//objToPlace.transform.position = hit.point+(Vector3.up * (objToPlace.ObjectHeight/2f+0.1f));
+				objToPlace.SetPosition(hit.point+(Vector3.up * (objToPlace.ObjectHeight/2f+0.1f)));
 			}
 			yield return new WaitForEndOfFrame();
 		}
