@@ -10,7 +10,8 @@ public enum TutActions
     Sneak,
     Hide,
     Unhide,
-    SneakToZone
+    SneakToZone,
+    MoveToZone
 }
 
 [Serializable]
@@ -22,17 +23,22 @@ public struct TutorialStep
     [TextArea] public string prompt;
     public UnityEvent onStepStart; 
     public UnityEvent onStepComplete;
+
+    public AudioClip startAudio;
+    public AudioClip endAudio;
 }
 
 public class TutorialRoom : TutorialBase
 {
     [SerializeField] private List<TutorialStep> steps;
     [SerializeField] private TutorialFade promptUI;
+    [SerializeField] protected PlayAudio tutaudio;
 
     private bool actionDone;
     private TutActions currentAction;
     private Coroutine routine;
     private SneakZone activeZone;
+
 
 
     protected override void OnRoomStarted()
@@ -68,7 +74,7 @@ public class TutorialRoom : TutorialBase
             currentAction = step.action;
             actionDone = false;
 
-            if (step.action == TutActions.SneakToZone)
+            if (step.action == TutActions.SneakToZone || step.action == TutActions.MoveToZone)
             {
                 if (step.zone == null)
                 {
@@ -79,12 +85,16 @@ public class TutorialRoom : TutorialBase
                 activeZone.PlayerSneakedIn += HandleZoneReached;
             }
             step.onStepStart?.Invoke();
+            if (tutaudio != null) tutaudio.Play(step.startAudio);
+            else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
             ShowStep(step.prompt, step.image);
             yield return new WaitUntil(() => actionDone);
             step.onStepComplete?.Invoke();
+            if (tutaudio != null) tutaudio.Play(step.endAudio);
+            else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
             UnhookZone() ;
         }
-        ShowStep("tester complete", null);
+        ShowStep("", null);
         CompleteRoom();
     }
 

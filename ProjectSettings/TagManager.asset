@@ -13,6 +13,7 @@ TagManager:
   - HotbarSelector
   - OTSCam
   - TutorialEnemy
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -25,9 +26,9 @@ TagManager:
   - Hideable
   - Environment
   - Triggers
-  - 
-  - 
-  - 
+  - Interactable
+  - IgnoreNav
+  - CollidetoPlayer
   - 
   - 
   - 

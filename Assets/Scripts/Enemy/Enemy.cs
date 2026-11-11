@@ -38,7 +38,7 @@ public class EnemyAbs : MonoBehaviour
     [SerializeField] protected float patrolSpeed = 3.5f;
     protected NavMeshAgent nv;
     [SerializeField]protected bool isAlerted;
-    private bool gameOverTriggered;
+    protected bool gameOverTriggered;
     public static event Action OnPlayerCaught;
 
     // Was a bare bool before; now derived from state so it can't drift

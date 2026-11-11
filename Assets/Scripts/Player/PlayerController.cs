@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DefaultNamespace;
 using NUnit.Framework;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
@@ -7,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, iSaveable
 {
 	public enum PlayerState
 	{
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
 		Hiding
 	}
 
-	[Header("Speeds")] 
+	[Header("Speeds")]
 	[SerializeField] private float gravityScale;
 	[SerializeField] private float baseMoveSpeed;
 	[SerializeField] private float runSpeed;
@@ -31,11 +32,11 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private InteractionHandler interactionHandler;
 	[SerializeField] private ToolHandler toolHandler;
 	[SerializeField] private OTSCameraController otsCam;
-    [SerializeField] private float turnSpeed = 720f;
-    [SerializeField] private Transform modelPivot;
+	[SerializeField] private float turnSpeed = 720f;
+	[SerializeField] private Transform modelPivot;
 	[SerializeField] private GameObject playerMesh;
 
-    [Header("Ghost")]
+	[Header("Ghost")]
 	[SerializeField] private GameObject ghostedPlayerPrefab;
 	[SerializeField] private float maxLeashDistance;
 	[SerializeField] private AnimationCurve leashResistanceCurve;
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Color minorStepColor, moderateStepColor, severeStepColor;
 	[SerializeField] private bool showStepRadii;
 
-	[Header("Hide Timings")] 
+	[Header("Hide Timings")]
 	[SerializeField] private float startHideAnimationTime;
 	[SerializeField] private float enterHideAnimationTime;
 	[SerializeField] private float exitHideAnimationTime;
@@ -60,39 +61,68 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Vector2 currentMoveDir;
 	[SerializeField] private bool isRunHeld, isSneakHeld, isAcceptingInputs = true;
 
+	[Header("Crouch")]
+	[SerializeField] private float crouchHeight = 1f;
+	[SerializeField] private float heightChangeSpeed = 8f;
+	[SerializeField] private CapsuleCollider capsule;
+	[SerializeField] private CapsuleCollider catchCollider;
+	[SerializeField] private float standHeight;
+	private Vector3 standCenter;
+	private float capStandHeight;
+	private Vector3 capStandCenter;
+	private float targetHeight;
+
+	[Header("Mantling")] 
+	[SerializeField] private float mantleUpTime;
+	[SerializeField] private float mantleForwardTime;
+	[SerializeField] private Transform mantleCheckPos;
+	[SerializeField] private Transform footPos;
+	[SerializeField] private float mantleDownRayLength;
+	[SerializeField] private float mantleUpRayLength;
+	[SerializeField] private LayerMask mantleIgnoreLayers;
+
+	public event Action onStepTaken;
+
+
 	private bool IsAcceptingInputs
 	{
 		get => isAcceptingInputs;
 		set
 		{
 			isAcceptingInputs = value;
-			if (!value)
+			if (value)
+			{
+				//creating dummy context to update the move action
+				var fakeContext = new InputAction.CallbackContext();
+				OnMove(fakeContext);
+			}
+			else
 			{
 				//clear all inputs
 				currentMoveDir = Vector2.zero;
-				CurrentState = PlayerState.Idle;
+				CurrentState = isSneakHeld? PlayerState.Sneaking: PlayerState.Idle;
 				spriteAnimator.SetBool("IsMoving", false);
 			}
 		}
 	}
 
+	[Header("Ghosting")]
 	[SerializeField] private bool isGhost;
 	[SerializeField] private GameObject ghostedPlayerInstance;
-	[SerializeField] private Vector3 lastStepPos;
 
 	public event Action<PlayerState> onStateChange;
-    public event Action<bool> onGhostChange;
-    public event Action onGhostReturned;
+	public event Action<bool> onGhostChange;
+	public event Action onGhostReturned;
 
-    //--------------------- STUFF ARYANNA ADDED IN --------------- I was trying to sort out the audio stuff, but everything is still here, just in comments.
-    [Header("Footstep Cadence")]
+	//--------------------- STUFF ARYANNA ADDED IN --------------- I was trying to sort out the audio stuff, but everything is still here, just in comments.
+	[Header("Footstep Cadence")]
+	[SerializeField] private Vector3 lastStepPos;
 	[SerializeField] private float walkStepInterval = 0.45f;
 	[SerializeField] private float runStepInterval = 0.28f;
 	[SerializeField] private float sneakStepInterval = 0.65f;
 	private float stepTimer = 0f;
 
-	[Header("Audio")]
-	[SerializeField] private AudioClip footstepClip;
+
 
 	public bool IsGhost
 	{
@@ -102,7 +132,7 @@ public class PlayerController : MonoBehaviour
 			isGhost = value;
 			spriteAnimator.SetBool("IsGhost", value);
 			SetGhost(value);
-			CameraController.Instance?.ToggleGhostVision(value);
+			CameraController.Instance?.ToggleVisionPanel(value);
 			onGhostChange?.Invoke(value);
 		}
 	}
@@ -125,7 +155,8 @@ public class PlayerController : MonoBehaviour
 				DoUnhide();
 			}
 			currentState = value;
-			
+			targetHeight = (value == PlayerState.Sneaking) ? crouchHeight : standHeight;
+
 			//we can add listeners here for animation triggers etc
 			SetAnimationFlag(value);
 			onStateChange?.Invoke(value);
@@ -154,6 +185,39 @@ public class PlayerController : MonoBehaviour
 		lastStepPos = transform.position;
 		toolHandler.UpdateInteractionHandler();
 		otsCam = GameObject.FindGameObjectWithTag("OTSCam").GetComponent<OTSCameraController>();
+		standHeight = charController.height;
+		standCenter = charController.center;
+		targetHeight = standHeight;
+		if (capsule)
+		{
+			capStandHeight = capsule.height;
+			capStandCenter = capsule.center;
+		}
+	}
+	private void ApplyHeight(float h)
+	{
+		float shrink = standHeight - h;
+
+		charController.height = h;
+		charController.center = new Vector3(
+				standCenter.x,
+				standCenter.y - shrink / 2f,
+				standCenter.z);
+
+		if (capsule)
+		{
+			float capH = capStandHeight - shrink;
+			capsule.height = capH;
+			catchCollider.height = capH;
+			capsule.center = new Vector3(
+					capStandCenter.x,
+					capStandCenter.y - shrink / 2f,
+					capStandCenter.z);
+			catchCollider.center = new Vector3(
+				 capStandCenter.x,
+				 capStandCenter.y - shrink / 2f,
+				 capStandCenter.z);
+		}
 	}
 
 	private void SetGhost(bool setGhost)
@@ -223,6 +287,12 @@ public class PlayerController : MonoBehaviour
 
 			charController.Move(toPlayerShell.normalized * resistance);
 		}
+		if (!Mathf.Approximately(charController.height, targetHeight))
+		{
+			float newHeight = Mathf.MoveTowards(charController.height, targetHeight,
+																					heightChangeSpeed * Time.deltaTime);
+			ApplyHeight(newHeight);
+		}
 
 		if (currentMoveDir.magnitude > 0.01f)
 		{
@@ -244,14 +314,14 @@ public class PlayerController : MonoBehaviour
 			{
 				move = new Vector3(currentMoveDir.x, 0, currentMoveDir.y);
 			}
-            move.y = 0;
-            if (move.sqrMagnitude > 0.0001f)
-            {
-                Quaternion look = Quaternion.LookRotation(move);
-                modelPivot.rotation = Quaternion.RotateTowards(modelPivot.rotation, look, turnSpeed * Time.deltaTime);
-            }
-            //float moveSpeed = 0f;
-            if (!isGhost)
+			move.y = 0;
+			if (move.sqrMagnitude > 0.0001f)
+			{
+				Quaternion look = Quaternion.LookRotation(move);
+				modelPivot.rotation = Quaternion.RotateTowards(modelPivot.rotation, look, turnSpeed * Time.deltaTime);
+			}
+			//float moveSpeed = 0f;
+			if (!isGhost)
 			{
 				switch (currentState)
 				{
@@ -319,11 +389,6 @@ public class PlayerController : MonoBehaviour
 		//dh.DoInteract();
 		//dh.DoSelfDistruct(0.3f);
 
-		if (AudioManager.Instance != null && footstepClip != null)
-		{
-			float stepVol = (currentState == PlayerState.Running) ? 1f : (currentState == PlayerState.Walking ? 0.6f : 0.2f);
-			AudioManager.Instance.PlaySFX(footstepClip, stepVol, 0.1f);
-		}
 
 		// 2. Alert guards using the footstep noise trigger
 		/*GameObject distraction = Instantiate(stepDistractionPrefab, transform.position, Quaternion.identity);
@@ -354,7 +419,8 @@ public class PlayerController : MonoBehaviour
 		}
 
 		Destroy(distraction, 0.3f);*/
-		
+		onStepTaken?.Invoke();
+
 		DistractionHandler.DistractionSeverity severity = DistractionHandler.DistractionSeverity.Minor;
 		float radius = minorStepRadius;
 
@@ -373,7 +439,7 @@ public class PlayerController : MonoBehaviour
 				radius = minorStepRadius;
 				break;
 		}
-		
+
 		DistractionHandler.DoDistract(transform.position, radius, severity, true);
 	}
 
@@ -385,13 +451,22 @@ public class PlayerController : MonoBehaviour
 		{
 			return;
 		}
-		currentMoveDir = context.action.ReadValue<Vector2>();
+
+		//Catching empty inputs from the dummy call when IsAcceptingInputs gets enabled
+		if (context.action == null)
+		{
+			currentMoveDir = InputSystem.actions.FindAction("Move").ReadValue<Vector2>();
+		}
+		else
+		{
+			currentMoveDir = context.action.ReadValue<Vector2>();
+		}
 		if (currentMoveDir.magnitude != 0)
 		{
-            spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
-            spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
-            //running takes priority
-            if (isRunHeld)
+			spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
+			spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
+			//running takes priority
+			if (isRunHeld)
 			{
 				CurrentState = PlayerState.Running;
 			}
@@ -458,7 +533,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!IsAcceptingInputs) return;
 		if (!context.performed) return;
-		otsCam.HandleMouseScroll(context);
+		interactionHandler?.HandleScroll(context);
+		//otsCam.HandleMouseScroll(context);
 		//if (IsGhost) return;
 		/*if (context.ReadValue<float>() > 0)
 		{
@@ -477,13 +553,70 @@ public class PlayerController : MonoBehaviour
 		//interactionHandler.DoInteract();
 		if (!IsGhost)
 		{
-			toolHandler.UseSelected();	
+			toolHandler.UseSelected();
 		}
 		else
 		{
 			interactionHandler.DoInteract(ConditionInteraction.Distract);
 			IsGhost = false;
 		}
+	}
+
+	public void OnMantle(InputAction.CallbackContext context)
+	{
+		if (!IsAcceptingInputs) return;
+		if (!context.performed) return;
+		//we can do two raycasts: one down to see if there's a surface, and one up to see if it's blocked
+#if UNITY_EDITOR
+		Debug.DrawLine(mantleCheckPos.position,mantleCheckPos.position+ Vector3.down*mantleDownRayLength,Color.magenta,2f);
+#endif
+		
+		
+		//raycast down
+		if (Physics.Raycast(mantleCheckPos.position, Vector3.down, out var hit, mantleDownRayLength,
+			    ~mantleIgnoreLayers))
+		{
+			//raycast up first as return condition
+			float height = GetComponentInChildren<CharacterController>().height * transform.lossyScale.y;
+			//Debug.Log(transform.lossyScale.y);
+#if UNITY_EDITOR
+			Debug.DrawLine(hit.point,hit.point+ Vector3.up*height,Color.blue,2f);
+#endif
+			if (Physics.Raycast(hit.point, Vector3.up, height, ~mantleIgnoreLayers)) return;
+			
+			//Debug.Log($"Can mantle at {hit.point}");
+			IsAcceptingInputs = false;
+			StartCoroutine(DoMantle(hit.point));
+		}
+	}
+
+	private IEnumerator DoMantle(Vector3 targetPoint)
+	{
+		Vector3 displacement = targetPoint - footPos.position;
+		//Debug.Log($"Displacement: {displacement}");
+		Vector3 actualTarget = transform.position + displacement;
+		Vector3 initialPos = transform.position;
+		Vector3 verticalTarget = new Vector3(transform.position.x, actualTarget.y, transform.position.z);
+		float currentTime = 0;
+		do
+		{
+			transform.position = Vector3.Lerp(initialPos, verticalTarget, currentTime / mantleUpTime);
+			Physics.SyncTransforms();
+			yield return new WaitForEndOfFrame();
+			currentTime += Time.deltaTime;
+		} while (currentTime < mantleUpTime);
+
+		initialPos = transform.position;
+		currentTime = 0;
+		do
+		{
+			transform.position = Vector3.Lerp(initialPos, actualTarget, currentTime / mantleForwardTime);
+			Physics.SyncTransforms();
+			yield return new WaitForEndOfFrame();
+			currentTime += Time.deltaTime;
+		} while (currentTime < mantleForwardTime);
+		
+		IsAcceptingInputs = true;
 	}
 
 	public void OnGhost(InputAction.CallbackContext context)
@@ -504,6 +637,7 @@ public class PlayerController : MonoBehaviour
 	public void DoHide(Vector3 enterPos, Vector3 inExitPos, Vector3 hidePos)
 	{
 		IsAcceptingInputs = false;
+		isSneakHeld = false;
 		StartCoroutine(HideRoutine(enterPos, hidePos));
 		exitPos = inExitPos;
 		currentHidePos = hidePos;
@@ -515,7 +649,7 @@ public class PlayerController : MonoBehaviour
 		Vector3 startPos = enterPos, endPos = hidePos;
 		Vector3 initialPos = transform.position;
 		float currentTime = 0;
-		
+
 		do
 		{
 			//beginning of animation
@@ -549,7 +683,8 @@ public class PlayerController : MonoBehaviour
 			yield return new WaitForEndOfFrame();
 			currentTime += Time.deltaTime;
 		} while (currentTime < exitHideAnimationTime);
-		
+
+		transform.position = exitPos;
 		IsAcceptingInputs = true;
 	}
 
@@ -559,4 +694,35 @@ public class PlayerController : MonoBehaviour
 		IsAcceptingInputs = false;
 		StartCoroutine(ExitHideRoutine());
 	}
+	
+	#region Saving
+
+	[Header("Saving")] 
+	[SerializeField] private Vector3 savedPos;
+	[SerializeField] private Quaternion savedRot;
+    
+	private void OnEnable()
+	{
+		((iSaveable)this).OnEnable();
+	}
+
+	private void OnDisable()
+	{
+		((iSaveable)this).OnDisable();
+	}
+
+	public void DoSave()
+	{
+		savedPos = transform.position;
+		savedRot = modelPivot.rotation;
+	}
+    
+	public void DoLoad()
+	{
+		transform.position = savedPos;
+		modelPivot.rotation = savedRot;
+		Physics.SyncTransforms();
+	}
+    
+	#endregion
 }

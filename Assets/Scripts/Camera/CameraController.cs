@@ -1,14 +1,16 @@
 using System;
+using System.Collections;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraController : MonoBehaviour
 {
     public static CameraController Instance;
     [SerializeField] private CinemachineBrain camBrain;
     [SerializeField] private ICinemachineCamera activeCam;
-    [SerializeField] private GameObject ghostVisionPanel;
+    [FormerlySerializedAs("ghostVisionPanel")] [SerializeField] private GameObject visionPanel;
     public bool isGhostPanelActive;
 
     public CinemachineBrain CamBrain => camBrain;
@@ -44,17 +46,44 @@ public class CameraController : MonoBehaviour
             cam.Priority = 10;
         }
         newActive.Priority = 20;
-        ghostVisionPanel.transform.position = (newActive.transform.position + newActive.transform.forward);
-        ghostVisionPanel.transform.rotation = newActive.transform.rotation;
-        ghostVisionPanel.transform.parent = newActive.transform;
+        visionPanel.transform.position = (newActive.transform.position + newActive.transform.forward);
+        visionPanel.transform.rotation = newActive.transform.rotation;
+        visionPanel.transform.parent = newActive.transform;
         activeCam = newActive;
     }
-    public void ToggleGhostVision(bool value)
+    public void ToggleVisionPanel(bool value)
     {
         isGhostPanelActive = value;
-        if (ghostVisionPanel != null)
+        if (visionPanel != null)
         {
-            ghostVisionPanel.SetActive(value);
+            visionPanel.SetActive(value);
         }
+    }
+
+    public void FadeToBlackAndReload(float waitTime)
+    {
+        StartCoroutine(DoFadeWithWaitTime(waitTime, 0.5f));
+    }
+
+    private IEnumerator DoFadeWithWaitTime(float waitTime, float fadeTime)
+    {
+        Time.timeScale = 0;
+        ToggleVisionPanel(true);
+        SpriteRenderer r = visionPanel.GetComponent<SpriteRenderer>();
+        yield return new WaitForSecondsRealtime(waitTime);
+        Color initialColor = r.color, finalColor = Color.black;
+        float currentTime = 0;
+        do
+        {
+            r.color = Color.Lerp(initialColor, finalColor, currentTime / fadeTime);
+            yield return new WaitForEndOfFrame();
+            currentTime += Time.unscaledDeltaTime;
+        } while (currentTime<fadeTime);
+
+        yield return new WaitForSecondsRealtime(0.3f);
+        WorldController.DoLoad();
+        r.color = initialColor;
+        ToggleVisionPanel(false);
+        Time.timeScale = 1;
     }
 }
