@@ -75,6 +75,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+        //We can get rif of the currentSuspicion check if we want to always see an icon when in range
         if (attachedLos.IsLooking && currentSuspicion>0)
         {
                 //send it's location to a camera visualisation
