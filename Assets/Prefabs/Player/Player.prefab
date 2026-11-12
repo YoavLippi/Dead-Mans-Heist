@@ -710,19 +710,7 @@ MonoBehaviour:
     m_ActionId: d551fbab-1a6a-461a-93b4-4254ef29e485
     m_ActionName: 'Ingame/Interact[/Keyboard/e]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5808222524373624563}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnGhost
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: b5307747-ed40-4f09-a742-b0b5980bd202
     m_ActionName: 'Ingame/Ghost[/Keyboard/g]'
   - m_PersistentCalls:

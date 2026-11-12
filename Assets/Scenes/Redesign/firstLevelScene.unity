@@ -24105,7 +24105,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b3e241f0fafbfe34580305a78058f3f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.01
+      value: -19.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3e241f0fafbfe34580305a78058f3f1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -76985,7 +76985,7 @@ MonoBehaviour:
   audioSource: {fileID: 1669254599}
   impactSound: {fileID: 8300000, guid: 328904eaa8cfffe4a9db9279898e982f, type: 3}
   volume: 0.1
-  soundDelay: 0.75
+  soundDelay: 0.85
 --- !u!95 &1669254595
 Animator:
   serializedVersion: 7
