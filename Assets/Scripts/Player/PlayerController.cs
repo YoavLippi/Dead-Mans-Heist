@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour, iSaveable
 		Running,
 		Idle,
 		Sneaking,
-		Hiding
+		Hiding,
+		Mantling
 	}
 
 	[Header("Speeds")]
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 	[SerializeField] private CapsuleCollider capsule;
 	[SerializeField] private CapsuleCollider catchCollider;
 	[SerializeField] private float standHeight;
+	[SerializeField] private LayerMask standIgnoreLayers;
 	private Vector3 standCenter;
 	private float capStandHeight;
 	private Vector3 capStandCenter;
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 				DoUnhide();
 			}
 			currentState = value;
-			targetHeight = (value == PlayerState.Sneaking) ? crouchHeight : standHeight;
+			targetHeight = (value == PlayerState.Sneaking || value == PlayerState.Mantling) ? crouchHeight : standHeight;
 
 			//we can add listeners here for animation triggers etc
 			SetAnimationFlag(value);
@@ -261,10 +263,12 @@ public class PlayerController : MonoBehaviour, iSaveable
 	private void SetAnimationFlag(PlayerState newState)
 	{
 		string runFlag = "IsRunning", moveFlag = "IsWalking", crouchFlag = "IsCrouching", hideFlag = "IsHiding";
+		string mantleFlag = "IsMantling";
 		spriteAnimator.SetBool(runFlag, newState == PlayerState.Running);
 		spriteAnimator.SetBool(crouchFlag, newState == PlayerState.Sneaking);
 		spriteAnimator.SetBool(moveFlag, newState == PlayerState.Walking);
 		spriteAnimator.SetBool(hideFlag, newState == PlayerState.Hiding);
+		spriteAnimator.SetBool(mantleFlag, newState == PlayerState.Mantling);
 	}
 
 	// Update is called once per frame
@@ -502,6 +506,11 @@ public class PlayerController : MonoBehaviour, iSaveable
 		//isSneakHeld = context.performed;
 		if (!context.performed) return;
 		if (CurrentState == PlayerState.Hiding) return;
+		
+		float height = standHeight * transform.lossyScale.y;
+		//Debug.Log(transform.lossyScale.y);
+		if (Physics.Raycast(footPos.position, Vector3.up, height, ~standIgnoreLayers)) return;
+		
 		isSneakHeld = !isSneakHeld;
 		if (isSneakHeld)
 		{
@@ -516,6 +525,12 @@ public class PlayerController : MonoBehaviour, iSaveable
 	public void OnSprint(InputAction.CallbackContext context)
 	{
 		if (!IsAcceptingInputs) return;
+		if (CurrentState == PlayerState.Sneaking)
+		{
+			float height = standHeight * transform.lossyScale.y;
+			//Debug.Log(transform.lossyScale.y);
+			if (Physics.Raycast(footPos.position, Vector3.up, height, ~standIgnoreLayers)) return;
+		}
 		isRunHeld = context.performed;
 		//if (isRunHeld) CurrentState = PlayerState.Running;
 		if (isRunHeld)
@@ -577,7 +592,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 			    ~mantleIgnoreLayers))
 		{
 			//raycast up first as return condition
-			float height = GetComponentInChildren<CharacterController>().height * transform.lossyScale.y;
+			float height = crouchHeight * transform.lossyScale.y;
 			//Debug.Log(transform.lossyScale.y);
 #if UNITY_EDITOR
 			Debug.DrawLine(hit.point,hit.point+ Vector3.up*height,Color.blue,2f);
@@ -592,6 +607,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 
 	private IEnumerator DoMantle(Vector3 targetPoint)
 	{
+		CurrentState = PlayerState.Mantling;
 		Vector3 displacement = targetPoint - footPos.position;
 		//Debug.Log($"Displacement: {displacement}");
 		Vector3 actualTarget = transform.position + displacement;
@@ -615,7 +631,9 @@ public class PlayerController : MonoBehaviour, iSaveable
 			yield return new WaitForEndOfFrame();
 			currentTime += Time.deltaTime;
 		} while (currentTime < mantleForwardTime);
-		
+
+		isSneakHeld = true;
+		CurrentState = PlayerState.Sneaking;
 		IsAcceptingInputs = true;
 	}
 
