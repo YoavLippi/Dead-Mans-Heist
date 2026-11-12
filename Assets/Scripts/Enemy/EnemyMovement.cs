@@ -15,6 +15,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
     private int lastKnownWorldTime;
     [SerializeField] private AnimationCurve suspicionFalloffCurve;
     [SerializeField] private int timeOffset = 0;
+    [SerializeField] private Renderer meshRenderer;
 
     [Header("Look-around turn")]
     [SerializeField] private float turnAngle = 60f;
@@ -47,6 +48,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
     private Coroutine distractionRoutine;
     private Coroutine lookRoutine;
     private Coroutine waitRoutine;
+    private Camera mainCam;
 
     private float lastSeenTime;
     [SerializeField] private float alertTurnSpeed = 300f;
@@ -67,11 +69,18 @@ public class EnemyMovement : EnemyAbs, iSaveable
     {
         base.Start();
         target = GameObject.FindWithTag("Player");
+        mainCam = Camera.main;
     }
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+        if (attachedLos.IsLooking && currentSuspicion>0)
+        {
+                //send it's location to a camera visualisation
+                Vector3 screenPoint = mainCam.WorldToScreenPoint(transform.position); 
+                //detectUX.showOnCamera(screenPoint);
+        }
         if (currentSuspicion >= maxSuspicion) 
         {
             RestartLevel();
@@ -95,6 +104,14 @@ public class EnemyMovement : EnemyAbs, iSaveable
             }
         }
     }
+    
+    //please unity discussions 🙏
+    private bool IsVisible()
+    {
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(mainCam);
+        return GeometryUtility.TestPlanesAABB(planes, meshRenderer.bounds);
+    }
+    
     public void RestartLevel()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

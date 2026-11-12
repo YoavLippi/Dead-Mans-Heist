@@ -48,6 +48,8 @@ public class LosHandler : MonoBehaviour
 
     public bool IsSeeingPlayer => isSeeingPlayer;
 
+    public bool IsLooking => isLooking;
+
     private void Start()
     {
        
@@ -66,7 +68,7 @@ public class LosHandler : MonoBehaviour
         //coneMeshFilter.mesh = coneMesh;
         //meshRenderer = GetComponent<MeshRenderer>();
 
-        StartLooking();
+        //StartLooking();
     }
 
     public void LerpSightColor(float lerpPercentage, Color startColor, Color endColor)
