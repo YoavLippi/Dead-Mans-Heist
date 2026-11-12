@@ -5045,24 +5045,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
   m_PrefabInstance: {fileID: 794333070}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &122717144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122717141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c791e81066d7b44b36339e63aeae45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaterGushingAudio
-  audioSource: {fileID: 122717145}
-  minPitch: 0.94
-  maxPitch: 1.15
-  turbulenceSpeed: 0.8
-  baseVolume: 0.5
-  volumeFluctuation: 0.15
 --- !u!82 &122717145
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5075,7 +5057,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0938f5676ae3d844ea364322f6724bcd, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -21907,9 +21889,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1839244283}
-    - targetCorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1839244282}
   m_SourcePrefab: {fileID: 100100000, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
 --- !u!4 &445496519 stripped
 Transform:
@@ -24883,9 +24862,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1097157725}
-    - targetCorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1097157726}
   m_SourcePrefab: {fileID: 100100000, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
 --- !u!1 &495003602
 GameObject:
@@ -37791,9 +37767,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 122717145}
-    - targetCorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 122717144}
   m_SourcePrefab: {fileID: 100100000, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
 --- !u!1 &795745818
 GameObject:
@@ -39684,6 +39657,7 @@ GameObject:
   - component: {fileID: 836251943}
   - component: {fileID: 836251942}
   - component: {fileID: 836251945}
+  - component: {fileID: 836251946}
   m_Layer: 10
   m_Name: Flooded voiceline
   m_TagString: Untagged
@@ -39755,6 +39729,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SneakZone
   requireSpecificState: 1
   requiredState: 3
+--- !u!114 &836251946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836251941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c791e81066d7b44b36339e63aeae45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaterGushingAudio
+  waterAudioSources:
+  - {fileID: 1097157725}
+  - {fileID: 1848508750}
+  - {fileID: 122717145}
+  - {fileID: 1839244283}
+  minPitch: 0.94
+  maxPitch: 1.05
+  turbulenceSpeed: 0.8
+  activeVolume: 0.65
+  fadeDuration: 1.2
+  triggerOnceOnly: 1
+  stopOnExit: 0
+  playerTag: Player
 --- !u!1001 &836309502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45184,9 +45183,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1848508750}
-    - targetCorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1848508751}
   m_SourcePrefab: {fileID: 100100000, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
 --- !u!1001 &957337898
 PrefabInstance:
@@ -50968,7 +50964,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0938f5676ae3d844ea364322f6724bcd, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -51053,24 +51049,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1097157726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002464430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c791e81066d7b44b36339e63aeae45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaterGushingAudio
-  audioSource: {fileID: 1097157725}
-  minPitch: 0.94
-  maxPitch: 1.15
-  turbulenceSpeed: 0.8
-  baseVolume: 0.5
-  volumeFluctuation: 0.15
 --- !u!4 &1097185127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c9f4efed92da1904ab295ab1bbab4f99, type: 3}
@@ -77007,7 +76985,7 @@ MonoBehaviour:
   audioSource: {fileID: 1669254599}
   impactSound: {fileID: 8300000, guid: 328904eaa8cfffe4a9db9279898e982f, type: 3}
   volume: 0.1
-  soundDelay: 0.45
+  soundDelay: 0.75
 --- !u!95 &1669254595
 Animator:
   serializedVersion: 7
@@ -85046,24 +85024,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5391900735351674927, guid: 5c186cc176ee03149abfc8dd044d9e8a, type: 3}
   m_PrefabInstance: {fileID: 445439734}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1839244282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839244279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c791e81066d7b44b36339e63aeae45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaterGushingAudio
-  audioSource: {fileID: 1839244283}
-  minPitch: 0.94
-  maxPitch: 1.15
-  turbulenceSpeed: 0.8
-  baseVolume: 0.5
-  volumeFluctuation: 0.15
 --- !u!82 &1839244283
 AudioSource:
   m_ObjectHideFlags: 0
@@ -85076,7 +85036,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0938f5676ae3d844ea364322f6724bcd, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -85776,7 +85736,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0938f5676ae3d844ea364322f6724bcd, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -85861,24 +85821,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1848508751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211317921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c791e81066d7b44b36339e63aeae45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaterGushingAudio
-  audioSource: {fileID: 1848508750}
-  minPitch: 0.94
-  maxPitch: 1.15
-  turbulenceSpeed: 0.8
-  baseVolume: 0.5
-  volumeFluctuation: 0.15
 --- !u!1001 &1851378934
 PrefabInstance:
   m_ObjectHideFlags: 0
