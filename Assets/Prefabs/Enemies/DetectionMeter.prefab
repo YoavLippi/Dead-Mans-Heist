@@ -428,8 +428,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DetectionUX
   fillImage: {fileID: 1953627062700939278}
   statusText: {fileID: 123323073213846487}
+  camVisualPrefab: {fileID: 2914247482635654529, guid: 545f6d1f4c19b5b45a36d56c7b1f841a, type: 3}
   currentDetection: 0
   drainRate: 15
+  edgePaddingX: 50
+  edgePaddingY: 50
   calmColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
   suspiciousColor: {r: 1, g: 0.8, b: 0.2, a: 1}
   alertColor: {r: 1, g: 0.2, b: 0.2, a: 1}

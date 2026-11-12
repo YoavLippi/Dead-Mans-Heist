@@ -584,6 +584,9 @@ MonoBehaviour:
   capsule: {fileID: 0}
   catchCollider: {fileID: 0}
   standHeight: 0
+  standIgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 0
   mantleUpTime: 0.35
   mantleForwardTime: 0.2
   mantleCheckPos: {fileID: 5933353746523761598}
@@ -806,7 +809,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 30
+  m_Radius: 40
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &131773325613844373
 MonoBehaviour:

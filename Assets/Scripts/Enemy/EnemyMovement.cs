@@ -79,8 +79,16 @@ public class EnemyMovement : EnemyAbs, iSaveable
         {
                 //send it's location to a camera visualisation
                 Vector3 screenPoint = mainCam.WorldToScreenPoint(transform.position); 
-                //detectUX.showOnCamera(screenPoint);
+                detectUX.showOnCamera(screenPoint);
         }
+        else
+        {
+            if (detectUX.IsShowingIcon)
+            {
+                detectUX.StopShowingIcon();
+            }
+        }
+        
         if (currentSuspicion >= maxSuspicion) 
         {
             RestartLevel();
