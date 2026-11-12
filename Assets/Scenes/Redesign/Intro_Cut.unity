@@ -102211,6 +102211,10 @@ PrefabInstance:
       value: Cutscene_Intro
       objectReference: {fileID: 0}
     - target: {fileID: 276870591156506449, guid: 2de36a38109c0d445b3ceaecfcd37ab3, type: 3}
+      propertyPath: m_InitialState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 276870591156506449, guid: 2de36a38109c0d445b3ceaecfcd37ab3, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
       objectReference: {fileID: 308118433}
