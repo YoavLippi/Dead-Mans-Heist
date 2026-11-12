@@ -21,6 +21,7 @@ public class Gear : Interactable
     public symbols CorrectSymbol => correctSymbol;
     public bool IsCorrect => currentSymbol == correctSymbol;
     public void Locked() => islocked = true;
+    public void Unlocked() => islocked = false;
 
     protected override void Awake()
     {
@@ -40,5 +41,10 @@ public class Gear : Interactable
         int i = (int)currentSymbol;
         if (symbolRenderer == null || sprites == null || i >= sprites.Length) return;
         symbolRenderer.sprite = sprites[i];
+    }
+
+    public void Reset()
+    {
+        currentSymbol = symbols.Sun;
     }
 }

@@ -35,4 +35,14 @@ public class GearPuzzle : Interactable
         }
 
     }
+
+    public void Reset()
+    {
+        foreach (Gear gear in gears) 
+        {
+            gear.Reset();
+            gear.Unlocked();
+        }
+        correct = false;
+    }
 }
