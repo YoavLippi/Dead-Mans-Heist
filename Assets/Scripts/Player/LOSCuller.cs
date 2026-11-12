@@ -10,7 +10,7 @@ public class LOSCuller : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.name);
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("TutorialEnemy"))
         {
             enemiesInRange.Add(other.gameObject);
             other.gameObject.GetComponentInChildren<LosHandler>().StartLooking();
@@ -19,7 +19,7 @@ public class LOSCuller : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("TutorialEnemy"))
         {
             enemiesInRange.Remove(other.gameObject);
             other.gameObject.GetComponentInChildren<LosHandler>().StopLooking();

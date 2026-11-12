@@ -597,6 +597,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   timeOffset: 0
+  meshRenderer: {fileID: 7176463254399667905}
   turnAngle: 60
   turnSpeed: 90
   lookAroundWaitTime: 1.5
@@ -747,6 +748,11 @@ Animator:
 --- !u!4 &6906952738822828794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6734931530170869177, guid: 2e01d121c5a40254e818ca5eb7c198d0, type: 3}
+  m_PrefabInstance: {fileID: 192850358070646595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7176463254399667905 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -2217232068680001150, guid: 2e01d121c5a40254e818ca5eb7c198d0, type: 3}
   m_PrefabInstance: {fileID: 192850358070646595}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &231575101348298663
