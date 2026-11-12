@@ -32232,11 +32232,11 @@ MonoBehaviour:
   TransparentLayers:
     serializedVersion: 2
     m_Bits: 2176
-  MinimumDistanceFromTarget: 0.2
+  MinimumDistanceFromTarget: 0.33
   AvoidObstacles:
     Enabled: 1
     DistanceLimit: 0
-    MinimumOcclusionTime: 0
+    MinimumOcclusionTime: 0.05
     CameraRadius: 0.5
     UseFollowTarget:
       Enabled: 0
@@ -32268,14 +32268,14 @@ MonoBehaviour:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 0
-      Size: {x: 0.2, y: 0.2}
+      Size: {x: 0.44, y: 0.53}
     HardLimits:
       Enabled: 0
-      Size: {x: 0.8, y: 0.8}
+      Size: {x: 1.62, y: 0.53}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.12, y: 0.12}
+  Damping: {x: 0, y: 0}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -99479,6 +99479,10 @@ PrefabInstance:
     - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: spriteAnimator
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808222524373624563, guid: 071067f6fae392b44946b7f955f33594, type: 3}
+      propertyPath: standIgnoreLayers.m_Bits
+      value: 1152
       objectReference: {fileID: 0}
     - target: {fileID: 6364085772223566543, guid: 071067f6fae392b44946b7f955f33594, type: 3}
       propertyPath: m_Enabled
