@@ -1144,8 +1144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RollingBottle
   pointA: {fileID: 1273476423}
   pointB: {fileID: 415966756}
-  rollDuration: 20
-  bottleRadius: 0.06
+  rollDuration: 9
+  bottleRadius: 0.2
   rollAxis: 2
   reverseRotation: 0
   motionCurve:
