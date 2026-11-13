@@ -42,12 +42,12 @@ public class WorldTime : MonoBehaviour, iSaveable
     
     private void OnEnable()
     {
-        ((iSaveable)this).OnEnable();
+        ((iSaveable)this).RegisterSaveEvents();
     }
 
     private void OnDisable()
     {
-        ((iSaveable)this).OnDisable();
+        ((iSaveable)this).DeregisterSaveEvents();
     }
 
     public void DoSave()

@@ -20,14 +20,14 @@ public class RegionVoicelines : MonoBehaviour, iSaveable
         playAudio.Play(clip);
     }
 
-    public void OnEnable()
+    public void RegisterSaveEvents()
     {
-           ((iSaveable)this).OnEnable();    
+        ((iSaveable)this).RegisterSaveEvents();
     }
 
-    public void OnDisable()
+    public void DeregisterSaveEvents()
     {
-        ((iSaveable)this).OnDisable();
+        ((iSaveable)this).DeregisterSaveEvents();
     }
 
     public void DoLoad() 

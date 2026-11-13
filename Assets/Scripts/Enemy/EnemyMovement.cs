@@ -55,13 +55,13 @@ public class EnemyMovement : EnemyAbs, iSaveable
 
     void OnEnable()
     {
-        ((iSaveable)this).OnEnable();
+        ((iSaveable)this).RegisterSaveEvents();
         WorldTime.secondsChange += CheckTime;
     }
 
     void OnDisable()
     {
-        ((iSaveable)this).OnDisable();
+        ((iSaveable)this).DeregisterSaveEvents();
         WorldTime.secondsChange -= CheckTime;
     } 
 
