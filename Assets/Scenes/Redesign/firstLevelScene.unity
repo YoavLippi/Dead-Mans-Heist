@@ -15672,7 +15672,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimatorAudioPlay
   audioSource: {fileID: 299506375}
   soundClips:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: a479e1c2288f66445bfcbb93cbfaf485, type: 3}
+  audioVolume: 0.8
 --- !u!1001 &300907430
 PrefabInstance:
   m_ObjectHideFlags: 0
