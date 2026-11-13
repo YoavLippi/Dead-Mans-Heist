@@ -6742,6 +6742,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1931887102}
+        m_TargetAssemblyTypeName: RegionVoicelines, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   objectHeight: 0
 --- !u!54 &153540169
 Rigidbody:
@@ -31714,6 +31726,7 @@ GameObject:
   - component: {fileID: 637434160}
   - component: {fileID: 637434161}
   - component: {fileID: 637434162}
+  - component: {fileID: 637434163}
   m_Layer: 11
   m_Name: Plank
   m_TagString: Untagged
@@ -31910,6 +31923,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &637434163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637434155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca8a3a090f12d44886e0cd5747836a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Plank
 --- !u!1 &638399607
 GameObject:
   m_ObjectHideFlags: 0
@@ -36006,6 +36031,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a766f161820b6c40a3e8dd0efa2614f, type: 3}
+--- !u!1001 &715388187
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.93547
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424918288100871658, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239487635494193494, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
+      propertyPath: m_Name
+      value: SavePoint
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 538c1eb372c4a664c822f99e447755ca, type: 3}
 --- !u!1001 &723162692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39682,7 +39764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: 000c9c636dc5b0f44b40b6c464978b6d, type: 3}
+  clip: {fileID: 8300000, guid: 010d3bba348db1341ba6f2ee5d83ad59, type: 3}
   playOnce: 0
 --- !u!65 &809952783
 BoxCollider:
@@ -47697,6 +47779,101 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c9f4efed92da1904ab295ab1bbab4f99, type: 3}
   m_PrefabInstance: {fileID: 1123303998}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &976668789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 976668790}
+  - component: {fileID: 976668793}
+  - component: {fileID: 976668792}
+  - component: {fileID: 976668791}
+  m_Layer: 10
+  m_Name: SteadyNow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &976668790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976668789}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 156.2, y: -2.16, z: 21.9}
+  m_LocalScale: {x: 2.5000005, y: 2.5, z: 2.5000005}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1027998192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &976668791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976668789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c791e81066d7b44b36339e63aeae45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaterGushingAudio
+  waterAudioSources:
+  - {fileID: 1097157725}
+  - {fileID: 1848508750}
+  - {fileID: 122717145}
+  - {fileID: 1839244283}
+  minPitch: 0.94
+  maxPitch: 1.05
+  turbulenceSpeed: 0.8
+  activeVolume: 0.65
+  fadeDuration: 1.2
+  triggerOnceOnly: 1
+  stopOnExit: 0
+  playerTag: Player
+--- !u!114 &976668792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976668789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43b9bf2f979b1343ab300326c50b049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
+  playAudio: {fileID: 383500304}
+  clip: {fileID: 8300000, guid: 7a53d972c863e2d419b28fbc8d39afe8, type: 3}
+  playOnce: 0
+--- !u!65 &976668793
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976668789}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 18.015377, y: 0.639366, z: 4.771717}
+  m_Center: {x: 7.076157, y: -0.18031836, z: -0.3683918}
 --- !u!1 &980341707
 GameObject:
   m_ObjectHideFlags: 0
@@ -49869,6 +50046,8 @@ Transform:
   - {fileID: 1644769878}
   - {fileID: 548111437}
   - {fileID: 226346403}
+  - {fileID: 976668790}
+  - {fileID: 1931887104}
   - {fileID: 98112375}
   - {fileID: 809952784}
   m_Father: {fileID: 0}
@@ -52546,6 +52725,7 @@ GameObject:
   - component: {fileID: 1089466871}
   - component: {fileID: 1089466875}
   - component: {fileID: 1089466876}
+  - component: {fileID: 1089466877}
   m_Layer: 11
   m_Name: Plank (1)
   m_TagString: Untagged
@@ -52742,6 +52922,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1089466877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089466869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca8a3a090f12d44886e0cd5747836a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Plank
 --- !u!4 &1093671608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c9f4efed92da1904ab295ab1bbab4f99, type: 3}
@@ -68650,7 +68842,7 @@ MonoBehaviour:
     onStepComplete:
       m_PersistentCalls:
         m_Calls: []
-    startAudio: {fileID: 8300000, guid: 06a84265688ba984b91b4a7e6b9f1ced, type: 3}
+    startAudio: {fileID: 8300000, guid: f723ca0a6ff7b8346ad1d25e818eec78, type: 3}
     endAudio: {fileID: 0}
   - action: 2
     image: {fileID: 21300000, guid: 18419654993532246ac5d8ef593acb40, type: 3}
@@ -68686,7 +68878,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-    startAudio: {fileID: 8300000, guid: 9ee6d37dcb3960e4fa575e7f46d7b6d9, type: 3}
+    startAudio: {fileID: 8300000, guid: 5a4b6e9ffa9369343aab409489ad32e3, type: 3}
     endAudio: {fileID: 0}
   - action: 3
     image: {fileID: 21300000, guid: 18419654993532246ac5d8ef593acb40, type: 3}
@@ -83869,6 +84061,7 @@ GameObject:
   - component: {fileID: 1761401480}
   - component: {fileID: 1761401481}
   - component: {fileID: 1761401482}
+  - component: {fileID: 1761401483}
   m_Layer: 11
   m_Name: Plank
   m_TagString: Untagged
@@ -84065,6 +84258,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1761401483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761401475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca8a3a090f12d44886e0cd5747836a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Plank
 --- !u!1001 &1764202662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91244,7 +91449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EndSequence
   cannon: {fileID: 1895991559}
   sizzle: {fileID: 0}
-  explosion: {fileID: 0}
+  explosion: {fileID: 8300000, guid: 9c6d74474776cb148979326a8a4f78d2, type: 3}
   wall: {fileID: 91574323}
 --- !u!82 &1895991559
 AudioSource:
@@ -91259,7 +91464,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.492
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -92916,6 +93121,79 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &1931887101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1931887104}
+  - component: {fileID: 1931887102}
+  - component: {fileID: 1931887103}
+  m_Layer: 10
+  m_Name: endVoiceLine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1931887102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931887101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43b9bf2f979b1343ab300326c50b049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
+  playAudio: {fileID: 383500304}
+  clip: {fileID: 8300000, guid: a75f0b86287d3ab4690f8393e758b9ed, type: 3}
+  playOnce: 0
+--- !u!114 &1931887103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931887101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c791e81066d7b44b36339e63aeae45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaterGushingAudio
+  waterAudioSources:
+  - {fileID: 1097157725}
+  - {fileID: 1848508750}
+  - {fileID: 122717145}
+  - {fileID: 1839244283}
+  minPitch: 0.94
+  maxPitch: 1.05
+  turbulenceSpeed: 0.8
+  activeVolume: 0.65
+  fadeDuration: 1.2
+  triggerOnceOnly: 1
+  stopOnExit: 0
+  playerTag: Player
+--- !u!4 &1931887104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931887101}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 290.6, y: -2.16, z: -0.2}
+  m_LocalScale: {x: 2.5000005, y: 2.5, z: 2.5000005}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1027998192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1933217547
 GameObject:
   m_ObjectHideFlags: 0
@@ -105766,3 +106044,4 @@ SceneRoots:
   - {fileID: 212379200}
   - {fileID: 153540170}
   - {fileID: 91574324}
+  - {fileID: 715388187}
