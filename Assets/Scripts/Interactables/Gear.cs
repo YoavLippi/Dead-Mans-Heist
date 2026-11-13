@@ -5,10 +5,10 @@ public class Gear : Interactable
 {
     public enum symbols 
     {
-        Sun,
-        Moon,
-        Star,
-        ReverseMoon
+        Skull,
+        Ship,
+        OldCompass,
+        NewCompass
     }
 
     [SerializeField] private symbols correctSymbol;
@@ -45,6 +45,6 @@ public class Gear : Interactable
 
     public void Reset()
     {
-        currentSymbol = symbols.Sun;
+        currentSymbol = symbols.Skull;
     }
 }
