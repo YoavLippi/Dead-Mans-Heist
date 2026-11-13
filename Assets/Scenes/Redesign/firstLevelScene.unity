@@ -15704,9 +15704,6 @@ PrefabInstance:
       addedObject: {fileID: 299506367}
     - targetCorrespondingSourceObject: {fileID: -3027289777653499857, guid: 9f48080b06b37654a9c6cf7248e5e8dd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 299506376}
-    - targetCorrespondingSourceObject: {fileID: -3027289777653499857, guid: 9f48080b06b37654a9c6cf7248e5e8dd, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 299506375}
   m_SourcePrefab: {fileID: 3150474306388093854, guid: 9f48080b06b37654a9c6cf7248e5e8dd, type: 3}
 --- !u!1 &299506366 stripped
@@ -15787,7 +15784,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -15872,23 +15869,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &299506376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299506366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f0b3adea9855934b9871a25af2b7550, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimatorAudioPlay
-  audioSource: {fileID: 299506375}
-  soundClips:
-  - {fileID: 8300000, guid: 677c68a5809eb65449d4cb9b77b47871, type: 3}
-  - {fileID: 8300000, guid: a479e1c2288f66445bfcbb93cbfaf485, type: 3}
-  audioVolume: 0.8
 --- !u!1001 &300907430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56349,6 +56329,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   animator: {fileID: 1173830356}
+  audioSource: {fileID: 299506375}
+  solvedClip: {fileID: 8300000, guid: 39459b6f247e2334ab3470df95bdb338, type: 3}
+  solvedVolume: 0.7
+  failedClip: {fileID: 8300000, guid: 4b94d379c182c2443abeaebc53b1048d, type: 3}
+  failedVolume: 0.7
+  audioDelay: 0
   correct: 0
 --- !u!95 &1173830356
 Animator:
