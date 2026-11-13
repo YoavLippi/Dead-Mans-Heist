@@ -177,8 +177,10 @@ public class EnemyMovement : EnemyAbs, iSaveable
 
     public override void moveToCheckPoint(Transform target)
     {
+        Debug.Log($"Move triggered on {name}");
         if (target != null && nv != null)
         {
+            Debug.Log($"{name} wants to move");
             nv.SetDestination(target.position);
         }
     }
@@ -356,7 +358,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
         CurrentState = EnemyState.None;
         CurrentSuspicion = 0;
         isAlerted = false;
-        transform.position = savedPos;
+        nv.Warp(savedPos);
         transform.rotation = savedRot;
         nv.destination = savedNavDestination;
     }

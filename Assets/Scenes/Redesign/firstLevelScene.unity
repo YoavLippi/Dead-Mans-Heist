@@ -35526,7 +35526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9026970220845964610, guid: 3a766f161820b6c40a3e8dd0efa2614f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9026970220845964610, guid: 3a766f161820b6c40a3e8dd0efa2614f, type: 3}
       propertyPath: m_TagString
@@ -67843,6 +67843,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
   promptUI: {fileID: 1437800497}
   tutaudio: {fileID: 383500304}
+  currentAction: 0
+  savedCompleteState: 0
 --- !u!4 &1431944407
 Transform:
   m_ObjectHideFlags: 0

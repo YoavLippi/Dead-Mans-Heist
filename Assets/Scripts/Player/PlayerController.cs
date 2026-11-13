@@ -467,8 +467,8 @@ public class PlayerController : MonoBehaviour, iSaveable
 		}
 		if (currentMoveDir.magnitude != 0)
 		{
-			spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
-			spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
+			//spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
+			//spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
 			//running takes priority
 			if (isRunHeld)
 			{
@@ -486,8 +486,8 @@ public class PlayerController : MonoBehaviour, iSaveable
 			spriteAnimator.SetBool("IsMoving", true);
 
 			//This should store only the last movement so we know which way it was facing when it stopped
-			spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
-			spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
+			//spriteAnimator.SetFloat("FacingX", currentMoveDir.x);
+			//spriteAnimator.SetFloat("FacingY", currentMoveDir.y);
 		}
 		else
 		{

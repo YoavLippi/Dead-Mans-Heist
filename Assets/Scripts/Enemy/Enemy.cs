@@ -36,7 +36,7 @@ public class EnemyAbs : MonoBehaviour
     [SerializeField] protected Collider catchCollider;
     [SerializeField] protected float chaseSpeed = 6;
     [SerializeField] protected float patrolSpeed = 3.5f;
-    protected NavMeshAgent nv;
+    [SerializeField] protected NavMeshAgent nv;
     [SerializeField]protected bool isAlerted;
     protected bool gameOverTriggered;
     public static event Action OnPlayerCaught;

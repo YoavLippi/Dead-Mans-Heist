@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,16 +29,17 @@ public struct TutorialStep
     public AudioClip endAudio;
 }
 
-public class TutorialRoom : TutorialBase
+public class TutorialRoom : TutorialBase, iSaveable
 {
     [SerializeField] private List<TutorialStep> steps;
     [SerializeField] private TutorialFade promptUI;
     [SerializeField] protected PlayAudio tutaudio;
 
     private bool actionDone;
-    private TutActions currentAction;
+    [SerializeField] private TutActions currentAction;
     private Coroutine routine;
     private SneakZone activeZone;
+    private bool isComplete = false;
 
 
 
@@ -49,6 +51,7 @@ public class TutorialRoom : TutorialBase
 
     protected override void OnRoomFinished()
     {
+        isComplete = true;
         if (playerController != null)
         {
             playerController.onStateChange -= HandleStateChanged;
@@ -119,4 +122,37 @@ public class TutorialRoom : TutorialBase
         activeZone.PlayerSneakedIn -= HandleZoneReached;
         activeZone = null;
     }
+    
+    #region Saving
+
+    [Header("Saving")] 
+    [SerializeField] private bool savedCompleteState;
+    
+    private void OnEnable()
+    {
+        ((iSaveable)this).OnEnable();
+    }
+
+    private void OnDisable()
+    {
+        ((iSaveable)this).OnDisable();
+    }
+
+    public void DoSave()
+    {
+        savedCompleteState = isComplete;
+    }
+    
+    public void DoLoad()
+    {
+        isComplete = savedCompleteState;
+        if (routine != null)
+        {
+            StopCoroutine(routine);
+            routine = null;
+        }
+        routine = StartCoroutine(RunTutorial());
+    }
+    
+    #endregion
 }
