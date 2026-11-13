@@ -28,6 +28,8 @@ public class InteractionHandler : MonoBehaviour
 	[Header("Holding")] 
 	[SerializeField] private Interactable currentlyHeldObj;
 
+	[SerializeField] private HidingHandler currentlyHidObj;
+
 	[SerializeField] private LayerMask ignorePushLayers;
 	public ConditionInteraction CurrentInteractionType
 	{
@@ -59,9 +61,15 @@ public class InteractionHandler : MonoBehaviour
 		if (closestInteractable != null && currentlyHeldObj == null)
 		{
 			closestInteractable.TriggerConditionalEvent(interaction, eID);
+			if (closestInteractable.TryGetComponent(out HidingHandler h))
+			{
+				currentlyHidObj = h;
+			}
 		} else if (currentlyHeldObj != null)
 		{
 			currentlyHeldObj.TriggerConditionalEvent(interaction, eID);
+		} else if (currentlyHidObj != null) {
+			currentlyHidObj.TriggerConditionalEvent(interaction, eID);
 		}
 	}
 
@@ -70,9 +78,15 @@ public class InteractionHandler : MonoBehaviour
 		if (closestInteractable != null && currentlyHeldObj == null)
 		{
 			closestInteractable.TriggerConditionalEvent(CurrentInteractionType);
+			if (closestInteractable.TryGetComponent(out HidingHandler h))
+			{
+				currentlyHidObj = h;
+			}
 		} else if (currentlyHeldObj != null)
 		{
 			currentlyHeldObj.TriggerConditionalEvent(currentInteractionType);
+		} else if (currentlyHidObj != null) {
+			currentlyHidObj.TriggerConditionalEvent(currentInteractionType);
 		}
 	}
 
@@ -271,5 +285,10 @@ public class InteractionHandler : MonoBehaviour
 		{
 			currentlyHeldObj.transform.Rotate(Vector3.up, context.ReadValue<float>()*Movable.rotationSensitivity, Space.World);
 		}
+	}
+
+	public void StopHide()
+	{
+		currentlyHidObj = null;
 	}
 }

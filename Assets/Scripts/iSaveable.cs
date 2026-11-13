@@ -2,13 +2,13 @@ namespace DefaultNamespace
 {
     public interface iSaveable
     {
-        void OnEnable()
+        void RegisterSaveEvents()
         {
             WorldController.onSave += DoSave;
             WorldController.onLoad += DoLoad;
         }
 
-        void OnDisable()
+        void DeregisterSaveEvents()
         {
             WorldController.onSave -= DoSave;
             WorldController.onLoad -= DoLoad;

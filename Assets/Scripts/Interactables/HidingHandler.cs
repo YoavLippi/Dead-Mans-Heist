@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,7 +13,13 @@ public class HidingHandler : Interactable
     [SerializeField] private Transform enterPos;
     [SerializeField] private Transform exitPos;
     [SerializeField] private Transform hidePos;
-    
+    [SerializeField] private LayerMask initialLayer;
+
+    private void Start()
+    {
+        initialLayer = 1 << gameObject.layer;
+    }
+
     private void OnDrawGizmos()
     {
         if (alwaysDrawArea)
@@ -49,10 +56,16 @@ public class HidingHandler : Interactable
                 {
                     //controller.CurrentState = PlayerController.PlayerState.Hiding;
                     controller.DoHide(enterPos.position,exitPos.position,hidePos.position);
+                    GetComponent<Collider>().enabled = false;
+                    gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
                 }
                 else
                 {
+                    Debug.Log("unhiding");
                     controller.DoUnhide();
+                    GetComponent<Collider>().enabled = true;
+                    int layerIndex = Mathf.RoundToInt(Mathf.Log(initialLayer.value, 2));
+                    gameObject.layer = layerIndex;
                 }
 
                 return;

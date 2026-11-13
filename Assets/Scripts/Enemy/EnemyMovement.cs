@@ -36,7 +36,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
 
 
     [Header("Travelling")]
-    [SerializeField] private float arrivalDistanceThreshold = 2f;
+    [SerializeField] private float arrivalDistanceThreshold = 5f;
     [SerializeField] private float maxTravelToDistractionSeconds = 10f;
 
     [Header("Animation")]
@@ -55,13 +55,13 @@ public class EnemyMovement : EnemyAbs, iSaveable
 
     void OnEnable()
     {
-        ((iSaveable)this).OnEnable();
+        ((iSaveable)this).RegisterSaveEvents();
         WorldTime.secondsChange += CheckTime;
     }
 
     void OnDisable()
     {
-        ((iSaveable)this).OnDisable();
+        ((iSaveable)this).DeregisterSaveEvents();
         WorldTime.secondsChange -= CheckTime;
     } 
 
@@ -185,7 +185,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
         }
     }
 
-    public void lookAround() => lookRoutine = StartCoroutine(LookSequence(3f));
+    public void lookAround() => lookRoutine = StartCoroutine(LookSequence(2f));
     public void waitAround() => waitRoutine = StartCoroutine(WaitSequence());
 
     private IEnumerator LookSequence(float time)

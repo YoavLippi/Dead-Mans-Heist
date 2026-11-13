@@ -710,6 +710,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 	{
 		if (!IsAcceptingInputs) return;
 		IsAcceptingInputs = false;
+		interactionHandler.StopHide();
 		StartCoroutine(ExitHideRoutine());
 	}
 	
@@ -721,12 +722,12 @@ public class PlayerController : MonoBehaviour, iSaveable
     
 	private void OnEnable()
 	{
-		((iSaveable)this).OnEnable();
+		((iSaveable)this).RegisterSaveEvents();
 	}
 
 	private void OnDisable()
 	{
-		((iSaveable)this).OnDisable();
+		((iSaveable)this).DeregisterSaveEvents();
 	}
 
 	public void DoSave()
