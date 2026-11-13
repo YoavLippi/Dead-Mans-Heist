@@ -62151,7 +62151,7 @@ MonoBehaviour:
   minPitch: 0.94
   maxPitch: 1.05
   turbulenceSpeed: 0.8
-  activeVolume: 0.65
+  activeVolume: 0.75
   fadeDuration: 1.2
   triggerOnceOnly: 1
   stopOnExit: 0
@@ -103624,6 +103624,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 00c621eedb290a347a639386d78aa43b, type: 3}
   waterWalkClips:
   - {fileID: 8300000, guid: 08847caa4cb1aaf4d9757919422bd9c8, type: 3}
+  - {fileID: 8300000, guid: 0a8d5f5d0e7ee89498bc1901b539462f, type: 3}
+  - {fileID: 8300000, guid: bbbe8e74765c50f4f96d641f2eddfa62, type: 3}
+  - {fileID: 8300000, guid: 9fb3250f55d67aa4db975a9e5a1f772a, type: 3}
   waterSneakClips:
   - {fileID: 8300000, guid: 1815d80e378da8f42b9b6c5299f47e07, type: 3}
   walkVolume: 0.75
