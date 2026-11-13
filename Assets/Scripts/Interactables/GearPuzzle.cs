@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using DefaultNamespace;
 
-public class GearPuzzle : Interactable
+public class GearPuzzle : Interactable, iSaveable
 {
 
 	[SerializeField] private List<Gear> gears;
@@ -27,6 +28,12 @@ public class GearPuzzle : Interactable
 		if (audioSource == null)
 			audioSource = GetComponent<AudioSource>();
 	}
+  private void OnEnable() => ((iSaveable)this).RegisterSaveEvents();
+    private void OnDisable() => ((iSaveable)this).DeregisterSaveEvents();
+
+    public void DoSave() { }  
+
+    public void DoLoad() => Reset();
 
 	public override void DoInteract() => OnSubmit();
 	public void OnSubmit()
@@ -51,19 +58,19 @@ public class GearPuzzle : Interactable
 			gear.Locked();
 		}
 
-	}
-
-	public void Reset()
-	{
-		foreach (Gear gear in gears)
-		{
-			gear.Reset();
-			gear.Unlocked();
-		}
-		correct = false;
-	}
-
-	private void PlayFeedbackAudio(bool isSolved)
+    }
+    public void Reset()
+    {
+        StopAllCoroutines();
+        foreach (Gear gear in gears)
+        {
+            gear.Reset();
+            gear.Unlocked();
+        }
+        correct = false;
+        animator.SetBool("LeverInput", false);
+    }
+    private void PlayFeedbackAudio(bool isSolved)
 	{
 		AudioClip clip = isSolved ? solvedClip : failedClip;
 		float volume = isSolved ? solvedVolume : failedVolume;
@@ -97,4 +104,7 @@ public class GearPuzzle : Interactable
 			AudioSource.PlayClipAtPoint(clip, transform.position, volume);
 		}
 	}
+
+  
+    
 }

@@ -12,7 +12,9 @@ public enum TutActions
     Hide,
     Unhide,
     SneakToZone,
-    MoveToZone
+    MoveToZone,
+    InteractWith,
+    Mantle
 }
 
 [Serializable]
@@ -21,10 +23,11 @@ public struct TutorialStep
     public TutActions action;
     public Sprite image;
     public SneakZone zone;
+    public Interactable target;
     [TextArea] public string prompt;
     public UnityEvent onStepStart; 
     public UnityEvent onStepComplete;
-
+    
     public AudioClip startAudio;
     public AudioClip endAudio;
 }
@@ -39,6 +42,7 @@ public class TutorialRoom : TutorialBase, iSaveable
     [SerializeField] private TutActions currentAction;
     private Coroutine routine;
     private SneakZone activeZone;
+    private UnityEvent activeEvent;
     private bool isComplete = false;
 
 
@@ -57,6 +61,7 @@ public class TutorialRoom : TutorialBase, iSaveable
             playerController.onStateChange -= HandleStateChanged;
         }
         UnhookZone();
+        UnhookEvent();
         if (routine != null)
         {
             StopCoroutine(routine);
@@ -87,6 +92,16 @@ public class TutorialRoom : TutorialBase, iSaveable
                 activeZone = step.zone;
                 activeZone.PlayerSneakedIn += HandleZoneReached;
             }
+            if (step.action == TutActions.InteractWith)
+            {
+                if (step.target == null ||
+                    !step.target.TryGetConditionalEventOfType(ConditionInteraction.Interact, out activeEvent))
+                {
+                    activeEvent = null;
+                    continue;
+                }
+                activeEvent.AddListener(HandleInteracted);
+            }
             step.onStepStart?.Invoke();
             if (tutaudio != null) tutaudio.Play(step.startAudio);
             else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
@@ -96,6 +111,7 @@ public class TutorialRoom : TutorialBase, iSaveable
             if (tutaudio != null) tutaudio.Play(step.endAudio);
             else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
             UnhookZone() ;
+            UnhookEvent();
         }
         ShowStep("", null);
         CompleteRoom();
@@ -109,12 +125,14 @@ public class TutorialRoom : TutorialBase, iSaveable
             TutActions.Sneak => state == PlayerController.PlayerState.Sneaking,
             TutActions.Hide => state == PlayerController.PlayerState.Hiding,
             TutActions.Unhide => state != PlayerController.PlayerState.Hiding,
+            TutActions.Mantle => state == PlayerController.PlayerState.Mantling,
             _ => false
         };
 
         if (matched) actionDone = true;
     }
     private void HandleZoneReached() => actionDone = true;
+    private void HandleInteracted() => actionDone = true;
 
     private void UnhookZone()
     {
@@ -122,7 +140,13 @@ public class TutorialRoom : TutorialBase, iSaveable
         activeZone.PlayerSneakedIn -= HandleZoneReached;
         activeZone = null;
     }
-    
+    private void UnhookEvent()
+    {
+        if (activeEvent == null) return;
+        activeEvent.RemoveListener(HandleInteracted);
+        activeEvent = null;
+    }
+
     #region Saving
 
     [Header("Saving")] 

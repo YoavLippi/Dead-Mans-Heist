@@ -6,37 +6,40 @@ public class RegionVoicelines : MonoBehaviour, iSaveable
     [SerializeField] private PlayAudio playAudio;
     [SerializeField] private AudioClip clip;
     [SerializeField] private bool playOnce;
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !playOnce) 
-        {
-            playAudio.Play(clip);
-            playOnce = true;
-        }
-    }
+    private bool hasPlayed;      
+    private bool savedHasPlayed;
 
-    public void PlayAudio() 
-    {
-        playAudio.Play(clip);
-    }
-
-    public void RegisterSaveEvents()
+     private void OnEnable()
     {
         ((iSaveable)this).RegisterSaveEvents();
     }
 
-    public void DeregisterSaveEvents()
+    private void OnDisable()
     {
         ((iSaveable)this).DeregisterSaveEvents();
     }
 
-    public void DoLoad() 
+    private void OnTriggerEnter(Collider other)
     {
-        playOnce = false;
+        if (other.CompareTag("Player") && !hasPlayed)
+        {
+            playAudio.Play(clip);
+            hasPlayed = true;
+        }
+    }
+
+    public void PlayAudio()
+    {
+        playAudio.Play(clip);
     }
 
     public void DoSave()
     {
-        throw new System.NotImplementedException();
+        savedHasPlayed = hasPlayed;
+    }
+
+    public void DoLoad()
+    {
+        hasPlayed = savedHasPlayed;
     }
 }

@@ -3,23 +3,41 @@ using UnityEngine;
 
 public class Plank : MonoBehaviour, iSaveable
 {
-
+    private Rigidbody rb;
     private Vector3 savedPosition;
     private Quaternion savedRotation;
-    void Start()
+    private void Awake()
     {
-       savedPosition = transform.position;
+        rb = GetComponent<Rigidbody>();
+        savedPosition = transform.position;
         savedRotation = transform.rotation;
     }
-    public void DoLoad()
+
+    private void OnEnable()
     {
-        transform.position = savedPosition;
-        transform.rotation = savedRotation;
+        ((iSaveable)this).RegisterSaveEvents();
+    }
+
+    private void OnDisable()
+    {
+        ((iSaveable)this).DeregisterSaveEvents();
     }
 
     public void DoSave()
     {
-        throw new System.NotImplementedException();
+        savedPosition = transform.position;
+        savedRotation = transform.rotation;
     }
 
+    public void DoLoad()
+    {
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero; 
+            rb.angularVelocity = Vector3.zero;
+            rb.position = savedPosition;
+            rb.rotation = savedRotation;
+        }
+        transform.SetPositionAndRotation(savedPosition, savedRotation);
+    }
 }

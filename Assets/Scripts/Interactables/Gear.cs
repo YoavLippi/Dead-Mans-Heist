@@ -45,6 +45,8 @@ public class Gear : Interactable
 
     public void Reset()
     {
+
         currentSymbol = symbols.Skull;
+        Refresh();
     }
 }
