@@ -12,6 +12,11 @@ public class DoorFall : MonoBehaviour
 	[Range(0f, 1f)][SerializeField] private float volume = 1f;
 	[SerializeField] private float soundDelay = 0.45f;
 
+	[SerializeField] private AudioSource voiceAudioSource;
+	[SerializeField] private AudioClip voiceLineClip;
+	[Range(0f, 1f)][SerializeField] private float voiceVolume = 1f;
+	[SerializeField] private float delayBeforeVoice = 0.6f;
+
 	private bool hasFallen = false;
 
 	private void Awake()
@@ -32,21 +37,42 @@ public class DoorFall : MonoBehaviour
 			animator.SetBool(parameterName, true);
 		}
 
+		StartCoroutine(DoorFallSequence());
+	}
+
+	private IEnumerator DoorFallSequence()
+	{
+		// 1. Wait for the door to hit the floor, then play the crash
 		if (soundDelay > 0f)
 		{
-			StartCoroutine(PlaySoundDelayed(soundDelay));
+			yield return new WaitForSeconds(soundDelay);
 		}
-		else
+		PlayImpactSound();
+
+		// 2. Wait a beat so the impact registers, then play the voice line
+		if (voiceLineClip != null)
 		{
-			PlayImpactSound();
+			if (delayBeforeVoice > 0f)
+			{
+				yield return new WaitForSeconds(delayBeforeVoice);
+			}
+			PlayVoiceLine();
 		}
 	}
 
-	private IEnumerator PlaySoundDelayed(float delay)
+	private void PlayVoiceLine()
 	{
-		yield return new WaitForSeconds(delay);
-		PlayImpactSound();
+		if (voiceAudioSource != null)
+		{
+			voiceAudioSource.PlayOneShot(voiceLineClip, voiceVolume);
+		}
+		else if (audioSource != null)
+		{
+			// Fallback to the door's AudioSource if no separate voice source is assigned
+			audioSource.PlayOneShot(voiceLineClip, voiceVolume);
+		}
 	}
+
 
 	public void PlayImpactSound()
 	{
