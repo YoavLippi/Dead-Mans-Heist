@@ -14,7 +14,8 @@ public enum TutActions
 	SneakToZone,
 	MoveToZone,
 	InteractWith,
-	Mantle
+	Mantle,
+	Message
 }
 
 [Serializable]
@@ -35,6 +36,8 @@ public struct TutorialStep
 	public float endAudioDelay;
 	//public float postEndAudioDelay;
 	public DoorFall waitForDoorSequence;
+	public CameraHintSequence waitForCameraHint;
+	public float messageDuration;
 }
 
 public class TutorialRoom : TutorialBase, iSaveable
@@ -84,12 +87,18 @@ public class TutorialRoom : TutorialBase, iSaveable
 		OnRoomBegin.Invoke();
 		foreach (var step in steps)
 		{
-			if (step.waitForDoorSequence != null)
+			if (step.action != TutActions.Message && step.waitForDoorSequence != null)
 			{
 				ShowStep("", null);
-				// Wait one frame in case DoorFall.SetTrue() was just invoked on the previous step's completion
 				yield return null;
 				yield return new WaitWhile(() => step.waitForDoorSequence.IsSequenceActive);
+			}
+
+			if (step.waitForCameraHint != null)
+			{
+				ShowStep("", null);
+				yield return null;
+				yield return new WaitWhile(() => step.waitForCameraHint.IsPlaying);
 			}
 
 			currentAction = step.action;
@@ -125,7 +134,30 @@ public class TutorialRoom : TutorialBase, iSaveable
 			if (tutaudio != null) tutaudio.Play(step.startAudio);
 			else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
 			ShowStep(step.prompt, step.image);
-			yield return new WaitUntil(() => actionDone);
+
+			if (step.action == TutActions.Message)
+			{
+				float messageStartTime = Time.time;
+				float minDisplayTime = step.messageDuration > 0f ? step.messageDuration : 3f;
+
+				if (step.waitForDoorSequence != null)
+				{
+					yield return null; // Give DoorFall.SetTrue() 1 frame to start
+					yield return new WaitWhile(() => step.waitForDoorSequence.IsSequenceActive);
+				}
+
+				// If the door sequence finished in less than 3 seconds, wait out the remaining time
+				float remainingTime = minDisplayTime - (Time.time - messageStartTime);
+				if (remainingTime > 0f)
+				{
+					yield return new WaitForSeconds(remainingTime);
+				}
+			}
+			else
+			{
+				yield return new WaitUntil(() => actionDone);
+			}
+
 			step.onStepComplete?.Invoke();
 
 			if (step.endAudioDelay > 0f)

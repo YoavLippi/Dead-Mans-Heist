@@ -15938,6 +15938,7 @@ MonoBehaviour:
   highlightOverlayMaterial: {fileID: 2100000, guid: ab1816c7f9b4f3943b742eae54b6dd16, type: 2}
   targetOutlineSize: 0.05
   highlightColor: {r: 1, g: 0.54072064, b: 0, a: 1}
+  isSequenceRunning: 0
 --- !u!65 &274462490
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17593,11 +17594,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 166131809352893580, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: schedule.Array.data[0].name
-      value: Event at 5 seconds
+      value: Event at 7 seconds
       objectReference: {fileID: 0}
     - target: {fileID: 166131809352893580, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: schedule.Array.data[0].time
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 166131809352893580, guid: cfe5f959199a49f42bddd71744d5684b, type: 3}
       propertyPath: schedule.Array.data[1].name
@@ -21660,7 +21661,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398408909}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a930c1469cc3df4ba513f25913f6f6a, type: 3}
   m_Name: 
@@ -21668,6 +21669,8 @@ MonoBehaviour:
   animator: {fileID: 398408912}
   parameterName: Fall
   playerScriptsToDisable: []
+  inputActions: {fileID: 0}
+  actionMapName: Player
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
@@ -29982,6 +29985,7 @@ GameObject:
   - component: {fileID: 547011085}
   - component: {fileID: 547011087}
   - component: {fileID: 547011086}
+  - component: {fileID: 547011088}
   m_Layer: 9
   m_Name: FloodedPuzzleHintTrigger
   m_TagString: Untagged
@@ -30044,6 +30048,7 @@ MonoBehaviour:
   highlightOverlayMaterial: {fileID: 2100000, guid: ab1816c7f9b4f3943b742eae54b6dd16, type: 2}
   targetOutlineSize: 0.015
   highlightColor: {r: 1, g: 0.5786309, b: 0, a: 1}
+  isSequenceRunning: 0
 --- !u!65 &547011087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30065,6 +30070,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 10.35}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &547011088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547011084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a619284f50703489a25d06ba287193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SneakZone
+  requireSpecificState: 0
+  requiredState: 0
 --- !u!1 &547528127
 GameObject:
   m_ObjectHideFlags: 0
@@ -33205,7 +33224,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630297352}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a930c1469cc3df4ba513f25913f6f6a, type: 3}
   m_Name: 
@@ -33213,6 +33232,8 @@ MonoBehaviour:
   animator: {fileID: 630297355}
   parameterName: Fall
   playerScriptsToDisable: []
+  inputActions: {fileID: 0}
+  actionMapName: Player
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
@@ -34702,6 +34723,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   - action: 6
     image: {fileID: 0}
     zone: {fileID: 0}
@@ -34718,6 +34741,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   - action: 5
     image: {fileID: 0}
     zone: {fileID: 0}
@@ -34734,6 +34759,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   promptUI: {fileID: 1437800497}
   tutaudio: {fileID: 383500304}
   currentAction: 0
@@ -50715,7 +50742,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992411479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a930c1469cc3df4ba513f25913f6f6a, type: 3}
   m_Name: 
@@ -50723,6 +50750,8 @@ MonoBehaviour:
   animator: {fileID: 992411482}
   parameterName: Fall
   playerScriptsToDisable: []
+  inputActions: {fileID: 0}
+  actionMapName: Player
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
@@ -72191,13 +72220,10 @@ MonoBehaviour:
     prompt: ESCAPE THE SHIP...
     onStepStart:
       m_PersistentCalls:
-        m_Calls: []
-    onStepComplete:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1669254594}
           m_TargetAssemblyTypeName: DoorFall, Assembly-CSharp
-          m_MethodName: SetTrue
+          m_MethodName: LockPlayerImmediately
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -72207,11 +72233,16 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    onStepComplete:
+      m_PersistentCalls:
+        m_Calls: []
     startAudio: {fileID: 0}
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 1669254594}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 7.5
   - action: 0
     image: {fileID: 21300000, guid: ac73164f4baa6d14f8bb762028230e0a, type: 3}
     zone: {fileID: 0}
@@ -72228,6 +72259,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   - action: 1
     image: {fileID: 21300000, guid: 3610793274654fd4f87a5a6c114affa1, type: 3}
     zone: {fileID: 0}
@@ -72238,12 +72271,26 @@ MonoBehaviour:
         m_Calls: []
     onStepComplete:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1582983528}
+          m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+          m_MethodName: moveToCheckPoint
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 516820060}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     startAudio: {fileID: 0}
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   - action: 4
     image: {fileID: 0}
     zone: {fileID: 919076269}
@@ -72272,6 +72319,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   - action: 2
     image: {fileID: 21300000, guid: a2e27229ab062bf4dabbc559752a5c25, type: 3}
     zone: {fileID: 0}
@@ -72312,6 +72361,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   - action: 3
     image: {fileID: 21300000, guid: a2e27229ab062bf4dabbc559752a5c25, type: 3}
     zone: {fileID: 0}
@@ -72342,6 +72393,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   - action: 5
     image: {fileID: 21300000, guid: ac73164f4baa6d14f8bb762028230e0a, type: 3}
     zone: {fileID: 836251945}
@@ -72358,6 +72411,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   - action: 1
     image: {fileID: 21300000, guid: 3610793274654fd4f87a5a6c114affa1, type: 3}
     zone: {fileID: 0}
@@ -72374,6 +72429,26 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
+  - action: 5
+    image: {fileID: 0}
+    zone: {fileID: 547011088}
+    target: {fileID: 0}
+    prompt: 
+    onStepStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onStepComplete:
+      m_PersistentCalls:
+        m_Calls: []
+    startAudio: {fileID: 0}
+    startAudioDelay: 0
+    endAudio: {fileID: 0}
+    endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   - action: 6
     image: {fileID: 21300000, guid: a2e27229ab062bf4dabbc559752a5c25, type: 3}
     zone: {fileID: 0}
@@ -72391,6 +72466,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 547011086}
+    messageDuration: 0
   - action: 7
     image: {fileID: 21300000, guid: 72c589acfec0ab342ae4f1313cf0dc94, type: 3}
     zone: {fileID: 0}
@@ -72407,6 +72484,8 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 0}
+    waitForCameraHint: {fileID: 0}
+    messageDuration: 0
   promptUI: {fileID: 1437800497}
   tutaudio: {fileID: 383500304}
   currentAction: 0
@@ -84049,6 +84128,8 @@ MonoBehaviour:
   parameterName: Fall
   playerScriptsToDisable:
   - {fileID: 2095128313}
+  inputActions: {fileID: -944628639613478452, guid: edb94252369256b43837949af29b6ec0, type: 3}
+  actionMapName: PlayerInputActions
   audioSource: {fileID: 1669254599}
   impactSound: {fileID: 8300000, guid: 328904eaa8cfffe4a9db9279898e982f, type: 3}
   volume: 0.1
@@ -84951,7 +85032,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687592141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a930c1469cc3df4ba513f25913f6f6a, type: 3}
   m_Name: 
@@ -84959,6 +85040,8 @@ MonoBehaviour:
   animator: {fileID: 1687592144}
   parameterName: Fall
   playerScriptsToDisable: []
+  inputActions: {fileID: 0}
+  actionMapName: Player
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1

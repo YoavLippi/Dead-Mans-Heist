@@ -50,8 +50,9 @@ public class CameraHintSequence : MonoBehaviour
 	[SerializeField] private Color highlightColor = new Color(1f, 0.82f, 0f, 1f);
 
 	private bool hasTriggered = false;
-	private bool isSequenceRunning = false; 
+	public bool isSequenceRunning = false; 
 	private Behaviour cinemachineBrain;
+	public bool IsPlaying { get; private set; } = false;
 
 	private Material runtimeHighlightInstance;
 	private readonly Dictionary<Renderer, Material[]> originalMaterialsMap = new Dictionary<Renderer, Material[]>();
@@ -83,6 +84,7 @@ public class CameraHintSequence : MonoBehaviour
 
 	private IEnumerator PlayCameraHintRoutine()
 	{
+		IsPlaying = true;
 		isSequenceRunning = true;
 		
 		if (mainCamera == null)
@@ -137,6 +139,7 @@ public class CameraHintSequence : MonoBehaviour
 		SetControlsEnabled(true);
 		Time.timeScale = 1f;
 		isSequenceRunning = false;
+		IsPlaying = false;
 	}
 
 	private IEnumerator SmoothLookAndZoom(Transform cam, Transform target, float startFOV, float endFOV, float duration)

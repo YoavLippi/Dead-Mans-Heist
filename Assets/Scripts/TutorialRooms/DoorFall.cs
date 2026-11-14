@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class DoorFall : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class DoorFall : MonoBehaviour
 
 	[Header("Player Control Locking")]
 	[Tooltip("Drag your PlayerMovement, MouseLook, and Footstep scripts here")]
-	[SerializeField] private MonoBehaviour[] playerScriptsToDisable;
+	[SerializeField] private Behaviour[] playerScriptsToDisable;
+
+	[SerializeField] private InputActionAsset inputActions;
+	[SerializeField] private string actionMapName = "Player";
 
 	[Header("Audio")]
 	[SerializeField] private AudioSource audioSource;
@@ -41,6 +45,7 @@ public class DoorFall : MonoBehaviour
 	}
 	public void SetTrue() 
 	{
+		Debug.Log($"DoorFall.SetTrue() called at Time.time = {Time.time}", this);
 		if (hasFallen) return;
 		hasFallen = true;
 
@@ -115,14 +120,36 @@ public class DoorFall : MonoBehaviour
 		}
 	}
 
+	public void LockPlayerImmediately()
+	{
+		if (hasFallen) return;
+		SetPlayerControl(false);
+	}
+
 	private void SetPlayerControl(bool isEnabled)
 	{
-		if (playerScriptsToDisable == null) return;
+		if (inputActions != null)
+		{
+			if (!string.IsNullOrEmpty(actionMapName))
+			{
+				var map = inputActions.FindActionMap(actionMapName);
+				if (map != null)
+				{
+					if (isEnabled) map.Enable();
+					else map.Disable();
+				}
+			}
+			else
+			{
+				if (isEnabled) inputActions.Enable();
+				else inputActions.Disable();
+			}
+		}
 
+		if (playerScriptsToDisable == null) return;
 		foreach (var script in playerScriptsToDisable)
 		{
-			if (script != null)
-				script.enabled = isEnabled;
+			if (script != null) script.enabled = isEnabled;
 		}
 	}
 }
