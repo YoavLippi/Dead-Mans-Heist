@@ -72184,27 +72184,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   steps:
-  - action: 0
+  - action: 8
     image: {fileID: 0}
     zone: {fileID: 0}
     target: {fileID: 0}
     prompt: ESCAPE THE SHIP...
-    onStepStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onStepComplete:
-      m_PersistentCalls:
-        m_Calls: []
-    startAudio: {fileID: 0}
-    startAudioDelay: 0
-    endAudio: {fileID: 0}
-    endAudioDelay: 0
-    waitForDoorSequence: {fileID: 0}
-  - action: 0
-    image: {fileID: 21300000, guid: ac73164f4baa6d14f8bb762028230e0a, type: 3}
-    zone: {fileID: 0}
-    target: {fileID: 0}
-    prompt: WASD movement
     onStepStart:
       m_PersistentCalls:
         m_Calls: []
@@ -72228,6 +72212,22 @@ MonoBehaviour:
     endAudio: {fileID: 0}
     endAudioDelay: 0
     waitForDoorSequence: {fileID: 1669254594}
+  - action: 0
+    image: {fileID: 21300000, guid: ac73164f4baa6d14f8bb762028230e0a, type: 3}
+    zone: {fileID: 0}
+    target: {fileID: 0}
+    prompt: WASD movement
+    onStepStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onStepComplete:
+      m_PersistentCalls:
+        m_Calls: []
+    startAudio: {fileID: 0}
+    startAudioDelay: 0
+    endAudio: {fileID: 0}
+    endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 1
     image: {fileID: 21300000, guid: 3610793274654fd4f87a5a6c114affa1, type: 3}
     zone: {fileID: 0}

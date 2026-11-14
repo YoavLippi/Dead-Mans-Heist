@@ -87,6 +87,7 @@ public class TutorialRoom : TutorialBase, iSaveable
 			if (step.waitForDoorSequence != null)
 			{
 				ShowStep("", null);
+				// Wait one frame in case DoorFall.SetTrue() was just invoked on the previous step's completion
 				yield return null;
 				yield return new WaitWhile(() => step.waitForDoorSequence.IsSequenceActive);
 			}
