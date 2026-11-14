@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pirate Compass
+* source:	https://sketchfab.com/3d-models/pirate-compass-3a51cfca26b34da7a8ac02af373cd130
+* author:	VincentBrindisi (https://sketchfab.com/VincentBrindisi)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pirate Compass" (https://sketchfab.com/3d-models/pirate-compass-3a51cfca26b34da7a8ac02af373cd130) by VincentBrindisi (https://sketchfab.com/VincentBrindisi) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
