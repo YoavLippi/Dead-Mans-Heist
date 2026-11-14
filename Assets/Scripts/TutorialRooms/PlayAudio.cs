@@ -7,7 +7,7 @@ public class PlayAudio : MonoBehaviour
 
     public void Play(AudioClip clip) 
     {
-        if (clip == null && audioSource == null) return;
+        if (clip == null || audioSource == null) return;
         audioSource.PlayOneShot(clip);
     }
 
