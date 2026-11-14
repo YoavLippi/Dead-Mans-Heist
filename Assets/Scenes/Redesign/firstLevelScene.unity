@@ -21667,6 +21667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorFall
   animator: {fileID: 398408912}
   parameterName: Fall
+  playerScriptsToDisable: []
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
@@ -21675,6 +21676,10 @@ MonoBehaviour:
   voiceLineClip: {fileID: 0}
   voiceVolume: 1
   delayBeforeVoice: 0.6
+  postVoiceBuffer: 0.25
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &398408912
 Animator:
   serializedVersion: 7
@@ -33207,6 +33212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorFall
   animator: {fileID: 630297355}
   parameterName: Fall
+  playerScriptsToDisable: []
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
@@ -33215,6 +33221,10 @@ MonoBehaviour:
   voiceLineClip: {fileID: 0}
   voiceVolume: 1
   delayBeforeVoice: 0.6
+  postVoiceBuffer: 0.25
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &630297355
 Animator:
   serializedVersion: 7
@@ -34691,6 +34701,7 @@ MonoBehaviour:
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 6
     image: {fileID: 0}
     zone: {fileID: 0}
@@ -34706,6 +34717,7 @@ MonoBehaviour:
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 5
     image: {fileID: 0}
     zone: {fileID: 0}
@@ -34721,6 +34733,7 @@ MonoBehaviour:
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   promptUI: {fileID: 1437800497}
   tutaudio: {fileID: 383500304}
   currentAction: 0
@@ -50709,6 +50722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorFall
   animator: {fileID: 992411482}
   parameterName: Fall
+  playerScriptsToDisable: []
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
@@ -50717,6 +50731,10 @@ MonoBehaviour:
   voiceLineClip: {fileID: 0}
   voiceVolume: 1
   delayBeforeVoice: 0.6
+  postVoiceBuffer: 0.25
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &992411482
 Animator:
   serializedVersion: 7
@@ -69000,6 +69018,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e037ce86db33ed5429e65fc29a75f9cb, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e037ce86db33ed5429e65fc29a75f9cb, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 11bda336b89c4a04391d290871e4aeec, type: 2}
     - target: {fileID: 919132149155446097, guid: e037ce86db33ed5429e65fc29a75f9cb, type: 3}
       propertyPath: m_Name
       value: Cage Door_002
@@ -72159,6 +72185,34 @@ MonoBehaviour:
         m_CallState: 2
   steps:
   - action: 0
+    image: {fileID: 0}
+    zone: {fileID: 0}
+    target: {fileID: 0}
+    prompt: 
+    onStepStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onStepComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1669254594}
+          m_TargetAssemblyTypeName: DoorFall, Assembly-CSharp
+          m_MethodName: SetTrue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    startAudio: {fileID: 0}
+    startAudioDelay: 0
+    endAudio: {fileID: 0}
+    endAudioDelay: 0
+    waitForDoorSequence: {fileID: 1669254594}
+  - action: 0
     image: {fileID: 21300000, guid: ac73164f4baa6d14f8bb762028230e0a, type: 3}
     zone: {fileID: 0}
     target: {fileID: 0}
@@ -72173,6 +72227,7 @@ MonoBehaviour:
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 1
     image: {fileID: 21300000, guid: 3610793274654fd4f87a5a6c114affa1, type: 3}
     zone: {fileID: 0}
@@ -72188,6 +72243,7 @@ MonoBehaviour:
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 4
     image: {fileID: 0}
     zone: {fileID: 919076269}
@@ -72215,6 +72271,7 @@ MonoBehaviour:
     startAudioDelay: 1.5
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 2
     image: {fileID: 21300000, guid: a2e27229ab062bf4dabbc559752a5c25, type: 3}
     zone: {fileID: 0}
@@ -72254,6 +72311,7 @@ MonoBehaviour:
     startAudioDelay: 2.5
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 3
     image: {fileID: 21300000, guid: a2e27229ab062bf4dabbc559752a5c25, type: 3}
     zone: {fileID: 0}
@@ -72283,6 +72341,7 @@ MonoBehaviour:
     startAudioDelay: 3
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 5
     image: {fileID: 21300000, guid: ac73164f4baa6d14f8bb762028230e0a, type: 3}
     zone: {fileID: 836251945}
@@ -72298,6 +72357,7 @@ MonoBehaviour:
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 1
     image: {fileID: 21300000, guid: 3610793274654fd4f87a5a6c114affa1, type: 3}
     zone: {fileID: 0}
@@ -72313,6 +72373,7 @@ MonoBehaviour:
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 6
     image: {fileID: 21300000, guid: a2e27229ab062bf4dabbc559752a5c25, type: 3}
     zone: {fileID: 0}
@@ -72329,6 +72390,7 @@ MonoBehaviour:
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   - action: 7
     image: {fileID: 21300000, guid: 72c589acfec0ab342ae4f1313cf0dc94, type: 3}
     zone: {fileID: 0}
@@ -72344,6 +72406,7 @@ MonoBehaviour:
     startAudioDelay: 0
     endAudio: {fileID: 0}
     endAudioDelay: 0
+    waitForDoorSequence: {fileID: 0}
   promptUI: {fileID: 1437800497}
   tutaudio: {fileID: 383500304}
   currentAction: 0
@@ -83984,6 +84047,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorFall
   animator: {fileID: 1669254595}
   parameterName: Fall
+  playerScriptsToDisable:
+  - {fileID: 2095128313}
   audioSource: {fileID: 1669254599}
   impactSound: {fileID: 8300000, guid: 328904eaa8cfffe4a9db9279898e982f, type: 3}
   volume: 0.1
@@ -83992,6 +84057,10 @@ MonoBehaviour:
   voiceLineClip: {fileID: 8300000, guid: 010d3bba348db1341ba6f2ee5d83ad59, type: 3}
   voiceVolume: 1
   delayBeforeVoice: 0.8
+  postVoiceBuffer: 0.25
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &1669254595
 Animator:
   serializedVersion: 7
@@ -84889,6 +84958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorFall
   animator: {fileID: 1687592144}
   parameterName: Fall
+  playerScriptsToDisable: []
   audioSource: {fileID: 0}
   impactSound: {fileID: 0}
   volume: 1
@@ -84897,6 +84967,10 @@ MonoBehaviour:
   voiceLineClip: {fileID: 0}
   voiceVolume: 1
   delayBeforeVoice: 0.6
+  postVoiceBuffer: 0.25
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &1687592144
 Animator:
   serializedVersion: 7

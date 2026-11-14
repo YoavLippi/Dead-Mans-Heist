@@ -34,6 +34,7 @@ public struct TutorialStep
 	public AudioClip endAudio;
 	public float endAudioDelay;
 	//public float postEndAudioDelay;
+	public DoorFall waitForDoorSequence;
 }
 
 public class TutorialRoom : TutorialBase, iSaveable
@@ -83,6 +84,13 @@ public class TutorialRoom : TutorialBase, iSaveable
 		OnRoomBegin.Invoke();
 		foreach (var step in steps)
 		{
+			if (step.waitForDoorSequence != null)
+			{
+				ShowStep("", null);
+				yield return null;
+				yield return new WaitWhile(() => step.waitForDoorSequence.IsSequenceActive);
+			}
+
 			currentAction = step.action;
 			actionDone = false;
 

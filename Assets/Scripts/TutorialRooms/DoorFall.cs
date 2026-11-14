@@ -1,10 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class DoorFall : MonoBehaviour
 {
 	[SerializeField] private Animator animator;
 	[SerializeField] private string parameterName;
+
+	[Header("Player Control Locking")]
+	[Tooltip("Drag your PlayerMovement, MouseLook, and Footstep scripts here")]
+	[SerializeField] private MonoBehaviour[] playerScriptsToDisable;
 
 	[Header("Audio")]
 	[SerializeField] private AudioSource audioSource;
@@ -16,8 +21,15 @@ public class DoorFall : MonoBehaviour
 	[SerializeField] private AudioClip voiceLineClip;
 	[Range(0f, 1f)][SerializeField] private float voiceVolume = 1f;
 	[SerializeField] private float delayBeforeVoice = 0.6f;
+	[SerializeField] private float postVoiceBuffer = 0.25f;
+
+	[Header("Sequence Events")]
+	[Tooltip("Fires ONLY after the door crash, voice line, and player unlock have all completed")]
+	public UnityEvent onSequenceComplete;
 
 	private bool hasFallen = false;
+	private Coroutine sequenceRoutine;
+	public bool IsSequenceActive { get; private set; } = false;
 
 	private void Awake()
 	{
@@ -33,31 +45,46 @@ public class DoorFall : MonoBehaviour
 		hasFallen = true;
 
 		if (animator != null && !string.IsNullOrEmpty(parameterName))
-		{
 			animator.SetBool(parameterName, true);
-		}
 
-		StartCoroutine(DoorFallSequence());
+		sequenceRoutine = StartCoroutine(DoorFallSequence());
 	}
 
 	private IEnumerator DoorFallSequence()
 	{
-		// 1. Wait for the door to hit the floor, then play the crash
-		if (soundDelay > 0f)
-		{
-			yield return new WaitForSeconds(soundDelay);
-		}
-		PlayImpactSound();
+		IsSequenceActive = true;
+		SetPlayerControl(false);
 
-		// 2. Wait a beat so the impact registers, then play the voice line
+		if (soundDelay > 0f)
+			yield return new WaitForSeconds(soundDelay);
+
+		if (impactSound != null)
+		{
+			if (audioSource != null) audioSource.PlayOneShot(impactSound, volume);
+			else AudioSource.PlayClipAtPoint(impactSound, transform.position, volume);
+		}
+
 		if (voiceLineClip != null)
 		{
 			if (delayBeforeVoice > 0f)
-			{
 				yield return new WaitForSeconds(delayBeforeVoice);
+
+			if (voiceAudioSource != null)
+			{
+				voiceAudioSource.spatialBlend = 0f;
+				voiceAudioSource.PlayOneShot(voiceLineClip, voiceVolume);
 			}
-			PlayVoiceLine();
+			else if (audioSource != null)
+			{
+				audioSource.PlayOneShot(voiceLineClip, voiceVolume);
+			}
+
+			yield return new WaitForSeconds(voiceLineClip.length + postVoiceBuffer);
 		}
+
+		SetPlayerControl(true);
+		IsSequenceActive = false;
+		sequenceRoutine = null;
 	}
 
 	private void PlayVoiceLine()
@@ -85,6 +112,17 @@ public class DoorFall : MonoBehaviour
 		else
 		{
 			AudioSource.PlayClipAtPoint(impactSound, transform.position, volume);
+		}
+	}
+
+	private void SetPlayerControl(bool isEnabled)
+	{
+		if (playerScriptsToDisable == null) return;
+
+		foreach (var script in playerScriptsToDisable)
+		{
+			if (script != null)
+				script.enabled = isEnabled;
 		}
 	}
 }
