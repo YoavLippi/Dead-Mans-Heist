@@ -49,8 +49,13 @@ public class CameraHintSequence : MonoBehaviour
 	[ColorUsage(true, true)]
 	[SerializeField] private Color highlightColor = new Color(1f, 0.82f, 0f, 1f);
 
+	[Header("Hint UI")]
+	[Tooltip("Attach a CanvasGroup to your hint text (or parent banner) and drag it here")]
+	[SerializeField] private CanvasGroup hintCanvasGroup;
+	[SerializeField] private float fadeDuration = 0.4f;
+
 	private bool hasTriggered = false;
-	public bool isSequenceRunning = false; 
+	public bool isSequenceRunning = false;
 	private Behaviour cinemachineBrain;
 	public bool IsPlaying { get; private set; } = false;
 
@@ -68,6 +73,12 @@ public class CameraHintSequence : MonoBehaviour
 		// Detect CinemachineBrain on the Main Camera without needing a Cinemachine using-directive
 		if (mainCamera != null)
 			cinemachineBrain = mainCamera.GetComponent("CinemachineBrain") as Behaviour;
+
+		if (hintCanvasGroup != null)
+		{
+			hintCanvasGroup.alpha = 0f;
+			hintCanvasGroup.gameObject.SetActive(false);
+		}
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -86,7 +97,7 @@ public class CameraHintSequence : MonoBehaviour
 	{
 		IsPlaying = true;
 		isSequenceRunning = true;
-		
+
 		if (mainCamera == null)
 			mainCamera = Camera.main;
 
@@ -110,6 +121,7 @@ public class CameraHintSequence : MonoBehaviour
 		if (focusTarget != null)
 		{
 			lookRoutine = StartCoroutine(SmoothLookAndZoom(camTransform, focusTarget, originalFOV, zoomedFOV, lookAtDuration));
+			StartCoroutine(FadeHintText(1f));
 		}
 
 		if (delayBeforeVoice > 0f)
@@ -131,8 +143,9 @@ public class CameraHintSequence : MonoBehaviour
 
 		if (lookRoutine != null)
 			yield return lookRoutine;
-				
-			yield return StartCoroutine(SmoothRestoreView(camTransform, originalRotation, originalFOV, returnDuration));
+		StartCoroutine(FadeHintText(0f));
+		yield return StartCoroutine(SmoothRestoreView(camTransform, originalRotation, originalFOV, returnDuration));
+
 
 		RemoveHighlightOverlay();
 
@@ -156,7 +169,7 @@ public class CameraHintSequence : MonoBehaviour
 			elapsed += Time.unscaledDeltaTime;
 			float t = Mathf.SmoothStep(0f, 1f, elapsed / Mathf.Max(duration, 0.001f));
 
-			cam.rotation = Quaternion.Slerp(startRot, targetRot, t); 
+			cam.rotation = Quaternion.Slerp(startRot, targetRot, t);
 			mainCamera.fieldOfView = Mathf.Lerp(startFOV, endFOV, t);
 			SetHighlightFade(t);
 
@@ -186,7 +199,7 @@ public class CameraHintSequence : MonoBehaviour
 			yield return null;
 		}
 
-		cam.rotation = targetRot; 
+		cam.rotation = targetRot;
 		mainCamera.fieldOfView = targetFOV;
 		SetHighlightFade(0f);
 	}
@@ -234,23 +247,23 @@ public class CameraHintSequence : MonoBehaviour
 	{
 		if (runtimeHighlightInstance == null) return;
 
-        // 1. Smoothly grow/shrink the outline thickness from 0 to targetOutlineSize
-        if (runtimeHighlightInstance.HasProperty(OutlineSizeID))
-            runtimeHighlightInstance.SetFloat(OutlineSizeID, Mathf.Lerp(0f, targetOutlineSize, progress));
+		// 1. Smoothly grow/shrink the outline thickness from 0 to targetOutlineSize
+		if (runtimeHighlightInstance.HasProperty(OutlineSizeID))
+			runtimeHighlightInstance.SetFloat(OutlineSizeID, Mathf.Lerp(0f, targetOutlineSize, progress));
 
-        // 2. Smoothly fade the OutlineColour alpha as well (works if Surface Type is Transparent)
-        Color fadedColor = highlightColor;
-        fadedColor.a = (highlightColor.a > 0.001f ? highlightColor.a : 1f) * progress;
+		// 2. Smoothly fade the OutlineColour alpha as well (works if Surface Type is Transparent)
+		Color fadedColor = highlightColor;
+		fadedColor.a = (highlightColor.a > 0.001f ? highlightColor.a : 1f) * progress;
 
-        Shader shader = runtimeHighlightInstance.shader;
-        int propCount = shader.GetPropertyCount();
-        for (int i = 0; i < propCount; i++)
-        {
-            if (shader.GetPropertyType(i) == UnityEngine.Rendering.ShaderPropertyType.Color)
-            {
-                runtimeHighlightInstance.SetColor(shader.GetPropertyName(i), fadedColor);
-            }
-        }
+		Shader shader = runtimeHighlightInstance.shader;
+		int propCount = shader.GetPropertyCount();
+		for (int i = 0; i < propCount; i++)
+		{
+			if (shader.GetPropertyType(i) == UnityEngine.Rendering.ShaderPropertyType.Color)
+			{
+				runtimeHighlightInstance.SetColor(shader.GetPropertyName(i), fadedColor);
+			}
+		}
 	}
 
 	private void RemoveHighlightOverlay()
@@ -281,5 +294,28 @@ public class CameraHintSequence : MonoBehaviour
 			if (script != null)
 				script.enabled = state;
 		}
+	}
+
+	private IEnumerator FadeHintText(float targetAlpha)
+	{
+		if (hintCanvasGroup == null) yield break;
+
+		if (targetAlpha > 0f)
+			hintCanvasGroup.gameObject.SetActive(true);
+
+		float startAlpha = hintCanvasGroup.alpha;
+		float elapsed = 0f;
+
+		while (elapsed < fadeDuration)
+		{
+			elapsed += Time.unscaledDeltaTime; // Works even if Time.timeScale == 0f
+			hintCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsed / fadeDuration);
+			yield return null;
+		}
+
+		hintCanvasGroup.alpha = targetAlpha;
+
+		if (Mathf.Approximately(targetAlpha, 0f))
+			hintCanvasGroup.gameObject.SetActive(false);
 	}
 }
