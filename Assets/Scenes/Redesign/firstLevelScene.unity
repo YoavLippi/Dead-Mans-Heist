@@ -15925,8 +15925,8 @@ MonoBehaviour:
   triggerClip: {fileID: 8300000, guid: 2e9a6427a50ea9745a8631abfeb078da, type: 3}
   triggerVolume: 0.75
   voiceAudioSource: {fileID: 2125461588}
-  voiceLineClip: {fileID: 8300000, guid: a26eafdb0971f7a4d84c5fa2e063ba25, type: 3}
-  voiceLineVolume: 3
+  voiceLineClip: {fileID: 8300000, guid: 473255fe565d54d40bf07ac15a7746da, type: 3}
+  voiceLineVolume: 1
   delayBeforeVoice: 0.6
   postVoiceHoldTime: 0.4
   objectsToHighlight:
@@ -43020,7 +43020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: aa07d52f1e2efc54581193e2e169b58d, type: 3}
+  clip: {fileID: 8300000, guid: 09c998e211751ec4ba375b56199cb14e, type: 3}
   voiceLineDelay: 0
   playOnce: 1
 --- !u!65 &836251943
@@ -50456,7 +50456,7 @@ MonoBehaviour:
   paperCrinkleVolume: 1
   crinkleLeadTime: 0.4
   voiceAudioSource: {fileID: 572235472}
-  voiceLineClip: {fileID: 8300000, guid: 15ae87f26389ef340bf6a244fc3ecddd, type: 3}
+  voiceLineClip: {fileID: 8300000, guid: a57f9d971b0e7b24e9f99bc9e67e885b, type: 3}
   voiceLineVolume: 0.8
   postVoiceBuffer: 0.5
 --- !u!65 &982141141
@@ -72314,7 +72314,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    startAudio: {fileID: 8300000, guid: f723ca0a6ff7b8346ad1d25e818eec78, type: 3}
+    startAudio: {fileID: 8300000, guid: e6c4d2684dc8ace4d8484ad616188c0f, type: 3}
     startAudioDelay: 1.5
     endAudio: {fileID: 0}
     endAudioDelay: 0
@@ -72356,7 +72356,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-    startAudio: {fileID: 8300000, guid: 5a4b6e9ffa9369343aab409489ad32e3, type: 3}
+    startAudio: {fileID: 8300000, guid: ed3da15cdce60e049bc655a8090bb311, type: 3}
     startAudioDelay: 2.5
     endAudio: {fileID: 0}
     endAudioDelay: 0
@@ -72388,7 +72388,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    startAudio: {fileID: 8300000, guid: b79afd4c379835b47895ad6a73cde960, type: 3}
+    startAudio: {fileID: 8300000, guid: f2b18b23bd21beb488e1914a0a03dd69, type: 3}
     startAudioDelay: 3
     endAudio: {fileID: 0}
     endAudioDelay: 0
@@ -84135,7 +84135,7 @@ MonoBehaviour:
   volume: 0.1
   soundDelay: 0.95
   voiceAudioSource: {fileID: 2125461588}
-  voiceLineClip: {fileID: 8300000, guid: 010d3bba348db1341ba6f2ee5d83ad59, type: 3}
+  voiceLineClip: {fileID: 8300000, guid: 12f37b781aace3e43b51a470bd4706e2, type: 3}
   voiceVolume: 1
   delayBeforeVoice: 0.8
   postVoiceBuffer: 0.25
