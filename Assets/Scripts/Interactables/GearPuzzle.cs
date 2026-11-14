@@ -9,7 +9,8 @@ public class GearPuzzle : Interactable, iSaveable
 {
 
 	[SerializeField] private List<Gear> gears;
-	[SerializeField] private UnityEvent onSolved;
+    [SerializeField] private UnityEvent onReset;
+    [SerializeField] private UnityEvent onSolved;
 	[SerializeField] private UnityEvent onFailed;
 	[SerializeField] private Animator animator;
 
@@ -69,6 +70,8 @@ public class GearPuzzle : Interactable, iSaveable
         }
         correct = false;
         animator.SetBool("LeverInput", false);
+        animator.SetBool("LeverFailed", false);
+        onReset.Invoke();
     }
     private void PlayFeedbackAudio(bool isSolved)
 	{

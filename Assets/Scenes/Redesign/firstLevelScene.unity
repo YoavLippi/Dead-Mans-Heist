@@ -1073,7 +1073,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3437,7 +3437,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: f83ffa080a4e4cb49ad4b077ec962f65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4470,7 +4470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: aaaa41ec7d8bbcf488e7683c1647b38a, type: 3}
+  clip: {fileID: 8300000, guid: fe9f184f78f0edd42b6c57ecfe5f5294, type: 3}
   voiceLineDelay: 0
   playOnce: 0
 --- !u!1 &99326251 stripped
@@ -5299,8 +5299,8 @@ Transform:
   m_GameObject: {fileID: 119003334}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.48876637, w: 0.8724147}
-  m_LocalPosition: {x: 7.249199, y: 13.536201, z: 28.147999}
-  m_LocalScale: {x: 0.32870093, y: 12.641008, z: 4.0560203}
+  m_LocalPosition: {x: 5.9214, y: 15.7046, z: 28.147999}
+  m_LocalScale: {x: 5.413934, y: 12.641008, z: 4.0560203}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1610377037}
@@ -7809,7 +7809,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13166,7 +13166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: f65a115924c149049aaa08338db4ec63, type: 3}
+  clip: {fileID: 8300000, guid: 37be65cfc6f0e9a439c1c5354643abe4, type: 3}
   voiceLineDelay: 0
   playOnce: 0
 --- !u!65 &226346406
@@ -14351,7 +14351,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17102,6 +17102,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -3027289777653499857, guid: 9f48080b06b37654a9c6cf7248e5e8dd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 299506375}
+    - targetCorrespondingSourceObject: {fileID: -3027289777653499857, guid: 9f48080b06b37654a9c6cf7248e5e8dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 299506376}
   m_SourcePrefab: {fileID: 3150474306388093854, guid: 9f48080b06b37654a9c6cf7248e5e8dd, type: 3}
 --- !u!1 &299506366 stripped
 GameObject:
@@ -17266,6 +17269,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &299506376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299506366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5246f49e1751944a649c983a7035a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GateAnim
+  animator: {fileID: 299506368}
 --- !u!1001 &300907430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19200,7 +19216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20142,7 +20158,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0e28272150de5948a2bafc63d34cee7, type: 2}
+  - {fileID: 2100000, guid: f83ffa080a4e4cb49ad4b077ec962f65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21761,7 +21777,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: f83ffa080a4e4cb49ad4b077ec962f65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21873,7 +21889,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28104,7 +28120,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29169,7 +29185,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30198,7 +30214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: 3789585d8e4e1db41a99987a1f915472, type: 3}
+  clip: {fileID: 8300000, guid: c802b3727b87a3d48aade0f8694b21cb, type: 3}
   voiceLineDelay: 0
   playOnce: 0
 --- !u!65 &548111440
@@ -34757,7 +34773,7 @@ GameObject:
   - component: {fileID: 653222823}
   - component: {fileID: 653222822}
   m_Layer: 10
-  m_Name: SteadyNow (1)
+  m_Name: weakWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34791,7 +34807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: 1fdc61c0bd8582147b8653e843936cb2, type: 3}
+  clip: {fileID: 8300000, guid: 593c1df77525b1a4c92156222ff1c299, type: 3}
   voiceLineDelay: 0
   playOnce: 0
 --- !u!65 &653222823
@@ -40693,7 +40709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: 3789585d8e4e1db41a99987a1f915472, type: 3}
+  clip: {fileID: 8300000, guid: 1e4b559f3d5f44e4da6d3a8db3669f42, type: 3}
   voiceLineDelay: 0
   playOnce: 1
 --- !u!65 &788979653
@@ -45564,7 +45580,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e1bf502a5227ec4c9359fb4cb126f44, type: 2}
+  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -47335,7 +47351,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -49228,7 +49244,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -52621,6 +52637,7 @@ Transform:
   - {fileID: 809952784}
   - {fileID: 723715687}
   - {fileID: 1480667631}
+  - {fileID: 1855213590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1028338264 stripped
@@ -53025,7 +53042,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -54325,7 +54342,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -55896,7 +55913,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -56199,7 +56216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
+  - {fileID: 2100000, guid: 049838de9ed9bde40938fed3fcd195f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -58837,7 +58854,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -58935,7 +58952,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: f6477b3b00b7d204a8dfe3fc601e0c35, type: 2}
+  m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
 --- !u!4 &1172546253
 Transform:
@@ -59228,6 +59245,21 @@ MonoBehaviour:
   - {fileID: 1567699231}
   - {fileID: 971110974}
   - {fileID: 1887712818}
+  onReset:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 299506376}
+        m_TargetAssemblyTypeName: GateAnim, Assembly-CSharp
+        m_MethodName: ResetGate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onSolved:
     m_PersistentCalls:
       m_Calls:
@@ -59494,7 +59526,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e1bf502a5227ec4c9359fb4cb126f44, type: 2}
+  - {fileID: 2100000, guid: acb850ccd12c8a643898b87f9d07c156, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -60630,7 +60662,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -63170,7 +63202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: 308999116414a1b4780650716ab69b44, type: 3}
+  clip: {fileID: 8300000, guid: 7f8081620136d4f4a9da37bde86ada89, type: 3}
   voiceLineDelay: 0
   playOnce: 0
 --- !u!65 &1241992228
@@ -64044,7 +64076,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -64301,7 +64333,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -65204,7 +65236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: b5e624d5b2ebdd6459c4ab060f5b84da, type: 3}
+  clip: {fileID: 8300000, guid: ebe9f76ae62ec3642b0e5bfe8bde137f, type: 3}
   voiceLineDelay: 2
   playOnce: 1
 --- !u!65 &1286954842
@@ -68070,7 +68102,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72928,7 +72960,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0e28272150de5948a2bafc63d34cee7, type: 2}
+  - {fileID: 2100000, guid: f83ffa080a4e4cb49ad4b077ec962f65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73950,7 +73982,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e1bf502a5227ec4c9359fb4cb126f44, type: 2}
+  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75420,7 +75452,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e1bf502a5227ec4c9359fb4cb126f44, type: 2}
+  - {fileID: 2100000, guid: 5adff62138aadd04a829f579c5c2a820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78520,7 +78552,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80873,7 +80905,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82461,7 +82493,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82716,7 +82748,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32d5ec39ce07b3a48850a3b1c3c870ef, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83203,7 +83235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: 703aa51be13180343883cf8d14d0e36f, type: 3}
+  clip: {fileID: 8300000, guid: 346a162510765e74197bfe700d97e19d, type: 3}
   voiceLineDelay: 0
   playOnce: 0
 --- !u!65 &1644769881
@@ -83642,6 +83674,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1655115936}
           m_TargetAssemblyTypeName: Movable, Assembly-CSharp
           m_MethodName: DoInteract
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1855213591}
+          m_TargetAssemblyTypeName: RegionVoicelines, Assembly-CSharp
+          m_MethodName: PlayAudio
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -85081,7 +85125,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e1bf502a5227ec4c9359fb4cb126f44, type: 2}
+  - {fileID: 2100000, guid: acb850ccd12c8a643898b87f9d07c156, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85300,7 +85344,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
+  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85671,7 +85715,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88189,7 +88233,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e1bf502a5227ec4c9359fb4cb126f44, type: 2}
+  - {fileID: 2100000, guid: 5adff62138aadd04a829f579c5c2a820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94255,6 +94299,54 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &1855213589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1855213590}
+  - component: {fileID: 1855213591}
+  m_Layer: 0
+  m_Name: CannonBallCollect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1855213590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855213589}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1027998192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1855213591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855213589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43b9bf2f979b1343ab300326c50b049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
+  playAudio: {fileID: 383500304}
+  clip: {fileID: 8300000, guid: cc2d6d26193e21446acb2243e4e15576, type: 3}
+  voiceLineDelay: 0
+  playOnce: 0
 --- !u!1 &1858705897
 GameObject:
   m_ObjectHideFlags: 0
@@ -95453,7 +95545,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2747dbf2aa6dd54fac09b69f40093f2, type: 2}
+  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98221,7 +98313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegionVoicelines
   playAudio: {fileID: 383500304}
-  clip: {fileID: 8300000, guid: a75f0b86287d3ab4690f8393e758b9ed, type: 3}
+  clip: {fileID: 8300000, guid: bdd7d005f2fd62b4299777334794042e, type: 3}
   voiceLineDelay: 0
   playOnce: 0
 --- !u!4 &1931887104
@@ -102373,6 +102465,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 37e0f9d4b9845fc4d8eb87f9d174963c, type: 2}
+    - target: {fileID: 8645953760584578745, guid: 3a766f161820b6c40a3e8dd0efa2614f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: acb850ccd12c8a643898b87f9d07c156, type: 2}
     - target: {fileID: 8952138627085831217, guid: 3a766f161820b6c40a3e8dd0efa2614f, type: 3}
       propertyPath: anim
       value: 
@@ -104512,7 +104608,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aabf196d4b0a9cd41ad39fbc9791a397, type: 2}
+  - {fileID: 2100000, guid: cd90d43473dd6c14b8f2e897f6f63ab3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
