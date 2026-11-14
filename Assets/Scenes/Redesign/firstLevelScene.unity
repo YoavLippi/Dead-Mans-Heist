@@ -15635,16 +15635,16 @@ MonoBehaviour:
   - {fileID: 48293420}
   - {fileID: 2016604245}
   focusTarget: {fileID: 2114780893}
-  lookAtDuration: 1
-  returnDuration: 0.8
+  lookAtDuration: 0.6
+  returnDuration: 0.5
   mainCamera: {fileID: 388771166}
-  zoomedFOV: 25
+  zoomedFOV: 10
   sfxAudioSource: {fileID: 2125461588}
   triggerClip: {fileID: 8300000, guid: 2e9a6427a50ea9745a8631abfeb078da, type: 3}
   triggerVolume: 0.75
   voiceAudioSource: {fileID: 2125461588}
   voiceLineClip: {fileID: 8300000, guid: a26eafdb0971f7a4d84c5fa2e063ba25, type: 3}
-  voiceLineVolume: 1
+  voiceLineVolume: 3
   delayBeforeVoice: 0.6
   postVoiceHoldTime: 0.4
   objectsToHighlight:
@@ -15654,7 +15654,7 @@ MonoBehaviour:
   - {fileID: 1528348984}
   - {fileID: 1940965851}
   highlightOverlayMaterial: {fileID: 2100000, guid: ab1816c7f9b4f3943b742eae54b6dd16, type: 2}
-  targetOutlineSize: 0.015
+  targetOutlineSize: 0.05
   highlightColor: {r: 1, g: 0.54072064, b: 0, a: 1}
 --- !u!65 &274462490
 BoxCollider:
@@ -40364,7 +40364,7 @@ MonoBehaviour:
   playAudio: {fileID: 383500304}
   clip: {fileID: 8300000, guid: 3789585d8e4e1db41a99987a1f915472, type: 3}
   voiceLineDelay: 0
-  playOnce: 0
+  playOnce: 1
 --- !u!65 &788979653
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64904,7 +64904,7 @@ MonoBehaviour:
   playAudio: {fileID: 383500304}
   clip: {fileID: 8300000, guid: b5e624d5b2ebdd6459c4ab060f5b84da, type: 3}
   voiceLineDelay: 2
-  playOnce: 0
+  playOnce: 1
 --- !u!65 &1286954842
 BoxCollider:
   m_ObjectHideFlags: 0

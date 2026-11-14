@@ -33,7 +33,7 @@ public class CameraHintSequence : MonoBehaviour
 	[Header("Voice Line Audio")]
 	[SerializeField] private AudioSource voiceAudioSource;
 	[SerializeField] private AudioClip voiceLineClip;
-	[Range(0f, 1f)][SerializeField] private float voiceLineVolume = 1.0f;
+	[Range(0f, 1f)][SerializeField] private float voiceLineVolume = 1.5f;
 	[Tooltip("Delay after crossing the collider before the voice line starts (e.g., wait until camera finishes turning)")]
 	[SerializeField] private float delayBeforeVoice = 0.6f;
 	[Tooltip("Extra pause after the voice line finishes before returning the camera")]
