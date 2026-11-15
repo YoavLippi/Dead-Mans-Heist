@@ -107,6 +107,15 @@ public class CameraHintSequence : MonoBehaviour
 		}
 	}
 
+	public void TriggerHintSequence()
+	{
+		if (hasTriggered && triggerOnceOnly) return;
+		if (isSequenceRunning) return;
+
+		hasTriggered = true;
+		StartCoroutine(PlayCameraHintRoutine());
+	}
+
 	private IEnumerator PlayCameraHintRoutine()
 	{
 		IsPlaying = true;
