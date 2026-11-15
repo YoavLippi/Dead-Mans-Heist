@@ -7,14 +7,19 @@ using UnityEngine;
 public class WorldTime : MonoBehaviour, iSaveable
 {
     public static event Action<int> secondsChange;
+    public static WorldTime instance;
 
     [SerializeField] private float seconds = 1f;
-    [SerializeField] private int currentSecond = 0;
+    public int currentSecond = 0;
     private float timer = 0f;
 
     private void Start()
     {
         StartCoroutine(DoLateStart());
+        if (!instance)
+        {
+            instance = this;
+        }
     }
 
     private IEnumerator DoLateStart()

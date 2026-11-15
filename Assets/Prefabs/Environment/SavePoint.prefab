@@ -67,4 +67,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveOnCollision
   hasSaved: 0
-  saveOneshot: 0
+  saveOneshot: 1

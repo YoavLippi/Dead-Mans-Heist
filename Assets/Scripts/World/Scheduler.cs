@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,6 +33,7 @@ public class Scheduler : MonoBehaviour
     [SerializeField] private bool isOnSchedule = true;
     [SerializeField] private bool loopSchedule = true;
     [SerializeField] private List<EventWrapper> schedule;
+    [SerializeField] private int offsetTime;
     private void OnEnable() => WorldTime.secondsChange += CheckTime;
 
     private void OnDisable() => WorldTime.secondsChange -= CheckTime;
@@ -44,16 +46,17 @@ public class Scheduler : MonoBehaviour
 
     private void CheckTime(int time)
     {
+        if (!isOnSchedule) return;
+        int workingTime = time - offsetTime;
         if (loopSchedule)
         {
-            time %= GetHighestTriggerTime()+1;
+            workingTime %= GetHighestTriggerTime()+1;
         }
         else
         {
-            if (time > GetHighestTriggerTime()) return;
+            if (workingTime > GetHighestTriggerTime()) return;
         }
-        lastKnownTime = time;
-        if (!isOnSchedule) return;
+        lastKnownTime = workingTime;
         var currentEvents = schedule.Where(p => p.time == lastKnownTime);
         foreach (var e in currentEvents)
         {
@@ -73,5 +76,11 @@ public class Scheduler : MonoBehaviour
         {
             ew?.OnValidate();
         }
+    }
+
+    public void StartTimer()
+    {
+        offsetTime = WorldTime.instance.currentSecond;
+        isOnSchedule = true;
     }
 }
