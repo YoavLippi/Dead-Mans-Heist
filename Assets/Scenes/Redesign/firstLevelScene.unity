@@ -78774,7 +78774,7 @@ MonoBehaviour:
     image: {fileID: 0}
     zone: {fileID: 0}
     target: {fileID: 0}
-    prompt: ESCAPE THE SHIP...
+    prompt: THE SHIP IS UNDER ATTACK... ESCAPE!
     onStepStart:
       m_PersistentCalls:
         m_Calls:
