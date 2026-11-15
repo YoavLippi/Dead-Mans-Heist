@@ -132,6 +132,13 @@ public class Interactable : MonoBehaviour
 		//sr.material.SetFloat(OutlineSizeID, w);
 		sr.SetPropertyBlock(materialProperties);
 	}
+	public virtual void setOutlineEnabled(bool set) 
+	{
+        sr.GetPropertyBlock(materialProperties);
+        materialProperties.SetFloat(UseOutLineBoolID, (set) ? 1f : 0f);
+        //sr.material.SetFloat(OutlineSizeID, w);
+        sr.SetPropertyBlock(materialProperties);
+    }
 
 	public virtual void DoSelfDistruct(float time)
 	{

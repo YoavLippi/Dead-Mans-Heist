@@ -8,6 +8,7 @@ public class EndSequence : MonoBehaviour
     [SerializeField] private AudioClip explosion;
     [SerializeField] private GameObject wall;
     [SerializeField] private ParticleSystem smoke;
+    [SerializeField] private ParticleSystem explosionvfx;
 
 
     public void playSequence() 
@@ -21,6 +22,7 @@ public class EndSequence : MonoBehaviour
         cannon.PlayOneShot(explosion);
         wall.SetActive(false);
         smoke.Play();
+        explosionvfx.Play();
 
     }
 }

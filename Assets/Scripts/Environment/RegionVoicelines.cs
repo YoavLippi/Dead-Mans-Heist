@@ -7,7 +7,7 @@ public class RegionVoicelines : MonoBehaviour, iSaveable
 	[SerializeField] private PlayAudio playAudio;
 	[SerializeField] private AudioClip clip;
 	public float voiceLineDelay;
-	[SerializeField] private bool playOnce;
+	[SerializeField] private bool hasPlayedOnce;
 	private bool hasPlayed;
 	private bool savedHasPlayed;
 	private Coroutine delayRoutine;
@@ -24,21 +24,21 @@ public class RegionVoicelines : MonoBehaviour, iSaveable
 
 	private void OnTriggerEnter(Collider other)
 	{
-		//if (other.CompareTag("Player") && !hasPlayed)
-		//{
-		//	playAudio.Play(clip);
-		//	hasPlayed = true;
-		//}
-
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player") && !hasPlayed)
 		{
-			if (playOnce && hasPlayed) return;
-
-			if (playOnce)
-				hasPlayed = true;
-
-			PlayAudio();
+			playAudio.Play(clip);
+			hasPlayed = true;
 		}
+
+		//if (other.CompareTag("Player"))
+		//{
+		//	if (playOnce && hasPlayed) return;
+
+		//	if (playOnce)
+		//		hasPlayed = true;
+
+		//	PlayAudio();
+		//}
 	}
 
 	public void PlayAudio()

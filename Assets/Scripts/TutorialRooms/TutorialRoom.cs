@@ -51,7 +51,7 @@ public class TutorialRoom : TutorialBase, iSaveable
 	private Coroutine routine;
 	private SneakZone activeZone;
 	private UnityEvent activeEvent;
-	private bool isComplete = false;
+	[SerializeField]private bool isComplete = false;
 	private bool isPlayerActivelyWalking = false;
 
 	protected override void OnRoomStarted()
@@ -81,14 +81,18 @@ public class TutorialRoom : TutorialBase, iSaveable
 		else Debug.LogError("TutorialRoom: promptUI isn't assigned.", this);
 	}
 
-	private IEnumerator RunTutorial()
+	private IEnumerator RunTutorial(int skipStep = 0)
 	{
 		Debug.Log("[TUT] 1. RunTutorial started!", this);
 		OnRoomBegin.Invoke();
 		foreach (var step in steps)
 		{
 			Debug.Log($"[TUT] 2. Starting step: {step.action}", this);
-
+			if (skipStep > 0) 
+			{
+				skipStep--;
+				continue;
+			}
 			if (step.action != TutActions.Message &&
 				step.waitForDoorSequence != null &&
 				step.waitForDoorSequence.IsSequenceActive)
@@ -250,7 +254,11 @@ public class TutorialRoom : TutorialBase, iSaveable
 			StopCoroutine(routine);
 			routine = null;
 		}
-		routine = StartCoroutine(RunTutorial());
+		if (!isComplete) 
+		{
+			routine = StartCoroutine(RunTutorial(1));
+		}
+		
 	}
 
 	#endregion
