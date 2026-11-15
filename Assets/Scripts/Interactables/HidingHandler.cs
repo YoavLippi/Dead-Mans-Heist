@@ -14,6 +14,7 @@ public class HidingHandler : Interactable
     [SerializeField] private Transform exitPos;
     [SerializeField] private Transform hidePos;
     [SerializeField] private LayerMask initialLayer;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -54,6 +55,7 @@ public class HidingHandler : Interactable
             {
                 if (controller.CurrentState != PlayerController.PlayerState.Hiding)
                 {
+                    animator.SetBool("doorOpen", false);
                     //controller.CurrentState = PlayerController.PlayerState.Hiding;
                     controller.DoHide(enterPos.position,exitPos.position,hidePos.position);
                     GetComponent<Collider>().enabled = false;
@@ -61,6 +63,7 @@ public class HidingHandler : Interactable
                 }
                 else
                 {
+                    animator.SetBool("doorOpen", true);
                     Debug.Log("unhiding");
                     controller.DoUnhide();
                     GetComponent<Collider>().enabled = true;
