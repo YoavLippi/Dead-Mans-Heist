@@ -4,11 +4,18 @@ using DefaultNamespace;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class EnemyMovement : EnemyAbs, iSaveable
 {
+    [Serializable]
+    public struct VoiceLineArr
+    {
+        [SerializeField] public AudioClip[] clips;
+    }
+    
     [SerializeField] private int index;
     [SerializeField] private GameObject target;
     [SerializeField] private bool isLookingAround;
@@ -32,7 +39,11 @@ public class EnemyMovement : EnemyAbs, iSaveable
     [SerializeField] private float moderateDistractionSuspicion = 50f;
     [SerializeField] private float minorDistractionDuration = 3f;
     [SerializeField] private float minorDistractionSuspicion = 25f;
-    [SerializeField] private AudioClip[] catchAudios;
+
+    [Header("Audio")] 
+    [SerializeField] private int audioIdentityIndex;
+    [SerializeField] private VoiceLineArr[] alertAudios;
+    [SerializeField] private VoiceLineArr[] catchAudios;
 
 
     [Header("Travelling")]
@@ -124,7 +135,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
     public void RestartLevel()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        AudioClip c = catchAudios[Random.Range(0, catchAudios.Length)];
+        AudioClip c = catchAudios[audioIdentityIndex].clips[Random.Range(0, catchAudios.Length)];
         float duration = c.length;
         CameraController.Instance.FadeToBlackAndReload(duration);
         PlayerAudio.Instance.PlayAudioOneShot(c, 1, true);
@@ -177,10 +188,10 @@ public class EnemyMovement : EnemyAbs, iSaveable
 
     public override void moveToCheckPoint(Transform target)
     {
-        Debug.Log($"Move triggered on {name}");
+        //Debug.Log($"Move triggered on {name}");
         if (target != null && nv != null)
         {
-            Debug.Log($"{name} wants to move");
+            //Debug.Log($"{name} wants to move");
             nv.SetDestination(target.position);
         }
     }
@@ -323,8 +334,10 @@ public class EnemyMovement : EnemyAbs, iSaveable
         lastSeenTime = Time.time;
         if (!isAlerted) EnterAlert();
     }
-    protected void EnterAlert() 
+    protected void EnterAlert()
     {
+        AudioClip selectedClip = alertAudios[audioIdentityIndex].clips[Random.Range(0, alertAudios.Length)];
+        PlayerAudio.Instance.PlayAudioOneShot(selectedClip);
         isAlerted = true;
         nv.isStopped = true;
         if (lookRoutine != null) 

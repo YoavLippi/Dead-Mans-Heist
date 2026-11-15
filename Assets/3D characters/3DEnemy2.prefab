@@ -739,11 +739,29 @@ MonoBehaviour:
   moderateDistractionSuspicion: 50
   minorDistractionDuration: 3
   minorDistractionSuspicion: 25
+  audioIdentityIndex: 0
   catchAudios:
-  - {fileID: 8300000, guid: f55bc46ba51dd80488006826eadaaf49, type: 3}
-  - {fileID: 8300000, guid: 76434cf1223be3247bb35a02ecddc0c4, type: 3}
-  - {fileID: 8300000, guid: f381df3a7551ce641be6827de1d33b04, type: 3}
-  - {fileID: 8300000, guid: 34a612e970d1e854fb55792bcc9dfaf9, type: 3}
+  - clips:
+    - {fileID: 8300000, guid: 347458b04df8bfe4bbc0dc9f0f463e4e, type: 3}
+    - {fileID: 8300000, guid: c606348c70364804a957204496dbe71b, type: 3}
+    - {fileID: 8300000, guid: 490b2ee24001aa34ab41d8fec6c45d12, type: 3}
+    - {fileID: 8300000, guid: 0c547bab9967ff548bd14d31ccefd4fc, type: 3}
+  - clips:
+    - {fileID: 8300000, guid: 677d2760b09f4dd4eb3c981e7f0e7d96, type: 3}
+    - {fileID: 8300000, guid: c7d4318857a4cd242ac8d63581dc6fc0, type: 3}
+    - {fileID: 8300000, guid: d02aebbc9daef4e44a34589b42d96a21, type: 3}
+    - {fileID: 8300000, guid: 08ec7225cfe59754bb5f005a8f425509, type: 3}
+  alertAudios:
+  - clips:
+    - {fileID: 8300000, guid: 01bb8f471508a3f4785c6a5b7b71d65c, type: 3}
+    - {fileID: 8300000, guid: 740bb971ccc7c3e4fbf04599e0f60f33, type: 3}
+    - {fileID: 8300000, guid: 55711f319cffb13498f541633da7a2d0, type: 3}
+    - {fileID: 8300000, guid: f88b83fb034da2c4da5c7fb2a87a9896, type: 3}
+  - clips:
+    - {fileID: 8300000, guid: 1217501a067736341ab62b47acc73045, type: 3}
+    - {fileID: 8300000, guid: 7469c7da15ce71344a1190144e2988f1, type: 3}
+    - {fileID: 8300000, guid: d62b4789054840e4887cf931ba4e8aef, type: 3}
+    - {fileID: 8300000, guid: 52d01c16a4bd64f4e9655a6ad0824591, type: 3}
   arrivalDistanceThreshold: 2
   maxTravelToDistractionSeconds: 10
   facingX: 0

@@ -57,7 +57,7 @@ public class PlayerAudio : MonoBehaviour
 			playerController.onStepTaken -= HandleFootstep;
 	}
 
-	public void PlayAudioOneShot(AudioClip clip, float volume, bool playSolo = false)
+	public void PlayAudioOneShot(AudioClip clip, float volume = 1, bool playSolo = false)
 	{
 		if (playSolo)
 		{

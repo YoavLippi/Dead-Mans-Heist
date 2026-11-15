@@ -150,6 +150,10 @@ public class DoorFall : MonoBehaviour
 		foreach (var script in playerScriptsToDisable)
 		{
 			if (script != null) script.enabled = isEnabled;
+			if (script is PlayerController pc)
+			{
+				pc.DoSave();
+			}
 		}
 	}
 }
