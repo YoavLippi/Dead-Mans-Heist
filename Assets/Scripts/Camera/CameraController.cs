@@ -4,6 +4,7 @@ using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -46,9 +47,9 @@ public class CameraController : MonoBehaviour
             cam.Priority = 10;
         }
         newActive.Priority = 20;
-        visionPanel.transform.position = (newActive.transform.position + newActive.transform.forward);
-        visionPanel.transform.rotation = newActive.transform.rotation;
-        visionPanel.transform.parent = newActive.transform;
+        //visionPanel.transform.position = (newActive.transform.position + newActive.transform.forward);
+        //visionPanel.transform.rotation = newActive.transform.rotation;
+        //visionPanel.transform.parent = newActive.transform;
         activeCam = newActive;
     }
     public void ToggleVisionPanel(bool value)
@@ -69,7 +70,7 @@ public class CameraController : MonoBehaviour
     {
         Time.timeScale = 0;
         ToggleVisionPanel(true);
-        SpriteRenderer r = visionPanel.GetComponent<SpriteRenderer>();
+        Image r = visionPanel.GetComponent<Image>();
         yield return new WaitForSecondsRealtime(waitTime);
         Color initialColor = r.color, finalColor = Color.black;
         float currentTime = 0;
