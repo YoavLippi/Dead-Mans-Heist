@@ -52,8 +52,7 @@ public class TutorialRoom : TutorialBase, iSaveable
 	private SneakZone activeZone;
 	private UnityEvent activeEvent;
 	private bool isComplete = false;
-
-
+	private bool isPlayerActivelyWalking = false;
 
 	protected override void OnRoomStarted()
 	{
@@ -84,21 +83,25 @@ public class TutorialRoom : TutorialBase, iSaveable
 
 	private IEnumerator RunTutorial()
 	{
+		Debug.Log("[TUT] 1. RunTutorial started!", this);
 		OnRoomBegin.Invoke();
 		foreach (var step in steps)
 		{
-			if (step.action != TutActions.Message && step.waitForDoorSequence != null)
+			Debug.Log($"[TUT] 2. Starting step: {step.action}", this);
+
+			if (step.action != TutActions.Message &&
+				step.waitForDoorSequence != null &&
+				step.waitForDoorSequence.IsSequenceActive)
 			{
 				ShowStep("", null);
-				yield return null;
 				yield return new WaitWhile(() => step.waitForDoorSequence.IsSequenceActive);
 			}
 
-			if (step.waitForCameraHint != null)
+			if (step.waitForCameraHint != null &&
+				step.waitForCameraHint.isSequenceRunning)
 			{
 				ShowStep("", null);
-				yield return null;
-				yield return new WaitWhile(() => step.waitForCameraHint.IsPlaying);
+				yield return new WaitWhile(() => step.waitForCameraHint.isSequenceRunning);
 			}
 
 			currentAction = step.action;
@@ -133,24 +136,31 @@ public class TutorialRoom : TutorialBase, iSaveable
 
 			if (tutaudio != null) tutaudio.Play(step.startAudio);
 			else Debug.LogError("TutorialRoom: tutaudio isn't assigned.", this);
+
+			Debug.Log($"[TUT] 3. Calling ShowStep ({step.action}) | prompt='{step.prompt}' | image={(step.image != null ? step.image.name : "NULL")}", this);
 			ShowStep(step.prompt, step.image);
 
 			if (step.action == TutActions.Message)
 			{
-				float messageStartTime = Time.time;
 				float minDisplayTime = step.messageDuration > 0f ? step.messageDuration : 3f;
+				yield return new WaitForSeconds(minDisplayTime);
 
 				if (step.waitForDoorSequence != null)
 				{
-					yield return null; // Give DoorFall.SetTrue() 1 frame to start
 					yield return new WaitWhile(() => step.waitForDoorSequence.IsSequenceActive);
 				}
-
-				// If the door sequence finished in less than 3 seconds, wait out the remaining time
-				float remainingTime = minDisplayTime - (Time.time - messageStartTime);
-				if (remainingTime > 0f)
+			}
+			else if (step.action == TutActions.Walk)
+			{
+				isPlayerActivelyWalking = false;
+				float walkHoldTimer = 0f;
+				while (walkHoldTimer < 0.4f)
 				{
-					yield return new WaitForSeconds(remainingTime);
+					if (isPlayerActivelyWalking)
+					{
+						walkHoldTimer += Time.deltaTime;
+					}
+					yield return null;
 				}
 			}
 			else
@@ -182,6 +192,8 @@ public class TutorialRoom : TutorialBase, iSaveable
 
 	private void HandleStateChanged(PlayerController.PlayerState state)
 	{
+		isPlayerActivelyWalking = (state == PlayerController.PlayerState.Walking);
+
 		bool matched = currentAction switch
 		{
 			TutActions.Walk => state == PlayerController.PlayerState.Walking,

@@ -13,12 +13,24 @@ public class CameraHintSequence : MonoBehaviour
 	[SerializeField] private MonoBehaviour[] scriptsToDisable;
 
 	[Header("Camera Focus Target")]
-	[Tooltip("The object or empty Transform point the camera should turn to look at")]
+	[Tooltip("Single object or empty Transform point the camera should turn to look at")]
 	[SerializeField] private Transform focusTarget;
+	[Tooltip("Optional: Multiple objects to frame together (overrides Focus Target if populated)")]
+	[SerializeField] private Transform[] focusTargets;
 	[Tooltip("How long the camera takes to smoothly turn toward the target")]
 	[SerializeField] private float lookAtDuration = 1.0f;
 	[Tooltip("How long the camera takes to return to the player's original view")]
 	[SerializeField] private float returnDuration = 0.8f;
+
+	[Header("Occlusion Hiding (Blocking Objects)")]
+	[Tooltip("Layers that can block the camera view (e.g., Default, Environment, Props)")]
+	[SerializeField] private LayerMask occluderLayers = ~0;
+	[Tooltip("Radius of the line-of-sight check between the camera and target")]
+	[SerializeField] private float occlusionCheckRadius = 0.35f;
+	[Tooltip("Optional: Specific objects (such as walls/beams without colliders) to always hide during the zoom")]
+	[SerializeField] private GameObject[] extraObjectsToHide;
+	[Tooltip("Objects that should NEVER be hidden even if hit by the check (e.g., Player, Floor)")]
+	[SerializeField] private Transform[] ignoreTransforms;
 
 	[Header("Camera Zoom Settings")]
 	[SerializeField] private Camera mainCamera;
@@ -33,7 +45,7 @@ public class CameraHintSequence : MonoBehaviour
 	[Header("Voice Line Audio")]
 	[SerializeField] private AudioSource voiceAudioSource;
 	[SerializeField] private AudioClip voiceLineClip;
-	[Range(0f, 1f)][SerializeField] private float voiceLineVolume = 1.5f;
+	[Range(0f, 3f)][SerializeField] private float voiceLineVolume = 1.5f;
 	[Tooltip("Delay after crossing the collider before the voice line starts (e.g., wait until camera finishes turning)")]
 	[SerializeField] private float delayBeforeVoice = 0.6f;
 	[Tooltip("Extra pause after the voice line finishes before returning the camera")]
@@ -61,6 +73,8 @@ public class CameraHintSequence : MonoBehaviour
 
 	private Material runtimeHighlightInstance;
 	private readonly Dictionary<Renderer, Material[]> originalMaterialsMap = new Dictionary<Renderer, Material[]>();
+	private readonly List<Renderer> hiddenOccluders = new List<Renderer>();
+	private Coroutine fadeRoutine;
 
 	private static readonly int UseOutlineID = Shader.PropertyToID("_UseOutline");
 	private static readonly int OutlineSizeID = Shader.PropertyToID("_OutlineSize");
@@ -117,11 +131,17 @@ public class CameraHintSequence : MonoBehaviour
 		Quaternion originalRotation = camTransform.rotation;
 		float originalFOV = mainCamera.fieldOfView;
 
+		bool hasTarget = HasValidTarget();
+		Vector3 targetPoint = hasTarget ? GetFocusCenter() : Vector3.zero;
+
+		if (hasTarget)
+			HideOccludingObjects(camTransform.position, targetPoint);
+
 		Coroutine lookRoutine = null;
-		if (focusTarget != null)
+		if (hasTarget)
 		{
-			lookRoutine = StartCoroutine(SmoothLookAndZoom(camTransform, focusTarget, originalFOV, zoomedFOV, lookAtDuration));
-			StartCoroutine(FadeHintText(1f));
+			lookRoutine = StartCoroutine(SmoothLookAndZoom(camTransform, targetPoint, originalFOV, zoomedFOV, lookAtDuration));
+			TriggerFade(1f);
 		}
 
 		if (delayBeforeVoice > 0f)
@@ -143,10 +163,11 @@ public class CameraHintSequence : MonoBehaviour
 
 		if (lookRoutine != null)
 			yield return lookRoutine;
-		StartCoroutine(FadeHintText(0f));
+
+		TriggerFade(0f);
 		yield return StartCoroutine(SmoothRestoreView(camTransform, originalRotation, originalFOV, returnDuration));
 
-
+		RestoreHiddenOccluders();
 		RemoveHighlightOverlay();
 
 		SetControlsEnabled(true);
@@ -155,10 +176,10 @@ public class CameraHintSequence : MonoBehaviour
 		IsPlaying = false;
 	}
 
-	private IEnumerator SmoothLookAndZoom(Transform cam, Transform target, float startFOV, float endFOV, float duration)
+	private IEnumerator SmoothLookAndZoom(Transform cam, Vector3 targetPoint, float startFOV, float endFOV, float duration)
 	{
 		Quaternion startRot = cam.rotation;
-		Vector3 direction = (target.position - cam.position).normalized;
+		Vector3 direction = (targetPoint - cam.position).normalized;
 		if (direction.sqrMagnitude < 0.0001f) yield break;
 
 		Quaternion targetRot = Quaternion.LookRotation(direction);
@@ -172,6 +193,8 @@ public class CameraHintSequence : MonoBehaviour
 			cam.rotation = Quaternion.Slerp(startRot, targetRot, t);
 			mainCamera.fieldOfView = Mathf.Lerp(startFOV, endFOV, t);
 			SetHighlightFade(t);
+
+			HideOccludingObjects(cam.position, targetPoint);
 
 			yield return null;
 		}
@@ -204,16 +227,147 @@ public class CameraHintSequence : MonoBehaviour
 		SetHighlightFade(0f);
 	}
 
-	//private void SetPlayerControl(bool isEnabled)
-	//{
-	//	if (playerScriptsToDisable == null) return;
+	private void HideOccludingObjects(Vector3 camPos, Vector3 targetPoint)
+	{
+		if (extraObjectsToHide != null)
+		{
+			foreach (var obj in extraObjectsToHide)
+			{
+				if (obj == null) continue;
+				foreach (var rend in obj.GetComponentsInChildren<Renderer>())
+					HideRenderer(rend);
+			}
+		}
 
-	//	foreach (var script in playerScriptsToDisable)
-	//	{
-	//		if (script != null)
-	//			script.enabled = isEnabled;
-	//	}
-	//}
+		Vector3 toTarget = targetPoint - camPos;
+		float distance = toTarget.magnitude;
+		if (distance <= 0.1f) return;
+
+		RaycastHit[] hits = Physics.SphereCastAll(
+			camPos,
+			occlusionCheckRadius,
+			toTarget.normalized,
+			distance,
+			occluderLayers,
+			QueryTriggerInteraction.Ignore
+		);
+
+		foreach (var hit in hits)
+		{
+			Transform hitTransform = hit.transform;
+			if (IsTargetOrIgnored(hitTransform)) continue;
+
+			foreach (var rend in hitTransform.GetComponentsInChildren<Renderer>())
+				HideRenderer(rend);
+		}
+	}
+
+	private void HideRenderer(Renderer rend)
+	{
+		if (rend != null && rend.enabled)
+		{
+			rend.enabled = false;
+			if (!hiddenOccluders.Contains(rend))
+				hiddenOccluders.Add(rend);
+		}
+	}
+
+	private void RestoreHiddenOccluders()
+	{
+		foreach (var rend in hiddenOccluders)
+		{
+			if (rend != null)
+				rend.enabled = true;
+		}
+		hiddenOccluders.Clear();
+	}
+
+	private bool IsTargetOrIgnored(Transform candidate)
+	{
+		if (focusTarget != null && (candidate == focusTarget || candidate.IsChildOf(focusTarget)))
+			return true;
+
+		if (focusTargets != null)
+		{
+			foreach (var t in focusTargets)
+			{
+				if (t != null && (candidate == t || candidate.IsChildOf(t)))
+					return true;
+			}
+		}
+
+		if (ignoreTransforms != null)
+		{
+			foreach (var ignore in ignoreTransforms)
+			{
+				if (ignore != null && (candidate == ignore || candidate.IsChildOf(ignore)))
+					return true;
+			}
+		}
+
+		return false;
+	}
+
+	private bool HasValidTarget()
+	{
+		if (focusTarget != null) return true;
+		if (focusTargets != null)
+		{
+			foreach (var t in focusTargets)
+				if (t != null) return true;
+		}
+		return false;
+	}
+
+	private Vector3 GetFocusCenter()
+	{
+		Bounds combinedBounds = new Bounds();
+		bool hasBounds = false;
+
+		void EncapsulateTransform(Transform t)
+		{
+			if (t == null) return;
+			Renderer[] renderers = t.GetComponentsInChildren<Renderer>();
+			if (renderers.Length > 0)
+			{
+				foreach (var r in renderers)
+				{
+					if (!hasBounds)
+					{
+						combinedBounds = r.bounds;
+						hasBounds = true;
+					}
+					else
+					{
+						combinedBounds.Encapsulate(r.bounds);
+					}
+				}
+			}
+			else
+			{
+				if (!hasBounds)
+				{
+					combinedBounds = new Bounds(t.position, Vector3.zero);
+					hasBounds = true;
+				}
+				else
+				{
+					combinedBounds.Encapsulate(t.position);
+				}
+			}
+		}
+
+		if (focusTargets != null && focusTargets.Length > 0)
+		{
+			foreach (var t in focusTargets)
+				EncapsulateTransform(t);
+		}
+
+		if (!hasBounds && focusTarget != null)
+			EncapsulateTransform(focusTarget);
+
+		return hasBounds ? combinedBounds.center : Vector3.zero;
+	}
 
 	private void AttachHighlightOverlay()
 	{
@@ -296,6 +450,12 @@ public class CameraHintSequence : MonoBehaviour
 		}
 	}
 
+	private void TriggerFade(float targetAlpha)
+	{
+		if (fadeRoutine != null) StopCoroutine(fadeRoutine);
+		fadeRoutine = StartCoroutine(FadeHintText(targetAlpha));
+	}
+
 	private IEnumerator FadeHintText(float targetAlpha)
 	{
 		if (hintCanvasGroup == null) yield break;
@@ -317,5 +477,10 @@ public class CameraHintSequence : MonoBehaviour
 
 		if (Mathf.Approximately(targetAlpha, 0f))
 			hintCanvasGroup.gameObject.SetActive(false);
+	}
+
+	private void OnDisable()
+	{
+		RestoreHiddenOccluders();
 	}
 }
