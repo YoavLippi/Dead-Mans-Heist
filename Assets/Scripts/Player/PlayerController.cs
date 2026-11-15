@@ -74,14 +74,16 @@ public class PlayerController : MonoBehaviour, iSaveable
 	private Vector3 capStandCenter;
 	private float targetHeight;
 
-	[Header("Mantling")] 
-	[SerializeField] private float mantleUpTime;
+	[Header("Mantling")]
+    [SerializeField] private float mantleStartTime;
+    [SerializeField] private float mantleUpTime;
 	[SerializeField] private float mantleForwardTime;
 	[SerializeField] private Transform mantleCheckPos;
 	[SerializeField] private Transform footPos;
 	[SerializeField] private float mantleDownRayLength;
 	[SerializeField] private float mantleUpRayLength;
 	[SerializeField] private LayerMask mantleIgnoreLayers;
+	private float initialStartTime;
 
 	public event Action onStepTaken;
 
@@ -156,7 +158,15 @@ public class PlayerController : MonoBehaviour, iSaveable
 				//spriteAnimator.gameObject.SetActive(true);
 				DoUnhide();
 			}
-			currentState = value;
+			if (value == PlayerState.Mantling && currentState == PlayerState.Sneaking)
+			{
+				mantleStartTime = 0.2f;
+			}
+			else 
+			{
+				mantleStartTime = initialStartTime;
+			}
+				currentState = value;
 			targetHeight = (value == PlayerState.Sneaking || value == PlayerState.Mantling) ? crouchHeight : standHeight;
 
 			//we can add listeners here for animation triggers etc
@@ -195,6 +205,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 			capStandHeight = capsule.height;
 			capStandCenter = capsule.center;
 		}
+		initialStartTime = mantleStartTime;
 	}
 	private void ApplyHeight(float h)
 	{
@@ -608,12 +619,19 @@ public class PlayerController : MonoBehaviour, iSaveable
 	private IEnumerator DoMantle(Vector3 targetPoint)
 	{
 		CurrentState = PlayerState.Mantling;
+		float currentTime = 0;
+		do
+		{
+			yield return new WaitForEndOfFrame();
+			currentTime += Time.deltaTime;
+
+		} while (currentTime < mantleStartTime);
 		Vector3 displacement = targetPoint - footPos.position;
 		//Debug.Log($"Displacement: {displacement}");
 		Vector3 actualTarget = transform.position + displacement;
 		Vector3 initialPos = transform.position;
 		Vector3 verticalTarget = new Vector3(transform.position.x, actualTarget.y, transform.position.z);
-		float currentTime = 0;
+		currentTime = 0;
 		do
 		{
 			transform.position = Vector3.Lerp(initialPos, verticalTarget, currentTime / mantleUpTime);
