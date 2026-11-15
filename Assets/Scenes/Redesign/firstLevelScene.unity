@@ -29973,8 +29973,10 @@ MonoBehaviour:
   baseMat: {fileID: 2100000, guid: 39da558b93fc91844a013ca1ff8f1333, type: 2}
   isPlaceable: 0
   overlappingCols: []
-  movableID: 
   centerOffset: {x: 0, y: 0, z: 0}
+  ignoreLayersForMoving:
+    serializedVersion: 2
+    m_Bits: 0
   checkGrounded: 0
   raycastPositions: []
   groundedCheckLength: 0.5
@@ -29985,6 +29987,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   objectHeight: 0
+  movableID: 
 --- !u!54 &499218716
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36884,8 +36887,10 @@ MonoBehaviour:
   baseMat: {fileID: 2100000, guid: 39da558b93fc91844a013ca1ff8f1333, type: 2}
   isPlaceable: 0
   overlappingCols: []
-  movableID: 
   centerOffset: {x: 0, y: 0, z: 0}
+  ignoreLayersForMoving:
+    serializedVersion: 2
+    m_Bits: 0
   checkGrounded: 0
   raycastPositions: []
   groundedCheckLength: 0.5
@@ -36896,6 +36901,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   objectHeight: 0
+  movableID: 
 --- !u!208 &637434161
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -61255,8 +61261,10 @@ MonoBehaviour:
   baseMat: {fileID: 2100000, guid: 39da558b93fc91844a013ca1ff8f1333, type: 2}
   isPlaceable: 0
   overlappingCols: []
-  movableID: 
   centerOffset: {x: 0, y: 0, z: 0}
+  ignoreLayersForMoving:
+    serializedVersion: 2
+    m_Bits: 0
   checkGrounded: 0
   raycastPositions: []
   groundedCheckLength: 0.5
@@ -61267,6 +61275,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   objectHeight: 0
+  movableID: 
 --- !u!65 &1089466872
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68899,8 +68908,10 @@ MonoBehaviour:
   baseMat: {fileID: 2100000, guid: f298e7b2a99a06644bfa3e4bf7035208, type: 2}
   isPlaceable: 0
   overlappingCols: []
-  movableID: Cannon
   centerOffset: {x: 0, y: 0, z: 0}
+  ignoreLayersForMoving:
+    serializedVersion: 2
+    m_Bits: 0
   checkGrounded: 0
   raycastPositions: []
   groundedCheckLength: 0.5
@@ -68923,6 +68934,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   objectHeight: 0
+  movableID: Cannon
 --- !u!54 &1227452902
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -91901,8 +91913,10 @@ MonoBehaviour:
   baseMat: {fileID: 2100000, guid: c2c5c976842a4894d9c6c3819ed49761, type: 2}
   isPlaceable: 0
   overlappingCols: []
-  movableID: 
   centerOffset: {x: 0, y: 0, z: 0}
+  ignoreLayersForMoving:
+    serializedVersion: 2
+    m_Bits: 0
   checkGrounded: 0
   raycastPositions: []
   groundedCheckLength: 0.5
@@ -91925,6 +91939,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   objectHeight: 0
+  movableID: 
 --- !u!54 &1655115937
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -93541,8 +93556,10 @@ MonoBehaviour:
   baseMat: {fileID: 2100000, guid: 39da558b93fc91844a013ca1ff8f1333, type: 2}
   isPlaceable: 0
   overlappingCols: []
-  movableID: 
   centerOffset: {x: 0, y: 0, z: 0}
+  ignoreLayersForMoving:
+    serializedVersion: 2
+    m_Bits: 1024
   checkGrounded: 0
   raycastPositions: []
   groundedCheckLength: 0.5
@@ -93553,6 +93570,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   objectHeight: 0
+  movableID: 
 --- !u!4 &1690765800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d591acf492f8a343ae501f8248583b1, type: 3}
@@ -97345,8 +97363,10 @@ MonoBehaviour:
   baseMat: {fileID: 2100000, guid: 39da558b93fc91844a013ca1ff8f1333, type: 2}
   isPlaceable: 0
   overlappingCols: []
-  movableID: 
   centerOffset: {x: 0, y: 0, z: 0}
+  ignoreLayersForMoving:
+    serializedVersion: 2
+    m_Bits: 0
   checkGrounded: 0
   raycastPositions: []
   groundedCheckLength: 0.5
@@ -97357,6 +97377,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   objectHeight: 0
+  movableID: 
 --- !u!208 &1761401481
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -100001,8 +100022,10 @@ MonoBehaviour:
   baseMat: {fileID: 2100000, guid: 39da558b93fc91844a013ca1ff8f1333, type: 2}
   isPlaceable: 0
   overlappingCols: []
-  movableID: 
   centerOffset: {x: 0, y: 0, z: 0}
+  ignoreLayersForMoving:
+    serializedVersion: 2
+    m_Bits: 0
   checkGrounded: 0
   raycastPositions: []
   groundedCheckLength: 0.5
@@ -100013,6 +100036,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   objectHeight: 0
+  movableID: 
 --- !u!54 &1805973257
 Rigidbody:
   m_ObjectHideFlags: 0

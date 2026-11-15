@@ -23,8 +23,8 @@ public class Movable : Interactable
     [SerializeField] private Material baseMat;
     [SerializeField] private bool isPlaceable;
     [SerializeField] private List<Collider> overlappingCols;
-    [SerializeField] private string movableID;
     [SerializeField] private Vector3 centerOffset;
+    [SerializeField] private LayerMask ignoreLayersForMoving;
     
     [Header("<color=#ffffff><size=18>Grounded Checks</size></color>")]
     [Space]
@@ -37,6 +37,7 @@ public class Movable : Interactable
     [Space]
     public UnityEvent snapEvent;
     [SerializeField] private float objectHeight;
+    [SerializeField] private string movableID;
     
     public string MovableID => movableID;
     public float ObjectHeight => objectHeight;
@@ -98,6 +99,7 @@ public class Movable : Interactable
         IsPlaceable = true;
         _renderer.material = baseMat;
         gameObject.layer = LayerMask.NameToLayer("Interactable");
+        GetComponent<Collider>().excludeLayers &= ~ignoreLayersForMoving;
         GetComponent<Collider>().isTrigger = false;
         //this is a snap
         if (disable)
@@ -113,6 +115,7 @@ public class Movable : Interactable
         IsPlaceable = true;
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         GetComponent<Collider>().isTrigger = true;
+        GetComponent<Collider>().excludeLayers |= ignoreLayersForMoving;
         playerInteractionHandler.StartPlacementRoutine(this);
     }
 
