@@ -3428,7 +3428,7 @@ GameObject:
   - component: {fileID: 73705911}
   - component: {fileID: 73705910}
   - component: {fileID: 73705909}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CannonPuzzleTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3448,7 +3448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraHintSequence
   playerTag: Player
-  triggerOnceOnly: 1
+  triggerOnceOnly: 0
   scriptsToDisable:
   - {fileID: 2095128313}
   - {fileID: 654419748}
@@ -3487,7 +3487,7 @@ MonoBehaviour:
   highlightOverlayMaterial: {fileID: 2100000, guid: ab1816c7f9b4f3943b742eae54b6dd16, type: 2}
   targetOutlineSize: 0.015
   highlightColor: {r: 1, g: 0.58120507, b: 0, a: 1}
-  hintCanvasGroup: {fileID: 0}
+  hintCanvasGroup: {fileID: 645655216}
   fadeDuration: 0.4
   isSequenceRunning: 0
 --- !u!65 &73705910
@@ -3520,7 +3520,7 @@ Transform:
   m_GameObject: {fileID: 73705908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 285.76, y: 10.05, z: 36.59}
+  m_LocalPosition: {x: 284.99, y: 10.05, z: 36.59}
   m_LocalScale: {x: 0.47341657, y: 7.3296857, z: 17.652828}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7700,6 +7700,143 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138801884}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &142267422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142267423}
+  - component: {fileID: 142267425}
+  - component: {fileID: 142267424}
+  m_Layer: 5
+  m_Name: CannonPuzzleText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &142267423
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142267422}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 645655219}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.00025082}
+  m_SizeDelta: {x: 516.5438, y: 99.905}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &142267424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142267422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Use the cannons to escape
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2af80271e5d56b5449ff56cd64603a81, type: 2}
+  m_sharedMaterial: {fileID: -5078413219481627165, guid: 2af80271e5d56b5449ff56cd64603a81, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278240255
+  m_fontColor: {r: 1, g: 0.76470596, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &142267425
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142267422}
+  m_CullTransparentMesh: 1
 --- !u!1001 &143951197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17229,7 +17366,7 @@ GameObject:
   - component: {fileID: 274462488}
   - component: {fileID: 274462490}
   - component: {fileID: 274462489}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GearPuzzleHintTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17280,15 +17417,15 @@ MonoBehaviour:
   - {fileID: 1555618443}
   - {fileID: 1528348985}
   - {fileID: 1940965852}
+  - {fileID: 299506372}
   - {fileID: 1173830358}
   - {fileID: 1478323666}
-  - {fileID: 299506372}
   lookAtDuration: 0.6
   returnDuration: 0.5
   occluderLayers:
     serializedVersion: 2
     m_Bits: 15831
-  occlusionCheckRadius: 0.55
+  occlusionCheckRadius: 0.35
   extraObjectsToHide:
   - {fileID: 1780855485}
   - {fileID: 2067205970}
@@ -17301,7 +17438,7 @@ MonoBehaviour:
   - {fileID: 1199073940}
   ignoreTransforms: []
   mainCamera: {fileID: 388771166}
-  zoomedFOV: 10
+  zoomedFOV: 30
   sfxAudioSource: {fileID: 2125461588}
   triggerClip: {fileID: 8300000, guid: 2e9a6427a50ea9745a8631abfeb078da, type: 3}
   triggerVolume: 0.8
@@ -17320,7 +17457,7 @@ MonoBehaviour:
   - {fileID: 1173830359}
   - {fileID: 1478323667}
   highlightOverlayMaterial: {fileID: 2100000, guid: ab1816c7f9b4f3943b742eae54b6dd16, type: 2}
-  targetOutlineSize: 0.05
+  targetOutlineSize: 0.025
   highlightColor: {r: 1, g: 0.5502357, b: 0, a: 1}
   hintCanvasGroup: {fileID: 762114131}
   fadeDuration: 0.4
@@ -32244,7 +32381,7 @@ GameObject:
   - component: {fileID: 547011087}
   - component: {fileID: 547011086}
   - component: {fileID: 547011088}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: FloodedPuzzleHintTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37167,7 +37304,7 @@ GameObject:
   - component: {fileID: 641058416}
   - component: {fileID: 641058415}
   - component: {fileID: 641058414}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlankPuzzleTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37222,7 +37359,7 @@ MonoBehaviour:
   - {fileID: 838807834}
   ignoreTransforms: []
   mainCamera: {fileID: 388771166}
-  zoomedFOV: 15
+  zoomedFOV: 25
   sfxAudioSource: {fileID: 2125461588}
   triggerClip: {fileID: 8300000, guid: 2e9a6427a50ea9745a8631abfeb078da, type: 3}
   triggerVolume: 0.8
@@ -37483,6 +37620,95 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1589602442370963226, guid: 8afedc7acb27a784295a2913f9a391b5, type: 3}
   m_PrefabInstance: {fileID: 385760813}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &645655215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 645655219}
+  - component: {fileID: 645655218}
+  - component: {fileID: 645655217}
+  - component: {fileID: 645655216}
+  m_Layer: 5
+  m_Name: CannonPuzzleHintText_bckgrndImg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!225 &645655216
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645655215}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &645655217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645655215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.59607846}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &645655218
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645655215}
+  m_CullTransparentMesh: 1
+--- !u!224 &645655219
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645655215}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 142267423}
+  m_Father: {fileID: 1165453572}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 452.22488}
+  m_SizeDelta: {x: 516.9918, y: 99.9055}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &646303217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44166,6 +44392,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a08f8534708ce5c48a196c9ca016c7f3, type: 3}
+--- !u!1 &776146541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b7dec7082daca634690dc8eefa1585bd, type: 3}
+  m_PrefabInstance: {fileID: 407212058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &776269443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64546,6 +64777,7 @@ RectTransform:
   - {fileID: 762114134}
   - {fileID: 1151670950}
   - {fileID: 155523123}
+  - {fileID: 645655219}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -85706,7 +85938,7 @@ GameObject:
   - component: {fileID: 1547700574}
   - component: {fileID: 1547700576}
   - component: {fileID: 1547700575}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SneakCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85777,7 +86009,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   occlusionCheckRadius: 0.35
-  extraObjectsToHide: []
+  extraObjectsToHide:
+  - {fileID: 416992279}
+  - {fileID: 776146541}
   ignoreTransforms: []
   highlightOverlayMaterial: {fileID: 0}
   targetOutlineSize: 0.015
@@ -109385,7 +109619,7 @@ GameObject:
   - component: {fileID: 1964896213}
   - component: {fileID: 1964896215}
   - component: {fileID: 1964896214}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: TraversePuzzleTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109433,9 +109667,23 @@ MonoBehaviour:
   returnDuration: 0.5
   occluderLayers:
     serializedVersion: 2
-    m_Bits: 2241
+    m_Bits: 3025
   occlusionCheckRadius: 0.35
-  extraObjectsToHide: []
+  extraObjectsToHide:
+  - {fileID: 1561294269}
+  - {fileID: 1257031854}
+  - {fileID: 1362998701}
+  - {fileID: 1446131723}
+  - {fileID: 1027033085}
+  - {fileID: 1154862245}
+  - {fileID: 1677806605}
+  - {fileID: 508770252}
+  - {fileID: 1454600875}
+  - {fileID: 1893485776}
+  - {fileID: 517949825}
+  - {fileID: 389387589}
+  - {fileID: 1565801498}
+  - {fileID: 480862414}
   ignoreTransforms: []
   mainCamera: {fileID: 388771166}
   zoomedFOV: 35
