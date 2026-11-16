@@ -111,7 +111,9 @@ public class Movable : Interactable
 
     private void DoMove()
     {
+        Texture t = _renderer.material.GetTexture("_BaseMap");
         _renderer.material = placementMat;
+        placementMat.SetTexture("_BaseMap", t);
         IsPlaceable = true;
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         GetComponent<Collider>().isTrigger = true;
