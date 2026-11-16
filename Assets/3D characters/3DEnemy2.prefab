@@ -689,7 +689,7 @@ MonoBehaviour:
   catchCollider: {fileID: 0}
   chaseSpeed: 5
   patrolSpeed: 3.5
-  nv: {fileID: 0}
+  nv: {fileID: 1234830684786915847}
   isAlerted: 0
   index: 0
   target: {fileID: 0}

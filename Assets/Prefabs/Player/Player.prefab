@@ -349,6 +349,7 @@ MonoBehaviour:
     m_Bits: 2816
   cursorHitPoint: {x: 0, y: 0, z: 0}
   currentlyHeldObj: {fileID: 0}
+  currentlyHidObj: {fileID: 0}
   ignorePushLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -526,6 +527,7 @@ MonoBehaviour:
   turnSpeed: 720
   modelPivot: {fileID: 0}
   playerMesh: {fileID: 0}
+  deathAudioClip: {fileID: 8300000, guid: 7f8081620136d4f4a9da37bde86ada89, type: 3}
   ghostedPlayerPrefab: {fileID: 347771865001200465, guid: e6a05b41b049b634fae0d9ab2a67d817, type: 3}
   maxLeashDistance: 15
   leashResistanceCurve:
@@ -586,7 +588,8 @@ MonoBehaviour:
   standHeight: 0
   standIgnoreLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 5248
+  mantleStartTime: 0
   mantleUpTime: 0.35
   mantleForwardTime: 0.2
   mantleCheckPos: {fileID: 5933353746523761598}
@@ -595,7 +598,7 @@ MonoBehaviour:
   mantleUpRayLength: 6.5
   mantleIgnoreLayers:
     serializedVersion: 2
-    m_Bits: 1152
+    m_Bits: 5248
   isGhost: 0
   ghostedPlayerInstance: {fileID: 0}
   lastStepPos: {x: 0, y: 0, z: 0}

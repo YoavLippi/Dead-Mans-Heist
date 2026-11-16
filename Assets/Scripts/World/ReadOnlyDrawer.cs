@@ -1,7 +1,9 @@
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+#endif
 
 public class ReadableOnlyAttribute : PropertyAttribute {} //Custom Attribute for me to point to 
 #if UNITY_EDITOR

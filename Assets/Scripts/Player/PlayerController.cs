@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 	[SerializeField] private float turnSpeed = 720f;
 	[SerializeField] private Transform modelPivot;
 	[SerializeField] private GameObject playerMesh;
+	[SerializeField] private AudioClip deathAudioClip;
 
 	[Header("Ghost")]
 	[SerializeField] private GameObject ghostedPlayerPrefab;
@@ -759,6 +760,12 @@ public class PlayerController : MonoBehaviour, iSaveable
 		transform.position = savedPos;
 		modelPivot.rotation = savedRot;
 		Physics.SyncTransforms();
+	}
+
+	public void DoDie()
+	{
+		CameraController.Instance.FadeToBlackAndReload(deathAudioClip.length);
+		PlayerAudio.Instance.PlayAudioOneShot(deathAudioClip);
 	}
     
 	#endregion

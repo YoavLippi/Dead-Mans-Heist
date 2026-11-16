@@ -65,6 +65,7 @@ public class GearPuzzle : Interactable, iSaveable
     }
     public void Reset()
     {
+	    PlayFeedbackAudio(true);
         StopAllCoroutines();
         foreach (Gear gear in gears)
         {

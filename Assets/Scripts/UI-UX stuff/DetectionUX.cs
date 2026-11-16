@@ -54,7 +54,7 @@ public class DetectionUX : MonoBehaviour
 			fillImage.color = alertColor;
 			statusText.text = t;
 			statusText.color = alertColor;
-			visualInstanceHandler.UpdateText(t, alertColor);
+			visualInstanceHandler?.UpdateText(t, alertColor);
 			// FUTURE IMPLEMENTATION: TriggerSnapBack();
 		}
 		else if (currentDetection >= 50f)
@@ -63,13 +63,13 @@ public class DetectionUX : MonoBehaviour
 			fillImage.color = suspiciousColor;
 			statusText.text = t;
 			statusText.color = suspiciousColor;
-			visualInstanceHandler.UpdateText(t, suspiciousColor);
+			visualInstanceHandler?.UpdateText(t, suspiciousColor);
 		}
 		else
 		{
 			fillImage.color = calmColor;
 			statusText.text = ""; // Hidden when calm
-			visualInstanceHandler.UpdateText("", calmColor);
+			visualInstanceHandler?.UpdateText("", calmColor);
 		}
 	}
 

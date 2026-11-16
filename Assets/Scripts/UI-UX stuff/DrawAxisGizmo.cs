@@ -8,6 +8,7 @@ public class DrawAxisGizmo : MonoBehaviour
 
     [SerializeField] private bool alwaysDrawGizmo;
 
+    #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         if (!alwaysDrawGizmo)
@@ -33,4 +34,5 @@ public class DrawAxisGizmo : MonoBehaviour
 
         Handles.color = prevColor;
     }
+    #endif
 }

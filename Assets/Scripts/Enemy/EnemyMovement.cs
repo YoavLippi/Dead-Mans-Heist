@@ -81,6 +81,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
         base.Start();
         target = GameObject.FindWithTag("Player");
         mainCam = Camera.main;
+        Debug.Log(mainCam.name);
     }
 
     public override void FixedUpdate()
