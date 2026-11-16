@@ -40,9 +40,11 @@ public class GearPuzzle : Interactable, iSaveable
 	public void OnSubmit()
 	{
 		Debug.Log("Submit");
-		if (correct) return;
-		animator.SetBool("LeverInput", true);
-		foreach (Gear gear in gears)
+       
+        if (correct) return;
+		animator.SetTrigger("LeverInput");
+       
+        foreach (Gear gear in gears)
 		{
 			if (gear.IsCorrect == false)
 			{
@@ -58,6 +60,7 @@ public class GearPuzzle : Interactable, iSaveable
 		{
 			gear.Locked();
 		}
+        
 
     }
     public void Reset()
@@ -69,8 +72,6 @@ public class GearPuzzle : Interactable, iSaveable
             gear.Unlocked();
         }
         correct = false;
-        animator.SetBool("LeverInput", false);
-        animator.SetBool("LeverFailed", false);
         onReset.Invoke();
     }
     private void PlayFeedbackAudio(bool isSolved)

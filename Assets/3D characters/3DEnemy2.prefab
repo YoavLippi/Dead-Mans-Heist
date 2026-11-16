@@ -651,7 +651,7 @@ MonoBehaviour:
   isOnSchedule: 0
   attachedLos: {fileID: 4181193661878866221}
   detectionSpeed: 1
-  suspicionDecreaseSpeed: 0.3
+  suspicionDecreaseSpeed: 0.4
   currentSuspicion: 0
   maxSuspicion: 100
   currentState: 0

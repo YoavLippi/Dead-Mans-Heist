@@ -13,4 +13,8 @@ public class Anim : MonoBehaviour
     {
         animator.SetBool(animName, false);
     }
+    public void SetTrigger(string animName) 
+    {
+        animator.SetTrigger(animName);
+    }
 }
