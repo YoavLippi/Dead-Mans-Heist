@@ -8,7 +8,7 @@ public class SaveOnCollision : SavingParent
     {
         if (other.CompareTag("Player"))
         {
-            WorldController.DoSave();
+            base.CallSave();
         }
     }
 }

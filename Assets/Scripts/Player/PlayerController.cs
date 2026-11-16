@@ -521,7 +521,7 @@ public class PlayerController : MonoBehaviour, iSaveable
 		
 		float height = standHeight * transform.lossyScale.y;
 		//Debug.Log(transform.lossyScale.y);
-		if (Physics.Raycast(footPos.position, Vector3.up, height, ~standIgnoreLayers)) return;
+		if (Physics.Raycast(footPos.position, Vector3.up, height, ~standIgnoreLayers) && currentState == PlayerState.Sneaking) return;
 		
 		isSneakHeld = !isSneakHeld;
 		if (isSneakHeld)

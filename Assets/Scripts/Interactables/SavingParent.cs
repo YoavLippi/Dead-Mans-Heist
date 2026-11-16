@@ -9,6 +9,7 @@ public class SavingParent : MonoBehaviour
     {
         if (saveOneshot && hasSaved) return;
         WorldController.DoSave();
+        hasSaved = true;
     }
 
     public void CallLoad()
