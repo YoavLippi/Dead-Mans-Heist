@@ -50,10 +50,8 @@ public class WinTrigger : MonoBehaviour
 
 		Time.timeScale = 0f;
 
-		// 2. Display for 4 seconds
 		yield return new WaitForSecondsRealtime(displayDuration);
 
-		// 3. Fade out the text while darkening the panel's black background to fully opaque (alpha = 1)
 		Color startBgColor = panelBackground != null ? panelBackground.color : Color.black;
 		Color targetBgColor = new Color(startBgColor.r, startBgColor.g, startBgColor.b, 1f);
 
@@ -75,7 +73,6 @@ public class WinTrigger : MonoBehaviour
 		if (winContentGroup != null) winContentGroup.alpha = 0f;
 		if (panelBackground != null) panelBackground.color = targetBgColor;
 
-		// 4. Restore time & cursor, then load Main Menu
 		Time.timeScale = 1f;
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
