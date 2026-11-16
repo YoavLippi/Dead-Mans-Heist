@@ -9,6 +9,7 @@ public class EndSequence : MonoBehaviour
     [SerializeField] private GameObject wall;
     [SerializeField] private ParticleSystem smoke;
     [SerializeField] private ParticleSystem explosionvfx;
+    [SerializeField] private Anim cannonanim;
 
 
     public void playSequence() 
@@ -19,6 +20,7 @@ public class EndSequence : MonoBehaviour
     {
         cannon.PlayOneShot(sizzle);
         yield return new WaitForSeconds(3f);
+        cannonanim.SetTrue("CannonShot");
         cannon.PlayOneShot(explosion);
         wall.SetActive(false);
         smoke.Play();

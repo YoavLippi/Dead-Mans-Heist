@@ -740,6 +740,17 @@ MonoBehaviour:
   minorDistractionDuration: 3
   minorDistractionSuspicion: 25
   audioIdentityIndex: 0
+  alertAudios:
+  - clips:
+    - {fileID: 8300000, guid: 1217501a067736341ab62b47acc73045, type: 3}
+    - {fileID: 8300000, guid: 7469c7da15ce71344a1190144e2988f1, type: 3}
+    - {fileID: 8300000, guid: d62b4789054840e4887cf931ba4e8aef, type: 3}
+    - {fileID: 8300000, guid: 52d01c16a4bd64f4e9655a6ad0824591, type: 3}
+  - clips:
+    - {fileID: 8300000, guid: 2e7a3841a281f75449c9bac623a260d1, type: 3}
+    - {fileID: 8300000, guid: ba8e172d0cb3fa8459719ddb21156940, type: 3}
+    - {fileID: 8300000, guid: 68dfd1a462479334db4da0ea54250716, type: 3}
+    - {fileID: 8300000, guid: c22ef8ffbb0ba9f4faf2ca930dc232e9, type: 3}
   catchAudios:
   - clips:
     - {fileID: 8300000, guid: 347458b04df8bfe4bbc0dc9f0f463e4e, type: 3}
@@ -751,17 +762,6 @@ MonoBehaviour:
     - {fileID: 8300000, guid: c7d4318857a4cd242ac8d63581dc6fc0, type: 3}
     - {fileID: 8300000, guid: d02aebbc9daef4e44a34589b42d96a21, type: 3}
     - {fileID: 8300000, guid: 08ec7225cfe59754bb5f005a8f425509, type: 3}
-  alertAudios:
-  - clips:
-    - {fileID: 8300000, guid: 01bb8f471508a3f4785c6a5b7b71d65c, type: 3}
-    - {fileID: 8300000, guid: 740bb971ccc7c3e4fbf04599e0f60f33, type: 3}
-    - {fileID: 8300000, guid: 55711f319cffb13498f541633da7a2d0, type: 3}
-    - {fileID: 8300000, guid: f88b83fb034da2c4da5c7fb2a87a9896, type: 3}
-  - clips:
-    - {fileID: 8300000, guid: 1217501a067736341ab62b47acc73045, type: 3}
-    - {fileID: 8300000, guid: 7469c7da15ce71344a1190144e2988f1, type: 3}
-    - {fileID: 8300000, guid: d62b4789054840e4887cf931ba4e8aef, type: 3}
-    - {fileID: 8300000, guid: 52d01c16a4bd64f4e9655a6ad0824591, type: 3}
   arrivalDistanceThreshold: 2
   maxTravelToDistractionSeconds: 10
   facingX: 0

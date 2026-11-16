@@ -34,6 +34,27 @@ public class Scheduler : MonoBehaviour
     [SerializeField] private bool loopSchedule = true;
     [SerializeField] private List<EventWrapper> schedule;
     [SerializeField] private int offsetTime;
+    public delegate void TimeChangedEvent(int time);
+    public TimeChangedEvent OnTimeChanged;
+
+    public int HighestTimeValue
+    {
+        get
+        {
+            return schedule.Max(p => p.time);
+        }
+    }
+
+    public int LastKnownTime
+    {
+        get => lastKnownTime;
+        set
+        {
+            lastKnownTime = value;
+            OnTimeChanged?.Invoke(value);
+        } 
+    }
+
     private void OnEnable() => WorldTime.secondsChange += CheckTime;
 
     private void OnDisable() => WorldTime.secondsChange -= CheckTime;
@@ -56,8 +77,8 @@ public class Scheduler : MonoBehaviour
         {
             if (workingTime > GetHighestTriggerTime()) return;
         }
-        lastKnownTime = workingTime;
-        var currentEvents = schedule.Where(p => p.time == lastKnownTime);
+        LastKnownTime = workingTime;
+        var currentEvents = schedule.Where(p => p.time == LastKnownTime);
         foreach (var e in currentEvents)
         {
             //Debug.Log($"Invoking event for time: {lastKnownTime}");
@@ -72,6 +93,7 @@ public class Scheduler : MonoBehaviour
 
     private void OnValidate()
     {
+        if (schedule.Count <= 0) return;
         foreach (var ew in schedule)
         {
             ew?.OnValidate();
