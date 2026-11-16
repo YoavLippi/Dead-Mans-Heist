@@ -124,4 +124,9 @@ public class DetectionUX : MonoBehaviour
 	{
 		IsShowingIcon = false;
 	}
+    public void OnDisable()
+    {
+		if (camVisualInstance == null) return;
+        camVisualInstance.SetActive(false);
+    }
 }
