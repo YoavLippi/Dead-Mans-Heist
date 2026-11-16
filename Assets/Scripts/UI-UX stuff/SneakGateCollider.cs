@@ -4,13 +4,19 @@ using System.Collections.Generic;
 
 public class SneakGateCollider : MonoBehaviour
 {
+	[Header("Trigger Mode")]
+	[Tooltip("If true, blocks the player until they enter Required State. If false, acts as a normal walk-through trigger.")]
+	[SerializeField] private bool requireSpecificState = true;
+	[SerializeField] private string playerTag = "Player";
+
 	[Header("Gate & Player References")]
 	[SerializeField] private PlayerController playerController;
-	[Tooltip("The physical blocking collider (Is Trigger = false) that stops non-sneaking players")]
+	[Tooltip("Collider used either as a physical blocker (when Require Specific State is true) or a Trigger (when false)")]
 	[SerializeField] private Collider blockingCollider;
 	[SerializeField] private PlayerController.PlayerState requiredState = PlayerController.PlayerState.Sneaking;
 	[SerializeField] private bool activeOnStart = false;
 	[SerializeField] private bool disableBlockerOnceTriggered = true;
+	[Tooltip("Delay after entering Required State (or entering the trigger) before the camera pan starts")]
 	[SerializeField] private float delayAfterSneakBeforePan = 2.0f;
 
 	[Header("Player Control Locking")]
@@ -18,20 +24,27 @@ public class SneakGateCollider : MonoBehaviour
 	[Tooltip("Drag your player movement, mouse-look, and footstep scripts here")]
 	[SerializeField] private MonoBehaviour[] scriptsToDisable;
 
-	[Header("Target 1: Approaching Enemy")]
+	[Header("Target 1: First Focus Point")]
 	[SerializeField] private Transform enemyTarget;
 	[SerializeField] private float enemyZoomedFOV = 35f;
 	[SerializeField] private float lookAtEnemyDuration = 0.8f;
-	[Tooltip("How long to hold on the enemy before panning to the hiding spot (sync this with your voice line)")]
+	[Tooltip("How long to hold on Target 1 before panning to Target 2 (sync this with your voice line)")]
 	[SerializeField] private float holdOnEnemyDuration = 2.0f;
 	[SerializeField] private Renderer[] enemyRenderersToHighlight;
 
-	[Header("Target 2: Hiding Spot")]
+	[Header("Target 2: Second Focus Point")]
 	[SerializeField] private Transform hidingSpotTarget;
 	[SerializeField] private float hidingSpotZoomedFOV = 38f;
 	[SerializeField] private float panToHidingSpotDuration = 0.9f;
 	[SerializeField] private float returnToPlayerDuration = 0.8f;
 	[SerializeField] private Renderer[] hidingSpotRenderersToHighlight;
+
+	[Header("Trigger SFX on Enter")]
+	[SerializeField] private AudioSource triggerSfxSource;
+	[SerializeField] private AudioClip triggerEnterClip;
+	[Range(0f, 1f)][SerializeField] private float triggerEnterVolume = 0.8f;
+	[Tooltip("If true, waits for the Trigger Enter Clip to finish before starting the delay and voice line")]
+	[SerializeField] private bool waitForEnterClipBeforeVoice = false;
 
 	[Header("Single Continuous Voice Line")]
 	[SerializeField] private AudioSource voiceAudioSource;
@@ -112,10 +125,24 @@ public class SneakGateCollider : MonoBehaviour
 
 	private void HandlePlayerStateChanged(PlayerController.PlayerState newState)
 	{
+		if (!requireSpecificState) return;
+
 		isSneaking = (newState == requiredState);
 		RefreshColliderState();
 
 		if (gateEnabled && isSneaking && !hasTriggeredSequence)
+		{
+			hasTriggeredSequence = true;
+			StartCoroutine(PlayDoubleTargetVoiceSequence());
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (requireSpecificState) return;
+		if (!gateEnabled || hasTriggeredSequence) return;
+
+		if (other.CompareTag(playerTag) || other.GetComponentInParent<PlayerController>() != null)
 		{
 			hasTriggeredSequence = true;
 			StartCoroutine(PlayDoubleTargetVoiceSequence());
@@ -132,21 +159,50 @@ public class SneakGateCollider : MonoBehaviour
 			RefreshColliderState();
 		}
 
+		if (triggerEnterClip != null)
+		{
+			if (triggerSfxSource != null)
+			{
+				triggerSfxSource.ignoreListenerPause = true;
+				triggerSfxSource.PlayOneShot(triggerEnterClip, triggerEnterVolume);
+			}
+			else if (voiceAudioSource != null)
+			{
+				voiceAudioSource.ignoreListenerPause = true;
+				voiceAudioSource.PlayOneShot(triggerEnterClip, triggerEnterVolume);
+			}
+			else
+			{
+				AudioSource.PlayClipAtPoint(triggerEnterClip, transform.position, triggerEnterVolume);
+			}
+
+			if (waitForEnterClipBeforeVoice)
+			{
+				yield return new WaitForSecondsRealtime(triggerEnterClip.length);
+			}
+		}
+
+
 		if (delayAfterSneakBeforePan > 0f)
 		{
-			float sneakElapsed = 0f;
-			while (sneakElapsed < delayAfterSneakBeforePan)
+			if (requireSpecificState)
 			{
-				if (!isSneaking)
+				float sneakElapsed = 0f;
+				while (sneakElapsed < delayAfterSneakBeforePan)
 				{
-					// Player stood back up early — reset so it triggers once they sneak for a full 2s
-					hasTriggeredSequence = false;
-					IsSequenceRunning = false;
-					yield break;
+					if (!isSneaking)
+					{
+						hasTriggeredSequence = false;
+						IsSequenceRunning = false;
+						yield break;
+					}
+					sneakElapsed += Time.deltaTime;
+					yield return null;
 				}
-
-				sneakElapsed += Time.deltaTime;
-				yield return null;
+			}
+			else
+			{
+				yield return new WaitForSeconds(delayAfterSneakBeforePan);
 			}
 		}
 
@@ -160,7 +216,6 @@ public class SneakGateCollider : MonoBehaviour
 		Quaternion originalRotation = camTransform.rotation;
 		float originalFOV = mainCamera.fieldOfView;
 
-		// Start the single continuous voice line
 		float totalVoiceWait = 3.5f;
 		if (voiceAudioSource != null && singleVoiceLineClip != null)
 		{
@@ -173,7 +228,7 @@ public class SneakGateCollider : MonoBehaviour
 		if (hintCanvasGroup != null)
 			StartCoroutine(FadeHintText(1f));
 
-		// --- LEG 1: Look & Zoom onto Enemy ---
+		// --- LEG 1: Look & Zoom onto Target 1 ---
 		if (enemyTarget != null)
 		{
 			AttachHighlightOverlay(enemyRenderersToHighlight);
@@ -196,7 +251,7 @@ public class SneakGateCollider : MonoBehaviour
 			RemoveHighlightOverlay();
 		}
 
-		// --- LEG 2: Pan Directly from Enemy to Hiding Spot ---
+		// --- LEG 2: Pan Directly from Target 1 to Target 2 ---
 		if (hidingSpotTarget != null)
 		{
 			AttachHighlightOverlay(hidingSpotRenderersToHighlight);
@@ -213,7 +268,6 @@ public class SneakGateCollider : MonoBehaviour
 			));
 		}
 
-		// Wait for the remainder of the single voice line so the camera doesn't return before the line finishes
 		float elapsedSoFar = Time.unscaledTime - sequenceStartTime;
 		float remainingVoiceTime = totalVoiceWait - elapsedSoFar;
 		if (remainingVoiceTime > 0f)
@@ -473,6 +527,16 @@ public class SneakGateCollider : MonoBehaviour
 	private void RefreshColliderState()
 	{
 		if (blockingCollider == null) return;
+
+		if (!requireSpecificState)
+		{
+			// Trigger-only mode: never physically block the player, just stay enabled as a trigger while active
+			blockingCollider.isTrigger = true;
+			blockingCollider.enabled = gateEnabled && !hasTriggeredSequence;
+			return;
+		}
+
+		blockingCollider.isTrigger = false;
 		blockingCollider.enabled = gateEnabled && !isSneaking;
 	}
 
