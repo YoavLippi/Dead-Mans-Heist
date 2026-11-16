@@ -1441,7 +1441,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753737154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.09999566}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1449,8 +1449,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.541, y: -4.8241653}
-  m_SizeDelta: {x: 43.355, y: 9.907}
+  m_AnchoredPosition: {x: 5.1, y: -4.8}
+  m_SizeDelta: {x: 43.355, y: 7.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &753737156
 MonoBehaviour:
@@ -2663,7 +2663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.262, y: -21.8}
+  m_AnchoredPosition: {x: 13.262, y: -24.87}
   m_SizeDelta: {x: 15.219, y: 1.672}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1518750667
@@ -3212,7 +3212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6427625447615004496, guid: 9b208b67b43b8e14c908ed08fe858c6c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6463982876247904431, guid: 9b208b67b43b8e14c908ed08fe858c6c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3514,8 +3514,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.6, y: -17.875}
-  m_SizeDelta: {x: 31.658, y: 39.273}
+  m_AnchoredPosition: {x: -12.6, y: -18.13}
+  m_SizeDelta: {x: 31.658, y: 39.782}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1761299990
 MonoBehaviour:
@@ -3552,7 +3552,10 @@ MonoBehaviour:
     by Luke.G licensed: Creative Commons Attribution. \r\n- \"Hammock\" (https://skfb.ly/oGFXL)
     by ANCook licensed: Creative Commons Attribution.\n- \"Bottle with scroll\" (https://skfb.ly/6AtGW)
     by Marcus Vinicius licensed: Creative Commons Attribution.- \"Glass_Bottle\"
-    (https://skfb.ly/6Ux8M) by GetDeadEntertainment licensed: Creative Commons Attribution."
+    (https://skfb.ly/6Ux8M) by GetDeadEntertainment licensed: Creative Commons Attribution.\n
+    - \"The water mil\" (https://skfb.ly/6WMRu) by Geoffrey Marchal licensed: CC
+    Attribution-NonCommercial-ShareAlike. \r\n- \"Pirate Compass\" (https://skfb.ly/6YuES)
+    by VincentBrindisi licensed: Creative Commons Attribution. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3934,7 +3937,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869884957}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1000092}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3942,8 +3945,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18.809, y: -17.78965}
-  m_SizeDelta: {x: 28.548, y: 28.572}
+  m_AnchoredPosition: {x: 18.7, y: -19.2}
+  m_SizeDelta: {x: 28.548, y: 35.347}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869884959
 MonoBehaviour:
@@ -3965,16 +3968,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "- \"Bottle Old wine\" (https://skfb.ly/6wzHn) by VITALIY MARUSEV licensed:
-    Creative Commons Attribution.\n- \"Net\" (https://skfb.ly/oGSBw) by becca2k licensed:
-    Creative Commons Attribution.\n- \"Crate box\" (https://skfb.ly/RMpW) by KloWorks
-    licensed: Creative Commons Attribution.\n- \"Office Desk - 18MB\" (https://skfb.ly/oVYPS)
-    by Mehdi Shahsavan licensed: Creative Commons Attribution.\n- \"Cupboard\" (https://skfb.ly/6xOvO)
-    by Lucas Garnier licensed: Creative Commons Attribution.\n\n<u>CHARACTERS: </u>\n\n-
-    \"\u0421ostume Ciri for Moira's\" (https://skfb.ly/6noHo) by DshGames licensed:
-    Creative Commons Attribution.\n- \"Game ready Pirate Hunter / Viking / Medieval
-    man\" (https://skfb.ly/orWYy) by Chenuka Wijesundara licensed: Creative Commons
-    Attribution.\n\nCharacters were animated using animations from mixamo.com \r\n\r\n\r\n"
+  m_text: "- \"Framed Painting\" (https://skfb.ly/oR9I9) by Seth Santos licensed:
+    Creative Commons Attribution.\n- \"Bottle Old wine\" (https://skfb.ly/6wzHn)
+    by VITALIY MARUSEV licensed: Creative Commons Attribution.\n- \"Net\" (https://skfb.ly/oGSBw)
+    by becca2k licensed: Creative Commons Attribution.\n- \"Crate box\" (https://skfb.ly/RMpW)
+    by KloWorks licensed: Creative Commons Attribution.\n- \"Office Desk - 18MB\"
+    (https://skfb.ly/oVYPS) by Mehdi Shahsavan licensed: Creative Commons Attribution.\n-
+    \"Cupboard\" (https://skfb.ly/6xOvO) by Lucas Garnier licensed: Creative Commons
+    Attribution.\n\n<u>CHARACTERS: </u>\n\n- \"\u0421ostume Ciri for Moira's\" (https://skfb.ly/6noHo)
+    by DshGames licensed: Creative Commons Attribution.\n- \"Game ready Pirate Hunter
+    / Viking / Medieval man\" (https://skfb.ly/orWYy) by Chenuka Wijesundara licensed:
+    Creative Commons Attribution.\n\nCharacters were animated using animations from
+    mixamo.com \r\n\n<u>PARTICLE EFFECTS: </u>\n\n- Particle effects. Unity Asset
+    Store, Unity Technologies. At: https://assetstore.unity.com/packages/vfx/particles/particle-pack-starter-assets-127325
+    \r\n\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4625,7 +4632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2121285188
 RectTransform:
   m_ObjectHideFlags: 0
