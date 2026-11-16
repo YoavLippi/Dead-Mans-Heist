@@ -10,6 +10,11 @@ public class WinTrigger : MonoBehaviour
 	[SerializeField] private GameObject winPanel;
 	[SerializeField] private CanvasGroup winContentGroup;
 
+	[Header("Audio (Optional)")]
+	[SerializeField] private AudioSource winAudioSource;
+	[SerializeField] private AudioClip winClip;
+	[Range(0f, 1f)][SerializeField] private float winVolume = 1f;
+
 	[Header("Timing & Scene")]
 	[SerializeField] private float displayDuration = 4f;
 	[SerializeField] private float fadeDuration = 1f;
@@ -49,6 +54,20 @@ public class WinTrigger : MonoBehaviour
 			winContentGroup.alpha = 1f;
 
 		Time.timeScale = 0f;
+
+		if (winClip != null)
+		{
+			if (winAudioSource != null)
+			{
+				winAudioSource.ignoreListenerPause = true;
+				winAudioSource.spatialBlend = 0f;
+				winAudioSource.PlayOneShot(winClip, winVolume);
+			}
+			else
+			{
+				AudioSource.PlayClipAtPoint(winClip, transform.position, winVolume);
+			}
+		}
 
 		yield return new WaitForSecondsRealtime(displayDuration);
 
