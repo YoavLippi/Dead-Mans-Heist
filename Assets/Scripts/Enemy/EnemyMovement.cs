@@ -207,10 +207,10 @@ public class EnemyMovement : EnemyAbs, iSaveable
         Quaternion rightRotation = startingRotation * Quaternion.Euler(0, turnAngle, 0);
 
         yield return StartCoroutine(RotateTo(leftRotation));
-        yield return new WaitForSeconds(time / 3f);
+        yield return new WaitForSeconds(time / 5f);
 
         yield return StartCoroutine(RotateTo(rightRotation));
-        yield return new WaitForSeconds(time / 3f);
+        yield return new WaitForSeconds(time / 5f);
 
         yield return StartCoroutine(RotateTo(startingRotation));
 
@@ -224,7 +224,7 @@ public class EnemyMovement : EnemyAbs, iSaveable
 
     private IEnumerator RotateTo(Quaternion targetRot)
     {
-        float maxTurnTime = 3;
+        float maxTurnTime = 0.8f;
         float currentTime = 0;
         while (Quaternion.Angle(transform.rotation, targetRot) > 0.1f && currentTime <= maxTurnTime)
         {

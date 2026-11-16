@@ -13,7 +13,9 @@ public class DoorFall : MonoBehaviour
 	[SerializeField] private Behaviour[] playerScriptsToDisable;
 
 	[SerializeField] private InputActionAsset inputActions;
-	[SerializeField] private string actionMapName = "Player";
+	[SerializeField] private string actionMapName = "Ingame";
+
+	
 
 	[Header("Audio")]
 	[SerializeField] private AudioSource audioSource;
